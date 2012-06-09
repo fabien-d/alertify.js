@@ -1,0 +1,52 @@
+.wu-hidden { 
+	display: none; 
+	visibility: hidden;
+}
+.wu-cover {
+	position: fixed;
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+.whatup {
+	position: fixed;
+	width: 350px;
+	left: 50%;
+	top: 50px;
+	margin-left: -175px;
+}
+	.wu-dialog {
+		padding: 15px;
+	}
+		.wu-inner {
+		}
+		.wu-text {
+			width: 100%;
+			box-sizing: border-box;
+		}
+		.wu-buttons {
+			text-align: right;
+		}
+			.wu-button {
+				display: inline-block;
+				cursor: pointer;
+				padding: 5px 10px;
+				margin-left: 5px;
+			}
+
+
+
+
+
+
+
+
+/**
+ * TEMP STYLES
+ */
+.whatup {
+	background: #F5F5F5;
+	border: 1px solid #CCC;
+}
+.wu-button {
+	background: #CCC;
+	border-radius: 4px;
+}
