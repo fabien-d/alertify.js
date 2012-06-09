@@ -4,7 +4,7 @@
 	var document = global.document,
 	    WhatUp;
 
-	WhatUp = (function () {
+	WhatUp = function () {
 
 		var init, build, hide, alert, confirm, log, prompt,
 		    cover, dialogs, element,
@@ -158,7 +158,7 @@
 			log     : log,
 			prompt  : prompt
 		};
-	});
+	};
 
 	if (typeof global.whatup === "undefined") { global.whatup = WhatUp(); }
 }(this));
