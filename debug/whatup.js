@@ -6,20 +6,32 @@
 
 	WhatUp = function () {
 
-		var init, build, hide, alert, confirm, log, prompt,
-		    cover, dialogs, element,
+		var init, addListeners, bind, build, hide, setup, alert, confirm, log, prompt,
+		    $, cover, dialogs, element, labels;
 
-		    setEvents,
-		    callback;
+		labels = {
+			ok     : "OK",
+			cancel : "Cancel"
+		};
 
 		dialogs = {
 			buttons : {
 				holder : "<nav class=\"wu-buttons\">{{buttons}}</nav>",
-				ok     : "<a class=\"wu-button wu-button-ok\" id=\"wuOK\">OK</a>",
-				cancel : "<a class=\"wu-button wu-button-cancel\" id=\"wuCancel\">Cancel</a>"
+				ok     : "<a class=\"wu-button wu-button-ok\" id=\"wuOK\">{{ok}}</a>",
+				cancel : "<a class=\"wu-button wu-button-cancel\" id=\"wuCancel\">{{cancel}}</a>"
 			},
-			input   : "<input type=\"text\" class=\"wu-text\">",
+			input   : "<input type=\"text\" class=\"wu-text\" id=\"wuText\">",
 			message : "<p class=\"wu-message\">{{message}}</p>"
+		};
+
+		/**
+		 * Shorthand for document.getElementById()
+		 * 
+		 * @param  {String} id A specific element ID
+		 * @return {Object}    HTML element
+		 */
+		$ = function (id) {
+			return document.getElementById(id);
 		};
 
 		/**
@@ -37,6 +49,50 @@
 			element.setAttribute("id", "whatup");
 			element.className = "whatup wu-hidden";
 			document.body.appendChild(element);
+		};
+
+		/**
+		 * Set the proper button click events
+		 *
+		 * @param {Function} fn [Optional] Callback function
+		 */
+		addListeners = function (fn) {
+			var btnOK     = $("wuOK")     || undefined,
+			    btnCancel = $("wuCancel") || undefined,
+			    input     = $("wuText")   || undefined,
+			    val       = "";
+
+			// handle OK click
+			if (typeof btnOK !== "undefined") {
+				bind(btnOK, "click", function () {
+					hide();
+					if (typeof input !== "undefined") { val = input.value; }
+					if (typeof fn === "function")     { fn(true, val); }
+				});
+			}
+
+			// handle Cancel click
+			if (typeof btnCancel !== "undefined") {
+				bind(btnCancel, "click", function () {
+					hide();
+					if (typeof fn === "function") { fn(false); }
+				});
+			}
+		};
+
+		/**
+		 * Bind events to elements
+		 * 
+		 * @param  {Object}   el    HTML Object
+		 * @param  {Event}    event Event to attach to element
+		 * @param  {Function} fn    Callback function
+		 */
+		bind = function (el, event, fn) {
+			if (typeof el.addEventListener === "function") {
+				el.addEventListener(event, fn, false);
+			} else if (el.attachEvent) {
+				el.attachEvent("on" + event, fn);
+			}
 		};
 
 		/**
@@ -63,9 +119,11 @@
 				case "confirm":
 				case "prompt":
 					html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.ok);
+					html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
 					break;
 				case "alert":
 					html = html.replace("{{buttons}}", dialogs.buttons.ok);
+					html = html.replace("{{ok}}", labels.ok);
 					break;
 				default:
 					break;
@@ -80,32 +138,21 @@
 		 * Hide the dialog and rest to defaults
 		 */
 		hide = function () {
-			callback = null;
 			element.className = "whatup wu-hidden";
 			cover.className   = "wu-cover wu-hidden";
 			element.innerHTML = "";
 		};
 
 		/**
-		 * Set the proper button click events
+		 * Initiate all the required pieces for the dialog box
+		 * 
+		 * @param  {String} type    The type of message box to build
+		 * @param  {String} message The message passed from the function
+		 * @param  {Function} fn    [Optional] Callback function
 		 */
-		setEvents = function () {
-			var btnOK     = document.getElementById("wuOK") || undefined,
-			    btnCancel = document.getElementById("wuCancel") || undefined;
-
-			if (typeof btnOK !== "undefined") {
-				btnOK.addEventListener("click", function () {
-					if (typeof callback === "function") { callback(true); }
-					hide();
-				}, false);
-			}
-
-			if (typeof btnCancel !== "undefined") {
-				btnCancel.addEventListener("click", function () {
-					if (typeof callback === "function") { callback(false); }
-					hide();
-				}, false);
-			}
+		setup = function (type, message, fn) {
+			element.innerHTML = build(type, message);
+			addListeners(fn);
 		};
 
 		/**
@@ -115,9 +162,7 @@
 		 * @param  {Function} fn      [Optional] Callback function
 		 */
 		alert = function (message, fn) {
-			if (typeof fn === "function") { callback = fn; }
-			element.innerHTML = build("alert", message);
-			setEvents();
+			setup("alert", message, fn);
 		};
 
 		/**
@@ -127,9 +172,7 @@
 		 * @param  {Function} fn      [Optional] Callback function
 		 */
 		confirm = function (message, fn) {
-			if (typeof fn === "function") { callback = fn; }
-			element.innerHTML = build("confirm", message);
-			setEvents();
+			setup("confirm", message, fn);
 		};
 
 		log = function (message) {
@@ -143,10 +186,7 @@
 		 * @param  {Function} fn      [Optional] Callback function
 		 */
 		prompt = function (message, fn) {
-			if (typeof fn === "function") { callback = fn; }
-			element.innerHTML = build("prompt", message);
-			setEvents();
-			// NEEDS TO PASS THE ENTERED VALUE
+			setup("prompt", message, fn);
 		};
 
 		// Bootstrap
@@ -156,7 +196,9 @@
 			alert   : alert,
 			confirm : confirm,
 			log     : log,
-			prompt  : prompt
+			prompt  : prompt,
+
+			labels  : labels
 		};
 	};
 
