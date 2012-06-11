@@ -6,8 +6,8 @@
 
 	WhatUp = function () {
 
-		var init, addListeners, bind, build, hide, setup, alert, confirm, log, prompt,
-		    $, cover, dialogs, element, labels;
+		var init, addListeners, bind, build, close, hide, notify, setup, alert, confirm, log, prompt,
+		    $, cover, delay = 5000, dialogs, element, labels, logElement;
 
 		labels = {
 			ok     : "OK",
@@ -21,7 +21,8 @@
 				cancel : "<a class=\"wu-button wu-button-cancel\" id=\"wuCancel\">{{cancel}}</a>"
 			},
 			input   : "<input type=\"text\" class=\"wu-text\" id=\"wuText\">",
-			message : "<p class=\"wu-message\">{{message}}</p>"
+			message : "<p class=\"wu-message\">{{message}}</p>",
+			log     : "<article id=\"log-{{id}}\" class=\"wu-log\">{{message}}</article>"
 		};
 
 		/**
@@ -49,6 +50,11 @@
 			element.setAttribute("id", "whatup");
 			element.className = "whatup wu-hidden";
 			document.body.appendChild(element);
+			// main element
+			logElement = document.createElement("section");
+			logElement.setAttribute("id", "whatuplogs");
+			logElement.className = "wu-logs";
+			document.body.appendChild(logElement);
 		};
 
 		/**
@@ -99,7 +105,7 @@
 		 * Build the proper message box
 		 * 
 		 * @param  {String} type    The type of message box to build
-		 * @param  {String} message The message passed from the function
+		 * @param  {String} message The message passed from the callee
 		 * @return {String}         An HTML string of the message box
 		 */
 		build = function (type, message) {
@@ -135,6 +141,28 @@
 		};
 
 		/**
+		 * Close the log messages
+		 */
+		close = function () {
+			setTimeout(function () {
+				var child = logElement.childNodes[0];
+				if (child instanceof Element) {
+					logElement.removeChild(child);
+				}
+			}, delay);
+		};
+
+		/**
+		 * Add new log message
+		 * 
+		 * @param  {String} message The message passed from the callee
+		 */
+		notify = function (message) {
+			logElement.innerHTML += dialogs.log.replace("{{message}}", message);
+			close();
+		};
+
+		/**
 		 * Hide the dialog and rest to defaults
 		 */
 		hide = function () {
@@ -147,7 +175,7 @@
 		 * Initiate all the required pieces for the dialog box
 		 * 
 		 * @param  {String} type    The type of message box to build
-		 * @param  {String} message The message passed from the function
+		 * @param  {String} message The message passed from the callee
 		 * @param  {Function} fn    [Optional] Callback function
 		 */
 		setup = function (type, message, fn) {
@@ -158,7 +186,7 @@
 		/**
 		 * Create an alert dialog box
 		 * 
-		 * @param  {String}   message The message passed from the function
+		 * @param  {String}   message The message passed from the callee
 		 * @param  {Function} fn      [Optional] Callback function
 		 */
 		alert = function (message, fn) {
@@ -168,15 +196,21 @@
 		/**
 		 * Create a confirm dialog box
 		 * 
-		 * @param  {String}   message The message passed from the function
+		 * @param  {String}   message The message passed from the callee
 		 * @param  {Function} fn      [Optional] Callback function
 		 */
 		confirm = function (message, fn) {
 			setup("confirm", message, fn);
 		};
 
-		log = function (message) {
-			// NEEDS TO CLOSE ON A TIMER
+		/**
+		 * Show a new log message box
+		 * 
+		 * @param  {String} message The message passed from the callee
+		 * @param  {String} type    [Optional] Optional type of log message
+		 */
+		log = function (message, type) {
+			notify(message);
 		};
 
 		/**
@@ -198,7 +232,8 @@
 			log     : log,
 			prompt  : prompt,
 
-			labels  : labels
+			labels  : labels,
+			delay   : delay
 		};
 	};
 
