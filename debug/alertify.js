@@ -2,9 +2,9 @@
 	"use strict";
 
 	var document = global.document,
-	    WhatUp;
+	    Alertify;
 
-	WhatUp = function () {
+	Alertify = function () {
 
 		var init, addListeners, bind, build, close, hide, notify, setup, alert, confirm, log, prompt,
 		    $, cover, delay = 5000, dialogs, element, labels, logElement;
@@ -16,13 +16,13 @@
 
 		dialogs = {
 			buttons : {
-				holder : "<nav class=\"wu-buttons\">{{buttons}}</nav>",
-				ok     : "<a class=\"wu-button wu-button-ok\" id=\"wuOK\">{{ok}}</a>",
-				cancel : "<a class=\"wu-button wu-button-cancel\" id=\"wuCancel\">{{cancel}}</a>"
+				holder : "<nav class=\"alertify-buttons\">{{buttons}}</nav>",
+				ok     : "<a class=\"alertify-button alertify-button-ok\" id=\"aOK\">{{ok}}</a>",
+				cancel : "<a class=\"alertify-button alertify-button-cancel\" id=\"aCancel\">{{cancel}}</a>"
 			},
-			input   : "<input type=\"text\" class=\"wu-text\" id=\"wuText\">",
-			message : "<p class=\"wu-message\">{{message}}</p>",
-			log     : "<article id=\"log-{{id}}\" class=\"wu-log\">{{message}}</article>"
+			input   : "<input type=\"text\" class=\"alertify-text\" id=\"aText\">",
+			message : "<p class=\"alertify-message\">{{message}}</p>",
+			log     : "<article id=\"log-{{id}}\" class=\"alertify-log\">{{message}}</article>"
 		};
 
 		/**
@@ -36,24 +36,24 @@
 		};
 
 		/**
-		 * Initialize WhatUp
+		 * Initialize Alertify
 		 * Create the 2 main elements
 		 */
 		init = function () {
 			// cover
 			cover = document.createElement("div");
-			cover.setAttribute("id", "whatupcover");
-			cover.className = "wu-cover wu-hidden";
+			cover.setAttribute("id", "alertifycover");
+			cover.className = "alertify-cover alertify-hidden";
 			document.body.appendChild(cover);
 			// main element
 			element = document.createElement("section");
-			element.setAttribute("id", "whatup");
-			element.className = "whatup wu-hidden";
+			element.setAttribute("id", "alertify");
+			element.className = "alertify alertify-hidden";
 			document.body.appendChild(element);
 			// main element
 			logElement = document.createElement("section");
-			logElement.setAttribute("id", "whatuplogs");
-			logElement.className = "wu-logs";
+			logElement.setAttribute("id", "alertifylogs");
+			logElement.className = "alertify-logs";
 			document.body.appendChild(logElement);
 		};
 
@@ -63,9 +63,9 @@
 		 * @param {Function} fn [Optional] Callback function
 		 */
 		addListeners = function (fn) {
-			var btnOK     = $("wuOK")     || undefined,
-			    btnCancel = $("wuCancel") || undefined,
-			    input     = $("wuText")   || undefined,
+			var btnOK     = $("aOK")     || undefined,
+			    btnCancel = $("aCancel") || undefined,
+			    input     = $("aText")   || undefined,
 			    val       = "";
 
 			// handle OK click
@@ -111,8 +111,8 @@
 		build = function (type, message) {
 			var html = "";
 
-			html += "<div class=\"wu-dialog\">";
-			html += 	"<article class=\"wu-inner\">";
+			html += "<div class=\"alertify-dialog\">";
+			html += 	"<article class=\"alertify-inner\">";
 			html += 		dialogs.message.replace("{{message}}", message);
 
 			if (type === "prompt") { html += dialogs.input; }
@@ -135,8 +135,8 @@
 					break;
 			}
 
-			element.className = "whatup wu-" + type;
-			cover.className   = "wu-cover";
+			element.className = "alertify alertify-show alertify-" + type;
+			cover.className   = "alertify-cover";
 			return html;
 		};
 
@@ -166,9 +166,8 @@
 		 * Hide the dialog and rest to defaults
 		 */
 		hide = function () {
-			element.className = "whatup wu-hidden";
-			cover.className   = "wu-cover wu-hidden";
-			element.innerHTML = "";
+			element.className = "alertify alertify-hide alertify-hidden";
+			cover.className   = "alertify-cover alertify-hidden";
 		};
 
 		/**
@@ -237,5 +236,5 @@
 		};
 	};
 
-	if (typeof global.whatup === "undefined") { global.whatup = WhatUp(); }
+	if (typeof global.alertify === "undefined") { global.alertify = Alertify(); }
 }(this));
