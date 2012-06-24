@@ -47,7 +47,7 @@
 			},
 			input   : "<input type=\"text\" class=\"alertify-text\" id=\"aText\">",
 			message : "<p class=\"alertify-message\">{{message}}</p>",
-			log     : "<article id=\"log-{{id}}\" class=\"alertify-log\">{{message}}</article>"
+			log     : "<article class=\"alertify-log{{class}}\">{{message}}</article>"
 		};
 
 		/**
@@ -98,7 +98,7 @@
 				bind(btnOK, "click", function () {
 					hide();
 					if (typeof input !== "undefined") { val = input.value; }
-					if (typeof fn === "function")     { fn(true, val); }
+					if (typeof fn === "function") { fn(true, val); }
 					return false;
 				});
 			}
@@ -149,17 +149,17 @@
 			html += "</div>";
 
 			switch (type) {
-				case "confirm":
-				case "prompt":
-					html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.ok);
-					html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
-					break;
-				case "alert":
-					html = html.replace("{{buttons}}", dialogs.buttons.ok);
-					html = html.replace("{{ok}}", labels.ok);
-					break;
-				default:
-					break;
+			case "confirm":
+			case "prompt":
+				html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.ok);
+				html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
+				break;
+			case "alert":
+				html = html.replace("{{buttons}}", dialogs.buttons.ok);
+				html = html.replace("{{ok}}", labels.ok);
+				break;
+			default:
+				break;
 			}
 
 			element.className = "alertify alertify-show alertify-" + type;
@@ -181,11 +181,14 @@
 
 		/**
 		 * Add new log message
+		 * If a type is passed, a class name "alertify-log-{type}" will get added.
+		 * This allows for custom look and feel for various types of notifications.
 		 * 
-		 * @param  {String} message The message passed from the callee
+		 * @param  {String} message    The message passed from the callee
+		 * @param  {String} type       [Optional] Type of log message
 		 */
-		notify = function (message) {
-			logElement.innerHTML += dialogs.log.replace("{{message}}", message);
+		notify = function (message, type) {
+			logElement.innerHTML += dialogs.log.replace("{{message}}", message).replace("{{class}}", (typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
 			close();
 		};
 
@@ -236,7 +239,7 @@
 		 * @param  {String} type    [Optional] Optional type of log message
 		 */
 		log = function (message, type) {
-			notify(message);
+			notify(message, type);
 		};
 
 		/**
@@ -263,5 +266,5 @@
 		};
 	};
 
-	if (typeof global.alertify === "undefined") { global.alertify = Alertify(); }
+	if (typeof global.alertify === "undefined") { global.alertify = new Alertify(); }
 }(this));

@@ -60,7 +60,7 @@
 			}
 
 /**
- * Default Theme
+ * Default Look and Feel
  */
 .alertify,
 .alertify-log {
@@ -119,3 +119,11 @@
 	color: #FFF;
 	opacity: 1;
 }
+	.alertify-log-error {
+		background: #FE1A00;
+		background: rgba(254,26,0,.8);
+	}
+	.alertify-log-success {
+		background: #5CB811;
+		background: rgba(92,184,17,.8);
+	}

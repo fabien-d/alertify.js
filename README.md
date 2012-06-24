@@ -9,7 +9,7 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 ## Usage
 
 ```sh
-alertify.log( message );
+alertify.log( message, type );
 ```
 ```sh
 alertify.alert( message, function () { 
