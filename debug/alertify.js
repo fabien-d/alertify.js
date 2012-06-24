@@ -1,3 +1,28 @@
+/** 
+ * Copyright (c) 2012 Fabien Doiron, http://www.fabiend.ca/
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * @author  Fabien Doiron <fabien.doiron@gmail.com>
+ * @version 0.1a1.0
+ */
 (function (global, undefined) {
 	"use strict";
 
@@ -17,8 +42,8 @@
 		dialogs = {
 			buttons : {
 				holder : "<nav class=\"alertify-buttons\">{{buttons}}</nav>",
-				ok     : "<a class=\"alertify-button alertify-button-ok\" id=\"aOK\">{{ok}}</a>",
-				cancel : "<a class=\"alertify-button alertify-button-cancel\" id=\"aCancel\">{{cancel}}</a>"
+				ok     : "<a href=\"#\" class=\"alertify-button alertify-button-ok\" id=\"aOK\">{{ok}}</a>",
+				cancel : "<a href=\"#\" class=\"alertify-button alertify-button-cancel\" id=\"aCancel\">{{cancel}}</a>"
 			},
 			input   : "<input type=\"text\" class=\"alertify-text\" id=\"aText\">",
 			message : "<p class=\"alertify-message\">{{message}}</p>",
@@ -74,6 +99,7 @@
 					hide();
 					if (typeof input !== "undefined") { val = input.value; }
 					if (typeof fn === "function")     { fn(true, val); }
+					return false;
 				});
 			}
 
@@ -82,6 +108,7 @@
 				bind(btnCancel, "click", function () {
 					hide();
 					if (typeof fn === "function") { fn(false); }
+					return false;
 				});
 			}
 		};
