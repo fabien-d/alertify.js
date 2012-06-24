@@ -14,7 +14,6 @@ alertify.log( message );
 ```sh
 alertify.alert( message, function () { 
 	//after clicking OK
-}
 });
 ```
 ```sh
