@@ -142,8 +142,8 @@
 		 * @return {String}         An HTML string of the message box
 		 */
 		build = function (item) {
-			var html = "",
-			    type = item.type,
+			var html    = "",
+			    type    = item.type,
 			    message = item.message;
 
 			html += "<div class=\"alertify-dialog\">";
@@ -227,9 +227,11 @@
 		 * @return {undefined}
 		 */
 		setup = function () {
+			var item = queue[0];
+			
 			isopen = true;
-			element.innerHTML = build(queue[0]);
-			addListeners(queue[0].callback);
+			element.innerHTML = build(item);
+			addListeners(item.callback);
 		};
 
 		/**
