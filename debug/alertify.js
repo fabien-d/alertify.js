@@ -21,7 +21,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author  Fabien Doiron <fabien.doiron@gmail.com>
- * @version 0.1a1.0
+ * @version prototype
  */
 (function (global, undefined) {
 	"use strict";
@@ -32,7 +32,7 @@
 	Alertify = function () {
 
 		var init, addListeners, bind, build, close, hide, notify, setup, alert, confirm, log, prompt,
-		    $, cover, delay = 5000, dialogs, element, labels, logElement;
+		    $, cover, delay = 5000, dialogs, element, labels, logElement, queue = [], isopen = false;
 
 		labels = {
 			ok     : "OK",
@@ -53,8 +53,9 @@
 		/**
 		 * Shorthand for document.getElementById()
 		 * 
-		 * @param  {String} id A specific element ID
-		 * @return {Object}    HTML element
+		 * @param  {String} id    A specific element ID
+
+		 * @return {Object}       HTML element
 		 */
 		$ = function (id) {
 			return document.getElementById(id);
@@ -63,6 +64,8 @@
 		/**
 		 * Initialize Alertify
 		 * Create the 2 main elements
+		 *
+		 * @return {undefined}
 		 */
 		init = function () {
 			// cover
@@ -85,7 +88,9 @@
 		/**
 		 * Set the proper button click events
 		 *
-		 * @param {Function} fn [Optional] Callback function
+		 * @param {Function} fn    [Optional] Callback function
+		 *
+		 * @return {undefined}
 		 */
 		addListeners = function (fn) {
 			var btnOK     = $("aOK")     || undefined,
@@ -116,9 +121,11 @@
 		/**
 		 * Bind events to elements
 		 * 
-		 * @param  {Object}   el    HTML Object
-		 * @param  {Event}    event Event to attach to element
-		 * @param  {Function} fn    Callback function
+		 * @param  {Object}   el       HTML Object
+		 * @param  {Event}    event    Event to attach to element
+		 * @param  {Function} fn       Callback function
+		 * 
+		 * @return {undefined}
 		 */
 		bind = function (el, event, fn) {
 			if (typeof el.addEventListener === "function") {
@@ -131,12 +138,13 @@
 		/**
 		 * Build the proper message box
 		 * 
-		 * @param  {String} type    The type of message box to build
-		 * @param  {String} message The message passed from the callee
+		 * @param  {Object} item    Current object in the queue
 		 * @return {String}         An HTML string of the message box
 		 */
-		build = function (type, message) {
-			var html = "";
+		build = function (item) {
+			var html = "",
+			    type = item.type,
+			    message = item.message;
 
 			html += "<div class=\"alertify-dialog\">";
 			html += 	"<article class=\"alertify-inner\">";
@@ -169,6 +177,8 @@
 
 		/**
 		 * Close the log messages
+		 * 
+		 * @return {undefined}
 		 */
 		close = function () {
 			setTimeout(function () {
@@ -186,6 +196,8 @@
 		 * 
 		 * @param  {String} message    The message passed from the callee
 		 * @param  {String} type       [Optional] Type of log message
+		 * 
+		 * @return {undefined}
 		 */
 		notify = function (message, type) {
 			logElement.innerHTML += dialogs.log.replace("{{message}}", message).replace("{{class}}", (typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
@@ -194,62 +206,88 @@
 
 		/**
 		 * Hide the dialog and rest to defaults
+		 *
+		 * @return {undefined}
 		 */
 		hide = function () {
-			element.className = "alertify alertify-hide alertify-hidden";
-			cover.className   = "alertify-cover alertify-hidden";
+			// remove reference from queue
+			queue.splice(0,1);
+			// if items remaining in the queue
+			if (queue.length > 0) setup();
+			else {
+				isopen = false;
+				element.className = "alertify alertify-hide alertify-hidden";
+				cover.className   = "alertify-cover alertify-hidden";
+			}
 		};
 
 		/**
 		 * Initiate all the required pieces for the dialog box
-		 * 
-		 * @param  {String} type    The type of message box to build
-		 * @param  {String} message The message passed from the callee
-		 * @param  {Function} fn    [Optional] Callback function
+		 *
+		 * @return {undefined}
 		 */
-		setup = function (type, message, fn) {
-			element.innerHTML = build(type, message);
-			addListeners(fn);
+		setup = function () {
+			isopen = true;
+			element.innerHTML = build(queue[0]);
+			addListeners(queue[0].callback);
 		};
 
 		/**
 		 * Create an alert dialog box
 		 * 
-		 * @param  {String}   message The message passed from the callee
-		 * @param  {Function} fn      [Optional] Callback function
+		 * @param  {String}   message    The message passed from the callee
+		 * @param  {Function} fn         [Optional] Callback function
+		 * 
+		 * @return {Object}
 		 */
 		alert = function (message, fn) {
-			setup("alert", message, fn);
+			queue.push({ type: "alert", message: message, callback: fn });
+			if (!isopen) setup();
+
+			return this;
 		};
 
 		/**
 		 * Create a confirm dialog box
 		 * 
-		 * @param  {String}   message The message passed from the callee
-		 * @param  {Function} fn      [Optional] Callback function
+		 * @param  {String}   message    The message passed from the callee
+		 * @param  {Function} fn         [Optional] Callback function
+		 * 
+		 * @return {Object}
 		 */
 		confirm = function (message, fn) {
-			setup("confirm", message, fn);
+			queue.push({ type: "confirm", message: message, callback: fn });
+			if (!isopen) setup();
+			
+			return this;
 		};
 
 		/**
 		 * Show a new log message box
 		 * 
-		 * @param  {String} message The message passed from the callee
-		 * @param  {String} type    [Optional] Optional type of log message
+		 * @param  {String} message    The message passed from the callee
+		 * @param  {String} type       [Optional] Optional type of log message
+		 * 
+		 * @return {Object}
 		 */
 		log = function (message, type) {
 			notify(message, type);
+			return this;
 		};
 
 		/**
 		 * Create a prompt dialog box
 		 * 
-		 * @param  {String}   message The message passed from the function
-		 * @param  {Function} fn      [Optional] Callback function
+		 * @param  {String}   message    The message passed from the function
+		 * @param  {Function} fn         [Optional] Callback function
+		 * 
+		 * @return {Object}
 		 */
 		prompt = function (message, fn) {
-			setup("prompt", message, fn);
+			queue.push({ type: "prompt", message: message, callback: fn });
+			if (!isopen) setup();
+			
+			return this;
 		};
 
 		// Bootstrap

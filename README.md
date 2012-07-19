@@ -5,6 +5,7 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 * Fully customizable alert, confirm and prompt dialogs
 * Fully customizable unobtrusive notification system
 * Callback parameter handling both OK and Cancel button clicks
+* Chaining which allows queued dialogs
 
 ## Usage
 
@@ -34,6 +35,9 @@ alertify.prompt( message, function (e, str) {
 		// after clicking Cancel
 	}
 });
+```
+```sh
+alertify.alert(...).confirm(...)...
 ```
 
 ## Where is it being tested?

@@ -16,14 +16,13 @@
 	        transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
 }
 .alertify-cover {
-	position: fixed;
+	position: fixed; z-index: 99999;
 	top: 0; right: 0; bottom: 0; left: 0;
 }
 .alertify {
-	position: fixed;
+	position: fixed; z-index: 99999;
+	top: 50px; left: 50%;
 	width: 550px;
-	left: 50%;
-	top: 50px;
 	margin-left: -275px;
 }
 	.alertify-hidden { 
