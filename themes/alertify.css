@@ -67,6 +67,7 @@
 }
 .alertify {
 	background: #FFF;
+	border: 5px solid #333; /* browsers that don't support rgba */
 	border: 5px solid rgba(0,0,0,.9);
 	border-radius: 8px;
 	box-shadow: 0 3px 3px rgba(0,0,0,.3);

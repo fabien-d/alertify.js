@@ -43,6 +43,10 @@
 		 * @return {undefined}
 		 */
 		init = function () {
+			// ensure legacy browsers support html5 tags
+			document.createElement("nav");
+			document.createElement("article");
+			document.createElement("section");
 			// cover
 			cover = document.createElement("div");
 			cover.setAttribute("id", "alertifycover");
@@ -158,9 +162,7 @@
 		close = function () {
 			setTimeout(function () {
 				var child = logElement.childNodes[0];
-				if (child instanceof Element) {
-					logElement.removeChild(child);
-				}
+				if (typeof child !== "undefined") logElement.removeChild(child);
 			}, delay);
 		};
 
@@ -275,6 +277,8 @@
 			confirm : confirm,
 			log     : log,
 			prompt  : prompt,
+			success : function (message) { log(message, "success"); },
+			error   : function (message) { log(message, "error"); },
 
 			labels  : labels,
 			delay   : delay
