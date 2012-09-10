@@ -14,8 +14,8 @@ alertify.log( message, type );
 ```
 shorthand available to "success" and "error"
 ```sh
-alertify.success( message );
-alertify.error( message );
+alertify.success( message ); // same as alertify.log( message, "success" );
+alertify.error( message );   // same as alertify.log( message, "error" );
 ```
 ```sh
 alertify.alert( message, function () { 
