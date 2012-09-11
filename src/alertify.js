@@ -1,28 +1,3 @@
-/** 
- * Copyright (c) 2012 Fabien Doiron, http://www.fabiend.ca/
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- * 
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- * @author  Fabien Doiron <fabien.doiron@gmail.com>
- * @version prototype
- */
 (function (global, undefined) {
 	"use strict";
 
@@ -68,6 +43,10 @@
 		 * @return {undefined}
 		 */
 		init = function () {
+			// ensure legacy browsers support html5 tags
+			document.createElement("nav");
+			document.createElement("article");
+			document.createElement("section");
 			// cover
 			cover = document.createElement("div");
 			cover.setAttribute("id", "alertifycover");
@@ -100,20 +79,20 @@
 
 			// handle OK click
 			if (typeof btnOK !== "undefined") {
-				bind(btnOK, "click", function () {
+				bind(btnOK, "click", function (event) {
 					hide();
 					if (typeof input !== "undefined") { val = input.value; }
 					if (typeof fn === "function") { fn(true, val); }
-					return false;
+					event.preventDefault();
 				});
 			}
 
 			// handle Cancel click
 			if (typeof btnCancel !== "undefined") {
-				bind(btnCancel, "click", function () {
+				bind(btnCancel, "click", function (event) {
 					hide();
 					if (typeof fn === "function") { fn(false); }
-					return false;
+					event.preventDefault();
 				});
 			}
 		};
@@ -147,13 +126,13 @@
 			    message = item.message;
 
 			html += "<div class=\"alertify-dialog\">";
-			html += 	"<article class=\"alertify-inner\">";
-			html += 		dialogs.message.replace("{{message}}", message);
+			html += "<article class=\"alertify-inner\">";
+			html += dialogs.message.replace("{{message}}", message);
 
 			if (type === "prompt") { html += dialogs.input; }
 
-			html += 		dialogs.buttons.holder;
-			html += 	"</article>";
+			html += dialogs.buttons.holder;
+			html += "</article>";
 			html += "</div>";
 
 			switch (type) {
@@ -183,9 +162,7 @@
 		close = function () {
 			setTimeout(function () {
 				var child = logElement.childNodes[0];
-				if (child instanceof Element) {
-					logElement.removeChild(child);
-				}
+				if (typeof child !== "undefined") logElement.removeChild(child);
 			}, delay);
 		};
 
@@ -300,6 +277,8 @@
 			confirm : confirm,
 			log     : log,
 			prompt  : prompt,
+			success : function (message) { log(message, "success"); },
+			error   : function (message) { log(message, "error"); },
 
 			labels  : labels,
 			delay   : delay

@@ -47,7 +47,9 @@
 		.alertify-text {
 			margin-bottom: 15px;
 			width: 100%;
-			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			        box-sizing: border-box;
 			font-size: 100%;
 		}
 		.alertify-buttons {
@@ -67,6 +69,7 @@
 }
 .alertify {
 	background: #FFF;
+	border: 5px solid #333; /* browsers that don't support rgba */
 	border: 5px solid rgba(0,0,0,.9);
 	border-radius: 8px;
 	box-shadow: 0 3px 3px rgba(0,0,0,.3);
