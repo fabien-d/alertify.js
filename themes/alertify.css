@@ -1,4 +1,5 @@
-.alertify-show {
+.alertify-show,
+.alertify-log {
 	-webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1); /* older webkit */
 	-webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275); 
 	   -moz-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275); 
@@ -6,7 +7,6 @@
 	     -o-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275); 
 	        transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275); /* easeOutBack */
 }
-.alertify-log,
 .alertify-hide {
 	-webkit-transition: all 250ms cubic-bezier(0.600, 0, 0.735, 0.045); /* older webkit */
 	-webkit-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045); 
@@ -31,12 +31,19 @@
 	}
 .alertify-logs {
 	position: fixed;
+	z-index: 5000;
 	bottom: 10px;
 	right: 10px;
+	width: 300px;
 }
 	.alertify-log {
-		width: 250px;
+		display: block;
 		margin-top: 10px;
+		position: relative;
+		right: -300px;
+	}
+	.alertify-log-show {
+		right: 0;
 	}
 	.alertify-dialog {
 		padding: 25px;
@@ -69,10 +76,13 @@
 }
 .alertify {
 	background: #FFF;
-	border: 5px solid #333; /* browsers that don't support rgba */
-	border: 5px solid rgba(0,0,0,.9);
+	border: 10px solid #333; /* browsers that don't support rgba */
+	border: 10px solid rgba(0,0,0,.7);
 	border-radius: 8px;
 	box-shadow: 0 3px 3px rgba(0,0,0,.3);
+	-webkit-background-clip: padding;     /* Safari 4? Chrome 6? */
+	   -moz-background-clip: padding;     /* Firefox 3.6 */
+	        background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
 }
 .alertify-text {
 	border: 1px solid #CCC;
@@ -115,17 +125,17 @@
 	}
 .alertify-log {
 	background: #1F1F1F;
-	background: rgba(0,0,0,.8);
+	background: rgba(0,0,0,.9);
 	padding: 15px;
 	border-radius: 4px;
 	color: #FFF;
-	opacity: 1;
+	text-shadow: -1px -1px 0 rgba(0,0,0,.5);
 }
 	.alertify-log-error {
 		background: #FE1A00;
-		background: rgba(254,26,0,.8);
+		background: rgba(254,26,0,.9);
 	}
 	.alertify-log-success {
 		background: #5CB811;
-		background: rgba(92,184,17,.8);
+		background: rgba(92,184,17,.9);
 	}

@@ -161,7 +161,7 @@
 		 */
 		close = function () {
 			setTimeout(function () {
-				var child = logElement.childNodes[0];
+				var child = logElement.childNodes[logElement.childNodes.length - 1];
 				if (typeof child !== "undefined") logElement.removeChild(child);
 			}, delay);
 		};
@@ -177,7 +177,13 @@
 		 * @return {undefined}
 		 */
 		notify = function (message, type) {
-			logElement.innerHTML += dialogs.log.replace("{{message}}", message).replace("{{class}}", (typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
+			var log = document.createElement("article");
+			log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
+			log.innerHTML = message;
+			// prepend child
+			logElement.insertBefore(log, logElement.firstChild);
+			// triggers the CSS animation
+			setTimeout(function() { log.className = log.className + " alertify-log-show"; }, 50);
 			close();
 		};
 
