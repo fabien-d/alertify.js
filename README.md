@@ -12,6 +12,11 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 ```sh
 alertify.log( message, type );
 ```
+shorthand available to "success" and "error"
+```sh
+alertify.success( message ); // same as alertify.log( message, "success" );
+alertify.error( message );   // same as alertify.log( message, "error" );
+```
 ```sh
 alertify.alert( message, function () { 
 	//after clicking OK
@@ -42,7 +47,7 @@ alertify.alert(...).confirm(...)...
 
 ## Where is it being tested?
 
-* Microsoft Internet Explorer 8+ (Standards Mode)
+* Microsoft Internet Explorer 7+ (Standards Mode)
 * Google Chrome
 * Mozilla FireFox
 * Apple Safari
