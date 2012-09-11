@@ -6,7 +6,7 @@
 
 	Alertify = function () {
 
-		var init, addListeners, bind, build, close, hide, notify, setup, alert, confirm, log, prompt,
+		var init, addListeners, bind, build, close, extend, hide, notify, setup, alert, confirm, log, prompt,
 		    $, cover, delay = 5000, dialogs, element, labels, logElement, queue = [], isopen = false;
 
 		labels = {
@@ -167,6 +167,16 @@
 		};
 
 		/**
+		 * Extend the log method to create custom methods
+		 * 
+		 * @param  {String} type    Custom method name
+		 * @return {Function}
+		 */
+		extend = function (type) {
+			return function (message) { log(message, type); };
+		};
+
+		/**
 		 * Add new log message
 		 * If a type is passed, a class name "alertify-log-{type}" will get added.
 		 * This allows for custom look and feel for various types of notifications.
@@ -285,6 +295,7 @@
 			prompt  : prompt,
 			success : function (message) { log(message, "success"); },
 			error   : function (message) { log(message, "error"); },
+			extend  : extend,
 
 			labels  : labels,
 			delay   : delay
