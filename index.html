@@ -18,7 +18,7 @@
 
 	<header class="masthead">
 		<div class="container">
-			<h1>alertify<em>js</em></h1>
+			<h1><strong>a<span class="logo">!</span>ertify</strong>js</h1>
 			<h2>An unobtrusive customizable JavaScript notification system</h2>
 			<a href="https://github.com/fabien-d/alertify.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 		</div>
@@ -89,6 +89,19 @@
 
 			<pre><code>alertify.<span class="fn">error</span>( <span class="var">message</span> );
 <span class="cmt">// shorthand for alertify.log( message, "error");</span></code></pre>
+
+			<p>The type parameter (optional) gets applied as a class to allow for custom styling.</p>
+			<pre><code>alertify.<span class="fn">log</span>( <span class="str">"This is a custom log"</span>, <span class="str">"custom"</span> );
+<span class="cmt">// html</span>
+&lt;<span class="rsv">article</span> <span class="attr">class</span>="<span class="str">alertify-log <strong>alertify-log-custom</strong></span>"&gt;This is a custom log&lt;/<span class="rsv">article</span>&gt;</span>
+<span class="cmt">// css</span>
+<span class="attr">.alertify-log-custom</span> { }</code></pre>
+
+			<p>The same functionality can also be achieved with the extend method.</p>
+			<pre><code><span class="cmt">// set it</span>
+alertify.<span class="fn">custom</span> = alertify.<span class="fn">extend</span>( <span class="str">"custom"</span> );
+<span class="cmt">// use it</span>
+alertify.custom( <span class="var">message</span> );</code></pre>
 		</div>
 	</section>
 

@@ -6,6 +6,8 @@ body {
 	background: #F5F5F5;
 }
 
+$theme: #2971D5;
+
 @import "modules/_import.scss";
 
 h1, h2, h3, h4, h5, h6 {
@@ -13,19 +15,22 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 }
 h1 {
-	font-size: $fontSize * 3;
+	font-size: $fontSize * 4;
 	margin: 0 0 $spacing * .5;
+	color: darken($theme, 20);
+
+	strong { color: $theme; }
 }
 h2 {
-	font-family: $serif;
-	font-style: italic;
+	font-size: $fontSize * 1.5;
+	margin: 0;
 }
 h3 {
 	position: relative;
 	z-index: 1;
-	color: #999;
 	text-shadow: 0 -1px 0 #FFF;
-	font: italic normal #{$fontSize * 1.5}/1.2 $serif;
+	font: italic normal #{$fontSize * 2}/1.2 $serif;
+	margin-bottom: $spacing;
 
 	span {
 		display: inline-block;
@@ -38,7 +43,8 @@ h3 {
 		position: absolute;
 		z-index: -1;
 		top: 50%; left: 0; right: 0;
-		border-top: 1px solid #CCC;
+		border-top: 1px dashed #AAA;
+		border-bottom: 1px dashed #FFF;
 		content: "";
 	}
 }
@@ -50,11 +56,12 @@ pre {
 	font-size: $fontSize * .8;
 	margin-bottom: $spacing;
 
-	.cmt { color: #75715E; }
-	.rsv { color: #F92672; }
-	.var { color: #FD971F; }
-	.fn  { color: #66D9EF; }
-	.str { color: #E6DB74; }
+	.cmt  { color: #75715E; }
+	.rsv  { color: #F92672; }
+	.var  { color: #FD971F; }
+	.fn   { color: #66D9EF; }
+	.str  { color: #E6DB74; }
+	.attr { color: #A6E22E; }
 }
 
 .container {
@@ -64,7 +71,13 @@ pre {
 
 .masthead {
 	background: #F5F5F5;
-	padding: $spacing * 3 0;
+	padding: $spacing * 5 0;
+}
+.logo {
+	font-size: $fontSize * 4.5;
+	position: relative;
+	top: $spacing * .3;
+	margin: 0 -3px;
 }
 
 .block {
