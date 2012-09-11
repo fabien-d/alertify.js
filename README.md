@@ -17,6 +17,11 @@ shorthand available to "success" and "error"
 alertify.success( message ); // same as alertify.log( message, "success" );
 alertify.error( message );   // same as alertify.log( message, "error" );
 ```
+extend method allows for custom methods
+```sh
+alertify.custom = alertify.extend( "custom" );
+alertify.custom( message ); // same as alertify.log( message, "custom" );
+```
 ```sh
 alertify.alert( message, function () { 
 	//after clicking OK
