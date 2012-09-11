@@ -2,9 +2,122 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>alertify.js - An unobtrusive customizable JavaScript notification system</title>
+	<title>alertifyjs - An unobtrusive customizable JavaScript notification system</title>
+	<link rel="stylesheet" href="assets/js/lib/alertify.css" />
+	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
+
+	<header class="masthead">
+		<div class="container">
+			<h1>alertify<em>js</em></h1>
+			<h2>An unobtrusive customizable JavaScript notification system</h2>
+			<a href="https://github.com/fabien-d/alertify.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+		</div>
+	</header>
+
+	<section class="block">
+		<div class="container">
+			<h3><span>Customizable Dialog Box</span></h3>
+			<nav class="button-group">
+				<a class="button-primary" href="#" id="alert">Alert Dialog</a>
+				<a class="button-primary" href="#" id="confirm">Confirm Dialog</a>
+				<a class="button-primary" href="#" id="prompt">Prompt Dialog</a>
+			</nav>
+
+			<pre><code>alertify.<span class="fn">alert</span>( <span class="var">message</span>, <span class="fn">function</span> () {
+    <span class="cmt">// after clicking OK</span>
+});</code></pre>
+
+			<pre><code>alertify.<span class="fn">confirm</span>( <span class="var">message</span>, <span class="fn">function</span> (<span class="var">e</span>) {
+    <span class="rsv">if</span> (e) {
+        <span class="cmt">//after clicking OK</span>
+    } <span class="rsv">else</span> {
+        <span class="cmt">//after clicking Cancel</span>
+    }
+});</code></pre>
+
+			<pre><code>alertify.<span class="fn">prompt</span>( <span class="var">message</span>, <span class="fn">function</span> (<span class="var">e</span>, <span class="var">str</span>) {
+    <span class="rsv">if</span> (e) {
+        <span class="cmt">// after clicking OK
+        // str is the value from the textbox</span>
+    } <span class="rsv">else</span> {
+        <span class="cmt">// after clicking Cancel</span>
+    }
+});</code></pre>
+		</div>
+	</section>
+
+	<section class="block">
+		<div class="container">
+			<h3><span>Customizable Button Labels</span></h3>
+			<nav class="button-group">
+				<a class="button-primary" href="#" id="alert2">Alert Dialog</a>
+				<a class="button-primary" href="#" id="confirm2">Confirm Dialog</a>
+				<a class="button-primary" href="#" id="prompt2">Prompt Dialog</a>
+			</nav>
+			<p><label for="okVal">Custom "OK" label: </label><input type="text" id="okVal" /><br>
+			<label for="cancelVal">Custom "Cancel" label: </label><input type="text" id="cancelVal" /></p>
+
+			<pre><code>alertify.labels = { ok: <span class="str">"OK"</span>, cancel: <span class="str">"Cancel"</span> };
+<span class="cmt">// alertify.labels.ok     = "OK";
+// alertify.labels.cancel = "Cancel";</code></pre>
+		</div>
+	</section>
+
+	<section class="block">
+		<div class="container">
+			<h3><span>Customizable Log Messages</span></h3>
+			<nav class="button-group">
+				<a class="button-primary" href="#" id="log1">Notification</a>
+				<a class="button-primary" href="#" id="log2">Success</a>
+				<a class="button-primary" href="#" id="log3">Error</a>
+			</nav>
+
+			<pre><code>alertify.<span class="fn">log</span>( <span class="var">message</span>, <span class="var">type</span> );</code></pre>
+
+			<pre><code>alertify.<span class="fn">success</span>( <span class="var">message</span> );
+<span class="cmt">// shorthand for alertify.log( message, "success");</span></code></pre>
+
+			<pre><code>alertify.<span class="fn">error</span>( <span class="var">message</span> );
+<span class="cmt">// shorthand for alertify.log( message, "error");</span></code></pre>
+		</div>
+	</section>
+
+	<script src="assets/js/lib/alertify.min.js"></script>
+	<script>
+		var lAlert    = document.getElementById("alert"),
+		    lConfirm  = document.getElementById("confirm"),
+		    lPrompt   = document.getElementById("prompt"),
+		    lAlert2   = document.getElementById("alert2"),
+		    lConfirm2 = document.getElementById("confirm2"),
+		    lPrompt2  = document.getElementById("prompt2"),
+		    ok        = document.getElementById("okVal"),
+		    cancel    = document.getElementById("cancelVal"),
+
+		    log1    = document.getElementById("log1"),
+		    log2    = document.getElementById("log2"),
+		    log3    = document.getElementById("log3"),
+		    setLabel;
+
+		setLabel = function (reset) {
+			reset = reset || false;
+			alertify.labels.ok     = (ok.value && !reset) ? ok.value : "OK";
+			alertify.labels.cancel = (cancel.value && !reset) ? cancel.value : "Cancel";
+		};
+
+		lAlert.onclick   = function () { setLabel(true); alertify.alert("This is an alert box."); return false; };
+		lConfirm.onclick = function () { setLabel(true); alertify.confirm("This is a confirm box.", function (e) { (e) ? alertify.alert("You've clicked '" + alertify.labels.ok + "'") : alertify.alert("You've clicked '" + alertify.labels.cancel + "'"); }); return false; };
+		lPrompt.onclick  = function () { setLabel(true); alertify.prompt("This is a prompt box.", function (e, str) { (e) ? alertify.alert("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str) : alertify.alert("You've clicked '" + alertify.labels.cancel + "'"); }); return false; };
+
+		lAlert2.onclick   = function () { setLabel(); alertify.alert("This is an alert box with custom buttons."); return false; };
+		lConfirm2.onclick = function () { setLabel(); alertify.confirm("This is a confirm box with custom buttons.", function (e) { (e) ? alertify.alert("You've clicked '" + alertify.labels.ok + "'") : alertify.alert("You've clicked '" + alertify.labels.cancel + "'"); }); return false; };
+		lPrompt2.onclick  = function () { setLabel(); alertify.prompt("This is a prompt box with custom buttons.", function (e, str) { (e) ? alertify.alert("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str) : alertify.alert("You've clicked '" + alertify.labels.cancel + "'"); }); return false; };
+
+		log1.onclick = function () { alertify.log("This is a standard log message."); return false; };
+		log2.onclick = function () { alertify.success("This is a success message."); return false; };
+		log3.onclick = function () { alertify.error("This is an error message."); return false; };
+	</script>
 
 </body>
 </html>
