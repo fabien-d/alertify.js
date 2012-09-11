@@ -5,6 +5,14 @@
 	<title>alertifyjs - An unobtrusive customizable JavaScript notification system</title>
 	<link rel="stylesheet" href="assets/js/lib/alertify.css" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<script>
+		// ensure legacy browsers support html5 tags
+		// could include a shim or modernizr or...
+		// this is a quick workaround for the time being
+		document.createElement("nav");
+		document.createElement("article");
+		document.createElement("section");
+	</script>
 </head>
 <body>
 
