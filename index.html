@@ -3,13 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>alertifyjs - An unobtrusive customizable JavaScript notification system</title>
-	<link rel="stylesheet" href="assets/js/lib/alertify.css" />
+	<link rel="stylesheet" href="assets/js/lib/alertify/alertify.css" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<script>
 		// ensure legacy browsers support html5 tags
 		// could include a shim or modernizr or...
 		// this is a quick workaround for the time being
 		document.createElement("nav");
+		document.createElement("header");
 		document.createElement("article");
 		document.createElement("section");
 	</script>
@@ -101,11 +102,11 @@
 			<pre><code><span class="cmt">// set it</span>
 alertify.<span class="fn">custom</span> = alertify.<span class="fn">extend</span>( <span class="str">"custom"</span> );
 <span class="cmt">// use it</span>
-alertify.custom( <span class="var">message</span> );</code></pre>
+alertify.<span class="fn">custom</span>( <span class="var">message</span> );</code></pre>
 		</div>
 	</section>
 
-	<script src="assets/js/lib/alertify.min.js"></script>
+	<script src="assets/js/lib/alertify/alertify.min.js"></script>
 	<script>
 		var lAlert    = document.getElementById("alert"),
 		    lConfirm  = document.getElementById("confirm"),
@@ -127,13 +128,63 @@ alertify.custom( <span class="var">message</span> );</code></pre>
 			alertify.labels.cancel = (cancel.value && !reset) ? cancel.value : "Cancel";
 		};
 
-		lAlert.onclick   = function () { setLabel(true); alertify.alert("This is an alert box."); return false; };
-		lConfirm.onclick = function () { setLabel(true); alertify.confirm("This is a confirm box.", function (e) { (e) ? alertify.alert("You've clicked '" + alertify.labels.ok + "'") : alertify.alert("You've clicked '" + alertify.labels.cancel + "'"); }); return false; };
-		lPrompt.onclick  = function () { setLabel(true); alertify.prompt("This is a prompt box.", function (e, str) { (e) ? alertify.alert("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str) : alertify.alert("You've clicked '" + alertify.labels.cancel + "'"); }); return false; };
+		lAlert.onclick = function () { 
+			setLabel(true);
+			alertify.alert("This is an alert box."); 
+			return false; 
+		};
 
-		lAlert2.onclick   = function () { setLabel(); alertify.alert("This is an alert box with custom buttons."); return false; };
-		lConfirm2.onclick = function () { setLabel(); alertify.confirm("This is a confirm box with custom buttons.", function (e) { (e) ? alertify.alert("You've clicked '" + alertify.labels.ok + "'") : alertify.alert("You've clicked '" + alertify.labels.cancel + "'"); }); return false; };
-		lPrompt2.onclick  = function () { setLabel(); alertify.prompt("This is a prompt box with custom buttons.", function (e, str) { (e) ? alertify.alert("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str) : alertify.alert("You've clicked '" + alertify.labels.cancel + "'"); }); return false; };
+		lConfirm.onclick = function () { 
+			setLabel(true);
+			alertify.confirm("<p>This is a confirm box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.</p>", function (e) {
+				if (e) {
+					alertify.success("You've clicked '" + alertify.labels.ok + "'");
+				} else { alertify.error("You've clicked '" + alertify.labels.cancel + "'");
+				}
+			}); 
+			return false;
+		};
+
+		lPrompt.onclick = function () {
+			setLabel(true);
+			alertify.prompt("<p>This is a prompt box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.</p>", function (e, str) {
+				if (e) {
+					alertify.success("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str);
+				} else {
+					alertify.error("You've clicked '" + alertify.labels.cancel + "'");
+				}
+			});
+			return false;
+		};
+
+		lAlert2.onclick = function () {
+			setLabel();
+			alertify.alert("This is an alert box with custom buttons.");return false;
+		};
+
+		lConfirm2.onclick = function () {
+			setLabel();
+			alertify.confirm("This is a confirm box with custom buttons.", function (e) {
+				if (e) {
+					alertify.success("You've clicked '" + alertify.labels.ok + "'");
+				} else {
+					alertify.error("You've clicked '" + alertify.labels.cancel + "'");
+				}
+			});
+			return false;
+		};
+
+		lPrompt2.onclick = function () {
+			setLabel();
+			alertify.prompt("This is a prompt box with custom buttons.", function (e, str) { 
+				if (e) {
+					alertify.success("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str);
+				} else {
+					alertify.error("You've clicked '" + alertify.labels.cancel + "'");
+				}
+			});
+			return false;
+		};
 
 		log1.onclick = function () { alertify.log("This is a standard log message."); return false; };
 		log2.onclick = function () { alertify.success("This is a success message."); return false; };
