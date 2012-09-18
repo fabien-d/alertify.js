@@ -6,24 +6,9 @@
 
 	Alertify = function () {
 
-		var init, addListeners, bind, unbind, build, close, extend, hide, notify, setup, alert, confirm, log, prompt,
-		    $, cover, element, logElement,
-		    dialogs = {},
-		    delay   = 5000,
-		    keys    = {},
-		    labels  = {},
-		    queue   = [],
-		    isopen  = false;
-
-		keys = {
-			ENTER : 13,
-			ESC   : 27
-		};
-
-		labels = {
-			ok     : "OK",
-			cancel : "Cancel"
-		};
+		var $, addListeners, bind, build, close, hide, init, notify, setup, unbind,
+		    dialog, extend, log,
+		    cover, dialogs, delay, element, isopen, keys, labels, logElement, queue;
 
 		dialogs = {
 			buttons : {
@@ -35,6 +20,12 @@
 			message : "<p class=\"alertify-message\">{{message}}</p>",
 			log     : "<article class=\"alertify-log{{class}}\">{{message}}</article>"
 		};
+
+		delay   = 5000;
+		keys    = { ENTER: 13, ESC: 27 };
+		labels  = { ok: "OK", cancel: "Cancel" };
+		queue   = [];
+		isopen  = false;
 
 		/**
 		 * Shorthand for document.getElementById()
@@ -48,34 +39,6 @@
 		};
 
 		/**
-		 * Initialize Alertify
-		 * Create the 2 main elements
-		 *
-		 * @return {undefined}
-		 */
-		init = function () {
-			// ensure legacy browsers support html5 tags
-			document.createElement("nav");
-			document.createElement("article");
-			document.createElement("section");
-			// cover
-			cover = document.createElement("div");
-			cover.setAttribute("id", "alertifycover");
-			cover.className = "alertify-cover alertify-hidden";
-			document.body.appendChild(cover);
-			// main element
-			element = document.createElement("section");
-			element.setAttribute("id", "alertify");
-			element.className = "alertify alertify-hidden";
-			document.body.appendChild(element);
-			// main element
-			logElement = document.createElement("section");
-			logElement.setAttribute("id", "alertifylogs");
-			logElement.className = "alertify-logs";
-			document.body.appendChild(logElement);
-		};
-
-		/**
 		 * Set the proper button click events
 		 *
 		 * @param {Function} fn    [Optional] Callback function
@@ -86,6 +49,8 @@
 			var btnOK     = $("aOK")     || undefined,
 			    btnCancel = $("aCancel") || undefined,
 			    input     = $("aText")   || undefined,
+			    hasOK     = (typeof btnOK !== "undefined"),
+			    hasCancel = (typeof btnCancel !== "undefined"),
 			    val       = "",
 			    ok, cancel, common, key;
 
@@ -113,14 +78,14 @@
 			// keyup handler
 			key = function (event) {
 				var keyCode = event.keyCode;
-				if (keyCode === keys.ENTER && typeof btnOK !== "undefined") ok(event);
-				else if (keyCode === keys.ESC && typeof btnCancel !== "undefined") cancel(event);
+				if (keyCode === keys.ENTER && hasOK) ok(event);
+				else if (keyCode === keys.ESC && hasCancel) cancel(event);
 			};
 
 			// handle OK click
-			if (typeof btnOK !== "undefined") bind(btnOK, "click", ok);
+			if (hasOK) bind(btnOK, "click", ok);
 			// handle Cancel click
-			if (typeof btnCancel !== "undefined") bind(btnCancel, "click", cancel);
+			if (hasCancel) bind(btnCancel, "click", cancel);
 			
 			// clear focus off activeElement element to ensure
 			// the ENTER key triggers the correct behaviour
@@ -145,23 +110,6 @@
 				el.addEventListener(event, fn, false);
 			} else if (el.attachEvent) {
 				el.attachEvent("on" + event, fn);
-			}
-		};
-
-		/**
-		 * Unbind events to elements
-		 * 
-		 * @param  {Object}   el       HTML Object
-		 * @param  {Event}    event    Event to detach to element
-		 * @param  {Function} fn       Callback function
-		 * 
-		 * @return {undefined}
-		 */
-		unbind = function (el, event, fn) {
-			if (typeof el.removeEventListener === "function") {
-				el.removeEventListener(event, fn, false);
-			} else if (el.detachEvent) {
-				el.detachEvent("on" + event, fn);
 			}
 		};
 
@@ -218,13 +166,48 @@
 		};
 
 		/**
-		 * Extend the log method to create custom methods
-		 * 
-		 * @param  {String} type    Custom method name
-		 * @return {Function}
+		 * Hide the dialog and rest to defaults
+		 *
+		 * @return {undefined}
 		 */
-		extend = function (type) {
-			return function (message) { log(message, type); };
+		hide = function () {
+			// remove reference from queue
+			queue.splice(0,1);
+			// if items remaining in the queue
+			if (queue.length > 0) setup();
+			else {
+				isopen = false;
+				element.className = "alertify alertify-hide alertify-hidden";
+				cover.className   = "alertify-cover alertify-hidden";
+			}
+		};
+
+		/**
+		 * Initialize Alertify
+		 * Create the 2 main elements
+		 *
+		 * @return {undefined}
+		 */
+		init = function () {
+			// ensure legacy browsers support html5 tags
+			document.createElement("nav");
+			document.createElement("article");
+			document.createElement("section");
+			// cover
+			cover = document.createElement("div");
+			cover.setAttribute("id", "alertifycover");
+			cover.className = "alertify-cover alertify-hidden";
+			document.body.appendChild(cover);
+			// main element
+			element = document.createElement("section");
+			element.setAttribute("id", "alertify");
+			element.className = "alertify alertify-hidden";
+			document.body.appendChild(element);
+			// main element
+			logElement = document.createElement("section");
+			logElement.setAttribute("id", "alertifylogs");
+			logElement.className = "alertify-logs";
+			document.body.appendChild(logElement);
 		};
 
 		/**
@@ -249,23 +232,6 @@
 		};
 
 		/**
-		 * Hide the dialog and rest to defaults
-		 *
-		 * @return {undefined}
-		 */
-		hide = function () {
-			// remove reference from queue
-			queue.splice(0,1);
-			// if items remaining in the queue
-			if (queue.length > 0) setup();
-			else {
-				isopen = false;
-				element.className = "alertify alertify-hide alertify-hidden";
-				cover.className   = "alertify-cover alertify-hidden";
-			}
-		};
-
-		/**
 		 * Initiate all the required pieces for the dialog box
 		 *
 		 * @return {undefined}
@@ -279,33 +245,46 @@
 		};
 
 		/**
-		 * Create an alert dialog box
+		 * Unbind events to elements
+		 * 
+		 * @param  {Object}   el       HTML Object
+		 * @param  {Event}    event    Event to detach to element
+		 * @param  {Function} fn       Callback function
+		 * 
+		 * @return {undefined}
+		 */
+		unbind = function (el, event, fn) {
+			if (typeof el.removeEventListener === "function") {
+				el.removeEventListener(event, fn, false);
+			} else if (el.detachEvent) {
+				el.detachEvent("on" + event, fn);
+			}
+		};
+
+		/**
+		 * Create a dialog box
 		 * 
 		 * @param  {String}   message    The message passed from the callee
+		 * @param  {String}   type       Type of dialog to create
 		 * @param  {Function} fn         [Optional] Callback function
 		 * 
 		 * @return {Object}
 		 */
-		alert = function (message, fn) {
-			queue.push({ type: "alert", message: message, callback: fn });
+		dialog = function (message, type, fn) {
+			queue.push({ type: type, message: message, callback: fn });
 			if (!isopen) setup();
 
 			return this;
 		};
 
 		/**
-		 * Create a confirm dialog box
+		 * Extend the log method to create custom methods
 		 * 
-		 * @param  {String}   message    The message passed from the callee
-		 * @param  {Function} fn         [Optional] Callback function
-		 * 
-		 * @return {Object}
+		 * @param  {String} type    Custom method name
+		 * @return {Function}
 		 */
-		confirm = function (message, fn) {
-			queue.push({ type: "confirm", message: message, callback: fn });
-			if (!isopen) setup();
-			
-			return this;
+		extend = function (type) {
+			return function (message) { log(message, type); };
 		};
 
 		/**
@@ -321,35 +300,19 @@
 			return this;
 		};
 
-		/**
-		 * Create a prompt dialog box
-		 * 
-		 * @param  {String}   message    The message passed from the function
-		 * @param  {Function} fn         [Optional] Callback function
-		 * 
-		 * @return {Object}
-		 */
-		prompt = function (message, fn) {
-			queue.push({ type: "prompt", message: message, callback: fn });
-			if (!isopen) setup();
-			
-			return this;
-		};
-
 		// Bootstrap
 		init();
 
 		return {
-			alert   : alert,
-			confirm : confirm,
-			log     : log,
-			prompt  : prompt,
-			success : function (message) { log(message, "success"); },
-			error   : function (message) { log(message, "error"); },
+			alert   : function (message, fn) { dialog(message, "alert", fn); return this; },
+			confirm : function (message, fn) { dialog(message, "confirm", fn); return this; },
 			extend  : extend,
-
-			labels  : labels,
-			delay   : delay
+			log     : log,
+			prompt  : function (message, fn) { dialog(message, "prompt", fn); return this; },
+			success : function (message) { log(message, "success"); return this; },
+			error   : function (message) { log(message, "error"); return this; },
+			delay   : delay,
+			labels  : labels
 		};
 	};
 
