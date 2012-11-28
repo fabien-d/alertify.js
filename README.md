@@ -7,6 +7,10 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 * Callback parameter handling both OK and Cancel button clicks
 * Chaining which allows queued dialogs
 
+## Examples
+
+http://fabien-d.github.com/alertify.js/
+
 ## Usage
 
 ```sh
