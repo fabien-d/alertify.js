@@ -1,3 +1,4 @@
+/*global define*/
 (function (global, undefined) {
 	"use strict";
 
@@ -242,6 +243,9 @@
 			isopen = true;
 			element.innerHTML = build(item);
 			addListeners(item.callback);
+			// adding focus to prompt input box
+			// doesn't work without a setTimeout... 
+			if (item.type === "prompt") global.setTimeout(function () { document.getElementById("aText").focus(); }, 0);
 		};
 
 		/**
@@ -321,5 +325,11 @@
 		};
 	};
 
-	if (typeof global.alertify === "undefined") { global.alertify = new Alertify(); }
+	// AMD and window support
+	if (typeof define === "function") {
+		define([], function () { return new Alertify(); });
+	} else {
+		if (typeof global.alertify === "undefined") { global.alertify = new Alertify(); }
+	}
+
 }(this));
