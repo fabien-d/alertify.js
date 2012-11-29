@@ -80,7 +80,7 @@
 			key = function (event) {
 				var keyCode = event.keyCode;
 				if (keyCode === keys.ENTER && hasOK) ok(event);
-                else if (keyCode === keys.ESC && hasOk && !hasCancel) ok(event);
+                else if (keyCode === keys.ESC && hasOK && !hasCancel) ok(event);
 				else if (keyCode === keys.ESC && hasCancel) cancel(event);
 			};
 
