@@ -1,14 +1,11 @@
 {
-	"name"        : "Alertify",
-	"description" : "An unobtrusive customizable JavaScript notification system",
-	"version"     : "0.1a1",
-	"homepage"    : "http://www.github.com/fabien-d",
-	"author" : {
-		"name"  : "Fabien Doiron",
-		"email" : "fabien.doiron@gmail.com"
+	"name": "alertify",
+	"description": "An unobtrusive customizable JavaScript notification system",
+	"version": "0.1.1",
+	"author" : "Fabien Doiron <fabien.doiron@gmail.com>",
+	"repository": {
+		"type": "git",
+	    "url": "https://github.com/fabien-d/alertify.js.git"
 	},
-	"licenses" : [{
-		"type" : "The MIT License (MIT)",
-		"url"  : "http://opensource.org/licenses/mit-license.php"
-	}]
+	"license": "MIT"
 }
