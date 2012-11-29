@@ -30,7 +30,7 @@
 
 		/**
 		 * Shorthand for document.getElementById()
-		 * 
+		 *
 		 * @param  {String} id    A specific element ID
 
 		 * @return {Object}       HTML element
@@ -73,13 +73,14 @@
 			// common event handler (keyup, ok and cancel)
 			common = function (event) {
 				hide();
-				unbind(document.body, "keyup", key);				
+				unbind(document.body, "keyup", key);
 			};
 
 			// keyup handler
 			key = function (event) {
 				var keyCode = event.keyCode;
 				if (keyCode === keys.ENTER && hasOK) ok(event);
+				else if (keyCode === keys.ESC && hasOK && !hasCancel) ok(event);
 				else if (keyCode === keys.ESC && hasCancel) cancel(event);
 			};
 
@@ -87,7 +88,7 @@
 			if (hasOK) bind(btnOK, "click", ok);
 			// handle Cancel click
 			if (hasCancel) bind(btnCancel, "click", cancel);
-			
+
 			// clear focus off activeElement element to ensure
 			// the ENTER key triggers the correct behaviour
 			// Firefox has an issue if this isn't done and the current
@@ -99,11 +100,11 @@
 
 		/**
 		 * Bind events to elements
-		 * 
+		 *
 		 * @param  {Object}   el       HTML Object
 		 * @param  {Event}    event    Event to attach to element
 		 * @param  {Function} fn       Callback function
-		 * 
+		 *
 		 * @return {undefined}
 		 */
 		bind = function (el, event, fn) {
@@ -116,7 +117,7 @@
 
 		/**
 		 * Build the proper message box
-		 * 
+		 *
 		 * @param  {Object} item    Current object in the queue
 		 * @return {String}         An HTML string of the message box
 		 */
@@ -156,7 +157,7 @@
 
 		/**
 		 * Close the log messages
-		 * 
+		 *
 		 * @return {undefined}
 		 */
 		close = function () {
@@ -215,10 +216,10 @@
 		 * Add new log message
 		 * If a type is passed, a class name "alertify-log-{type}" will get added.
 		 * This allows for custom look and feel for various types of notifications.
-		 * 
+		 *
 		 * @param  {String} message    The message passed from the callee
 		 * @param  {String} type       [Optional] Type of log message
-		 * 
+		 *
 		 * @return {undefined}
 		 */
 		notify = function (message, type) {
@@ -239,22 +240,22 @@
 		 */
 		setup = function () {
 			var item = queue[0];
-			
+
 			isopen = true;
 			element.innerHTML = build(item);
 			addListeners(item.callback);
 			// adding focus to prompt input box
-			// doesn't work without a setTimeout... 
+			// doesn't work without a setTimeout...
 			if (item.type === "prompt") global.setTimeout(function () { document.getElementById("aText").focus(); }, 0);
 		};
 
 		/**
 		 * Unbind events to elements
-		 * 
+		 *
 		 * @param  {Object}   el       HTML Object
 		 * @param  {Event}    event    Event to detach to element
 		 * @param  {Function} fn       Callback function
-		 * 
+		 *
 		 * @return {undefined}
 		 */
 		unbind = function (el, event, fn) {
@@ -267,11 +268,11 @@
 
 		/**
 		 * Create a dialog box
-		 * 
+		 *
 		 * @param  {String}   message    The message passed from the callee
 		 * @param  {String}   type       Type of dialog to create
 		 * @param  {Function} fn         [Optional] Callback function
-		 * 
+		 *
 		 * @return {Object}
 		 */
 		dialog = function (message, type, fn) {
@@ -288,7 +289,7 @@
 
 		/**
 		 * Extend the log method to create custom methods
-		 * 
+		 *
 		 * @param  {String} type    Custom method name
 		 * @return {Function}
 		 */
@@ -298,10 +299,10 @@
 
 		/**
 		 * Show a new log message box
-		 * 
+		 *
 		 * @param  {String} message    The message passed from the callee
 		 * @param  {String} type       [Optional] Optional type of log message
-		 * 
+		 *
 		 * @return {Object}
 		 */
 		log = function (message, type) {
