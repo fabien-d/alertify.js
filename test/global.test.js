@@ -1,16 +1,19 @@
 test("globals set up", function() {
+	expect(1);
 	ok(window.alertify, "global alertify object created");
 });
 
 test("API options", function () {
+	expect(9);
 	// methods
-	ok(alertify.alert, "alert method part of the API");
-	ok(alertify.confirm, "confirm method part of the API");
-	ok(alertify.log, "log method part of the API");
-	ok(alertify.prompt, "prompt method part of the API");
-	ok(alertify.success, "success notification part of the API");
-	ok(alertify.error, "error notification part of the API");
+	deepEqual(typeof alertify.alert, "function", "alert method part of the API");
+	deepEqual(typeof alertify.confirm, "function", "confirm method part of the API");
+	deepEqual(typeof alertify.log, "function", "log method part of the API");
+	deepEqual(typeof alertify.extend, "function", "extend method part of the API");
+	deepEqual(typeof alertify.prompt, "function", "prompt method part of the API");
+	deepEqual(typeof alertify.success, "function", "success notification part of the API");
+	deepEqual(typeof alertify.error, "function", "error notification part of the API");
 	// options
-	ok(alertify.labels, "labels object part of the API");
-	ok(alertify.delay, "delay value part of the API");
+	deepEqual(typeof alertify.labels, "object", "labels object part of the API");
+	deepEqual(typeof alertify.delay, "number", "delay value part of the API");
 });
