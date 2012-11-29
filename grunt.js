@@ -29,9 +29,6 @@ module.exports = function(grunt) {
 		lint : {
 			all : ["grunt.js", "src/**/*.js"]
 		},
-		requirejs : {
-
-		},
 		min : {
 			"lib/alertify.min.js" : ["<banner>", "lib/alertify.js"]
 		},
