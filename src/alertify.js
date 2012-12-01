@@ -318,6 +318,17 @@
 		 * @return {Object}
 		 */
 		log = function (message, type) {
+			// check to ensure the alertify dialog element
+			// has been successfully created
+			var check = function () {
+				if (logElement && logElement.scrollTop !== null) return;
+				else check();
+			};
+			// initialize alertify if it hasn't already been done
+			if (typeof this.init === "function") {
+				this.init();
+				check();
+			}
 			notify(message, type);
 			return this;
 		};
@@ -327,10 +338,10 @@
 			confirm : function (message, fn) { dialog.call(this, message, "confirm", fn); return this; },
 			extend  : extend,
 			init    : init,
-			log     : log,
+			log     : function (message, type) { log.call(this, message, type); return this; },
 			prompt  : function (message, fn) { dialog.call(this, message, "prompt", fn); return this; },
-			success : function (message) { log(message, "success"); return this; },
-			error   : function (message) { log(message, "error"); return this; },
+			success : function (message) { log.call(this, message, "success"); return this; },
+			error   : function (message) { log.call(this, message, "error"); return this; },
 			delay   : delay,
 			labels  : labels
 		};
