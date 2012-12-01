@@ -103,7 +103,8 @@ input { border: 1px solid #CCC; background: #FFF; padding: 5px; margin-bottom: 1
 	
 	@include linear-gradient( (top, rgba(255,255,255,.3), rgba(255,255,255,0)) );
 
-	&:hover {
+	&:hover,
+	&:focus {
 		@include linear-gradient( (top, rgba(0,0,0,.1), rgba(0,0,0,0)) );
 	}
 }

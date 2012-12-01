@@ -119,6 +119,8 @@
 }
 .alertify-button:hover,
 .alertify-button:focus {
+	outline: none;
+	box-shadow: 0 0 15px #2B72D5;
 	background-image: -webkit-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
 	background-image:    -moz-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
 	background-image:     -ms-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
@@ -135,7 +137,7 @@
 	}
 	.alertify-button-ok {
 		background-color: #5CB811;
-		border: 1px solid #3b7808;
+		border: 1px solid #3B7808;
 	}
 .alertify-log {
 	background: #1F1F1F;
