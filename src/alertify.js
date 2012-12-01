@@ -209,6 +209,8 @@
 			logElement.setAttribute("id", "alertifylogs");
 			logElement.className = "alertify-logs";
 			document.body.appendChild(logElement);
+			// clean up init method
+			delete this.init;
 		};
 
 		/**
@@ -275,11 +277,22 @@
 		 * @return {Object}
 		 */
 		dialog = function (message, type, fn) {
+			// check to ensure the alertify dialog element
+			// has been successfully created
+			var check = function () {
+				if (element && element.scrollTop !== null) return;
+				else check();
+			};
 			// error catching
 			if (typeof message !== "string") throw new Error("message must be a string");
 			if (typeof type !== "string") throw new Error("type must be a string");
 			if (typeof fn !== "undefined" && typeof fn !== "function") throw new Error("fn must be a function");
-
+			// initialize alertify if it hasn't already been done
+			if (typeof this.init === "function") {
+				this.init();
+				check();
+			}
+			
 			queue.push({ type: type, message: message, callback: fn });
 			if (!isopen) setup();
 
@@ -309,15 +322,13 @@
 			return this;
 		};
 
-		// Bootstrap
-		init();
-
 		return {
-			alert   : function (message, fn) { dialog(message, "alert", fn); return this; },
-			confirm : function (message, fn) { dialog(message, "confirm", fn); return this; },
+			alert   : function (message, fn) { dialog.call(this, message, "alert", fn); return this; },
+			confirm : function (message, fn) { dialog.call(this, message, "confirm", fn); return this; },
 			extend  : extend,
+			init    : init,
 			log     : log,
-			prompt  : function (message, fn) { dialog(message, "prompt", fn); return this; },
+			prompt  : function (message, fn) { dialog.call(this, message, "prompt", fn); return this; },
 			success : function (message) { log(message, "success"); return this; },
 			error   : function (message) { log(message, "error"); return this; },
 			delay   : delay,
