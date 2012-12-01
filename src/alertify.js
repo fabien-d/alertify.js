@@ -79,22 +79,20 @@
 			// keyup handler
 			key = function (event) {
 				var keyCode = event.keyCode;
-				if (keyCode === keys.ENTER && hasOK) ok(event);
-				else if (keyCode === keys.ESC && hasCancel) cancel(event);
+				if (keyCode === keys.ESC && hasCancel) cancel(event);
 			};
 
 			// handle OK click
 			if (hasOK) bind(btnOK, "click", ok);
 			// handle Cancel click
 			if (hasCancel) bind(btnCancel, "click", cancel);
-			
-			// clear focus off activeElement element to ensure
-			// the ENTER key triggers the correct behaviour
-			// Firefox has an issue if this isn't done and the current
-			// focus is an anchor
-			document.activeElement.blur();
-			// listen for keys, OK => ENTER, Cancel => ESC
+			// listen for keys, Cancel => ESC
 			bind(document.body, "keyup", key);
+			// set focus on OK button or the input text
+			global.setTimeout(function () { 
+				if (input) input.focus();
+				else btnOK.focus();
+			}, 50);
 		};
 
 		/**
@@ -245,9 +243,6 @@
 			isopen = true;
 			element.innerHTML = build(item);
 			addListeners(item.callback);
-			// adding focus to prompt input box
-			// doesn't work without a setTimeout... 
-			if (item.type === "prompt") global.setTimeout(function () { document.getElementById("aText").focus(); }, 0);
 		};
 
 		/**

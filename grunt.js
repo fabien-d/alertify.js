@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 			},
 			globals : {
 				exports : true,
-				Element : true
+				define  : true
 			}
 		}
 	});
