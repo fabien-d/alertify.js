@@ -4,10 +4,11 @@ test("globals set up", function() {
 });
 
 test("API options", function () {
-	expect(9);
+	expect(10);
 	// methods
 	deepEqual(typeof alertify.alert, "function", "alert method part of the API");
 	deepEqual(typeof alertify.confirm, "function", "confirm method part of the API");
+	deepEqual(typeof alertify.init, "function", "init method part of the API");
 	deepEqual(typeof alertify.log, "function", "log method part of the API");
 	deepEqual(typeof alertify.extend, "function", "extend method part of the API");
 	deepEqual(typeof alertify.prompt, "function", "prompt method part of the API");
