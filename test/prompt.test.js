@@ -1,8 +1,11 @@
-module("alert", {
+module("prompt", {
 	setup : function () {
 		alertify.labels.ok = "OK";
-		this.dialog = alertify.alert("Test");
+		alertify.labels.ok = "Cancel";
+		this.dialog = alertify.prompt("Test");
 		this.ok = document.getElementById("aOK");
+		this.cancel = document.getElementById("aCancel");
+		this.text = document.getElementById("aText");
 	},
 	teardown : function () {
 		// trigger OK click to close the dialog
@@ -12,25 +15,27 @@ module("alert", {
 	}
 });
 
-test("alert returns alertify object", function () {
+test("prompt returns alertify object", function () {
 	expect(1);
 	deepEqual(this.dialog, alertify, "should be equal");
 });
 
-test("alert ok button", function () {
-	expect(1);
+test("prompt elements", function () {
+	expect(3);
 	ok(this.ok, "OK button exists");
+	ok(this.cancel, "Cancel button exists");
+	ok(this.text, "Textfield exists");
 });
 
-test("alert parameters", function () {
+test("prompt parameters", function () {
 	expect(2);
 	try {
-		alertify.alert();
+		alertify.confirm();
 	} catch (error) {
 		deepEqual(error.message, "message must be a string", "parameter error");
 	}
 	try {
-		alertify.alert("test", {});
+		alertify.confirm("test", {});
 	} catch (error) {
 		deepEqual(error.message, "fn must be a function", "parameter error");
 	}
