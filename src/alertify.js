@@ -24,7 +24,7 @@
 		};
 
 		delay   = 5000;
-		keys    = { ENTER: 13, ESC: 27 };
+		keys    = { ENTER: 13, ESC: 27, SPACE: 32 };
 		labels  = { ok: "OK", cancel: "Cancel" };
 		queue   = [];
 		isopen  = false;
@@ -48,13 +48,15 @@
 		 * @return {undefined}
 		 */
 		addListeners = function (fn) {
-			var btnOK     = $("aOK")     || undefined,
+			var btnReset  = $("aResetFocus"),
+			    btnOK     = $("aOK")     || undefined,
 			    btnCancel = $("aCancel") || undefined,
 			    input     = $("aText")   || undefined,
 			    hasOK     = (typeof btnOK !== "undefined"),
 			    hasCancel = (typeof btnCancel !== "undefined"),
+			    hasInput  = (typeof input !== "undefined"),
 			    val       = "",
-			    ok, cancel, common, key;
+			    ok, cancel, common, key, reset;
 
 			// ok event handler
 			ok = function (event) {
@@ -80,9 +82,22 @@
 			// keyup handler
 			key = function (event) {
 				var keyCode = event.keyCode;
+				if (keyCode === keys.SPACE && !hasInput) ok(event);
 				if (keyCode === keys.ESC && hasCancel) cancel(event);
 			};
 
+			// reset focus to first item in the dialog
+			reset = function (event) {
+				if (hasInput) input.focus();
+				else if (hasCancel) btnCancel.focus();
+				else btnOK.focus();
+			};
+
+			// handle reset focus link
+			// this ensures that the keyboard focus does not
+			// ever leave the dialog box until an action has
+			// been taken
+			bind(btnReset, "focus", reset);
 			// handle OK click
 			if (hasOK) bind(btnOK, "click", ok);
 			// handle Cancel click
@@ -137,7 +152,8 @@
 			html += "</article>";
 
 			if (type === "prompt") html += "</form>";
-			
+
+			html += "<a id=\"aResetFocus\" class=\"alertify-resetFocus\" href=\"#\">Reset Focus</a>";
 			html += "</div>";
 
 			switch (type) {
