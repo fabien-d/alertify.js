@@ -14,6 +14,7 @@
 		dialogs = {
 			buttons : {
 				holder : "<nav class=\"alertify-buttons\">{{buttons}}</nav>",
+				submit : "<button type=\"submit\" class=\"alertify-button alertify-button-ok\" id=\"aOK\" />{{ok}}</button>",
 				ok     : "<a href=\"#\" class=\"alertify-button alertify-button-ok\" id=\"aOK\">{{ok}}</a>",
 				cancel : "<a href=\"#\" class=\"alertify-button alertify-button-cancel\" id=\"aCancel\">{{cancel}}</a>"
 			},
@@ -124,19 +125,28 @@
 			    message = item.message;
 
 			html += "<div class=\"alertify-dialog\">";
+
+			if (type === "prompt") html += "<form>";
+
 			html += "<article class=\"alertify-inner\">";
 			html += dialogs.message.replace("{{message}}", message);
 
-			if (type === "prompt") { html += dialogs.input; }
+			if (type === "prompt") html += dialogs.input;
 
 			html += dialogs.buttons.holder;
 			html += "</article>";
+
+			if (type === "prompt") html += "</form>";
+			
 			html += "</div>";
 
 			switch (type) {
 			case "confirm":
-			case "prompt":
 				html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.ok);
+				html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
+				break;
+			case "prompt":
+				html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.submit);
 				html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
 				break;
 			case "alert":
