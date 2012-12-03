@@ -52,6 +52,7 @@
 			    btnOK     = $("aOK")     || undefined,
 			    btnCancel = $("aCancel") || undefined,
 			    input     = $("aText")   || undefined,
+			    form      = $("aForm")   || undefined,
 			    hasOK     = (typeof btnOK !== "undefined"),
 			    hasCancel = (typeof btnCancel !== "undefined"),
 			    hasInput  = (typeof input !== "undefined"),
@@ -76,7 +77,11 @@
 			// common event handler (keyup, ok and cancel)
 			common = function (event) {
 				hide();
-				unbind(document.body, "keyup", key);				
+				unbind(document.body, "keyup", key);
+				unbind(btnReset, "focus", reset);
+				if (hasInput) unbind(form, "submit", ok);
+				if (hasOK) unbind(btnOK, "click", ok);
+				if (hasCancel) unbind(btnCancel, "click", cancel);
 			};
 
 			// keyup handler
@@ -104,6 +109,8 @@
 			if (hasCancel) bind(btnCancel, "click", cancel);
 			// listen for keys, Cancel => ESC
 			bind(document.body, "keyup", key);
+			// bind form submit
+			if (hasInput) bind(form, "submit", ok);
 			// set focus on OK button or the input text
 			global.setTimeout(function () { 
 				if (input) input.focus();
@@ -141,7 +148,7 @@
 
 			html += "<div class=\"alertify-dialog\">";
 
-			if (type === "prompt") html += "<form>";
+			if (type === "prompt") html += "<form id=\"aForm\">";
 
 			html += "<article class=\"alertify-inner\">";
 			html += dialogs.message.replace("{{message}}", message);
