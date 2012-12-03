@@ -184,11 +184,11 @@
 		 * @return {undefined}
 		 */
 		close = function (elem) {
-			bind(elem, "click", function(){
+			bind(elem, "click", function () {
 				logElement.removeChild(elem);
 			});
 			setTimeout(function () {
-				if (typeof elem !== "undefined" && elem.parentNode===logElement) logElement.removeChild(elem);
+				if (typeof elem !== "undefined" && elem.parentNode === logElement) logElement.removeChild(elem);
 			}, delay);
 		};
 
