@@ -194,16 +194,7 @@
 		 * @return {undefined}
 		 */
 		close = function (elem, wait) {
-			var timer;
-			if (wait && typeof wait !== undefined){
-				if (!isNaN(wait)){
-					timer = +wait;
-				} else {
-					throw new Error("Log message delay must be a Number");
-				}
-			} else {
-				timer = delay;
-			}
+			var timer = (wait && !isNaN(wait)) ? +wait : delay; // Unary Plus: +"2" === 2
 			bind(elem, "click", function () {
 				logElement.removeChild(elem);
 			});
