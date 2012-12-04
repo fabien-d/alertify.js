@@ -341,7 +341,7 @@
 		 * @return {Function}
 		 */
 		extend = function (type) {
-			return function (message, wait) { log(message, type, wait); };
+			return function (message, wait) { log.call(this, message, type, wait); };
 		};
 
 		/**
