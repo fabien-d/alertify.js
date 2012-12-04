@@ -187,16 +187,20 @@
 
 		/**
 		 * Close the log messages
-		 * 
+		 *
+		 * @param  {Object} elem    HTML Element of log message to close
+		 * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message  
+		 *
 		 * @return {undefined}
 		 */
-		close = function (elem) {
+		close = function (elem, wait) {
+			var timer = (wait && typeof wait === "number" ? wait : delay);
 			bind(elem, "click", function () {
 				logElement.removeChild(elem);
 			});
 			setTimeout(function () {
 				if (typeof elem !== "undefined" && elem.parentNode === logElement) logElement.removeChild(elem);
-			}, delay);
+			}, timer);
 		};
 
 		/**
@@ -253,10 +257,11 @@
 		 * 
 		 * @param  {String} message    The message passed from the callee
 		 * @param  {String} type       [Optional] Type of log message
+		 * @param  {Number} wait       [Optional] Time (in ms) to wait before auto-hiding
 		 * 
 		 * @return {undefined}
 		 */
-		notify = function (message, type) {
+		notify = function (message, type, wait) {
 			var log = document.createElement("article");
 			log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
 			log.innerHTML = message;
@@ -264,7 +269,7 @@
 			logElement.insertBefore(log, logElement.firstChild);
 			// triggers the CSS animation
 			setTimeout(function() { log.className = log.className + " alertify-log-show"; }, 50);
-			close(log);
+			close(log, wait);
 		};
 
 		/**
@@ -344,10 +349,11 @@
 		 * 
 		 * @param  {String} message    The message passed from the callee
 		 * @param  {String} type       [Optional] Optional type of log message
+		 * @param  {Number} wait       [Optional] Time (in ms) to wait before auto-hiding the log
 		 * 
 		 * @return {Object}
 		 */
-		log = function (message, type) {
+		log = function (message, type, wait) {
 			// check to ensure the alertify dialog element
 			// has been successfully created
 			var check = function () {
@@ -359,7 +365,7 @@
 				this.init();
 				check();
 			}
-			notify(message, type);
+			notify(message, type, wait);
 			return this;
 		};
 
@@ -368,10 +374,10 @@
 			confirm : function (message, fn) { dialog.call(this, message, "confirm", fn); return this; },
 			extend  : extend,
 			init    : init,
-			log     : function (message, type) { log.call(this, message, type); return this; },
+			log     : function (message, type, wait) { log.call(this, message, type, wait); return this; },
 			prompt  : function (message, fn) { dialog.call(this, message, "prompt", fn); return this; },
-			success : function (message) { log.call(this, message, "success"); return this; },
-			error   : function (message) { log.call(this, message, "error"); return this; },
+			success : function (message, wait) { log.call(this, message, "success", wait); return this; },
+			error   : function (message, wait) { log.call(this, message, "error", wait); return this; },
 			delay   : delay,
 			labels  : labels
 		};
