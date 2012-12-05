@@ -19,7 +19,7 @@ test("API options", function () {
 	deepEqual(typeof alertify.delay, "number", "delay value part of the API");
 });
 
-module("custom properties", {
+module("custom labels individual", {
 	setup : function () {
 		alertify.labels.ok     = "GO";
 		alertify.labels.cancel = "Stop";
@@ -36,8 +36,30 @@ module("custom properties", {
 	}
 });
 
-test("test properties", function () {
+test("test individual labels", function () {
 	expect(2);
 	deepEqual(this.ok.innerHTML, "GO", "OK button should have custom label GO");
 	deepEqual(this.cancel.innerHTML, "Stop", "Cancel button should have custom label Stop");
+});
+
+module("custom labels combined", {
+	setup : function () {
+		alertify.labels = { ok: "Continue", cancel: "Back" };
+		alertify.confirm("Test");
+		this.ok     = document.getElementById("aOK");
+		this.cancel = document.getElementById("aCancel");
+
+	},
+	teardown: function () {
+		// trigger OK click to close the dialog
+		var event = document.createEvent("HTMLEvents");
+		event.initEvent("click", true, true);
+		this.ok.dispatchEvent(event);
+	}
+});
+
+test("test combined labels", function () {
+	expect(2);
+	deepEqual(this.ok.innerHTML, "Continue", "OK button should have custom label Continue");
+	deepEqual(this.cancel.innerHTML, "Back", "Cancel button should have custom label Back");
 });
