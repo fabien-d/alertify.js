@@ -2,7 +2,7 @@ module("alert", {
 	setup : function () {
 		alertify.labels.ok = "OK";
 		this.dialog = alertify.alert("Test");
-		this.ok = document.getElementById("aOK");
+		this.ok = document.getElementById("alertify-ok");
 	},
 	teardown : function () {
 		// trigger OK click to close the dialog

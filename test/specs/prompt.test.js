@@ -3,9 +3,9 @@ module("prompt", {
 		alertify.labels.ok = "OK";
 		alertify.labels.ok = "Cancel";
 		this.dialog = alertify.prompt("Test");
-		this.ok = document.getElementById("aOK");
-		this.cancel = document.getElementById("aCancel");
-		this.text = document.getElementById("aText");
+		this.ok = document.getElementById("alertify-ok");
+		this.cancel = document.getElementById("alertify-cancel");
+		this.text = document.getElementById("alertify-text");
 	},
 	teardown : function () {
 		// trigger OK click to close the dialog
