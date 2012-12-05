@@ -25,7 +25,6 @@
 
 		delay   = 5000;
 		keys    = { ENTER: 13, ESC: 27, SPACE: 32 };
-		labels  = { ok: "OK", cancel: "Cancel" };
 		queue   = [];
 		isopen  = false;
 
@@ -166,15 +165,15 @@
 			switch (type) {
 			case "confirm":
 				html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.ok);
-				html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
+				html = html.replace("{{ok}}", this.labels.ok).replace("{{cancel}}", this.labels.cancel);
 				break;
 			case "prompt":
 				html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.submit);
-				html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
+				html = html.replace("{{ok}}", this.labels.ok).replace("{{cancel}}", this.labels.cancel);
 				break;
 			case "alert":
 				html = html.replace("{{buttons}}", dialogs.buttons.ok);
-				html = html.replace("{{ok}}", labels.ok);
+				html = html.replace("{{ok}}", this.labels.ok);
 				break;
 			default:
 				break;
@@ -281,7 +280,7 @@
 			var item = queue[0];
 			
 			isopen = true;
-			element.innerHTML = build(item);
+			element.innerHTML = build.call(this, item);
 			addListeners(item.callback);
 		};
 
@@ -329,7 +328,7 @@
 			}
 			
 			queue.push({ type: type, message: message, callback: fn });
-			if (!isopen) setup();
+			if (!isopen) setup.call(this);
 
 			return this;
 		};
@@ -379,7 +378,7 @@
 			success : function (message, wait) { log.call(this, message, "success", wait); return this; },
 			error   : function (message, wait) { log.call(this, message, "error", wait); return this; },
 			delay   : delay,
-			labels  : labels
+			labels  : { ok: "OK", cancel: "Cancel" }
 		};
 	};
 
