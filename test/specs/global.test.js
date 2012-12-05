@@ -24,8 +24,8 @@ module("custom labels individual", {
 		alertify.labels.ok     = "GO";
 		alertify.labels.cancel = "Stop";
 		alertify.confirm("Test");
-		this.ok     = document.getElementById("aOK");
-		this.cancel = document.getElementById("aCancel");
+		this.ok     = document.getElementById("alertify-ok");
+		this.cancel = document.getElementById("alertify-cancel");
 
 	},
 	teardown: function () {
@@ -46,8 +46,8 @@ module("custom labels combined", {
 	setup : function () {
 		alertify.labels = { ok: "Continue", cancel: "Back" };
 		alertify.confirm("Test");
-		this.ok     = document.getElementById("aOK");
-		this.cancel = document.getElementById("aCancel");
+		this.ok     = document.getElementById("alertify-ok");
+		this.cancel = document.getElementById("alertify-cancel");
 
 	},
 	teardown: function () {
