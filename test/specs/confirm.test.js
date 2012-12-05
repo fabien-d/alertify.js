@@ -3,8 +3,8 @@ module("confirm", {
 		alertify.labels.ok = "OK";
 		alertify.labels.ok = "Cancel";
 		this.dialog = alertify.confirm("Test");
-		this.ok = document.getElementById("aOK");
-		this.cancel = document.getElementById("aCancel");
+		this.ok = document.getElementById("alertify-ok");
+		this.cancel = document.getElementById("alertify-cancel");
 	},
 	teardown : function () {
 		// trigger OK click to close the dialog
