@@ -28,7 +28,7 @@ module("custom labels individual", {
 		this.cancel = document.getElementById("alertify-cancel");
 
 	},
-	teardown: function () {
+	teardown : function () {
 		// trigger OK click to close the dialog
 		var event = document.createEvent("HTMLEvents");
 		event.initEvent("click", true, true);
@@ -50,7 +50,7 @@ module("custom labels combined", {
 		this.cancel = document.getElementById("alertify-cancel");
 
 	},
-	teardown: function () {
+	teardown : function () {
 		// trigger OK click to close the dialog
 		var event = document.createEvent("HTMLEvents");
 		event.initEvent("click", true, true);
@@ -62,4 +62,15 @@ test("test combined labels", function () {
 	expect(2);
 	deepEqual(this.ok.innerHTML, "Continue", "OK button should have custom label Continue");
 	deepEqual(this.cancel.innerHTML, "Back", "Cancel button should have custom label Back");
+});
+
+module("custom delay", {
+	setup : function () {
+		alertify.delay = 1000;
+	}
+});
+
+test("test custom delay", function () {
+	expect(1);
+	deepEqual(alertify.delay, 1000, "Delay should be 1000");
 });
