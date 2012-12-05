@@ -25,7 +25,6 @@
 
 		delay   = 5000;
 		keys    = { ENTER: 13, ESC: 27, SPACE: 32 };
-		labels  = { ok: "OK", cancel: "Cancel" };
 		queue   = [];
 		isopen  = false;
 
@@ -57,6 +56,7 @@
 			    hasCancel = (typeof btnCancel !== "undefined"),
 			    hasInput  = (typeof input !== "undefined"),
 			    val       = "",
+			    self      = this,
 			    ok, cancel, common, key, reset;
 
 			// ok event handler
@@ -76,7 +76,7 @@
 
 			// common event handler (keyup, ok and cancel)
 			common = function (event) {
-				hide();
+				hide.call(self);
 				unbind(document.body, "keyup", key);
 				unbind(btnReset, "focus", reset);
 				if (hasInput) unbind(form, "submit", ok);
@@ -166,15 +166,15 @@
 			switch (type) {
 			case "confirm":
 				html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.ok);
-				html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
+				html = html.replace("{{ok}}", this.labels.ok).replace("{{cancel}}", this.labels.cancel);
 				break;
 			case "prompt":
 				html = html.replace("{{buttons}}", dialogs.buttons.cancel + dialogs.buttons.submit);
-				html = html.replace("{{ok}}", labels.ok).replace("{{cancel}}", labels.cancel);
+				html = html.replace("{{ok}}", this.labels.ok).replace("{{cancel}}", this.labels.cancel);
 				break;
 			case "alert":
 				html = html.replace("{{buttons}}", dialogs.buttons.ok);
-				html = html.replace("{{ok}}", labels.ok);
+				html = html.replace("{{ok}}", this.labels.ok);
 				break;
 			default:
 				break;
@@ -212,7 +212,7 @@
 			// remove reference from queue
 			queue.splice(0,1);
 			// if items remaining in the queue
-			if (queue.length > 0) setup();
+			if (queue.length > 0) setup.call(this);
 			else {
 				isopen = false;
 				element.className = "alertify alertify-hide alertify-hidden";
@@ -281,8 +281,8 @@
 			var item = queue[0];
 			
 			isopen = true;
-			element.innerHTML = build(item);
-			addListeners(item.callback);
+			element.innerHTML = build.call(this, item);
+			addListeners.call(this, item.callback);
 		};
 
 		/**
@@ -329,7 +329,7 @@
 			}
 			
 			queue.push({ type: type, message: message, callback: fn });
-			if (!isopen) setup();
+			if (!isopen) setup.call(this);
 
 			return this;
 		};
@@ -379,7 +379,7 @@
 			success : function (message, wait) { log.call(this, message, "success", wait); return this; },
 			error   : function (message, wait) { log.call(this, message, "error", wait); return this; },
 			delay   : delay,
-			labels  : labels
+			labels  : { ok: "OK", cancel: "Cancel" }
 		};
 	};
 
