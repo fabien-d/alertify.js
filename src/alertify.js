@@ -194,7 +194,7 @@
 		 * @return {undefined}
 		 */
 		close = function (elem, wait) {
-			var timer = (wait && !isNaN(wait)) ? +wait : delay; // Unary Plus: +"2" === 2
+			var timer = (wait && !isNaN(wait)) ? +wait : this.delay; // Unary Plus: +"2" === 2
 			bind(elem, "click", function () {
 				logElement.removeChild(elem);
 			});
@@ -269,7 +269,7 @@
 			logElement.insertBefore(log, logElement.firstChild);
 			// triggers the CSS animation
 			setTimeout(function() { log.className = log.className + " alertify-log-show"; }, 50);
-			close(log, wait);
+			close.call(this, log, wait);
 		};
 
 		/**
@@ -365,7 +365,7 @@
 				this.init();
 				check();
 			}
-			notify(message, type, wait);
+			notify.call(this, message, type, wait);
 			return this;
 		};
 
