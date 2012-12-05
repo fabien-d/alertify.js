@@ -56,6 +56,7 @@
 			    hasCancel = (typeof btnCancel !== "undefined"),
 			    hasInput  = (typeof input !== "undefined"),
 			    val       = "",
+			    self      = this,
 			    ok, cancel, common, key, reset;
 
 			// ok event handler
@@ -75,7 +76,7 @@
 
 			// common event handler (keyup, ok and cancel)
 			common = function (event) {
-				hide();
+				hide.call(self);
 				unbind(document.body, "keyup", key);
 				unbind(btnReset, "focus", reset);
 				if (hasInput) unbind(form, "submit", ok);
@@ -211,7 +212,7 @@
 			// remove reference from queue
 			queue.splice(0,1);
 			// if items remaining in the queue
-			if (queue.length > 0) setup();
+			if (queue.length > 0) setup.call(this);
 			else {
 				isopen = false;
 				element.className = "alertify alertify-hide alertify-hidden";
@@ -281,7 +282,7 @@
 			
 			isopen = true;
 			element.innerHTML = build.call(this, item);
-			addListeners(item.callback);
+			addListeners.call(this, item.callback);
 		};
 
 		/**
