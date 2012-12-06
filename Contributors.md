@@ -17,3 +17,9 @@ Credit where credit is due
 
 **Kristoffer Berdal**
 * GitHub: [flexd](http://github.com/flexd)
+
+**Antoine Corcy**
+* GitHub: [toin0u](http://github.com/toin0u)
+
+**Michael Dabydeen**
+* GitHub: [mdabydeen](http://github.com/mdabydeen)
