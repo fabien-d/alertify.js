@@ -27,16 +27,31 @@ test("prompt elements", function () {
 	ok(this.text, "Textfield exists");
 });
 
-test("prompt parameters", function () {
-	expect(2);
+module("prompt parameters", {
+	setup : function () {
+		alertify.prompt("Test", function () {}, "Default Message");
+		this.ok = document.getElementById("alertify-ok");
+		this.text = document.getElementById("alertify-text");
+	},
+	teardown : function () {
+		// trigger OK click to close the dialog
+		var event = document.createEvent("HTMLEvents");
+		event.initEvent("click", true, true);
+		this.ok.dispatchEvent(event);
+	}
+});
+
+test("test prompt parameters", function () {
+	expect(3);
 	try {
-		alertify.confirm();
+		alertify.prompt();
 	} catch (error) {
 		deepEqual(error.message, "message must be a string", "parameter error");
 	}
 	try {
-		alertify.confirm("test", {});
+		alertify.prompt("test", {});
 	} catch (error) {
 		deepEqual(error.message, "fn must be a function", "parameter error");
 	}
+	deepEqual(this.text.value, "Default Message", "Default prompt message should be \"Default \"Message");
 });
