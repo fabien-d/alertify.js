@@ -113,7 +113,10 @@
 			if (hasInput) bind(form, "submit", ok);
 			// set focus on OK button or the input text
 			global.setTimeout(function () { 
-				if (input) input.focus();
+				if (input) {
+					input.focus();
+					input.select();
+				}
 				else btnOK.focus();
 			}, 50);
 		};
@@ -282,6 +285,7 @@
 			
 			isopen = true;
 			element.innerHTML = build.call(this, item);
+			if (typeof item.placeholder === "string") document.getElementById("alertify-text").value = item.placeholder;
 			addListeners.call(this, item.callback);
 		};
 
@@ -305,13 +309,14 @@
 		/**
 		 * Create a dialog box
 		 * 
-		 * @param  {String}   message    The message passed from the callee
-		 * @param  {String}   type       Type of dialog to create
-		 * @param  {Function} fn         [Optional] Callback function
+		 * @param  {String}   message        The message passed from the callee
+		 * @param  {String}   type           Type of dialog to create
+		 * @param  {Function} fn             [Optional] Callback function
+		 * @param  {String}   placeholder    [Optional] Default value for prompt input field
 		 * 
 		 * @return {Object}
 		 */
-		dialog = function (message, type, fn) {
+		dialog = function (message, type, fn, placeholder) {
 			// check to ensure the alertify dialog element
 			// has been successfully created
 			var check = function () {
@@ -328,7 +333,7 @@
 				check();
 			}
 			
-			queue.push({ type: type, message: message, callback: fn });
+			queue.push({ type: type, message: message, callback: fn, placeholder: placeholder });
 			if (!isopen) setup.call(this);
 
 			return this;
@@ -375,7 +380,7 @@
 			extend  : extend,
 			init    : init,
 			log     : function (message, type, wait) { log.call(this, message, type, wait); return this; },
-			prompt  : function (message, fn) { dialog.call(this, message, "prompt", fn); return this; },
+			prompt  : function (message, fn, placeholder) { dialog.call(this, message, "prompt", fn, placeholder); return this; },
 			success : function (message, wait) { log.call(this, message, "success", wait); return this; },
 			error   : function (message, wait) { log.call(this, message, "error", wait); return this; },
 			delay   : delay,
