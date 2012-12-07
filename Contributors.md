@@ -22,6 +22,8 @@ Credit where credit is due
 
 **Antoine Corcy**
 * GitHub: [toin0u](http://github.com/toin0u)
+* Twitter: [@toin0u](https://twitter.com/toin0u)
+* Email: contact@sbin.dk
 
 ***
 
