@@ -160,6 +160,7 @@
 			 * Build the proper message box
 			 *
 			 * @param  {Object} item    Current object in the queue
+			 *
 			 * @return {String}         An HTML string of the message box
 			 */
 			build : function (item) {
@@ -261,6 +262,7 @@
 			 * Extend the log method to create custom methods
 			 *
 			 * @param  {String} type    Custom method name
+			 *
 			 * @return {Function}
 			 */
 			extend : function (type) {
@@ -365,6 +367,7 @@
 			 * Set properties
 			 *
 			 * @param {Object} args     Passing parameters
+			 *
 			 * @return {undefined}
 			 */
 			set : function (args) {

@@ -15,6 +15,10 @@ http://fabien-d.github.com/alertify.js/
 
 See wiki [How to Use](http://github.com/fabien-d/alertify.js/wiki/How-to-Use)
 
+## Changeset
+
+See wiki [Changeset](http://github.com/fabien-d/alertify.js/wiki/Changeset)
+
 ## Where is it being tested?
 
 * Microsoft Internet Explorer 7+ (Standards Mode)

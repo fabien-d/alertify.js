@@ -13,17 +13,17 @@ Credit where credit is due
 **Dan Panzarella**
 * GitHub: [pzl](http://github.com/pzl)
 
-## Documentation Contributors
-
-**Kristoffer Berdal**
-* GitHub: [flexd](http://github.com/flexd)
-
 ***
 
 **Antoine Corcy**
 * GitHub: [toin0u](http://github.com/toin0u)
 * Twitter: [@toin0u](https://twitter.com/toin0u)
 * Email: contact@sbin.dk
+
+## Documentation Contributors
+
+**Kristoffer Berdal**
+* GitHub: [flexd](http://github.com/flexd)
 
 ***
 
