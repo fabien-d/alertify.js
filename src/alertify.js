@@ -61,17 +61,17 @@
 
 			// ok event handler
 			ok = function (event) {
+				if (typeof event.preventDefault !== "undefined") event.preventDefault();
 				common(event);
 				if (typeof input !== "undefined") val = input.value;
 				if (typeof fn === "function") fn(true, val);
-				if (typeof event.preventDefault !== "undefined") event.preventDefault();
 			};
 
 			// cancel event handler
 			cancel = function (event) {
+				if (typeof event.preventDefault !== "undefined") event.preventDefault();
 				common(event);
 				if (typeof fn === "function") fn(false);
-				if (typeof event.preventDefault !== "undefined") event.preventDefault();
 			};
 
 			// common event handler (keyup, ok and cancel)
