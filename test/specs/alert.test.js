@@ -1,6 +1,6 @@
 module("alert", {
 	setup : function () {
-		alertify.labels.ok = "OK";
+		alertify.set({ labels: { ok: "OK" } });
 		this.dialog = alertify.alert("Test");
 		this.ok = document.getElementById("alertify-ok");
 	},
