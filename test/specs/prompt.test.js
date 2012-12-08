@@ -1,7 +1,6 @@
 module("prompt", {
 	setup : function () {
-		alertify.labels.ok = "OK";
-		alertify.labels.ok = "Cancel";
+		alertify.set({ labels: { ok: "OK", cancel: "Cancel" } });
 		this.dialog = alertify.prompt("Test");
 		this.ok = document.getElementById("alertify-ok");
 		this.cancel = document.getElementById("alertify-cancel");
