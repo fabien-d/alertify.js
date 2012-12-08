@@ -70,9 +70,7 @@
 			<p><label for="okVal">Custom "OK" label: </label><input type="text" id="okVal" /><br>
 			<label for="cancelVal">Custom "Cancel" label: </label><input type="text" id="cancelVal" /></p>
 
-			<pre><code>alertify.labels = { ok: <span class="str">"OK"</span>, cancel: <span class="str">"Cancel"</span> };
-<span class="cmt">// alertify.labels.ok     = "OK";
-// alertify.labels.cancel = "Cancel";</code></pre>
+			<pre><code>alertify.set({ labels: { ok: <span class="str">"OK"</span>, cancel: <span class="str">"Cancel"</span> } });</pre>
 		</div>
 	</section>
 
@@ -126,8 +124,12 @@ alertify.<span class="fn">custom</span>( <span class="var">message</span> );</co
 
 		setLabel = function (reset) {
 			reset = reset || false;
-			alertify.labels.ok     = (ok.value && !reset) ? ok.value : "OK";
-			alertify.labels.cancel = (cancel.value && !reset) ? cancel.value : "Cancel";
+			alertify.set({
+				labels: {
+					ok     : (ok.value && !reset) ? ok.value : "OK",
+					cancel : (cancel.value && !reset) ? cancel.value : "Cancel"
+				}
+			});
 		};
 
 		lAlert.onclick = function () { 
