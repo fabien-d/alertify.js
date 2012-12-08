@@ -30,7 +30,7 @@
 
 		/**
 		 * Shorthand for document.getElementById()
-		 * 
+		 *
 		 * @param  {String} id    A specific element ID
 
 		 * @return {Object}       HTML element
@@ -112,7 +112,7 @@
 			// bind form submit
 			if (hasInput) bind(form, "submit", ok);
 			// set focus on OK button or the input text
-			global.setTimeout(function () { 
+			global.setTimeout(function () {
 				if (input) {
 					input.focus();
 					input.select();
@@ -123,11 +123,11 @@
 
 		/**
 		 * Bind events to elements
-		 * 
+		 *
 		 * @param  {Object}   el       HTML Object
 		 * @param  {Event}    event    Event to attach to element
 		 * @param  {Function} fn       Callback function
-		 * 
+		 *
 		 * @return {undefined}
 		 */
 		bind = function (el, event, fn) {
@@ -140,7 +140,7 @@
 
 		/**
 		 * Build the proper message box
-		 * 
+		 *
 		 * @param  {Object} item    Current object in the queue
 		 * @return {String}         An HTML string of the message box
 		 */
@@ -192,7 +192,7 @@
 		 * Close the log messages
 		 *
 		 * @param  {Object} elem    HTML Element of log message to close
-		 * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message  
+		 * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message
 		 *
 		 * @return {undefined}
 		 */
@@ -257,11 +257,11 @@
 		 * Add new log message
 		 * If a type is passed, a class name "alertify-log-{type}" will get added.
 		 * This allows for custom look and feel for various types of notifications.
-		 * 
+		 *
 		 * @param  {String} message    The message passed from the callee
 		 * @param  {String} type       [Optional] Type of log message
 		 * @param  {Number} wait       [Optional] Time (in ms) to wait before auto-hiding
-		 * 
+		 *
 		 * @return {undefined}
 		 */
 		notify = function (message, type, wait) {
@@ -282,7 +282,7 @@
 		 */
 		setup = function () {
 			var item = queue[0];
-			
+
 			isopen = true;
 			element.innerHTML = build.call(this, item);
 			if (typeof item.placeholder === "string") document.getElementById("alertify-text").value = item.placeholder;
@@ -291,11 +291,11 @@
 
 		/**
 		 * Unbind events to elements
-		 * 
+		 *
 		 * @param  {Object}   el       HTML Object
 		 * @param  {Event}    event    Event to detach to element
 		 * @param  {Function} fn       Callback function
-		 * 
+		 *
 		 * @return {undefined}
 		 */
 		unbind = function (el, event, fn) {
@@ -308,12 +308,12 @@
 
 		/**
 		 * Create a dialog box
-		 * 
+		 *
 		 * @param  {String}   message        The message passed from the callee
 		 * @param  {String}   type           Type of dialog to create
 		 * @param  {Function} fn             [Optional] Callback function
 		 * @param  {String}   placeholder    [Optional] Default value for prompt input field
-		 * 
+		 *
 		 * @return {Object}
 		 */
 		dialog = function (message, type, fn, placeholder) {
@@ -332,7 +332,7 @@
 				this.init();
 				check();
 			}
-			
+
 			queue.push({ type: type, message: message, callback: fn, placeholder: placeholder });
 			if (!isopen) setup.call(this);
 
@@ -341,7 +341,7 @@
 
 		/**
 		 * Extend the log method to create custom methods
-		 * 
+		 *
 		 * @param  {String} type    Custom method name
 		 * @return {Function}
 		 */
@@ -351,11 +351,11 @@
 
 		/**
 		 * Show a new log message box
-		 * 
+		 *
 		 * @param  {String} message    The message passed from the callee
 		 * @param  {String} type       [Optional] Optional type of log message
 		 * @param  {Number} wait       [Optional] Time (in ms) to wait before auto-hiding the log
-		 * 
+		 *
 		 * @return {Object}
 		 */
 		log = function (message, type, wait) {
