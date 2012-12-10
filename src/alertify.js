@@ -7,8 +7,17 @@
 
 	Alertify = function () {
 
-		var $, _alertify, cover, dialogs, element, isopen, keys, log, logElement, queue;
+		var _alertify = {},
+		    dialogs   = {},
+		    isopen    = false,
+		    keys      = { ENTER: 13, ESC: 27, SPACE: 32 },
+		    queue     = [],
+		    $, elCallee, elCover, elDialog, elLog;
 
+		/**
+		 * Markup pieces
+		 * @type {Object}
+		 */
 		dialogs = {
 			buttons : {
 				holder : "<nav class=\"alertify-buttons\">{{buttons}}</nav>",
@@ -20,10 +29,6 @@
 			message : "<p class=\"alertify-message\">{{message}}</p>",
 			log     : "<article class=\"alertify-log{{class}}\">{{message}}</article>"
 		};
-
-		keys    = { ENTER: 13, ESC: 27, SPACE: 32 };
-		queue   = [];
-		isopen  = false;
 
 		/**
 		 * Shorthand for document.getElementById()
@@ -37,7 +42,6 @@
 
 		/**
 		 * Alertify private object
-		 *
 		 * @type {Object}
 		 */
 		_alertify = {
@@ -202,8 +206,8 @@
 					break;
 				}
 
-				element.className = "alertify alertify-show alertify-" + type;
-				cover.className   = "alertify-cover";
+				elDialog.className = "alertify alertify-show alertify-" + type;
+				elCover.className  = "alertify-cover";
 				return html;
 			},
 
@@ -218,10 +222,10 @@
 			close : function (elem, wait) {
 				var timer = (wait && !isNaN(wait)) ? +wait : this.delay; // Unary Plus: +"2" === 2
 				this.bind(elem, "click", function () {
-					logElement.removeChild(elem);
+					elLog.removeChild(elem);
 				});
 				setTimeout(function () {
-					if (typeof elem !== "undefined" && elem.parentNode === logElement) logElement.removeChild(elem);
+					if (typeof elem !== "undefined" && elem.parentNode === elLog) elLog.removeChild(elem);
 				}, timer);
 			},
 
@@ -236,10 +240,14 @@
 			 * @return {Object}
 			 */
 			dialog : function (message, type, fn, placeholder) {
+				// set the current active element
+				// this allows the keyboard focus to be resetted
+				// after the dialog box is closed
+				elCallee = document.activeElement;
 				// check to ensure the alertify dialog element
 				// has been successfully created
 				var check = function () {
-					if (element && element.scrollTop !== null) return;
+					if (elDialog && elDialog.scrollTop !== null) return;
 					else check();
 				};
 				// error catching
@@ -281,8 +289,11 @@
 				if (queue.length > 0) this.setup();
 				else {
 					isopen = false;
-					element.className = "alertify alertify-hide alertify-hidden";
-					cover.className   = "alertify-cover alertify-hidden";
+					elDialog.className = "alertify alertify-hide alertify-hidden";
+					elCover.className  = "alertify-cover alertify-hidden";
+					// set focus to the last element or body
+					// after the dialog is closed
+					elCallee.focus();
 				}
 			},
 
@@ -298,20 +309,24 @@
 				document.createElement("article");
 				document.createElement("section");
 				// cover
-				cover = document.createElement("div");
-				cover.setAttribute("id", "alertify-cover");
-				cover.className = "alertify-cover alertify-hidden";
-				document.body.appendChild(cover);
+				elCover = document.createElement("div");
+				elCover.setAttribute("id", "alertify-cover");
+				elCover.className = "alertify-cover alertify-hidden";
+				document.body.appendChild(elCover);
 				// main element
-				element = document.createElement("section");
-				element.setAttribute("id", "alertify");
-				element.className = "alertify alertify-hidden";
-				document.body.appendChild(element);
-				// main element
-				logElement = document.createElement("section");
-				logElement.setAttribute("id", "alertify-logs");
-				logElement.className = "alertify-logs";
-				document.body.appendChild(logElement);
+				elDialog = document.createElement("section");
+				elDialog.setAttribute("id", "alertify");
+				elDialog.className = "alertify alertify-hidden";
+				document.body.appendChild(elDialog);
+				// log element
+				elLog = document.createElement("section");
+				elLog.setAttribute("id", "alertify-logs");
+				elLog.className = "alertify-logs";
+				document.body.appendChild(elLog);
+				// set tabindex attribute on body element
+				// this allows script to give it focus
+				// after the dialog is closed
+				document.body.setAttribute("tabindex", "0");
 				// clean up init method
 				delete this.init;
 			},
@@ -329,7 +344,7 @@
 				// check to ensure the alertify dialog element
 				// has been successfully created
 				var check = function () {
-					if (logElement && logElement.scrollTop !== null) return;
+					if (elLog && elLog.scrollTop !== null) return;
 					else check();
 				};
 				// initialize alertify if it hasn't already been done
@@ -357,7 +372,7 @@
 				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
 				log.innerHTML = message;
 				// prepend child
-				logElement.insertBefore(log, logElement.firstChild);
+				elLog.insertBefore(log, elLog.firstChild);
 				// triggers the CSS animation
 				setTimeout(function() { log.className = log.className + " alertify-log-show"; }, 50);
 				this.close(log, wait);
@@ -391,7 +406,7 @@
 				var item = queue[0];
 
 				isopen = true;
-				element.innerHTML = this.build(item);
+				elDialog.innerHTML = this.build(item);
 				if (typeof item.placeholder === "string") $("alertify-text").value = item.placeholder;
 				this.addListeners(item.callback);
 			},
