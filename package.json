@@ -1,5 +1,5 @@
 {
-	"name"        : "Alertify",
+	"name"        : "alertify",
 	"description" : "An unobtrusive customizable JavaScript notification system",
 	"version"     : "0.2.12",
 	"homepage"    : "http://www.github.com/fabien-d",
