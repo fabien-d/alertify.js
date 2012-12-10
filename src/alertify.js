@@ -260,6 +260,9 @@
 					check();
 				}
 
+				// Remove HTML
+				message = this.strip(message);
+				
 				queue.push({ type: type, message: message, callback: fn, placeholder: placeholder });
 				if (!isopen) this.setup();
 
@@ -352,6 +355,10 @@
 					this.init();
 					check();
 				}
+				
+				// Remove HTML
+				message = this.strip(message);
+				
 				this.notify(message, type, wait);
 				return this;
 			},
@@ -427,6 +434,19 @@
 					el.detachEvent("on" + event, fn);
 				}
 			}
+			
+			/**
+			 * Strips HTML from strings
+			 * 
+			 * @param {String} html	The unsanitized string
+			 * 
+			 * @return {String} String with removed HTML
+			 */
+			 strip : function (html) {
+			 	var tmp = document.createElement("div");
+			 	tmp.innerHTML = html;
+			 	return tmp.textContent || tmp.innerText;
+			 }
 		};
 
 		return {
