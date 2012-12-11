@@ -224,6 +224,9 @@
 				this.bind(elem, "click", function () {
 					elLog.removeChild(elem);
 				});
+
+				if ( wait === 0 ) return;
+				
 				setTimeout(function () {
 					if (typeof elem !== "undefined" && elem.parentNode === elLog) elLog.removeChild(elem);
 				}, timer);
