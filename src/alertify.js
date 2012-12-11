@@ -215,7 +215,7 @@
 			 * Close the log messages
 			 *
 			 * @param  {Object} elem    HTML Element of log message to close
-			 * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message
+			 * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message, if 0 never hide
 			 *
 			 * @return {undefined}
 			 */
