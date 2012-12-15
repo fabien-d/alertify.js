@@ -2,7 +2,7 @@
 	"name"        : "alertify",
 	"description" : "An unobtrusive customizable JavaScript notification system",
 	"version"     : "0.2.12",
-	"homepage"    : "http://www.github.com/fabien-d",
+	"homepage"    : "http://fabien-d.github.com/alertify.js/",
 	"author" : {
 		"name"  : "Fabien Doiron",
 		"email" : "fabien.doiron@gmail.com"
