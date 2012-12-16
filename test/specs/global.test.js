@@ -16,8 +16,6 @@ test("API options", function () {
 	deepEqual(typeof alertify.error, "function", "error notification part of the API");
 	// options
 	deepEqual(typeof alertify.set, "function", "set method part of the API");
-	//deepEqual(typeof alertify.labels, "object", "labels object part of the API");
-	//deepEqual(typeof alertify.delay, "number", "delay value part of the API");
 });
 
 module("custom labels", {
