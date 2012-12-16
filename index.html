@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>alertifyjs - An unobtrusive customizable JavaScript notification system</title>
 	<link rel="stylesheet" href="assets/js/lib/alertify/alertify.core.css" />
-	<link rel="stylesheet" href="assets/js/lib/alertify/alertify.default.css" />
+	<link rel="stylesheet" href="assets/js/lib/alertify/alertify.default.css" id="toggleCSS" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<meta name="viewport" content="width=device-width">
 	<script>
@@ -16,14 +16,43 @@
 		document.createElement("article");
 		document.createElement("section");
 	</script>
+	<style>
+		.styleSwitcher {
+			position: fixed;
+			top: 0; left: 0; right: 0;
+			background: #272822;
+			border-bottom: 1px solid #272822;
+			box-shadow: inset 0 -1px 0 rgba(255,255,255,.3), 0 2px 4px rgba(0,0,0,.3);
+			color: #999;
+			z-index: 500;
+			padding: 10px 15px;
+		}
+
+		.styleSwitcher a {
+			display: inline-block;
+			color: #FFF;
+			margin-left: 10px;
+			text-decoration: none;
+		}
+
+		.styleSwitcher .selected {
+			color: #2971D5;
+		}
+	</style>
 </head>
 <body>
+
+	<nav class="styleSwitcher">
+		Switch Styles:
+		<a href="#" class="selected" id="defaultCSS">Default CSS</a>
+		<a href="#" id="bootstrapCSS">Bootstrap CSS</a>
+	</nav>
 
 	<header class="masthead">
 		<div class="container">
 			<h1><strong>a<span class="logo">!</span>ertify</strong>js</h1>
 			<h2>An unobtrusive customizable JavaScript notification system</h2>
-			<a href="https://github.com/fabien-d/alertify.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+			<a href="https://github.com/fabien-d/alertify.js"><img style="position: fixed; z-index: 5000; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 		</div>
 	</header>
 
@@ -120,6 +149,11 @@ alertify.<span class="fn">custom</span>( <span class="var">message</span> );</co
 		    log1    = document.getElementById("log1"),
 		    log2    = document.getElementById("log2"),
 		    log3    = document.getElementById("log3"),
+
+		    dCSS = document.getElementById("defaultCSS"),
+		    bCSS = document.getElementById("bootstrapCSS"),
+		    tCSS = document.getElementById("toggleCSS"),
+
 		    setLabel;
 
 		setLabel = function (reset) {
@@ -140,7 +174,7 @@ alertify.<span class="fn">custom</span>( <span class="var">message</span> );</co
 
 		lConfirm.onclick = function () { 
 			setLabel(true);
-			alertify.confirm("<p>This is a confirm box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.</p>", function (e) {
+			alertify.confirm("This is a confirm box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.", function (e) {
 				if (e) {
 					alertify.success("You've clicked '" + alertify.labels.ok + "'");
 				} else { alertify.error("You've clicked '" + alertify.labels.cancel + "'");
@@ -151,7 +185,7 @@ alertify.<span class="fn">custom</span>( <span class="var">message</span> );</co
 
 		lPrompt.onclick = function () {
 			setLabel(true);
-			alertify.prompt("<p>This is a prompt box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.</p>", function (e, str) {
+			alertify.prompt("This is a prompt box.<br>ENTER and ESC keys will trigger OK and Cancel respectively.", function (e, str) {
 				if (e) {
 					alertify.success("You've clicked '" + alertify.labels.ok + "'' and typed in: " + str);
 				} else {
@@ -193,6 +227,19 @@ alertify.<span class="fn">custom</span>( <span class="var">message</span> );</co
 		log1.onclick = function () { alertify.log("This is a standard log message."); return false; };
 		log2.onclick = function () { alertify.success("This is a success message."); return false; };
 		log3.onclick = function () { alertify.error("This is an error message."); return false; };
+
+		bCSS.onclick = function () {
+			tCSS.href = "assets/js/lib/alertify/alertify.bootstrap.css";
+			bCSS.className = "selected";
+			dCSS.className = "";
+			return false;
+		};
+		dCSS.onclick = function () {
+			tCSS.href = "assets/js/lib/alertify/alertify.default.css";
+			dCSS.className = "selected";
+			bCSS.className = "";
+			return false;
+		};
 	</script>
 
 </body>
