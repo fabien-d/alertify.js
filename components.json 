@@ -1,0 +1,8 @@
+{
+  "name": "alertify",
+  "version": "0.3.0",
+  "main": "./themes/alertify.core.css",
+  "dependencies": {
+  
+  }
+}
