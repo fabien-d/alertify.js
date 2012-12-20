@@ -20,6 +20,11 @@ Credit where credit is due
 * Twitter: [@toin0u](https://twitter.com/toin0u)
 * Email: contact@sbin.dk
 
+***
+
+**Stuart Keith**
+* GitHub: [stuartkeith](http://github.com/stuartkeith)
+
 ## Documentation Contributors
 
 **Kristoffer Berdal**
