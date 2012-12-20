@@ -234,7 +234,7 @@
 			 * Close the log messages
 			 *
 			 * @param  {Object} elem    HTML Element of log message to close
-			 * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message
+			 * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message, if 0 never hide
 			 *
 			 * @return {undefined}
 			 */
@@ -243,6 +243,9 @@
 				this.bind(elem, "click", function () {
 					elLog.removeChild(elem);
 				});
+
+				if ( wait === 0 ) return;
+				
 				setTimeout(function () {
 					if (typeof elem !== "undefined" && elem.parentNode === elLog) elLog.removeChild(elem);
 				}, timer);
