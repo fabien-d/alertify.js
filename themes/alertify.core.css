@@ -15,6 +15,14 @@
 	     -o-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
 	        transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
 }
+.alertify-log-hide {
+	-webkit-transition: all 500ms cubic-bezier(0.600, 0, 0.735, 0.045); /* older webkit */
+	-webkit-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	   -moz-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	    -ms-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	     -o-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	        transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
+}
 .alertify-cover {
 	position: fixed; z-index: 99999;
 	top: 0; right: 0; bottom: 0; left: 0;
@@ -41,9 +49,15 @@
 		margin-top: 10px;
 		position: relative;
 		right: -300px;
+		opacity: 0;
 	}
 	.alertify-log-show {
 		right: 0;
+		opacity: 1;
+	}
+	.alertify-log-hide {
+		right: -300px;
+		opacity: 0;
 	}
 	.alertify-dialog {
 		padding: 25px;
