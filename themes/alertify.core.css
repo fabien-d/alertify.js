@@ -34,7 +34,11 @@
 	margin-left: -275px;
 }
 	.alertify-hidden {
-		top: -50px;
+		-webkit-transform: translate(0,-150px);
+		   -moz-transform: translate(0,-150px);
+		    -ms-transform: translate(0,-150px);
+		     -o-transform: translate(0,-150px);
+		        transform: translate(0,-150px);
 		visibility: hidden;
 	}
 .alertify-logs {
@@ -56,7 +60,11 @@
 		opacity: 1;
 	}
 	.alertify-log-hide {
-		right: -300px;
+		-webkit-transform: translate(300px, 0);
+		   -moz-transform: translate(300px, 0);
+		    -ms-transform: translate(300px, 0);
+		     -o-transform: translate(300px, 0);
+		        transform: translate(300px, 0);
 		opacity: 0;
 	}
 	.alertify-dialog {
