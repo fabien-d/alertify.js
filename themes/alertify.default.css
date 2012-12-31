@@ -37,16 +37,18 @@
 	.alertify-button:hover,
 	.alertify-button:focus {
 		outline: none;
-		box-shadow: 0 0 15px #2B72D5;
 		background-image: -webkit-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
 		background-image:    -moz-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
 		background-image:     -ms-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
 		background-image:      -o-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
 		background-image:         linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
 	}
+	.alertify-button:focus {
+		box-shadow: 0 0 15px #2B72D5;
+	}
 	.alertify-button:active {
 		position: relative;
-		top: 1px;
+		box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
 	}
 		.alertify-button-cancel {
 			background-color: #FE1A00;
