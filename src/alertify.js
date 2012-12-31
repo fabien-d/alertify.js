@@ -268,35 +268,41 @@
 				// Unary Plus: +"2" === 2
 				var timer = (wait && !isNaN(wait)) ? +wait : this.delay,
 				    self  = this,
-				    removeElement;
+				    hideElement, removeElement;
 
+				// set click event on log messages
 				this.bind(elem, "click", function () {
-					elLog.removeChild(elem);
+					hideElement(elem);
 				});
-
+				// this sets the hide class to transition out
+				// or removes the child if css transitions aren't supported
+				hideElement = function (el) {
+					// ensure element exists
+					if (typeof el !== "undefined" && el.parentNode === elLog) {
+						// whether CSS transition exists
+						if (typeof self.transition !== "undefined") {
+							self.bind(el, self.transition, removeElement);
+							el.className += " alertify-log-hide";
+						} else {
+							elLog.removeChild(el);
+							if (!elLog.hasChildNodes()) elLog.className += " alertify-logs-hidden";
+						}
+					}
+				};
 				// Remove element after transition is done
 				removeElement = function (event) {
 					event.stopPropagation();
 					// transitionend event gets fired for every property
 					// this ensures it only tries to remove the element once
-					if (event.propertyName === "opacity") elLog.removeChild(this);
+					if (event.propertyName === "opacity") {
+						elLog.removeChild(this);
+						if (!elLog.hasChildNodes()) elLog.className += " alertify-logs-hidden";
+					}
 				};
-
 				// never close (until click) if wait is set to 0
 				if (wait === 0) return;
-
-				setTimeout(function () {
-					// ensure element exists
-					if (typeof elem !== "undefined" && elem.parentNode === elLog) {
-						// whether CSS transition exists
-						if (typeof self.transition !== "undefined") {
-							self.bind(elem, self.transition, removeElement);
-							elem.className += " alertify-log-hide";
-						} else {
-							elLog.removeChild(elem);
-						}
-					}
-				}, timer);
+				// set timeout to auto close the log message
+				setTimeout(function () { hideElement(elem); }, timer);
 			},
 
 			/**
@@ -396,7 +402,7 @@
 				// log element
 				elLog = document.createElement("section");
 				elLog.setAttribute("id", "alertify-logs");
-				elLog.className = "alertify-logs";
+				elLog.className = "alertify-logs alertify-logs-hidden";
 				document.body.appendChild(elLog);
 				// set tabindex attribute on body element
 				// this allows script to give it focus
@@ -429,6 +435,7 @@
 					this.init();
 					check();
 				}
+				elLog.className = "alertify-logs";
 				this.notify(message, type, wait);
 				return this;
 			},
