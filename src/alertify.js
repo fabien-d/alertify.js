@@ -118,7 +118,13 @@
 					if (typeof event.preventDefault !== "undefined") event.preventDefault();
 					common(event);
 					if (typeof input !== "undefined") val = input.value;
-					if (typeof fn === "function") fn(true, val);
+					if (typeof fn === "function") {
+						if (typeof input !== "undefined") {
+							fn(true, val);
+						}
+						else fn(true);
+					}
+					return false;
 				};
 
 				// cancel event handler
@@ -126,6 +132,7 @@
 					if (typeof event.preventDefault !== "undefined") event.preventDefault();
 					common(event);
 					if (typeof fn === "function") fn(false);
+					return false;
 				};
 
 				// common event handler (keyup, ok and cancel)
@@ -165,14 +172,13 @@
 				this.bind(document.body, "keyup", key);
 				// bind form submit
 				if (hasInput) this.bind(form, "submit", ok);
-				// set focus on OK button or the input text
-				global.setTimeout(function () {
+				if (typeof this.transition === "undefined") {
 					if (input) {
 						input.focus();
 						input.select();
 					}
 					else btnOK.focus();
-				}, 50);
+				}
 			},
 
 			/**
@@ -365,7 +371,7 @@
 				else {
 					isopen = false;
 					elDialog.className = "alertify alertify-hide alertify-hidden";
-					elCover.className  = "alertify-cover alertify-hidden";
+					elCover.className  = "alertify-cover alertify-cover-hidden";
 					// set focus to the last element or body
 					// after the dialog is closed
 					elCallee.focus();
@@ -386,7 +392,7 @@
 				// cover
 				elCover = document.createElement("div");
 				elCover.setAttribute("id", "alertify-cover");
-				elCover.className = "alertify-cover alertify-hidden";
+				elCover.className = "alertify-cover alertify-cover-hidden";
 				document.body.appendChild(elCover);
 				// main element
 				elDialog = document.createElement("section");
@@ -480,9 +486,43 @@
 			 * @return {undefined}
 			 */
 			setup : function () {
-				var item = queue[0];
+				var item  = queue[0],
+				    first = true,
+				    self  = this,
+				    transitionDone;
 
 				isopen = true;
+
+				/**
+				 * Set button focus after transition
+				 *
+				 * @param  {Event} event transition event
+				 *
+				 * @return {undefined}
+				 */
+				transitionDone = function (event) {
+					var input = $("alertify-text") || undefined,
+					    btnOK = $("alertify-ok")   || undefined;
+
+					event.stopPropagation();
+					// transitionend event gets fired for every property (using `all`)
+					// this ensures it only tries to remove the element once
+					if (first) {
+						first = false;
+						if (input) {
+							input.focus();
+							input.select();
+						}
+						else btnOK.focus();
+						self.unbind(elDialog, self.transition, transitionDone);
+					}
+				};
+
+				// whether CSS transition exists
+				if (typeof this.transition !== "undefined") {
+					this.bind(elDialog, this.transition, transitionDone);
+				}
+
 				elDialog.innerHTML = this.build(item);
 				if (typeof item.placeholder === "string" && item.placeholder !== "") $("alertify-text").value = item.placeholder;
 				this.addListeners(item.callback);

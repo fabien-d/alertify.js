@@ -27,11 +27,15 @@
 	position: fixed; z-index: 99999;
 	top: 0; right: 0; bottom: 0; left: 0;
 }
+	.alertify-cover-hidden {
+		display: none;
+	}
 .alertify {
 	position: fixed; z-index: 99999;
 	top: 50px; left: 50%;
 	width: 550px;
 	margin-left: -275px;
+	opacity: 1;
 }
 	.alertify-hidden {
 		-webkit-transform: translate(0,-150px);
@@ -39,7 +43,8 @@
 		    -ms-transform: translate(0,-150px);
 		     -o-transform: translate(0,-150px);
 		        transform: translate(0,-150px);
-		visibility: hidden;
+		opacity: 0;
+		display: none\9; /* IE8 & IE7 */
 	}
 .alertify-logs {
 	position: fixed;
