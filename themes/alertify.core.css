@@ -44,8 +44,10 @@
 		     -o-transform: translate(0,-150px);
 		        transform: translate(0,-150px);
 		opacity: 0;
-		display: none\9; /* IE8 & IE7 */
+		display: none;
 	}
+	/* overwrite display: none; for everything except IE6-8 */
+	:root *> .alertify-hidden { display: block; }
 .alertify-logs {
 	position: fixed;
 	z-index: 5000;
@@ -106,6 +108,10 @@
 				cursor: pointer;
 				margin-left: 5px;
 			}
+
+.alertify-isHidden {
+	visibility: hidden;
+}
 
 @media only screen and (max-width: 680px) {
 	.alertify,
