@@ -55,6 +55,9 @@
 	right: 10px;
 	width: 300px;
 }
+.alertify-logs-hidden {
+	display: none;
+}
 	.alertify-log {
 		display: block;
 		margin-top: 10px;
