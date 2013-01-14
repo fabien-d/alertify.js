@@ -232,6 +232,9 @@
 
 				html += "<div class=\"alertify-dialog\">";
 
+				if(_alertify.buttonFocus === "none")
+					html += "<a href=\"#\" id=\"alertify-noneFocus\" class = \"alertify-hidden\"></a>";
+
 				if (type === "prompt") html += "<form id=\"alertify-form\">";
 
 				html += "<article class=\"alertify-inner\">";
@@ -510,7 +513,7 @@
 				transitionDone = function (event) {
 					var input = $("alertify-text") || undefined,
 					    btnOK = $("alertify-ok")   || undefined,
-					    btnFocus  = (_alertify.buttonFocus == 'cancel') ? $("alertify-cancel") : ((_alertify.buttonFocus == 'none') ? null : btnOK);
+					    btnFocus  = (_alertify.buttonFocus === "cancel") ? $("alertify-cancel") : ((_alertify.buttonFocus === "none") ? $("alertify-noneFocus") : btnOK);				
 
 					event.stopPropagation();
 					// transitionend event gets fired for every property (using `all`)
@@ -521,7 +524,8 @@
 							input.focus();
 							input.select();
 						}
-						else if (btnFocus != null) btnFocus.focus();
+						btnFocus.focus();
+						
 						self.unbind(elDialog, self.transition, transitionDone);
 					}
 				};
