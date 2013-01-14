@@ -232,8 +232,7 @@
 
 				html += "<div class=\"alertify-dialog\">";
 
-				if(_alertify.buttonFocus === "none")
-					html += "<a href=\"#\" id=\"alertify-noneFocus\" class = \"alertify-hidden\"></a>";
+				if(_alertify.buttonFocus === "none") html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
 
 				if (type === "prompt") html += "<form id=\"alertify-form\">";
 
