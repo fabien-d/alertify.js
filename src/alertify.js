@@ -110,13 +110,12 @@
 				var btnReset  = $("alertify-resetFocus"),
 				    btnOK     = $("alertify-ok")     || undefined,
 				    btnCancel = $("alertify-cancel") || undefined,
-				    btnFocus  = (_alertify.buttonFocus == 'cancel') ? btnCancel : ((_alertify.buttonFocus == 'none') ? null : btnOK),
+				    btnFocus  = (_alertify.buttonFocus === "cancel") ? btnCancel : ((_alertify.buttonFocus === "none") ? null : btnOK),
 				    input     = $("alertify-text")   || undefined,
 				    form      = $("alertify-form")   || undefined,
 				    hasOK     = (typeof btnOK !== "undefined"),
 				    hasCancel = (typeof btnCancel !== "undefined"),
 				    hasInput  = (typeof input !== "undefined"),
-				    hasFocus  = (btnFocus !== null),
 				    val       = "",
 				    self      = this,
 				    ok, cancel, common, key, reset;
@@ -164,7 +163,6 @@
 				reset = function (event) {
 					if (hasInput) input.focus();
 					else if (hasCancel) btnCancel.focus();
-					else if (hasFocus) btnFocus.focus()
 					else btnOK.focus();
 				};
 
@@ -523,7 +521,7 @@
 							input.focus();
 							input.select();
 						}
-						else if(btnFocus != null) btnFocus.focus();
+						else if (btnFocus != null) btnFocus.focus();
 						self.unbind(elDialog, self.transition, transitionDone);
 					}
 				};
