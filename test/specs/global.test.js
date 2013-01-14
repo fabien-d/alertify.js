@@ -39,3 +39,19 @@ test("test labels", function () {
 	deepEqual(this.ok.innerHTML, "GO", "OK button should have custom label GO");
 	deepEqual(this.cancel.innerHTML, "Stop", "Cancel button should have custom label Stop");
 });
+
+module("set focus button",{
+	
+});
+
+test("default OK", function(){
+	expect(1);
+
+	alertify.confirm("Test");
+	this.ok     = document.getElementById("alertify-ok");
+	this.cancel = document.getElementById("alertify-cancel");
+
+	console.log(document.activeElement.tagName);
+
+	equal(document.activeElement,this.ok,'OK focused');
+});
