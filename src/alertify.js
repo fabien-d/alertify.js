@@ -12,7 +12,7 @@
 		    isopen    = false,
 		    keys      = { ENTER: 13, ESC: 27, SPACE: 32 },
 		    queue     = [],
-		    $, btnCancel, btnOK, btnReset, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
+		    $, btnCancel, btnOK, btnReset, btnFocus, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
 
 		/**
 		 * Markup pieces
@@ -85,6 +85,12 @@
 			 * @type {Boolean}
 			 */
 			buttonReverse : false,
+
+			/**
+			 * Which button should be focused by default
+			 * @type {String}	'ok' (default), 'cancel', or 'none'
+			 */
+			buttonFocus : 'ok',
 
 			/**
 			 * Set the transition event on load
@@ -214,6 +220,8 @@
 				    css     = item.cssClass || "";
 
 				html += "<div class=\"alertify-dialog\">";
+
+				if (_alertify.buttonFocus === "none") html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
 
 				if (type === "prompt") html += "<form id=\"alertify-form\">";
 
@@ -502,7 +510,7 @@
 					input.focus();
 					input.select();
 				}
-				else btnOK.focus();
+				else btnFocus.focus();
 			},
 
 			/**
@@ -534,6 +542,7 @@
 				btnReset  = $("alertify-resetFocus");
 				btnOK     = $("alertify-ok")     || undefined;
 				btnCancel = $("alertify-cancel") || undefined;
+				btnFocus  = (_alertify.buttonFocus === "cancel") ? btnCancel : ((_alertify.buttonFocus === "none") ? $('alertify-noneFocus') : btnOK),
 				input     = $("alertify-text")   || undefined;
 				form      = $("alertify-form")   || undefined;
 				// add placeholder value to the input field
