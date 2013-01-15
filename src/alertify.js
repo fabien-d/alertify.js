@@ -282,10 +282,11 @@
 				// This ensure it doens't block any element from being clicked
 				transitionDone = function (event) {
 					event.stopPropagation();
+					// unbind event so function only gets called once
+					self.unbind(this, self.transition, transitionDone);
+					// remove log message
 					elLog.removeChild(this);
 					if (!elLog.hasChildNodes()) elLog.className += " alertify-logs-hidden";
-					// unbind event so function only gets called once
-					self.unbind(elDialog, self.transition, transitionDone);
 				};
 				// this sets the hide class to transition out
 				// or removes the child if css transitions aren't supported
