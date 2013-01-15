@@ -25,6 +25,11 @@ Credit where credit is due
 **Stuart Keith**
 * GitHub: [stuartkeith](http://github.com/stuartkeith)
 
+***
+
+**Dylan Anderson**
+* GitHub: [quasipickle](http://github.com/quasipickle)
+
 ## Documentation Contributors
 
 **Kristoffer Berdal**
