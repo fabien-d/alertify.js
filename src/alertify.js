@@ -21,7 +21,7 @@
 		dialogs = {
 			buttons : {
 				holder : "<nav class=\"alertify-buttons\">{{buttons}}</nav>",
-				submit : "<button type=\"submit\" class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\" />{{ok}}</button>",
+				submit : "<button type=\"submit\" class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
 				ok     : "<a href=\"#\" class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</a>",
 				cancel : "<a href=\"#\" class=\"alertify-button alertify-button-cancel\" id=\"alertify-cancel\">{{cancel}}</a>"
 			},
@@ -88,9 +88,9 @@
 
 			/**
 			 * Which button should be focused by default
-			 * @type {String}	'ok' (default), 'cancel', or 'none'
+			 * @type {String}	"ok" (default), "cancel", or "none"
 			 */
-			buttonFocus : 'ok',
+			buttonFocus : "ok",
 
 			/**
 			 * Set the transition event on load
@@ -542,7 +542,7 @@
 				btnReset  = $("alertify-resetFocus");
 				btnOK     = $("alertify-ok")     || undefined;
 				btnCancel = $("alertify-cancel") || undefined;
-				btnFocus  = (_alertify.buttonFocus === "cancel") ? btnCancel : ((_alertify.buttonFocus === "none") ? $('alertify-noneFocus') : btnOK),
+				btnFocus  = (_alertify.buttonFocus === "cancel") ? btnCancel : ((_alertify.buttonFocus === "none") ? $("alertify-noneFocus") : btnOK),
 				input     = $("alertify-text")   || undefined;
 				form      = $("alertify-form")   || undefined;
 				// add placeholder value to the input field
