@@ -1,3 +1,5 @@
+![travis](https://travis-ci.org/fabien-d/alertify.js.png?branch=master)
+
 Alertify is an unobtrusive customizable JavaScript notification system.
 
 ## Features
