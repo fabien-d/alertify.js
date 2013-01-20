@@ -51,7 +51,10 @@
 			box-shadow: inset 0 1px 0 #FFF;
 			text-align: right;
 		}
-			.alertify-button {
+			.alertify-button,
+			.alertify-button:hover,
+			.alertify-button:focus,
+			.alertify-button:active {
 				margin-left: 10px;
 				border-radius: 4px;
 				font-weight: normal;
@@ -66,13 +69,16 @@
 			}
 			.alertify-button:focus {
 				outline: none;
-				box-shadow: 0 0 5px #2B72D5;	
+				box-shadow: 0 0 5px #2B72D5;
 			}
 			.alertify-button:active {
 				position: relative;
 				box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
 			}
-				.alertify-button-cancel {
+				.alertify-button-cancel,
+				.alertify-button-cancel:hover,
+				.alertify-button-cancel:focus,
+				.alertify-button-cancel:active {
 					text-shadow: 0 -1px 0 rgba(255,255,255,.75);
 					background-color: #E6E6E6;
 					border: 1px solid #BBB;
@@ -83,10 +89,15 @@
 					background-image:      -o-linear-gradient(top, #FFF, #E6E6E6);
 					background-image:         linear-gradient(top, #FFF, #E6E6E6);
 				}
-				.alertify-button-cancel:hover {
+				.alertify-button-cancel:hover,
+				.alertify-button-cancel:focus,
+				.alertify-button-cancel:active {
 					background: #E6E6E6;
 				}
-				.alertify-button-ok {
+				.alertify-button-ok,
+				.alertify-button-ok:hover,
+				.alertify-button-ok:focus,
+				.alertify-button-ok:active {
 					text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 					background-color: #04C;
 					border: 1px solid #04C;
@@ -94,7 +105,9 @@
 					border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 					color: #FFF;
 				}
-				.alertify-button-ok:hover {
+				.alertify-button-ok:hover,
+				.alertify-button-ok:focus,
+				.alertify-button-ok:active {
 					background: #04C;
 				}
 

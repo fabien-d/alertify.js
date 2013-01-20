@@ -103,7 +103,13 @@
 		}
 		.alertify-buttons {
 		}
-			.alertify-button {
+			.alertify-button,
+			.alertify-button:hover,
+			.alertify-button:active,
+			.alertify-button:visited {
+				background: none;
+				text-decoration: none;
+				border: none;
 				/* line-height and font-size for input button */
 				line-height: 1.5;
 				font-size: 100%;
