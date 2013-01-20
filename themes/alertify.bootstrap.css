@@ -85,6 +85,8 @@
 				}
 				.alertify-button-cancel:hover {
 					background: #E6E6E6;
+					color: #333;
+					text-decoration: none;
 				}
 				.alertify-button-ok {
 					text-shadow: 0 -1px 0 rgba(0,0,0,.25);
@@ -96,6 +98,8 @@
 				}
 				.alertify-button-ok:hover {
 					background: #04C;
+					color: #FFF;
+					text-decoration: none;
 				}
 
 .alertify-log {
