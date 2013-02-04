@@ -443,7 +443,7 @@
 			 *
 			 * @return {Object}
 			 */
-			log : function (message, type, wait) {
+			log : function (message, type, wait, cssClass) {
 				// check to ensure the alertify dialog element
 				// has been successfully created
 				var check = function () {
@@ -456,7 +456,7 @@
 					check();
 				}
 				elLog.className = "alertify-logs";
-				this.notify(message, type, wait);
+				this.notify(message, type, wait, cssClass);
 				return this;
 			},
 
@@ -471,9 +471,9 @@
 			 *
 			 * @return {undefined}
 			 */
-			notify : function (message, type, wait) {
+			notify : function (message, type, wait, cssClass) {
 				var log = document.createElement("article");
-				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
+				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "") + (cssClass ? " " + cssClass : "");
 				log.innerHTML = message;
 				// prepend child
 				elLog.insertBefore(log, elLog.firstChild);
@@ -570,16 +570,16 @@
 		};
 
 		return {
-			alert   : function (message, fn, cssClass) { _alertify.dialog(message, "alert", fn, "", cssClass); return this; },
-			confirm : function (message, fn, cssClass) { _alertify.dialog(message, "confirm", fn, "", cssClass); return this; },
-			extend  : _alertify.extend,
-			init    : _alertify.init,
-			log     : function (message, type, wait) { _alertify.log(message, type, wait); return this; },
-			prompt  : function (message, fn, placeholder, cssClass) { _alertify.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
-			success : function (message, wait) { _alertify.log(message, "success", wait); return this; },
-			error   : function (message, wait) { _alertify.log(message, "error", wait); return this; },
-			set     : function (args) { _alertify.set(args); },
-			labels  : _alertify.labels
+		  alert   : function (message, fn, cssClass) { _alertify.dialog(message, "alert", fn, "", cssClass); return this; },
+		  confirm : function (message, fn, cssClass) { _alertify.dialog(message, "confirm", fn, "", cssClass); return this; },
+		  extend  : _alertify.extend,
+		  init    : _alertify.init,
+		  log     : function (message, type, wait, cssClass) { _alertify.log(message, type, wait, cssClass); return this; },
+		  prompt  : function (message, fn, placeholder, cssClass) { _alertify.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
+		  success : function (message, wait, cssClass) { _alertify.log(message, "success", wait, cssClass); return this; },
+		  error   : function (message, wait, cssClass) { _alertify.log(message, "error", wait, cssClass); return this; },
+		  set     : function (args) { _alertify.set(args); },
+		  labels  : _alertify.labels
 		};
 	};
 
