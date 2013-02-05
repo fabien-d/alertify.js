@@ -194,6 +194,23 @@
 				}
 			},
 
+      /**
+       * Use alertify as the global error handler (using window.onerror)
+       *
+       * @return {boolean} success
+       */
+      handleErrors : function () {
+        if (typeof global.onerror !== "undefined") {
+          var self = this;
+          global.onerror = function(msg, url, line) {
+            self.error("[" + msg + " on line " + line + " of " + url + "]", 0);
+          };
+          return true;
+        } else {
+          return false;
+        }
+      },
+
 			/**
 			 * Append button HTML strings
 			 *
@@ -579,7 +596,8 @@
 			success : function (message, wait) { _alertify.log(message, "success", wait); return this; },
 			error   : function (message, wait) { _alertify.log(message, "error", wait); return this; },
 			set     : function (args) { _alertify.set(args); },
-			labels  : _alertify.labels
+			labels  : _alertify.labels,
+			debug   : _alertify.handleErrors
 		};
 	};
 
