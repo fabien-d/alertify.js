@@ -1,0 +1,24 @@
+@import "mixins/_prefix";
+
+//
+// Transition
+// Multiple transition must be wrapped in braces
+//
+// <code>
+// @include transition(all 1s linear);
+// @include transition((color 1s linear, opacity 1s linear));
+// </code>
+//
+// @param  $list    [default: all 1s linear] List of transitions
+//
+@mixin transition ($list: all 1s linear) {
+	// which prefix to append to the property
+	$webkit : true;
+	$moz    : true;
+	$ms     : true;
+	$o      : true;
+	$spec   : true;
+
+	// set prefix
+	@include prefix(transition, $list, $webkit, $moz, $ms, $o, $spec);
+}

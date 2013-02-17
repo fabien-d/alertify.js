@@ -1,0 +1,18 @@
+/**
+ * Font Face
+ *
+ * @param  $family    Font name to be used in stylesheet
+ * @param  $path      Path to font file
+ */
+@mixin fontface ($family, $path) {
+    @font-face {
+        font-family: $family;
+        src: url('#{$path}.eot');
+        src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
+             url('#{$path}.woff') format('woff'),
+             url('#{$path}.ttf') format('truetype'),
+             url('#{$path}.svg##{$family}') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+}

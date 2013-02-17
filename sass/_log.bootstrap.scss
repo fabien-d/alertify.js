@@ -1,0 +1,45 @@
+@import "mixins/_design.scss";
+@import "mixins/_prefix.scss";
+
+$logWidth : 300px;
+$spacing  : 8px;
+
+.alertify-logs {
+    position: fixed;
+    z-index: 9999;
+    bottom: $spacing; right: $spacing;
+    width: $logWidth;
+}
+    .alertify-log {
+        margin-top: $spacing;
+        right: -$logWidth;
+        padding: $spacing $spacing * 2;
+        border-radius: 4px;
+    }
+
+    .alertify-log-info {
+        color: #3A8ABF;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        border: 1px solid #BCE8F1;
+        background: #D9EDF7;
+        padding: 8px 14px;
+        border-radius: 4px;
+    }
+    .alertify-log-error {
+        color: #B94A48;
+        background: #F2DEDE;
+        border: 1px solid #EED3D7;
+    }
+    .alertify-log-success {
+        color: #468847;
+        background: #DFF0D8;
+        border: 1px solid #D6E9C6;
+    }
+
+// States
+.is-alertify-log-showing {
+    right: 0;
+}
+.is-alertify-log-hidden {
+    right: -$logWidth;
+}

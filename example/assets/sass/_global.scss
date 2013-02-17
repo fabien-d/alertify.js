@@ -1,0 +1,17 @@
+// Reset/Normalize
+@import "normalize/_normalize.scss";
+// Import all functions
+@import "functions/_import.scss";
+// Import all mixins
+@import "mixins/_import.scss";
+
+// Set global variables
+$sansSerif  : Arial, Helvetica, sans-serif;
+$serif      : Georgia, Times, serif;
+$fontSize   : 16px;
+$lineHeight : 1.5;
+
+// alignment
+$spacing : 20px;
+// color scheme
+$light : #F5F5F5;
