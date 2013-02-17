@@ -1,0 +1,53 @@
+//
+// Add browser prefix to selector
+//
+// Single property
+// <code>
+// @include prefix(transition, all 1s linear, $webkit, $moz, $ms, $o, $spec);
+// </code>
+//
+// Multiple properties
+// <code>
+// @include prefix(transition, (color 1s linear, opacity 1s linear), $webkit, $moz, $ms, $o, $spec);
+// </code>
+//
+// @param  $property    Property to prepend prefix
+// @param  $value       value of the property
+// @param  $webkit      Whether to add -wekbit prefix
+// @param  $moz         Whether to add -moz prefix
+// @param  $ms          Whether to add -ms prefix
+// @param  $o           Whether to add -o prefix
+// @param  $spec        Whether to add spec property
+//
+@mixin prefix ($property, $value, $webkit: true, $moz: true, $ms: false, $o: false, $spec: true) {
+	@if $webkit { -webkit-#{$property}: $value; }
+	@if $moz    {    -moz-#{$property}: $value; }
+	@if $ms     {     -ms-#{$property}: $value; }
+	@if $o      {      -o-#{$property}: $value; }
+	@if $spec   {         #{$property}: $value; }
+}
+
+//
+// Add browser prefix to property
+//
+// Single property
+// <code>
+// @include prop-prefix(background-image, linear-gradient, (top, #FFF, #CCC), $webkit, $moz, $ms, $o, $spec);
+// </code>
+//
+// @param  $selector    Selector
+// @param  $property    Property to prepend prefix
+// @param  $value       value of the property
+// @param  $webkit      Whether to add -wekbit prefix
+// @param  $moz         Whether to add -moz prefix
+// @param  $ms          Whether to add -ms prefix
+// @param  $o           Whether to add -o prefix
+// @param  $spec        Whether to add spec property
+//
+@mixin prop-prefix ($selector, $property, $value, $webkit: true, $moz: true, $ms: false, $o: false, $spec: true) {
+	@if $webkit { #{$selector}: unquote("-webkit-#{$property}(#{$value})"); }
+	@if $moz    { #{$selector}: unquote("   -moz-#{$property}(#{$value})"); }
+	@if $ms     { #{$selector}: unquote("    -ms-#{$property}(#{$value})"); }
+	@if $o      { #{$selector}: unquote("     -o-#{$property}(#{$value})"); }
+	@if $spec   { #{$selector}: unquote("        #{$property}(#{$value})"); }
+}

@@ -1,20 +1,32 @@
 {
-	"name"        : "alertify",
-	"description" : "An unobtrusive customizable JavaScript notification system",
-	"version"     : "0.3.8",
-	"homepage"    : "http://fabien-d.github.com/alertify.js/",
-	"author" : {
-		"name"  : "Fabien Doiron",
-		"email" : "fabien.doiron@gmail.com"
-	},
-	"scripts": {
-		"test": "grunt lint qunit"
-	},
-	"devDependencies": {
-		"grunt": "~0.3.17"
-	},
-	"licenses" : [{
-		"type" : "MIT",
-		"url"  : "http://opensource.org/licenses/mit-license.php"
-	}]
+  "name": "alertify",
+  "description": "browser dialogs never looked so good",
+  "version": "0.4.0rc1",
+  "homepage": "http://fabien-d.github.com/alertify.js/",
+  "author": {
+    "name": "Fabien Doiron",
+    "email": "fabien.doiron@gmail.com"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "0.4.0rc7",
+    "grunt-cli": "~0.1",
+    "grunt-lib-phantomjs": "~0.1",
+    "grunt-contrib-jshint": "~0.1.0",
+    "grunt-contrib-qunit": "~0.1.1",
+    "grunt-contrib-requirejs": "~0.3",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt-contrib-uglify": "~0.1.1",
+    "requirejs": "~2.1.4",
+    "grunt-contrib-compass": "~0.1.1"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/mit-license.php"
+    }
+  ]
 }

@@ -11,11 +11,15 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 
 ## Examples
 
-http://fabien-d.github.com/alertify.js/
+http://fabien-d.github.com/alertify.js/0.4.0rc1/
+
+## Download
+
+Latest [stable version 0.3.8](https://github.com/fabien-d/alertify.js-shim/archive/0.3.8.zip) (zip)
 
 ## Usage
 
-See wiki [How to Use](http://github.com/fabien-d/alertify.js/wiki/How-to-Use)
+0.4.0rc1 documentation is in the works and will be available soon.
 
 ## Changeset
 
@@ -23,11 +27,15 @@ See wiki [Changeset](http://github.com/fabien-d/alertify.js/wiki/Changeset)
 
 ## Contributing
 
-See wiki [Submitting a Pull Request](https://github.com/fabien-d/alertify.js/wiki/Submitting-a-Pull-Request)
+0.4.0rc1 documentation is in the works and will be available soon.
+
+## Credit where credit is due
+
+See all list of [contributors](https://github.com/fabien-d/alertify.js/contributors)
 
 ## Where is it being tested?
 
-* Microsoft Internet Explorer 7+ (Standards Mode)
+* Microsoft Internet Explorer 8+ (Standards Mode)
 * Google Chrome
 * Mozilla FireFox
 * Apple Safari
