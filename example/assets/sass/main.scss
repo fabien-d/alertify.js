@@ -1,0 +1,256 @@
+@import "_global.scss";
+
+body {
+    font: normal #{$fontSize}/#{$lineHeight} $sansSerif;
+    color: #333;
+    background: #FFF;
+}
+
+@import "modules/_import.scss";
+@import "_fontAwesome.scss";
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: normal;
+}
+h1 {
+    font-size: $fontSize * 4;
+    text-align: center;
+    font-family: "lato", $sansSerif;
+    color: #FFF;
+    margin: 0 0 $spacing * 2;
+}
+h2 {
+    font-size: $fontSize * 2.5;
+    font-family: "lato", $sansSerif;
+    font-weight: 900;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+
+    span {
+        display: inline-block;
+        padding: $spacing;
+        background: #FFF;
+    }
+
+    &:before {
+        position: absolute;
+        z-index: -1;
+        top: 55%; left: 0; right: 0;
+        border-top: 1px dashed #AAA;
+        border-bottom: 1px dashed #F5F5F5;
+        content: "";
+    }
+}
+h3 {
+    font: bold #{$fontSize * 1.25}/1.2 $sansSerif;
+    margin: 0 0 $spacing;
+}
+
+h4 {
+    font: bold #{$fontSize}/1.2 $sansSerif;
+}
+
+p {
+    margin: 0 0 $spacing;
+}
+
+a {
+    color: #0C7AB9;
+
+    &:hover {
+        color: #FFF;
+        background: #0C7AB9;
+        text-decoration: none;
+    }
+}
+
+.container {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.masthead {
+    padding: $spacing 0;
+    background: url(../img/banner.jpg) no-repeat center 0;
+    margin-bottom: $spacing * 3;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.cta {
+    text-align: center;
+
+    .button-primary {
+        padding: $spacing $spacing * 2;
+        @include prefix(box-sizing, border-bottom);
+    }
+}
+
+.small {
+    font-size: $fontSize * .75;
+    font-weight: normal;
+}
+
+.footer {
+    background: #13181F;
+    color: #666;
+    text-align: center;
+    padding: $spacing * 2 0;
+
+    a {
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    i { margin-right: 4px; }
+}
+
+.featured-list {
+    list-style: none;
+    text-align: center;
+    margin: $spacing * 4 0 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        margin: 0 $spacing $spacing;
+
+        a {
+            position: relative;
+            display: block;
+            color: #666;
+
+            &:before {
+                content: "";
+                display: block;
+                margin: 0 auto 5px;
+            }
+
+            &:hover {
+                background: none;
+                color: #FFF;
+            }
+        }
+    }
+
+    .treehouse:before {
+        background: url(../img/treehouse.png) no-repeat center bottom;
+        width: 58px; height: 42px;
+    }
+    .webdev:before {
+        background: url(../img/webdev.png) no-repeat center bottom;
+        width: 103px; height: 42px;
+    }
+}
+
+.block {
+    margin-bottom: $spacing * 3;
+}
+
+.mh-logo {
+    font-family: "lato", $sansSerif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: $fontSize * 1.5;
+    text-align: center;
+    color: #7A7C7C;
+
+    .extension {
+        text-transform: none;
+    }
+}
+
+.feature {
+    float: left;
+    width: 47%;
+    margin-bottom: $spacing;
+
+    &.alt {
+        float: right;
+    }
+
+    .mediaAside {
+        font-size: $fontSize * 2;
+        line-height: 1;
+        margin: 0;
+        width: 60px;
+    }
+}
+
+.row {
+    @extend .clearfix;
+}
+
+.syntaxhighlighter .toolbar {
+    display: none;
+}
+
+.button-group {
+    margin: 0;
+    font-size: 0;
+}
+
+.button-primary {
+    font-size: $fontSize;
+    background: #0C7AB9;
+    color: #FFF;
+    display: inline-block;
+    padding: $spacing * .25 $spacing;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 2px;
+    margin: 0 5px 5px 0;
+
+    &:hover,
+    &:focus {
+        background: darken(#0C7AB9, 7%);
+        outline: none;
+    }
+    &:focus {
+        box-shadow: 0 0 10px lighten(#0C7AB9, 10%);
+    }
+    &:active {
+        box-shadow: inset 0 3px 3px rgba(0,0,0,.25);
+    }
+
+    &.is-disabled {
+        opacity: .5;
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    .container { width: 95%; }
+    .button { margin-bottom: $spacing; }
+}
+
+@media only screen and (max-width: 830px) {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .feature,
+    .alt {
+        float: none;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .mh-logo {
+        font-size: $fontSize * .8;
+    }
+
+    h1 {
+        font-size: $fontSize * 1.5;
+    }
+
+    h2 {
+        font-size: $fontSize * 1.5;
+    }
+}

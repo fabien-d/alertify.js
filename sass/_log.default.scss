@@ -1,0 +1,42 @@
+@import "mixins/_design.scss";
+@import "mixins/_prefix.scss";
+
+$logWidth : 300px;
+$spacing  : 8px;
+
+.alertify-logs {
+    position: fixed;
+    z-index: 9999;
+    bottom: $spacing; right: $spacing;
+    width: $logWidth;
+}
+    .alertify-log {
+        margin-top: $spacing;
+        right: -$logWidth;
+        padding: $spacing * 2 $spacing * 2;
+        border-radius: 4px;
+    }
+        .alertify-log-info {
+            background: #1F1F1F;
+            background: rgba(0,0,0,.9);
+            color: #FFF;
+            text-shadow: -1px -1px 0 rgba(0,0,0,.5);
+        }
+        .alertify-log-error {
+            color: #FFF;
+            background: #FE1A00;
+            background: rgba(254,26,0,.9);
+        }
+        .alertify-log-success {
+            color: #FFF;
+            background: #5CB811;
+            background: rgba(92,184,17,.9);
+        }
+
+// States
+.is-alertify-log-showing {
+    right: 0;
+}
+.is-alertify-log-hidden {
+    right: -$logWidth;
+}

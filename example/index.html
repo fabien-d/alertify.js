@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>alertify.js - browser dialogs never looked so good</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="../dist/themes/alertify.css" />
+    <link rel="stylesheet" href="../dist/themes/alertify.default.css" id="toggleCSS" />
+    <link rel="stylesheet" href="assets/js/lib/sh/shCore.css" />
+    <link rel="stylesheet" href="assets/js/lib/sh/shCoreDefault.css" />
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width">
+    <script>
+        // ensure legacy browsers support html5 tags
+        // could include a shim or modernizr or...
+        // this is a quick workaround for the time being
+        document.createElement("nav");
+        document.createElement("header");
+        document.createElement("article");
+        document.createElement("section");
+        document.createElement("footer");
+    </script>
+</head>
+<body>
+    <header class="masthead">
+        <div class="container">
+            <p class="mh-logo">alertify<span class="extension">.js</span></p>
+            <h1>browser dialogs never<br />looked so good</h1>
+            <a href="https://github.com/fabien-d/alertify.js"><img style="position: fixed; z-index: 5000; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+            <img src="assets/img/dialogs.png" alt="Native browser dialogs versus alertify.js dialogs" width="808" height="210" />
+        </div>
+    </header>
+
+    <h2><span>download alertify.js 0.4.0rc1</span></h2>
+    <section class="block">
+        <div class="container">
+            <div class="cta">
+                <a class="button-primary" href="https://github.com/fabien-d/alertify.js/tree/0.4.0rc1">Source Code <span class="small">(GitHub)</span></a>
+            </div>
+        </div>
+    </section>
+
+    <h2><span>features</span></h2>
+    <section class="block">
+        <div class="container">
+            <div class="row">
+                <div class="media feature">
+                    <div class="mediaAside"><i class="icon-pencil"></i></div>
+                    <div class="mediaBody">
+                        <h3>Customizable look and feel</h3>
+                        <p>If you can edit CSS you can customize the look of alertify.js to match your needs</p>
+                    </div>
+                </div>
+                <div class="media feature alt">
+                    <div class="mediaAside"><i class="icon-ok"></i></div>
+                    <div class="mediaBody">
+                        <h3>Lightweight, no dependencies</h3>
+                        <p>No matter the type of project, if JavaScript is available alertify.js can be used</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="media feature">
+                    <div class="mediaAside"><i class="icon-bullhorn"></i></div>
+                    <div class="mediaBody">
+                        <h3>Growl-like notification</h3>
+                        <p>Unobtrusive notification messages can be used to give feedback to users or even as a console.log replacement</p>
+                    </div>
+                </div>
+                <div class="media feature alt">
+                    <div class="mediaAside"><i class="icon-laptop"></i></div>
+                    <div class="mediaBody">
+                        <h3>Cross-browser and platform</h3>
+                        <p>Whether you use a desktop, laptop, tablet or mobile device, alertify.js has you covered</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="media feature">
+                    <div class="mediaAside"><i class="icon-star"></i></div>
+                    <div class="mediaBody">
+                        <h3>Simple API</h3>
+                        <p>From callbacks to handle OK and Cancel actions to customizable properties, using alertify.js is very straightforward<br />
+                        <a href="https://github.com/fabien-d/alertify.js/wiki/API-Documentation">Read full documentation</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h2><span>default dialogs</span></h2>
+    <section class="usage">
+        <section class="block">
+            <div class="container">
+                <h3>Default dialogs</h3>
+                <section class="block">
+                    <p><pre class="brush:javascript">
+                        /**
+                         * Alertify Alert Dialog
+                         *
+                         * @param  {String}   Dialog message
+                         * @param  {Function} [Optional] Callback after OK
+                         * @return {Object}   Dialog Object
+                         */
+                        Alertify.dialog.alert("Message");
+
+                        // Alertify.dialog can be stored in a variable
+                        // var d = Alertify.dialog;
+                        // d.alert("Message");</pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="alert">Alert Dialog</a>
+                    </nav>
+                </section>
+
+                <section class="block">
+                    <p><pre class="brush:javascript">
+                        /**
+                         * Alertify Confirm Dialog
+                         *
+                         * @param  {String}   Dialog message
+                         * @param  {Function} [Optional] Callback after OK
+                         * @param  {Function} [Optional] Callback after Cancel
+                         * @return {Object}   Dialog Object
+                         */
+                        Alertify.dialog.confirm("Message", function () {
+                            // user clicked "ok"
+                        }, function () {
+                            // user clicked "cancel"
+                        });
+
+                        // Alertify.dialog can be stored in a variable
+                        // var d = Alertify.dialog;
+                        // d.confirm("Message");</pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="confirm">Confirm Dialog</a>
+                    </nav>
+                </section>
+
+                <section class="block">
+                    <p><pre class="brush:javascript">
+                        /**
+                         * Alertify Prompt Dialog
+                         *
+                         * @param  {String}   Dialog message
+                         * @param  {Function} [Optional] Callback after OK
+                         * @param  {Function} [Optional] Callback after Cancel
+                         * @param  {String}   [Optional] Default placeholder text
+                         * @return {Object}   Dialog Object
+                         */
+                        Alertify.dialog.prompt("Message", function (str) {
+                            // str is the input text
+                            // user clicked "ok"
+                        }, function () {
+                            // user clicked "cancel"
+                        }, "Default Value");
+
+                        // Alertify.dialog can be stored in a variable
+                        // var d = Alertify.dialog;
+                        // d.prompt("Message");</pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="prompt">Prompt Dialog</a>
+                    </nav>
+                </section>
+            </div>
+        </section>
+    </section>
+
+    <h2><span>default logs</span></h2>
+    <section class="usage">
+        <section class="block">
+            <div class="container">
+                <h3>Default Notifications</h3>
+
+                <section class="block">
+                    <p><pre class="brush:javascript">
+                        /**
+                         * Alertify Log
+                         *
+                         * @param  {String}   Log type
+                         * @param  {String}   Log message
+                         * @param  {Number}   [Optional] Delay in ms, 0 means persistent
+                         * @return {Object}   Log Object
+                         */
+                        Alertify.log.create("info", "Notification");
+
+                        // Alertify.log can be stored in a variable
+                        // var l = Alertify.log;
+                        // l.create("info", "Message");</pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="notification">Create Log</a>
+                    </nav>
+                </section>
+
+                <section class="block">
+                    <h4>Info Log</h4>
+                    <p><pre class="brush:javascript">
+                        /**
+                         * Alertify Info Log
+                         *
+                         * @param  {String}   Log message
+                         * @param  {Number}   [Optional] Delay in ms, 0 means persistent
+                         * @return {Object}   Log Object
+                         */
+                        Alertify.log.info("Notification");
+
+                        // Alertify.log can be stored in a variable
+                        // var l = Alertify.log;
+                        // l.info("Message");</pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="info">Standard Log</a>
+                    </nav>
+                </section>
+
+                <section class="block">
+                    <h4>Success Log</h4>
+                    <p><pre class="brush:javascript">
+                        /**
+                         * Alertify Success Log
+                         * shorthand for Alertify.log.create("success", "Notification");
+                         *
+                         * @param  {String}   Log message
+                         * @param  {Number}   [Optional] Delay in ms, 0 means persistent
+                         * @return {Object}   Log Object
+                         */
+                        Alertify.log.success("Success notification");
+
+                        // Alertify.log can be stored in a variable
+                        // var l = Alertify.log;
+                        // l.success("Message");</pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="success">Success Log</a>
+                    </nav>
+                </section>
+
+                <section class="block">
+                    <h4>Error Log</h4>
+                    <p><pre class="brush:javascript">
+                        /**
+                         * Alertify Error Log
+                         * shorthand for Alertify.log.create("error", "Notification");
+                         *
+                         * @param  {String}   Log message
+                         * @param  {Number}   [Optional] Delay in ms, 0 means persistent
+                         * @return {Object}   Log Object
+                         */
+                        Alertify.log.error("Error notification");
+
+                        // Alertify.log can be stored in a variable
+                        // var l = Alertify.log;
+                        // l.error("Message");</pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="error">Error Log</a>
+                    </nav>
+                </section>
+
+                <section class="block">
+                    <h4>Storing Log Element</h4>
+                    <p><pre class="brush:javascript">
+                        // Storing log element
+                        var myLog = Alertify.log.create("custom", "stored notification");
+                        // myLog API
+                        myLog.close();  // closes the log element
+                        myLog.create(); // recreates (doesn't show) the closed log element
+                        myLog.show();   // show the recreated log element
+                        </pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="notiAPI">API Driven Log</a>
+                        <a class="button-primary is-disabled" href="#" id="closeAPI">Close API Driven Log</a>
+                        <a class="button-primary is-disabled" href="#" id="recreateAPI">Recreate Driven Log</a>
+                        <a class="button-primary is-disabled" href="#" id="reshowAPI">Reshow Driven Log</a>
+                    </nav>
+                </section>
+
+                <section class="block">
+                    <p><pre class="brush:javascript">
+                        Alertify.log.info("Hiding in 10 secs", 10000);
+                        Alertify.log.info("Will stay until clicked", 0);
+
+                        // Alertify.log can be stored in a variable
+                        // var l = Alertify.log;
+                        // l.info("Message");</pre></p>
+                    <nav class="button-group">
+                        <a class="button-primary" href="#" id="delay">Hide in 10 seconds</a>
+                        <a class="button-primary" href="#" id="forever">Persistent Log</a>
+                    </nav>
+                </section>
+            </div>
+        </section>
+
+        <h2><span>customizable properties</span></h2>
+
+        <section class="block">
+            <div class="container">
+                <h3>Button Labels</h3>
+                <p><pre class="brush:javascript">
+                    // custom OK and Cancel label
+                    // default: "OK", "Cancel"
+                    Alertify.dialog.labels.ok = "Accept";
+                    Alertify.dialog.labels.cancel = "Deny";
+                    // button labels will be "Accept" and "Deny"
+                    Alertify.dialog.confirm("Message");</pre></p>
+                <nav class="button-group">
+                    <a class="button-primary" href="#" id="labels">Custom Labels</a>
+                </nav>
+            </div>
+        </section>
+
+        <section class="block">
+            <div class="container">
+                <h3>Button Focus</h3>
+                <p><pre class="brush:javascript">
+                    // which button receives focus
+                    // default: "ok"
+                    Alertify.dialog.buttonFocus = "cancel"; // "none", "ok", "cancel"
+                    // focus will be given to the cancel button
+                    Alertify.dialog.confirm("Message");</pre></p>
+                <nav class="button-group">
+                    <a class="button-primary" href="#" id="focus">Button Focus</a>
+                </nav>
+            </div>
+        </section>
+
+        <section class="block">
+            <div class="container">
+                <h3>Button Order</h3>
+                <p><pre class="brush:javascript">
+                    // order of the buttons
+                    // default: Cancel, OK
+                    Alertify.dialog.buttonReverse = true;
+                    // buttons order will be OK, Cancel
+                    Alertify.dialog.confirm("Message");</pre></p>
+                <nav class="button-group">
+                    <a class="button-primary" href="#" id="order">Button Order</a>
+                </nav>
+            </div>
+        </section>
+
+        <h2><span>custom themes</span></h2>
+        <section class="block">
+            <div class="container">
+                <p><pre class="brush:javascript">
+                    // bootstrap theme
+                    // use bootstrap theme CSS
+                    // themes/alertify.bootstrap.css
+                    Alertify.dialog.prompt("message", ...);</pre></p>
+
+                <nav class="button-group">
+                    <a class="button-primary" href="#" id="bootstrap">Bootstrap Theme</a>
+                </nav>
+            </div>
+        </section>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p><a href="http://github.com/fabien-d/alertify.js/issues">Report an issue</a> | <a href="http://github.com/fabien-d/alertify.js">View on GitHub</a> | Follow Me on <a href="http://www.github.com/fabien-d"><i class="icon-github"></i>GitHub</a> and <a href="http://www.twitter.com/fabien_doiron"><i class="icon-twitter"></i>Twitter</a></p>
+            <p><iframe style="border: 0; margin: 0; padding: 0;" src="https://www.gittip.com/fabien-d/widget.html" width="48pt" height="22pt"></iframe></p>
+            <p>alertify.js is licensed under <a href="http://www.opensource.org/licenses/MIT">MIT</a>, copyright &copy; Fabien Doiron</p>
+
+            <ul class="featured-list">
+                <li><a href="http://blog.teamtreehouse.com/explaining-css-landing-pages-treehouse-show-ep-22" class="treehouse">The Treehouse Show, Ep. 22</a></li>
+                <li><a href="http://www.webdevradio.com/?id=131" class="webdev">webdev radio, Ep. 105</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="../dist/alertify.min.js"></script>
+    <script src="assets/js/lib/sh/shCore.js"></script>
+    <script src="assets/js/lib/sh/shBrushJScript.js"></script>
+    <script>
+        SyntaxHighlighter.all()
+    </script>
+
+    <script>
+        "use strict";
+        var
+        d = Alertify.dialog,
+        l = Alertify.log,
+        $ = Alertify.get,
+        reset = function () {
+            $("toggleCSS").href = "../dist/themes/alertify.default.css";
+
+            d.labels.ok     = "OK";
+            d.labels.cancel = "Cancel";
+            d.buttonReverse = false;
+            d.buttonFocus   = "ok";
+            l.delay         = 5000;
+        };
+
+        // ==============================
+        // Standard Dialogs
+        $("alert").onclick = function () {
+            reset();
+            d.alert("This is an alert dialog");
+            return false;
+        };
+
+        $("confirm").onclick = function () {
+            reset();
+            d.confirm("This is a confirm dialog", function () {
+                l.success("You've clicked OK");
+            }, function () {
+                l.error("You've clicked Cancel");
+            });
+            return false;
+        };
+
+        $("prompt").onclick = function () {
+            reset();
+            d.prompt("This is a prompt dialog", function (str) {
+                l.success("You've clicked OK and typed: " + str);
+            }, function () {
+                l.error("You've clicked Cancel");
+            }, "Default Value");
+            return false;
+        };
+
+        // ==============================
+        // Standard Dialogs
+        $("notification").onclick = function () {
+            reset();
+            l.create("info", "Standard log message");
+            return false;
+        };
+
+        var logAPI,
+            canCreate   = true,
+            canClose    = false,
+            canRecreate = false,
+            canReshow   = false;
+        $("notiAPI").onclick = function () {
+            if (canCreate) {
+                reset();
+                logAPI = logAPI || l.info("API driven log", 0);
+                canCreate = false;
+                canClose  = true;
+                this.className = "button-primary is-disabled";
+                $("closeAPI").className = "button-primary";
+            }
+            return false;
+        };
+        $("closeAPI").onclick = function () {
+            if (canClose) {
+                reset();
+                logAPI.close();
+                canClose    = false;
+                canRecreate = true;
+                this.className = "button-primary is-disabled";
+                $("recreateAPI").className = "button-primary";
+            }
+            return false;
+        };
+        $("recreateAPI").onclick = function () {
+            if (canRecreate) {
+                reset();
+                logAPI.create();
+                canRecreate = false;
+                canReshow   = true;
+                this.className = "button-primary is-disabled";
+                $("reshowAPI").className = "button-primary";
+            }
+            return false;
+        };
+        $("reshowAPI").onclick = function () {
+            if (canReshow) {
+                reset();
+                logAPI.show();
+                canReshow = false;
+                canClose  = true;
+                this.className = "button-primary is-disabled";
+                $("closeAPI").className = "button-primary";
+            }
+            return false;
+        };
+
+        $("info").onclick = function () {
+            reset();
+            l.info("Standard log message");
+            return false;
+        };
+
+        $("success").onclick = function () {
+            reset();
+            l.success("Success log message");
+            return false;
+        };
+
+        $("error").onclick = function () {
+            reset();
+            l.error("Error log message");
+            return false;
+        };
+
+        // ==============================
+        // Custom Properties
+        $("delay").onclick = function () {
+            reset();
+            l.info("Hiding in 10 seconds", 10000);
+            return false;
+        };
+
+        $("forever").onclick = function () {
+            reset();
+            l.info("Will stay until clicked", 0);
+            return false;
+        };
+
+        $("labels").onclick = function () {
+            reset();
+            d.labels.ok     = "Accept";
+            d.labels.cancel = "Deny";
+            d.confirm("Confirm dialog with custom button labels", function () {
+                l.success("You've clicked OK");
+            }, function () {
+                l.error("You've clicked Cancel");
+            });
+            return false;
+        };
+
+        $("focus").onclick = function () {
+            reset();
+            d.buttonFocus = "cancel";
+            d.confirm("Confirm dialog with cancel button focused", function () {
+                l.success("You've clicked OK");
+            }, function () {
+                l.error("You've clicked Cancel");
+            });
+            return false;
+        };
+
+        $("order").onclick = function () {
+            reset();
+            d.buttonReverse = true;
+            d.confirm("Confirm dialog with reversed button order", function () {
+                l.success("You've clicked OK");
+            }, function () {
+                l.error("You've clicked Cancel");
+            });
+            return false;
+        };
+
+        // ==============================
+        // Custom Themes
+        $("bootstrap").onclick = function () {
+            reset();
+            $("toggleCSS").href = "../dist/themes/alertify.bootstrap.css";
+            Alertify.dialog.prompt("Prompt dialog with bootstrap theme", function () {
+                l.success("You've clicked OK");
+            }, function () {
+                l.error("You've clicked Cancel");
+            }, "Default Value");
+            return false;
+        };
+    </script>
+
+</body>
+</html>

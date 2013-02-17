@@ -1,0 +1,46 @@
+/**
+ * Contents:
+ *
+ * 1. Media Object
+ * 2. Clearfix
+ */
+
+/**
+ * 1. Media Object
+ *
+ * Extremely flexible media object. Can reduce countless lines of code.
+ *
+ * HTML ::
+ *
+ * <section class="media">
+ *     <aside class="mediaAside">IMG</aside>
+ *     <article class="mediaBody">
+ *         <p>Body Text</p>
+ *     </article>
+ * </section>
+ */
+.media,
+.mediaBody {
+    overflow: hidden; zoom: 1;
+}
+.mediaAside {
+    float: left; display: inline;
+    margin-right: 1em;
+}
+
+/**
+ * 2. Clearfix
+ */
+.clearfix {
+    zoom: 1;
+
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
