@@ -1,37 +1,21 @@
 [![build status](https://secure.travis-ci.org/fabien-d/alertify.js.png)](http://travis-ci.org/fabien-d/alertify.js)
 
-Alertify is an unobtrusive customizable JavaScript notification system.
+# alertify.js - browser dialogs never looked so good
 
-## Features
-
-* Fully customizable alert, confirm and prompt dialogs
-* Fully customizable unobtrusive notification system
-* Callback parameter handling both OK and Cancel button clicks
-* Chaining which allows queued dialogs
+Checkout the [getting started guide](https://github.com/fabien-d/alertify.js/wiki/Getting-Started) to get up and running with alertify.js.
 
 ## Examples
 
-http://fabien-d.github.com/alertify.js/0.4.0rc1/
+* [alertify.js 0.4.0rc1](http://fabien-d.github.com/alertify.js/0.4.0rc1/) - Release candidate
+* [alertify.js 0.3.8](http://fabien-d.github.com/alertify.js/) - Latest stable version
 
-## Download
+## Documentation
 
-Latest [stable version 0.3.8](https://github.com/fabien-d/alertify.js-shim/archive/0.3.8.zip) (zip)
-
-## Usage
-
-0.4.0rc1 documentation is in the works and will be available soon.
-
-## Changeset
-
-See wiki [Changeset](http://github.com/fabien-d/alertify.js/wiki/Changeset)
+Head on over to the [alertify.js wiki](https://github.com/fabien-d/alertify.js/wiki).
 
 ## Contributing
 
-0.4.0rc1 documentation is in the works and will be available soon.
-
-## Credit where credit is due
-
-See all list of [contributors](https://github.com/fabien-d/alertify.js/contributors)
+Read information on how to [properly log issues](https://github.com/fabien-d/alertify.js/wiki/Opening-Issues) and guidelines to [contribute to alertify.js](https://github.com/fabien-d/alertify.js/wiki/Contributing).
 
 ## Where is it being tested?
 
@@ -42,6 +26,28 @@ See all list of [contributors](https://github.com/fabien-d/alertify.js/contribut
 * Opera
 * iOS
 * Android
+
+## Credit where credit is due
+
+See all list of [contributors](https://github.com/fabien-d/alertify.js/contributors)
+
+## Release History
+
+For full details, see the [alertify.js changesets](https://github.com/fabien-d/alertify.js/wiki/Changeset)
+
+* 2013/02/17 - 0.4.0 Release Candidate 1
+* 2013/02/04 - 0.3.8
+* 2013/01/20 - 0.3.7
+* 2013/01/15 - 0.3.6
+* 2013/01/12 - 0.3.5
+* 2013/01/12 - 0.3.4
+* 2013/01/12 - 0.3.3
+* 2012/12/24 - 0.3.2
+* 2012/12/21 - 0.3.1
+* 2012/12/16 - 0.3.0
+* 2012/12/09 - 0.2.12
+
+*wasn't keeping track of changeset before... my bad
 
 ## License
 
