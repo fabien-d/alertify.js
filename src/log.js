@@ -1,4 +1,4 @@
-define(["alertify", "validate", "element", "transition"], function (Alertify, validate, element, transition) {
+define(["alertify", "validate", "element", "escape", "transition"], function (Alertify, validate, element, escape, transition) {
     "use strict";
 
     var Log,
@@ -26,9 +26,9 @@ define(["alertify", "validate", "element", "transition"], function (Alertify, va
         }
 
         this.delay  = (typeof delay !== "undefined") ? delay : 5000;
-        this.msg    = msg;
+        this.msg    = escape.html(msg);
         this.parent = parent;
-        this.type   = type;
+        this.type   = escape.html(type);
         this.create();
         this.show();
     };
@@ -108,7 +108,7 @@ define(["alertify", "validate", "element", "transition"], function (Alertify, va
             var el = element.create("article", {
                 classes: clsHide + " " + prefix + "-" + this.type
             });
-            el.innerHTML = this.msg;
+            el.innerHTML = escape.html(this.msg);
             this.parent.appendChild(el);
             element.ready(el);
             this.el = el;
