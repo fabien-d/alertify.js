@@ -36,17 +36,28 @@
 		 */
 		getTransitionEvent = function () {
 			var t,
-			    el = document.createElement("fakeelement"),
+			    type,
+			    supported   = false,
+			    el          = document.createElement("fakeelement"),
 			    transitions = {
-					"WebkitTransition" : "webkitTransitionEnd",
-					"MozTransition"    : "transitionend",
-					"OTransition"      : "otransitionend",
-					"transition"       : "transitionend"
-				};
+				    "WebkitTransition" : "webkitTransitionEnd",
+				    "MozTransition"    : "transitionend",
+				    "OTransition"      : "otransitionend",
+				    "transition"       : "transitionend"
+			    };
 
 			for (t in transitions) {
-				if (el.style[t] !== undefined) return transitions[t];
+				if (el.style[t] !== undefined) {
+					type      = transitions[t];
+					supported = true;
+					break;
+				}
 			}
+
+			return {
+				type      : type,
+				supported : supported
+			};
 		};
 
 		/**
@@ -155,8 +166,8 @@
 				// reset focus to first item in the dialog
 				reset = function (event) {
 					if (hasInput) input.focus();
-					else if (hasCancel) btnCancel.focus();
-					else btnOK.focus();
+					else if (!hasCancel || self.buttonReverse) btnOK.focus();
+					else btnCancel.focus();
 				};
 
 				// handle reset focus link
@@ -172,7 +183,7 @@
 				this.bind(document.body, "keyup", key);
 				// bind form submit
 				if (hasInput) this.bind(form, "submit", ok);
-				if (typeof this.transition === "undefined") {
+				if (!this.transition.supported) {
 					this.setFocus();
 				}
 			},
@@ -272,7 +283,7 @@
 					break;
 				}
 
-				elDialog.className = "alertify alertify-show alertify-" + type + " " + css;
+				elDialog.className = "alertify alertify-" + type + " " + css;
 				elCover.className  = "alertify-cover";
 				return html;
 			},
@@ -300,7 +311,7 @@
 				transitionDone = function (event) {
 					event.stopPropagation();
 					// unbind event so function only gets called once
-					self.unbind(this, self.transition, transitionDone);
+					self.unbind(this, self.transition.type, transitionDone);
 					// remove log message
 					elLog.removeChild(this);
 					if (!elLog.hasChildNodes()) elLog.className += " alertify-logs-hidden";
@@ -311,8 +322,8 @@
 					// ensure element exists
 					if (typeof el !== "undefined" && el.parentNode === elLog) {
 						// whether CSS transition exists
-						if (typeof self.transition !== "undefined") {
-							self.bind(el, self.transition, transitionDone);
+						if (self.transition.supported) {
+							self.bind(el, self.transition.type, transitionDone);
 							el.className += " alertify-log-hide";
 						} else {
 							elLog.removeChild(el);
@@ -345,7 +356,7 @@
 				// check to ensure the alertify dialog element
 				// has been successfully created
 				var check = function () {
-					if (elDialog && elDialog.scrollTop !== null) return;
+					if ((elLog && elLog.scrollTop !== null) && (elCover && elCover.scrollTop !== null)) return;
 					else check();
 				};
 				// error catching
@@ -390,7 +401,7 @@
 				// remove reference from queue
 				queue.splice(0,1);
 				// if items remaining in the queue
-				if (queue.length > 0) this.setup();
+				if (queue.length > 0) this.setup(true);
 				else {
 					isopen = false;
 					// Hide the dialog box after transition
@@ -399,11 +410,11 @@
 						event.stopPropagation();
 						elDialog.className += " alertify-isHidden";
 						// unbind event so function only gets called once
-						self.unbind(elDialog, self.transition, transitionDone);
+						self.unbind(elDialog, self.transition.type, transitionDone);
 					};
 					// whether CSS transition exists
-					if (typeof this.transition !== "undefined") {
-						this.bind(elDialog, this.transition, transitionDone);
+					if (this.transition.supported) {
+						this.bind(elDialog, this.transition.type, transitionDone);
 						elDialog.className = "alertify alertify-hide alertify-hidden";
 					} else {
 						elDialog.className = "alertify alertify-hide alertify-hidden alertify-isHidden";
@@ -492,8 +503,8 @@
 				var log = document.createElement("article");
 				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
 				log.innerHTML = message;
-				// prepend child
-				elLog.insertBefore(log, elLog.firstChild);
+				// append child
+				elLog.appendChild(log);
 				// triggers the CSS animation
 				setTimeout(function() { log.className = log.className + " alertify-log-show"; }, 50);
 				this.close(log, wait);
@@ -536,7 +547,7 @@
 			 *
 			 * @return {undefined}
 			 */
-			setup : function () {
+			setup : function (fromQueue) {
 				var item = queue[0],
 				    self = this,
 				    transitionDone;
@@ -548,11 +559,11 @@
 					event.stopPropagation();
 					self.setFocus();
 					// unbind event so function only gets called once
-					self.unbind(elDialog, self.transition, transitionDone);
+					self.unbind(elDialog, self.transition.type, transitionDone);
 				};
 				// whether CSS transition exists
-				if (typeof this.transition !== "undefined") {
-					this.bind(elDialog, this.transition, transitionDone);
+				if (this.transition.supported && !fromQueue) {
+					this.bind(elDialog, this.transition.type, transitionDone);
 				}
 				// build the proper dialog HTML
 				elDialog.innerHTML = this.build(item);
@@ -565,6 +576,7 @@
 				form      = $("alertify-form")   || undefined;
 				// add placeholder value to the input field
 				if (typeof item.placeholder === "string" && item.placeholder !== "") input.value = item.placeholder;
+				if (fromQueue) this.setFocus();
 				this.addListeners(item.callback);
 			},
 

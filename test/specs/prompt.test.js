@@ -1,3 +1,7 @@
+/*global test, expect, QUnit*/
+var deepEqual = QUnit.deepEqual,
+    ok = QUnit.ok;
+
 module("prompt", {
 	setup : function () {
 		alertify.set({ labels: { ok: "OK", cancel: "Cancel" } });
