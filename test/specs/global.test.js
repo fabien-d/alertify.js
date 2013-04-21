@@ -1,3 +1,7 @@
+/*global test, expect, QUnit*/
+var deepEqual = QUnit.deepEqual,
+    ok = QUnit.ok;
+
 test("globals set up", function() {
 	expect(1);
 	ok(alertify, "global alertify object created");
