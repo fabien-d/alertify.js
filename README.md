@@ -38,6 +38,7 @@ See all list of [contributors](https://github.com/fabien-d/alertify.js/contribut
 
 For full details, see the [alertify.js changesets](https://github.com/fabien-d/alertify.js/wiki/Changeset)
 
+* 2013/04/20 - 0.3.9
 * 2013/02/17 - 0.4.0 Release Candidate 1
 * 2013/02/04 - 0.3.8
 * 2013/01/20 - 0.3.7
