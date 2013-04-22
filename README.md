@@ -4,10 +4,13 @@
 
 Checkout the [getting started guide](https://github.com/fabien-d/alertify.js/wiki/Getting-Started) to get up and running with alertify.js.
 
+## Note
+**The `master` branch is always the latest development point and will not reflect the latest stable version.** The latest stable version is currently on branch `0.3` and can also be downloaded from the example site below.
+
 ## Examples
 
 * [alertify.js 0.4.0rc1](http://fabien-d.github.com/alertify.js/0.4.0rc1/) - Release candidate
-* [alertify.js 0.3.8](http://fabien-d.github.com/alertify.js/) - Latest stable version
+* [alertify.js 0.3.9](http://fabien-d.github.com/alertify.js/) - Latest stable version
 
 ## Documentation
 
