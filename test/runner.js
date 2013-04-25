@@ -9,6 +9,7 @@
         "specs/alertify.test.js",
         "specs/dialog.test.js",
         "specs/element.test.js",
+        "specs/escape.test.js",
         "specs/keys.test.js",
         "specs/logs.test.js",
         "specs/log.test.js",

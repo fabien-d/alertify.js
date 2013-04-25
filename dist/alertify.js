@@ -213,6 +213,28 @@ var element = (function () {
 
     return element;
 }());
+var escape = (function () {
+    
+
+    var entityMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#x27;",
+        "/": "&#x2F;"
+    };
+
+    var escape = {
+        html: function (str) {
+            return String(str).replace(/[&<>"'\/]/g, function (s) {
+                return entityMap[s];
+            });
+        }
+    };
+
+    return escape;
+}());
 var transition = (function () {
     
 
@@ -322,7 +344,7 @@ var Dialog = (function () {
                 hide();
 
                 if (controls.input) {
-                    val = controls.input.value;
+                    val = escape.html(controls.input.value);
                 }
                 if (typeof item.accept === "function") {
                     if (controls.input) {
@@ -408,7 +430,7 @@ var Dialog = (function () {
         build = function (item) {
             var html    = "",
                 type    = item.type,
-                message = item.message;
+                message = escape.html(item.message);
 
             html += "<div class=\"alertify-dialog-inner\">";
 
@@ -440,15 +462,15 @@ var Dialog = (function () {
             switch (type) {
             case "confirm":
                 html = html.replace("{{buttons}}", appendBtns(tpl.buttons.cancel, tpl.buttons.ok));
-                html = html.replace("{{ok}}", dialog.labels.ok).replace("{{cancel}}", dialog.labels.cancel);
+                html = html.replace("{{ok}}", escape.html(dialog.labels.ok)).replace("{{cancel}}", escape.html(dialog.labels.cancel));
                 break;
             case "prompt":
                 html = html.replace("{{buttons}}", appendBtns(tpl.buttons.cancel, tpl.buttons.submit));
-                html = html.replace("{{ok}}", dialog.labels.ok).replace("{{cancel}}", dialog.labels.cancel);
+                html = html.replace("{{ok}}", escape.html(dialog.labels.ok)).replace("{{cancel}}", escape.html(dialog.labels.cancel));
                 break;
             case "alert":
                 html = html.replace("{{buttons}}", tpl.buttons.ok);
-                html = html.replace("{{ok}}", dialog.labels.ok);
+                html = html.replace("{{ok}}", escape.html(dialog.labels.ok));
                 break;
             }
 
@@ -523,7 +545,7 @@ var Dialog = (function () {
             controls.form   = Alertify.get("alertify-form")   || undefined;
 
             if (typeof item.placeholder === "string" && item.placeholder !== "") {
-                controls.input.value = item.placeholder;
+                controls.input.value = escape.html(item.placeholder);
             }
 
             if (fromQueue) {
@@ -606,8 +628,8 @@ var Dialog = (function () {
             cover         : undefined,
             el            : undefined,
             labels: {
-                ok: "OK",
-                cancel: "Cancel"
+                ok     : "OK",
+                cancel : "Cancel"
             },
             alert: function (msg, accept) {
                 dialog = this;
@@ -657,9 +679,9 @@ var Log = (function () {
         }
 
         this.delay  = (typeof delay !== "undefined") ? delay : 5000;
-        this.msg    = msg;
+        this.msg    = escape.html(msg);
         this.parent = parent;
-        this.type   = type;
+        this.type   = escape.html(type);
         this.create();
         this.show();
     };
@@ -739,7 +761,7 @@ var Log = (function () {
             var el = element.create("article", {
                 classes: clsHide + " " + prefix + "-" + this.type
             });
-            el.innerHTML = this.msg;
+            el.innerHTML = escape.html(this.msg);
             this.parent.appendChild(el);
             element.ready(el);
             this.el = el;

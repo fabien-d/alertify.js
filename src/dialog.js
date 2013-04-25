@@ -1,4 +1,4 @@
-define(["alertify", "element", "validate", "transition", "keys"], function (Alertify, element, validate, transition, keys) {
+define(["alertify", "element", "escape", "validate", "transition", "keys"], function (Alertify, element, escape, validate, transition, keys) {
     "use strict";
 
     var dialog,
@@ -56,7 +56,7 @@ define(["alertify", "element", "validate", "transition", "keys"], function (Aler
                 hide();
 
                 if (controls.input) {
-                    val = controls.input.value;
+                    val = escape.html(controls.input.value);
                 }
                 if (typeof item.accept === "function") {
                     if (controls.input) {
@@ -142,7 +142,7 @@ define(["alertify", "element", "validate", "transition", "keys"], function (Aler
         build = function (item) {
             var html    = "",
                 type    = item.type,
-                message = item.message;
+                message = escape.html(item.message);
 
             html += "<div class=\"alertify-dialog-inner\">";
 
@@ -174,15 +174,15 @@ define(["alertify", "element", "validate", "transition", "keys"], function (Aler
             switch (type) {
             case "confirm":
                 html = html.replace("{{buttons}}", appendBtns(tpl.buttons.cancel, tpl.buttons.ok));
-                html = html.replace("{{ok}}", dialog.labels.ok).replace("{{cancel}}", dialog.labels.cancel);
+                html = html.replace("{{ok}}", escape.html(dialog.labels.ok)).replace("{{cancel}}", escape.html(dialog.labels.cancel));
                 break;
             case "prompt":
                 html = html.replace("{{buttons}}", appendBtns(tpl.buttons.cancel, tpl.buttons.submit));
-                html = html.replace("{{ok}}", dialog.labels.ok).replace("{{cancel}}", dialog.labels.cancel);
+                html = html.replace("{{ok}}", escape.html(dialog.labels.ok)).replace("{{cancel}}", escape.html(dialog.labels.cancel));
                 break;
             case "alert":
                 html = html.replace("{{buttons}}", tpl.buttons.ok);
-                html = html.replace("{{ok}}", dialog.labels.ok);
+                html = html.replace("{{ok}}", escape.html(dialog.labels.ok));
                 break;
             }
 
@@ -257,7 +257,7 @@ define(["alertify", "element", "validate", "transition", "keys"], function (Aler
             controls.form   = Alertify.get("alertify-form")   || undefined;
 
             if (typeof item.placeholder === "string" && item.placeholder !== "") {
-                controls.input.value = item.placeholder;
+                controls.input.value = escape.html(item.placeholder);
             }
 
             if (fromQueue) {
@@ -340,8 +340,8 @@ define(["alertify", "element", "validate", "transition", "keys"], function (Aler
             cover         : undefined,
             el            : undefined,
             labels: {
-                ok: "OK",
-                cancel: "Cancel"
+                ok     : "OK",
+                cancel : "Cancel"
             },
             alert: function (msg, accept) {
                 dialog = this;
