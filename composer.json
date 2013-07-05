@@ -1,6 +1,7 @@
 {
-  "name": "components/alertify-js",
+  "name": "components/alertify.js",
   "description": "browser dialogs never looked so good",
+  "version": "0.3.9",
   "type": "component",
   "keywords": ["alert", "javascript", "growl"],
   "homepage": "http://fabien-d.github.io/alertify.js/",
