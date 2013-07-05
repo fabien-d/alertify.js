@@ -1,0 +1,39 @@
+{
+  "name": "components/alertify-js",
+  "description": "browser dialogs never looked so good",
+  "type": "component",
+  "keywords": ["alert", "javascript", "growl"],
+  "homepage": "http://fabien-d.github.io/alertify.js/",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/fabien-d/alertify.js/issues",
+    "wiki": "https://github.com/fabien-d/alertify.js/wiki",
+    "source": "https://github.com/fabien-d/alertify.js"
+  },
+  "authors": [
+    {
+      "name": "Fabien Doiron",
+      "email": "fabien.doiron@gmail.com",
+      "homepage": "http://fabien-d.github.io/"
+    }
+  ],
+  "require": {
+    "robloach/component-installer": "*"
+  },
+  "extra": {
+    "component": {
+      "scripts": [
+        "js/alertify.js"
+      ],
+      "styles": [
+        "css/alertify.css"
+      ],
+      "files": [
+        "js/alertify.min.js",
+        "css/alertify.core.css",
+        "css/alertify.default.css",
+        "css/alertify.bootstrap.css"
+      ]
+    }
+  }
+}
