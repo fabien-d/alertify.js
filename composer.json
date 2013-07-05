@@ -1,7 +1,7 @@
 {
   "name": "components/alertify.js",
   "description": "browser dialogs never looked so good",
-  "version": "0.3.9",
+  "version": "0.4.0rc1",
   "type": "component",
   "keywords": ["alert", "javascript", "growl"],
   "homepage": "http://fabien-d.github.io/alertify.js/",
@@ -24,16 +24,17 @@
   "extra": {
     "component": {
       "scripts": [
-        "js/alertify.js"
+        "dist/alertify.js"
       ],
       "styles": [
-        "css/alertify.css"
+        "dist/themes/alertify.css",
+        "dist/themes/alertify.default.css"
       ],
       "files": [
-        "js/alertify.min.js",
-        "css/alertify.core.css",
-        "css/alertify.default.css",
-        "css/alertify.bootstrap.css"
+        "dist/alertify.min.js",
+        "dist/themes/alertify.css",
+        "dist/themes/alertify.default.css",
+        "dist/themes/alertify.bootstrap.css"
       ]
     }
   }
