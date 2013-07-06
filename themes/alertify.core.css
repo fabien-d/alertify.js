@@ -24,6 +24,9 @@
 .alertify-cover {
 	position: fixed; z-index: 99999;
 	top: 0; right: 0; bottom: 0; left: 0;
+	background-color:white;
+	filter:alpha(opacity=0);
+	opacity:0;
 }
 	.alertify-cover-hidden {
 		display: none;
@@ -45,7 +48,10 @@
 		display: none;
 	}
 	/* overwrite display: none; for everything except IE6-8 */
-	:root *> .alertify-hidden { display: block; }
+	:root *> .alertify-hidden {
+		display: block;
+		visibility: hidden;
+	}
 .alertify-logs {
 	position: fixed;
 	z-index: 5000;
