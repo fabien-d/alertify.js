@@ -45,7 +45,10 @@
 		display: none;
 	}
 	/* overwrite display: none; for everything except IE6-8 */
-	:root *> .alertify-hidden { display: block; }
+	:root *> .alertify-hidden {
+		display: block;
+		visibility: hidden;
+	}
 .alertify-logs {
 	position: fixed;
 	z-index: 5000;
