@@ -4,15 +4,17 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-clean");
 	grunt.loadNpmTasks("grunt-contrib-copy");
 	grunt.loadNpmTasks("grunt-contrib-concat");
+	grunt.loadNpmTasks("grunt-contrib-connect");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-qunit");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
+	grunt.loadNpmTasks("grunt-contrib-watch");
 
 	// Project configuration.
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+		pkg: grunt.file.readJSON("package.json"),
 		clean: {
-			build: ['lib']
+			build: ["lib"]
 		},
 		concat: {
 			options: {
@@ -34,23 +36,32 @@ module.exports = function(grunt) {
 				dest: "lib/alertify.js"
 			}
 		},
+		connect: {
+			server: {
+				options: {
+					port: 9001,
+					keepalive: true,
+					base: ''
+				}
+			}
+		},
 		copy: {
 			main: {
 				files: [{
 					expand: true,
-					cwd: 'src/',
-					src: ['alertify.js'],
-					dest: 'lib/'
+					cwd: "src/",
+					src: ["alertify.js"],
+					dest: "lib/"
 				}]
 			}
 		},
 		jshint: {
 			files: {
 				src: [
-					'Gruntfile.js',
-					'src/**/*.js',
-					'test/**/*.js',
-					'!test/qunit/**/*.js'
+					"Gruntfile.js",
+					"src/**/*.js",
+					"test/**/*.js",
+					"!test/qunit/**/*.js"
 				]
 			},
 			options: {
@@ -85,10 +96,20 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'lib/alertify.min.js': ['<banner>', 'lib/alertify.js']
+					"lib/alertify.min.js": ["<banner>", "lib/alertify.js"]
 				}
 			}
 		},
+		watch: {
+			src: {
+				files: [ "src/alertify.js" ],
+				tasks: [
+					"clean:build",
+					"concat",
+					"uglify"
+				]
+			}
+		}
 	});
 
 	// Default task.
