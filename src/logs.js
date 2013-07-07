@@ -1,4 +1,4 @@
-define(["alertify", "element", "validate", "log"], function (Alertify, element, validate, Log) {
+define(["alertify", "proto", "element", "validate", "log"], function (Alertify, AlertifyProto, element, validate, Log) {
     "use strict";
 
     var init,
@@ -70,6 +70,8 @@ define(["alertify", "element", "validate", "log"], function (Alertify, element, 
             return createLog.call(this, "success", msg, delay);
         }
     };
+
+    AlertifyProto.log = logs;
 
     return logs;
 });
