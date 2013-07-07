@@ -143,8 +143,7 @@ define(["alertify", "proto", "element", "validate", "transition", "keys"], funct
             var html    = "",
                 type    = item.type,
                 message = item.message;
-
-            html += "<div class=\"alertify-dialog-inner\">";
+            html += "<div class=\"alertify-dialog-inner-"+type+"\">";
 
             if (dialog.buttonFocus === "none") {
                 html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
