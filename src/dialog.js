@@ -1,4 +1,4 @@
-define(["alertify", "element", "validate", "transition", "keys"], function (Alertify, element, validate, transition, keys) {
+define(["alertify", "proto", "element", "validate", "transition", "keys"], function (Alertify, AlertifyProto, element, validate, transition, keys) {
     "use strict";
 
     var dialog,
@@ -360,6 +360,8 @@ define(["alertify", "element", "validate", "transition", "keys"], function (Aler
             }
         };
     };
+
+    AlertifyProto.dialog = new Dialog();
 
     return new Dialog();
 });

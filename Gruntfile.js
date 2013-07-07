@@ -108,16 +108,16 @@ module.exports = function (grunt) {
                     },
                     fileExclusionRegExp: /^(.git|node_modules|example|test)$/,
                     onBuildWrite: function (id, path, contents) {
-                        if ((/define\(.*?\{/).test(contents)) {
-                            // this whole block is way too hacky
-                            // need to figure something cleaner for this
-                            var method = contents.match(/return.*;\s\S+[}\)]/);
-                            method = method[0].split("\n")[0].replace("new ", "").split(" ")[1].replace("()", "").replace(";", "");
-                            contents = contents.replace(/define\(.*?\{/, "var " + method + " = (function () {");
-                            contents = contents.replace(/\}\);\s*?$/, "}());");
-                        } else if ((/require\([^\{]*?\{/).test(contents)) {
-                            contents = contents.replace(/require[^\{]+\{/, "");
-                            contents = contents.replace(/\}\);\s*$/, "");
+                        if ((/^define\([\s\S]+?\{/).test(contents)) {
+                            //Remove AMD ceremony for use without require.js or
+                            //almond.js
+                            contents = contents.replace(/^define\([\s\S]+?\{/, '');
+                            contents = contents.replace(/\}\s*?\);\s*?$/, '');
+                            //remove last return statement and trailing })
+                            contents = contents.replace(/return.*[^return]*$/, '');
+                        } else if ((/^require\([\s\S]+?\{/).test(contents)) {
+                            contents = contents.replace(/require\([\s\S]+?\{/, '');
+                            contents = contents.replace(/\}\)\;/, '');
                         }
 
                         return contents;
@@ -147,8 +147,14 @@ module.exports = function (grunt) {
     });
 
     grunt.registerMultiTask("stripdefine", "Strip define call from dist file", function () {
-        var mod = grunt.file.read(this.files[0].src[0]).replace("define(\"alertify.init\", function(){});", "");
-        grunt.file.write("dist/alertify.js", mod);
+        this.filesSrc.forEach( function ( filepath ) {
+            var mod = grunt.file.read( filepath )
+                .replace( /define\("alertify", function\(\)\{\}\);/g, "" )
+                .replace( /define\("alertify.init", function\(\)\{\}\);/g, "" )
+                .replace( /\/\/;/g, "" );
+
+            grunt.file.write( "dist/alertify.js", mod );
+        });
     });
 
     grunt.registerMultiTask("generateinit", "Generate Init file", function () {
