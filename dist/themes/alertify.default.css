@@ -2,7 +2,7 @@
   width: 550px;
   margin-left: -275px;
   background: #FFF;
-  border: 10px solid #333333;
+  border: 10px solid #333;
   border: 10px solid rgba(0, 0, 0, 0.7);
   border-radius: 8px;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
@@ -17,7 +17,7 @@
   text-align: center; }
 
 .alertify-text {
-  border: 1px solid #cccccc;
+  border: 1px solid #CCC;
   padding: 10px;
   border-radius: 4px; }
 
@@ -45,7 +45,7 @@
   background-image:         linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); }
 
 .alertify-button:focus {
-  box-shadow: 0 0 10px #2b72d5; }
+  box-shadow: 0 0 10px #2B72D5; }
 
 .alertify-button:active {
   position: relative;

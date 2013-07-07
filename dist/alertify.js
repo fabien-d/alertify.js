@@ -10,7 +10,7 @@
  * @version 0.4.0rc1
  */
 (function (global, document, undefined) {
-var AlertifyProto = (function () {
+
     
 
     var AlertifyProto,
@@ -80,18 +80,16 @@ var AlertifyProto = (function () {
         }
     };
 
-    return AlertifyProto;
-}());
-var Alertify = (function () {
+    
+
     
 
     var Alertify = function () {};
     Alertify.prototype = AlertifyProto;
     Alertify = new Alertify();
 
-    return Alertify;
-}());
-var validate = (function () {
+    
+
     
 
     var _checkValidation,
@@ -145,9 +143,8 @@ var validate = (function () {
         },
     };
 
-    return validate;
-}());
-var element = (function () {
+    
+
     
 
     var element = {},
@@ -211,9 +208,8 @@ var element = (function () {
         }
     };
 
-    return element;
-}());
-var transition = (function () {
+    
+
     
 
     var transition;
@@ -251,9 +247,8 @@ var transition = (function () {
         };
     };
 
-    return transition();
-}());
-var keys = (function () {
+    
+
     
 
     var keys = {
@@ -262,9 +257,8 @@ var keys = (function () {
         SPACE : 32
     };
 
-    return keys;
-}());
-var Dialog = (function () {
+    
+
     
 
     var dialog,
@@ -627,9 +621,10 @@ var Dialog = (function () {
         };
     };
 
-    return new Dialog();
-}());
-var Log = (function () {
+    AlertifyProto.dialog = new Dialog();
+
+    
+
     
 
     var Log,
@@ -764,9 +759,8 @@ var Log = (function () {
         startTimer.call(this);
     };
 
-    return Log;
-}());
-var logs = (function () {
+    
+
     
 
     var init,
@@ -839,12 +833,13 @@ var logs = (function () {
         }
     };
 
-    return logs;
-}());
+    AlertifyProto.log = logs;
 
-    Alertify.dialog = Dialog;
-    Alertify.log    = logs;
+    
+
     window.Alertify = Alertify;
+
+
 
 
 })(this, document);
