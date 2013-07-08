@@ -17,9 +17,7 @@ $btnCancel   : #5CB811;
     @include prefix(background-clip, padding, true, true, false, false, false);
     background-clip: padding-box;
 }
-    .alertify-dialog-inner-alert,
-    .alertify-dialog-inner-confirm,
-    .alertify-dialog-inner-prompt, {
+    .alertify-dialog-inner {
         padding: 25px;
     }
         .alertify-inner {

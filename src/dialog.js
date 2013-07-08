@@ -143,7 +143,7 @@ define(["alertify", "proto", "element", "validate", "transition", "keys"], funct
             var html    = "",
                 type    = item.type,
                 message = item.message;
-            html += "<div class=\"alertify-dialog-inner-"+type+"\">";
+            html += "<div class=\"alertify-dialog-inner\">";
 
             if (dialog.buttonFocus === "none") {
                 html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
@@ -246,7 +246,7 @@ define(["alertify", "proto", "element", "validate", "transition", "keys"], funct
             }
             dialog.el.innerHTML    = build(item);
             dialog.cover.className = clsCoverShow;
-            dialog.el.className    = clsElShow;
+            dialog.el.className    = clsElShow+" "+"alertify-"+item.type;
 
             controls.reset  = Alertify.get("alertify-resetFocus");
             controls.ok     = Alertify.get("alertify-ok")     || undefined;
