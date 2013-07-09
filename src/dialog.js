@@ -247,7 +247,7 @@ define(["alertify", "proto", "element", "validate", "transition", "keys"], funct
             }
             dialog.el.innerHTML    = build(item);
             dialog.cover.className = clsCoverShow;
-            dialog.el.className    = clsElShow;
+            dialog.el.className    = clsElShow + " " + "alertify-" + item.type;
 
             controls.reset  = Alertify.get("alertify-resetFocus");
             controls.ok     = Alertify.get("alertify-ok")     || undefined;
