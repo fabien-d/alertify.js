@@ -2,7 +2,7 @@
 
 # alertify.js - browser dialogs never looked so good
 
-Checkout the [getting started guide](https://github.com/fabien-d/alertify.js/wiki/Getting-Started) to get up and running with alertify.js.
+Checkout the [getting started guide](https://github.com/fabien-d/alertify.js/wiki/Getting-Started) to get up and running with alertify.js. If you're a developer looking to contribute or hack on the source, see [installing alertify.js](https://github.com/fabien-d/alertify.js/wiki/Installing-alertify.js).
 
 ## Note
 **The `master` branch is always the latest development point and will not reflect the latest stable version.** The latest stable version is currently on branch `0.3` and can also be downloaded from the example site below.
@@ -38,6 +38,7 @@ See all list of [contributors](https://github.com/fabien-d/alertify.js/contribut
 
 For full details, see the [alertify.js changesets](https://github.com/fabien-d/alertify.js/wiki/Changeset)
 
+* 2013/07/06 - 0.3.10
 * 2013/04/20 - 0.3.9
 * 2013/02/17 - 0.4.0 Release Candidate 1
 * 2013/02/04 - 0.3.8
