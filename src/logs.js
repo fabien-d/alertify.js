@@ -29,7 +29,7 @@ define(["alertify", "proto", "element", "validate", "log"], function (Alertify, 
      */
     createLog = function (type, msg, delay) {
         validateParams(type, msg, delay);
-        this.el = this.el || init();
+        this.el = document.body.contains(this.el) ? this.el : init();
         return new Log(this.el, type, msg, delay);
     };
 
