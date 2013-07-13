@@ -82,6 +82,15 @@ a {
     }
 }
 
+.social {
+    padding: 2em 0;
+    text-align: center;
+
+    a {
+        text-decoration: none;
+    }
+}
+
 .cta {
     text-align: center;
 
@@ -145,6 +154,14 @@ a {
     .webdev:before {
         background: url(../img/webdev.png) no-repeat center bottom;
         width: 103px; height: 42px;
+    }
+    .jsweekly:before {
+        background: url(../img/jsweekly.png) no-repeat center bottom;
+        width: 45px; height: 45px;
+    }
+    .html5weekly:before {
+        background: url(../img/html5weekly.png) no-repeat center bottom;
+        width: 143px; height: 40px;
     }
 }
 

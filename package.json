@@ -1,0 +1,22 @@
+{
+  "name": "alertifyExample",
+  "description": "browser dialogs never looked so good",
+  "version": "1.0.0",
+  "homepage": "http://fabien-d.github.com/alertify.js/",
+  "author": {
+    "name": "Fabien Doiron",
+    "email": "fabien.doiron@gmail.com"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1",
+    "grunt-contrib-compass": "~0.1.1",
+    "grunt-contrib-watch": "~0.4.4"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/mit-license.php"
+    }
+  ]
+}

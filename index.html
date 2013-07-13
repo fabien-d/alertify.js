@@ -28,6 +28,7 @@
 			<h1>browser dialogs never<br />looked so good</h1>
 			<a href="https://github.com/fabien-d/alertify.js"><img style="position: fixed; z-index: 5000; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 			<img src="assets/img/dialogs.png" alt="Native browser dialogs versus alertify.js dialogs" width="808" height="210" />
+			<p class="social">Follow me: <a href="http://www.github.com/fabien-d"><i class="icon-github"></i> fabien-d</a> and <a href="http://www.twitter.com/fabien_doiron"><i class="icon-twitter"></i> @fabien_doiron</a></p>
 		</div>
 	</header>
 
@@ -37,6 +38,8 @@
             <div class="cta">
                 <a class="button-primary" href="https://github.com/fabien-d/alertify.js/archive/0.3.10.zip">Download 0.3.10 <span class="small">(zip)</span></a>
                 <a class="button-primary" href="https://github.com/fabien-d/alertify.js/tree/0.3.10">Source Code <span class="small">(GitHub)</span></a>
+                <br><br>
+                <p>Want a sneak peak of what's coming up? Check out <a href="0.4.0rc1/">alertify.js 0.4.0rc1</a></p>
             </div>
         </div>
     </section>
@@ -86,6 +89,34 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</section>
+
+	<h2><span>setup</span></h2>
+	<section class="block">
+		<div class="container">
+			<h3>Using bower</h3>
+			<p>Alertify.js can be installed using <a href="http://twitter.github.com/bower/">bower</a>.</p>
+			<p><pre class="brush:bash">
+				$ bower install alertify</pre></p>
+		</div>
+	</section>
+
+	<section class="block">
+		<div class="container">
+			<h3>Inserting into HTML</h3>
+			<p>Include JS</p>
+			<p><pre class="brush:html">
+				&lt;!-- ideally at the bottom of the page --&gt;
+				&lt;!-- also works in the <head> --&gt;
+				&lt;script src="PATH_TO_FILE/alertify.min.js"&gt;&lt;/script&gt;</pre></p>
+
+			<p>Include CSS</p>
+			<p><pre class="brush:html">
+				&lt;!-- include the core styles --&gt;
+				&lt;link rel="stylesheet" href="PATH_TO_FILE/alertify.css" /&gt;
+				&lt;!-- include a theme, can be included into the core instead of 2 separate files --&gt;
+				&lt;link rel="stylesheet" href="PATH_TO_FILE/alertify.default.css" /&gt;</pre></p>
 		</div>
 	</section>
 
@@ -267,6 +298,8 @@
 			<p>alertify.js is licensed under <a href="http://www.opensource.org/licenses/MIT">MIT</a>, copyright &copy; Fabien Doiron</p>
 
 			<ul class="featured-list">
+				<li><a href="http://javascriptweekly.com/archive/108.html" class="jsweekly">JavaScript Weekly, No. 108</a></li>
+				<li><a href="http://html5weekly.com/archive/95.html" class="html5weekly">HTML5 Weekly, No. 95</a></li>
 				<li><a href="http://blog.teamtreehouse.com/explaining-css-landing-pages-treehouse-show-ep-22" class="treehouse">The Treehouse Show, Ep. 22</a></li>
 				<li><a href="http://www.webdevradio.com/?id=131" class="webdev">webdev radio, Ep. 105</a></li>
 			</ul>
@@ -276,6 +309,8 @@
 	<script src="assets/js/lib/alertify/alertify.min.js"></script>
 	<script src="assets/js/lib/sh/shCore.js"></script>
 	<script src="assets/js/lib/sh/shBrushJScript.js"></script>
+	<script src="assets/js/lib/sh/shBrushXml.js"></script>
+	<script src="assets/js/lib/sh/shBrushBash.js"></script>
 	<script>
 		SyntaxHighlighter.all()
 	</script>
