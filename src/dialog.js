@@ -219,6 +219,9 @@ define(["alertify", "proto", "element", "validate", "transition", "keys"], funct
          * @return {Object}
          */
         init = function () {
+            isOpen = false;
+            queue = [];
+
             var cover = element.create("div", { classes: clsCoverHide }),
                 el    = element.create("section", { classes: clsElHide });
 
@@ -318,7 +321,7 @@ define(["alertify", "proto", "element", "validate", "transition", "keys"], funct
                 !validate.isString(placeholder, true)) {
                 throw new Error(validate.messages.invalidArguments);
             }
-            dialog.el = dialog.el || init();
+            dialog.el = document.body.contains(dialog.el) ? dialog.el : init();
             elCallee = document.activeElement;
 
             queue.push({
