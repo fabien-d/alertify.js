@@ -22,14 +22,6 @@
         test( 'type value', function () {
             assert.strictEqual( this.confirm.type, 'confirm' );
         } );
-
-        test( 'onOK method', function () {
-            assert.isFunction( this.confirm.onOK );
-        } );
-
-        test( 'onCancel method', function () {
-            assert.isFunction( this.confirm.onCancel );
-        } );
     } );
 
     suite( 'alertify.confirm prototype', function () {
@@ -43,6 +35,14 @@
 
         test( 'el property', function () {
             assert.isObject( this.confirm.el );
+        } );
+
+        test( 'settings object', function () {
+            assert.isObject( this.confirm.settings );
+        } );
+
+        test( 'activeElement node', function () {
+            assert.isDefined( this.confirm.activeElement );
         } );
     } );
 

@@ -24,6 +24,18 @@
         document.body.setAttribute( 'tabindex', '0' );
 
         /**
+         * Update HTML copy based on settings as passed message
+         *
+         * @return {undefined}
+         */
+        function build () {
+            titleEl.innerHTML = parent.message;
+            btnOK.innerHTML = parent.settings.ok;
+            btnCancel.innerHTML = parent.settings.cancel;
+            input.value = parent.value || '';
+        }
+
+        /**
          * Handle transitionend event listener since you can't set focus to
          * elements during the transition
          *
@@ -71,8 +83,56 @@
             }
         }
 
+        /**
+         * Handle resetting focus
+         *
+         * @param  {Event} event Focus event
+         * @return {undefined}
+         */
+        function onReset ( event ) {
+            prevent( event );
+            setFocus( true );
+        }
+
+        /**
+         * Handle clicking OK
+         *
+         * @param  {Event} event Click event
+         * @return {undefined}
+         */
+        function onOK ( event ) {
+            prevent( event );
+            parent.close();
+
+            // allow custom `ok` method
+            if ( typeof parent.ok === 'function' ) {
+                parent.ok( input.value );
+            }
+        }
+
+        /**
+         * Handle clicking Cancel
+         *
+         * @param  {Event} event Click event
+         * @return {undefined}
+         */
+        function onCancel ( event ) {
+            prevent( event );
+            parent.close();
+
+            // allow custom `cancel` method
+            if ( typeof parent.cancel === 'function' ) {
+                parent.cancel();
+            }
+        }
+
         // common dialog API
         return {
+            /**
+             * Main alertify dialog node.
+             *
+             * @type {Node}
+             */
             el: document.getElementById( 'alertifyDialog' ),
 
             /**
@@ -96,74 +156,19 @@
             },
 
             /**
-             * Update HTML copy based on settings as passed message
-             *
-             * @return {undefined}
-             */
-            build: function () {
-                titleEl.innerHTML = this.message;
-                btnOK.innerHTML = this.settings.ok;
-                btnCancel.innerHTML = this.settings.cancel;
-                input.value = this.value || '';
-            },
-
-            /**
-             * Handle clicking OK
-             *
-             * @param  {Event} event Click event
-             * @return {undefined}
-             */
-            onOK: function ( event ) {
-                prevent( event );
-                parent.close();
-
-                // allow custom `ok` method
-                if ( typeof parent.ok === 'function' ) {
-                    parent.ok( input.value );
-                }
-            },
-
-            /**
-             * Handle clicking Cancel
-             *
-             * @param  {Event} event Click event
-             * @return {undefined}
-             */
-            onCancel: function ( event ) {
-                prevent( event );
-                parent.close();
-
-                // allow custom `cancel` method
-                if ( typeof parent.cancel === 'function' ) {
-                    parent.cancel();
-                }
-            },
-
-            /**
-             * Handle resetting focus
-             *
-             * @param  {Event} event Focus event
-             * @return {undefined}
-             */
-            onReset: function ( event ) {
-                prevent( event );
-                setFocus( true );
-            },
-
-            /**
              * Show the dialog
              *
              * @return {undefined}
              */
             show: function () {
                 parent = this;
-                this.build();
+                build();
 
                 dialog.activeElement = document.activeElement;
 
-                on( btnOK, 'click', this.onOK );
-                on( btnCancel, 'click', this.onCancel );
-                on( btnFocusReset, 'focus', this.onReset );
+                on( btnOK, 'click', onOK );
+                on( btnCancel, 'click', onCancel );
+                on( btnFocusReset, 'focus', onReset );
 
                 if ( transition.supported ) {
                     on( this.el, transition.type, handleTransitionEvent );
@@ -191,9 +196,9 @@
              * @return {undefined}
              */
             close: function () {
-                off( btnOK, 'click', this.onOK );
-                off( btnCancel, 'click', this.onCancel );
-                off( btnFocusReset, 'focus', this.onResetFocus );
+                off( btnOK, 'click', onOK );
+                off( btnCancel, 'click', onCancel );
+                off( btnFocusReset, 'focus', onReset );
 
                 coverEl.className = CLASS_COVER_HIDE;
                 this.el.className += ' alertify-close';

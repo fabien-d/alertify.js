@@ -26,14 +26,6 @@
         test( 'type value', function () {
             assert.strictEqual( this.prompt.type, 'prompt' );
         } );
-
-        test( 'onOK method', function () {
-            assert.isFunction( this.prompt.onOK );
-        } );
-
-        test( 'onCancel method', function () {
-            assert.isFunction( this.prompt.onCancel );
-        } );
     } );
 
     suite( 'alertify.prompt prototype', function () {
@@ -47,6 +39,14 @@
 
         test( 'el property', function () {
             assert.isObject( this.prompt.el );
+        } );
+
+        test( 'settings object', function () {
+            assert.isObject( this.prompt.settings );
+        } );
+
+        test( 'activeElement node', function () {
+            assert.isDefined( this.prompt.activeElement );
         } );
     } );
 
