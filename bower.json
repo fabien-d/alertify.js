@@ -1,0 +1,14 @@
+{
+  "name": "alertify",
+  "version": "0.5.0",
+  "ignore": [
+    ".gitignore",
+    "Gruntfile.js",
+    "package.json",
+    ".jshintrc",
+    "test",
+    "src",
+    "example"
+  ],
+  "dependencies": {}
+}

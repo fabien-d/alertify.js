@@ -1,3 +1,4 @@
-node_modules
-.sass-cache
-dist
+node_modules/
+.sass-cache/
+example/assets/sass/
+app.js

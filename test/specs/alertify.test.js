@@ -1,12 +1,39 @@
-define(["alertify"], function (Alertify) {
-    module("Alertify");
+( function () {
 
-    test("Alertify prototype object API", function () {
-        expect(5);
-        deepEqual(typeof Alertify._version, "string", "Alertify _version is a string");
-        deepEqual(typeof Alertify._prefix, "string", "Alertify _prefix is a string");
-        deepEqual(typeof Alertify.get, "function", "Alertify.get is a function");
-        deepEqual(typeof Alertify.on, "function", "Alertify.on is a function");
-        deepEqual(typeof Alertify.off, "function", "Alertify.off is a function");
-    });
-});
+    suite( 'alertify global object', function () {
+        test( '`alertify` object', function () {
+            assert.isObject( alertify );
+        } );
+    } );
+
+    suite( 'alertify public API', function () {
+        test( '`alert` method', function () {
+            assert.isFunction( alertify.alert );
+        } );
+
+        test( '`confirm` method', function () {
+            assert.isFunction( alertify.confirm );
+        } );
+
+        test( '`prompt` method', function () {
+            assert.isFunction( alertify.prompt );
+        } );
+
+        test( '`settings` object', function () {
+            assert.isObject( alertify.settings );
+        } );
+
+        test( '`settings.ok` string', function () {
+            assert.isString( alertify.settings.ok );
+        } );
+
+        test( '`settings.cancel` string', function () {
+            assert.isString( alertify.settings.cancel );
+        } );
+
+        test( '`settings.focus` string', function () {
+            assert.isString( alertify.settings.focus );
+        } );
+    } );
+
+} () );
