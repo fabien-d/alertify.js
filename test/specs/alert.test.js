@@ -5,6 +5,12 @@
         this.ok = document.getElementById( 'alertifyButtonOk' );
     } );
 
+    teardown( function () {
+        if ( this.alert.isOpen() ) {
+            this.alert.close();
+        }
+    } );
+
     suite( 'alertify.alert return', function () {
         test( 'message string', function () {
             assert.isString( this.alert.message );
@@ -42,6 +48,10 @@
 
         test( 'activeElement node', function () {
             assert.isDefined( this.alert.activeElement );
+        } );
+
+        test( '`isOpen` method', function () {
+            assert.isFunction( this.alert.isOpen );
         } );
     } );
 
@@ -95,6 +105,7 @@
                 done();
             };
 
+            this.alert.show();
             this.alert.close();
         } );
 

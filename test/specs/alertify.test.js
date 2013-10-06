@@ -62,4 +62,23 @@
         } );
     } );
 
+    suite( 'alertify multiple dialogs', function () {
+        test( 'returns false if a dialog already exists', function () {
+            var alert = alertify.alert( 'test' );
+            var confirm = alertify.confirm( 'test' );
+
+            alert.show();
+            assert.isFalse( confirm.show() );
+        } );
+
+        test( 'returns true if a dialog does not already exist', function () {
+            var alert = alertify.alert( 'test' );
+            var confirm = alertify.confirm( 'test' );
+
+            alert.show();
+            alert.close();
+            assert.isTrue( confirm.show() );
+        } );
+    } );
+
 } () );

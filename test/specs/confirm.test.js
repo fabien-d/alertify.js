@@ -44,6 +44,10 @@
         test( 'activeElement node', function () {
             assert.isDefined( this.confirm.activeElement );
         } );
+
+        test( '`isOpen` method', function () {
+            assert.isFunction( this.confirm.isOpen );
+        } );
     } );
 
     suite( 'alertify.confirm show method', function () {

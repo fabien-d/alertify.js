@@ -48,6 +48,10 @@
         test( 'activeElement node', function () {
             assert.isDefined( this.prompt.activeElement );
         } );
+
+        test( '`isOpen` method', function () {
+            assert.isFunction( this.prompt.isOpen );
+        } );
     } );
 
     suite( 'alertify.prompt show method', function () {
