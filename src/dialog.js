@@ -19,8 +19,7 @@
 
         var keys = {
             ENTER: 13,
-            ESC: 27,
-            SPACE: 32
+            ESC: 27
         };
 
         var parent, transitionTimeout;
@@ -66,6 +65,8 @@
          * @return {undefined} [description]
          */
         function setFocus ( reset ) {
+            on( document.body, 'keyup', onKeyup );
+
             if ( parent.type === 'prompt' ) {
                 input.focus();
                 input.select();
@@ -139,11 +140,9 @@
          * @return {undefined}
          */
         function onKeyup ( event ) {
-            prevent( event );
-
             var keyCode = event.keyCode;
 
-            if ( ( keyCode === keys.SPACE && parent.type !== 'prompt' ) || keyCode === keys.ENTER ) {
+            if ( keyCode === keys.ENTER ) {
                 onOK( event );
             }
 
@@ -194,7 +193,6 @@
 
                 on( btnOK, 'click', onOK );
                 on( btnCancel, 'click', onCancel );
-                on( document.body, 'keyup', onKeyup );
                 on( btnFocusReset, 'focus', onReset );
 
                 if ( transition.supported ) {
