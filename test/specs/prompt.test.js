@@ -6,6 +6,10 @@
         this.cancel = document.getElementById( 'alertifyButtonCancel' );
     } );
 
+    teardown( function () {
+        delete this.prompt;
+    } );
+
     suite( 'alertify.prompt return', function () {
         test( 'message string', function () {
             assert.isString( this.prompt.message );
@@ -69,6 +73,24 @@
             this.prompt.show();
             assert.strictEqual( document.getElementById( 'alertifyInput' ).value, 'default value' );
         } );
+
+        test( 'sets focus in input field', function ( done ) {
+            this.prompt.onfocus = function () {
+                done();
+            };
+
+            this.prompt.show();
+        } );
+
+        test( 'reset focus in input field', function ( done ) {
+            this.prompt.onfocus = function () {
+                triggerEvent( document.getElementById( 'alertifyFocusReset' ), 'focus' );
+                assert.strictEqual( document.activeElement, document.getElementById( 'alertifyInput' ) );
+                done();
+            };
+
+            this.prompt.show();
+        } );
     } );
 
     suite( 'alertify.prompt close method', function () {
@@ -77,6 +99,7 @@
                 done();
             };
 
+            this.prompt.show();
             this.prompt.close();
         } );
 
@@ -87,25 +110,25 @@
         } );
     } );
 
-    suite( 'alertify.prompt accept method', function () {
-        test( 'accept method after OK button click', function ( done ) {
-            this.prompt.accept = function () {
+    suite( 'alertify.prompt ok method', function () {
+        test( 'ok method after OK button click', function ( done ) {
+            this.prompt.ok = function () {
                 done();
             };
 
             this.prompt.show();
-            triggerClick( this.ok );
+            triggerEvent( this.ok, 'click' );
         } );
     } );
 
-    suite( 'alertify.prompt deny method', function () {
-        test( 'deny method after Cancel button click', function ( done ) {
-            this.prompt.deny = function () {
+    suite( 'alertify.prompt cancel method', function () {
+        test( 'cancel method after Cancel button click', function ( done ) {
+            this.prompt.cancel = function () {
                 done();
             };
 
             this.prompt.show();
-            triggerClick( this.cancel );
+            triggerEvent( this.cancel, 'click' );
         } );
     } );
 

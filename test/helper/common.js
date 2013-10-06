@@ -1,7 +1,7 @@
-function triggerClick ( el ) {
+function triggerEvent ( el, event ) {
     var ev = document.createEvent( 'MouseEvent' );
     ev.initMouseEvent(
-        'click',
+        event,
         true /* bubble */,
         true /* cancelable */,
         window, null,

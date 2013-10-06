@@ -23,11 +23,11 @@
     <div id="alertifyCover" class="alertify-cover alertify-hidden"></div>
     <section id="alertifyDialog" class="alertify alertify-close" aria-labelledby="alertifyTitle" aria-hidden="true">
         <div class="alertify-body">
-            <p id="alertifyTitle" class="alertify-title">Super awesome title</p>
+            <p id="alertifyTitle" class="alertify-title"></p>
             <input type="text" id="alertifyInput" class="alertify-input" aria-hidden="true">
-            <nav class="alertify-buttons">
-                <button id="alertifyButtonCancel" class="alertify-button alertify-button-cancel" aria-hidden="true">Cancel</button>
-                <button id="alertifyButtonOk" class="alertify-button alertify-button-ok" aria-hidden="true">OK</button>
+            <nav id="alertifyButtons" class="alertify-buttons">
+                <button id="alertifyButtonCancel" class="alertify-button alertify-button-cancel" aria-hidden="true"></button>
+                <button id="alertifyButtonOk" class="alertify-button alertify-button-ok" aria-hidden="true"></button>
             </nav>
             <a id="alertifyFocusReset" class="alertify-focus-reset" href="#" aria-hidden="true"></a>
         </div>
@@ -57,10 +57,10 @@
         $( 'confirm' ).onclick = function () {
             reset();
             var confirm = alertify.confirm( 'This is a confirm dialog' );
-            confirm.accept = function () {
+            confirm.ok = function () {
                 console.log( 'clicked ok' );
             };
-            confirm.deny = function () {
+            confirm.cancel = function () {
                 console.log( 'clicked cancel' );
             };
             confirm.show();
@@ -71,10 +71,10 @@
         $( 'prompt' ).onclick = function () {
             reset();
             var prompt = alertify.prompt( 'This is a prompt dialog', 'Default Value' );
-            prompt.accept = function ( value ) {
+            prompt.ok = function ( value ) {
                 console.log( 'clicked ok with: ' + value );
             };
-            prompt.deny = function () {
+            prompt.cancel = function () {
                 console.log( 'clicked cancel' );
             };
             prompt.show();
@@ -89,10 +89,10 @@
             alertify.settings.ok = 'Accept';
             alertify.settings.cancel = 'Deny';
             var confirm = alertify.confirm( 'Confirm dialog with custom button labels' );
-            confirm.accept = function () {
+            confirm.ok = function () {
                 console.log( 'clicked ok' );
             };
-            confirm.deny = function () {
+            confirm.cancel = function () {
                 console.log( 'clicked cancel' );
             };
             confirm.show();
@@ -103,10 +103,10 @@
             reset();
             alertify.settings.focus = 'cancel';
             var confirm = alertify.confirm( 'Confirm dialog with cancel button focused' );
-            confirm.accept = function () {
+            confirm.ok = function () {
                 console.log( 'clicked ok' );
             };
-            confirm.deny = function () {
+            confirm.cancel = function () {
                 console.log( 'clicked cancel' );
             };
             confirm.show();

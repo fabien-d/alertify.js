@@ -11,35 +11,31 @@
 
         var btnOK = document.getElementById( 'alertifyButtonOk' );
         var btnCancel = document.getElementById( 'alertifyButtonCancel' );
+        var btnFocusReset = document.getElementById( 'alertifyFocusReset' );
         var input = document.getElementById( 'alertifyInput' );
         var titleEl = document.getElementById( 'alertifyTitle' );
         var coverEl = document.getElementById( 'alertifyCover' );
+        var btnWrapper = document.getElementById( 'alertifyButtons' );
 
-        var transitionDone;
+        var parent, transitionTimeout;
 
         /**
-         * Set transitionend event listener since you can't set focus to
+         * Handle transitionend event listener since you can't set focus to
          * elements during the transition
          *
          * @return {undefined}
          */
-        function setTransition () {
-            /*jshint validthis:true*/
-            var self = this;
+        function handleTransitionEvent ( event ) {
+            prevent( event );
+            clearTimeout( transitionTimeout );
+            setFocus();
 
-            transitionDone = function ( event ) {
-                prevent( event );
-                setFocus.call( self );
+            // allow custom `onfocus` method
+            if ( typeof parent.onfocus === 'function' ) {
+                parent.onfocus();
+            }
 
-                // allow custom `onfocus` method
-                if ( typeof self.onfocus === 'function' ) {
-                    self.onfocus();
-                }
-
-                off( self.el, transition.type, transitionDone );
-            };
-
-            on( this.el, transition.type, transitionDone );
+            off( parent.el, transition.type, handleTransitionEvent );
         }
 
         /**
@@ -47,13 +43,18 @@
          *
          * @return {undefined} [description]
          */
-        function setFocus () {
-            /*jshint validthis:true*/
-            if ( this.type === 'prompt' ) {
+        function setFocus ( reset ) {
+            if ( parent.type === 'prompt' ) {
                 input.focus();
                 input.select();
+            } else if ( reset ) {
+                if ( parent.type === 'alert' ) {
+                    btnOK.focus();
+                } else {
+                    btnWrapper.children[ 0 ].focus();
+                }
             } else {
-                switch ( this.settings.focus ) {
+                switch ( parent.settings.focus ) {
                 case 'ok':
                     btnOK.focus();
                     break;
@@ -99,13 +100,13 @@
              * @param  {Event} event Click event
              * @return {undefined}
              */
-            onAccept: function ( event ) {
+            onOK: function ( event ) {
                 prevent( event );
-                this.close();
+                parent.close();
 
-                // allow custom `accept` method
-                if ( typeof this.accept === 'function' ) {
-                    this.accept( input.value );
+                // allow custom `ok` method
+                if ( typeof parent.ok === 'function' ) {
+                    parent.ok( input.value );
                 }
             },
 
@@ -115,14 +116,25 @@
              * @param  {Event} event Click event
              * @return {undefined}
              */
-            onDeny: function ( event ) {
+            onCancel: function ( event ) {
                 prevent( event );
-                this.close();
+                parent.close();
 
-                // allow custom `deny` method
-                if ( typeof this.deny === 'function' ) {
-                    this.deny();
+                // allow custom `cancel` method
+                if ( typeof parent.cancel === 'function' ) {
+                    parent.cancel();
                 }
+            },
+
+            /**
+             * Handle resetting focus
+             *
+             * @param  {Event} event Focus event
+             * @return {undefined}
+             */
+            onReset: function ( event ) {
+                prevent( event );
+                setFocus( true );
             },
 
             /**
@@ -131,20 +143,25 @@
              * @return {undefined}
              */
             show: function () {
+                parent = this;
                 this.build();
 
                 on( btnOK, 'click', this.onOK );
                 on( btnCancel, 'click', this.onCancel );
+                on( btnFocusReset, 'focus', this.onReset );
 
                 if ( transition.supported ) {
-                    setTransition.call( this );
+                    on( this.el, transition.type, handleTransitionEvent );
+                    // set 1s fallback in case transition event doesn't fire
+                    clearTimeout( transitionTimeout );
+                    transitionTimeout = setTimeout( handleTransitionEvent, 1000 );
                 }
 
                 coverEl.className = CLASS_COVER_SHOW;
                 this.el.className = CLASS_TYPE + this.type;
 
                 if ( !transition.supported ) {
-                    setFocus.call( this );
+                    setFocus();
                 }
 
                 // allow custom `onshow` method
@@ -161,6 +178,7 @@
             close: function () {
                 off( btnOK, 'click', this.onOK );
                 off( btnCancel, 'click', this.onCancel );
+                off( btnFocusReset, 'focus', this.onResetFocus );
 
                 coverEl.className = CLASS_COVER_HIDE;
                 this.el.className += ' alertify-close';

@@ -64,6 +64,25 @@
             this.alert.show();
             assert.strictEqual( document.getElementById( 'alertifyTitle' ).innerHTML, 'test' );
         } );
+
+        test( 'sets focus to ok button', function ( done ) {
+            this.alert.onfocus = function () {
+                assert.strictEqual( document.activeElement, document.getElementById( 'alertifyButtonOk' ) );
+                done();
+            };
+
+            this.alert.show();
+        } );
+
+        test( 'reset focus to ok button', function ( done ) {
+            this.alert.onfocus = function () {
+                triggerEvent( document.getElementById( 'alertifyFocusReset' ), 'focus' );
+                assert.strictEqual( document.activeElement, document.getElementById( 'alertifyButtonOk' ) );
+                done();
+            };
+
+            this.alert.show();
+        } );
     } );
 
     suite( 'alertify.alert close method', function () {
@@ -88,14 +107,14 @@
         } );
     } );
 
-    suite( 'alertify.alert accept method', function () {
-        test( 'accept method after OK button click', function ( done ) {
-            this.alert.accept = function () {
+    suite( 'alertify.alert ok method', function () {
+        test( 'ok method after OK button click', function ( done ) {
+            this.alert.ok = function () {
                 done();
             };
 
             this.alert.show();
-            triggerClick( this.ok );
+            triggerEvent( this.ok, 'click' );
         } );
     } );
 

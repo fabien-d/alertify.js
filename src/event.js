@@ -51,10 +51,12 @@
      * @return {undefined}
      */
     function prevent ( event ) {
-        if ( event.preventDefault ) {
-            event.preventDefault();
-        } else {
-            event.returnValue = false;
+        if ( event ) {
+            if ( event.preventDefault ) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
         }
     }
 

@@ -86,6 +86,25 @@
             this.confirm.show();
             assert.strictEqual( this.cancel.innerHTML, 'Deny' );
         } );
+
+        test( 'sets focus to ok button', function ( done ) {
+            this.confirm.onfocus = function () {
+                assert.strictEqual( document.activeElement, document.getElementById( 'alertifyButtonOk' ) );
+                done();
+            };
+
+            this.confirm.show();
+        } );
+
+        test( 'reset focus to cancel button', function ( done ) {
+            this.confirm.onfocus = function () {
+                triggerEvent( document.getElementById( 'alertifyFocusReset' ), 'focus' );
+                assert.strictEqual( document.activeElement, document.getElementById( 'alertifyButtonCancel' ) );
+                done();
+            };
+
+            this.confirm.show();
+        } );
     } );
 
     suite( 'alertify.confirm close method', function () {
@@ -104,25 +123,25 @@
         } );
     } );
 
-    suite( 'alertify.confirm accept method', function () {
-        test( 'accept method after OK button click', function ( done ) {
-            this.confirm.accept = function () {
+    suite( 'alertify.confirm ok method', function () {
+        test( 'ok method after OK button click', function ( done ) {
+            this.confirm.ok = function () {
                 done();
             };
 
             this.confirm.show();
-            triggerClick( this.ok );
+            triggerEvent( this.ok, 'click' );
         } );
     } );
 
-    suite( 'alertify.confirm deny method', function () {
-        test( 'deny method after Cancel button click', function ( done ) {
-            this.confirm.deny = function () {
+    suite( 'alertify.confirm cancel method', function () {
+        test( 'cancel method after Cancel button click', function ( done ) {
+            this.confirm.cancel = function () {
                 done();
             };
 
             this.confirm.show();
-            triggerClick( this.cancel );
+            triggerEvent( this.cancel, 'click' );
         } );
     } );
 

@@ -27,7 +27,7 @@
         "alertify": true,
         "define": true,
 
-        "triggerClick": true,
+        "triggerEvent": true,
         "suite": true,
         "test": true,
         "assert": true,
