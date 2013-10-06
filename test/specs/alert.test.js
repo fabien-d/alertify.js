@@ -50,9 +50,14 @@
             this.alert.show();
         } );
 
-        test( 'sets proper classes', function () {
+        test( 'sets proper classes main element', function () {
             this.alert.show();
             assert.strictEqual( this.alert.el.className, 'alertify alertify--alert' );
+        } );
+
+        test( 'sets proper classes on cover', function () {
+            this.alert.show();
+            assert.strictEqual( document.getElementById( 'alertifyCover' ).className, 'alertify-cover' );
         } );
 
         test( 'sets proper title', function () {
@@ -70,10 +75,16 @@
             this.alert.close();
         } );
 
-        test( 'sets proper classes', function () {
+        test( 'sets proper classes main element', function () {
             this.alert.show();
             this.alert.close();
             assert.strictEqual( this.alert.el.className, 'alertify alertify--alert alertify-close' );
+        } );
+
+        test( 'sets proper classes on cover', function () {
+            this.alert.show();
+            this.alert.close();
+            assert.strictEqual( document.getElementById( 'alertifyCover' ).className, 'alertify-cover alertify-hidden' );
         } );
     } );
 

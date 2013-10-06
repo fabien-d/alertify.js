@@ -6,10 +6,14 @@
     var dialog = (function () {
         var CLASS_BASE = 'alertify';
         var CLASS_TYPE = CLASS_BASE + ' alertify--';
+        var CLASS_COVER_SHOW = 'alertify-cover';
+        var CLASS_COVER_HIDE = CLASS_COVER_SHOW + ' alertify-hidden';
+
         var btnOK = document.getElementById( 'alertifyButtonOk' );
         var btnCancel = document.getElementById( 'alertifyButtonCancel' );
         var input = document.getElementById( 'alertifyInput' );
         var titleEl = document.getElementById( 'alertifyTitle' );
+        var coverEl = document.getElementById( 'alertifyCover' );
 
         var transitionDone;
 
@@ -136,6 +140,7 @@
                     setTransition.call( this );
                 }
 
+                coverEl.className = CLASS_COVER_SHOW;
                 this.el.className = CLASS_TYPE + this.type;
 
                 if ( !transition.supported ) {
@@ -157,6 +162,7 @@
                 off( btnOK, 'click', this.onOK );
                 off( btnCancel, 'click', this.onCancel );
 
+                coverEl.className = CLASS_COVER_HIDE;
                 this.el.className += ' alertify-close';
 
                 // allow custom `onclose` method
