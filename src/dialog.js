@@ -19,6 +19,10 @@
 
         var parent, transitionTimeout;
 
+        // set tabindex attribute on body element this allows script to give it
+        // focus after the dialog is closed
+        document.body.setAttribute( 'tabindex', '0' );
+
         /**
          * Handle transitionend event listener since you can't set focus to
          * elements during the transition
@@ -70,6 +74,15 @@
         // common dialog API
         return {
             el: document.getElementById( 'alertifyDialog' ),
+
+            /**
+             * Active element is the element that will receive focus after
+             * closing the dialog. It defaults as the body tag, but gets updated
+             * to the last focused element before the dialog was opened.
+             *
+             * @type {Node}
+             */
+            activeElement: document.body,
 
             /**
              * Customizable settings
@@ -146,6 +159,8 @@
                 parent = this;
                 this.build();
 
+                dialog.activeElement = document.activeElement;
+
                 on( btnOK, 'click', this.onOK );
                 on( btnCancel, 'click', this.onCancel );
                 on( btnFocusReset, 'focus', this.onReset );
@@ -182,6 +197,8 @@
 
                 coverEl.className = CLASS_COVER_HIDE;
                 this.el.className += ' alertify-close';
+
+                dialog.activeElement.focus();
 
                 // allow custom `onclose` method
                 if ( typeof this.onclose === 'function' ) {

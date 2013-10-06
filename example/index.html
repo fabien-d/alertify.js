@@ -6,19 +6,18 @@
     <link rel="stylesheet" href="../themes/alertify.core.css">
     <link rel="stylesheet" href="../themes/alertify.default.css">
     <meta name="viewport" content="width=device-width">
-    <script>
-    document.createElement('section');
-    document.createElement('nav');
-    </script>
 </head>
 <body>
 
     <h2>Dialogs</h2>
-    <a href="#" id="alert">Alert Dialog</a><br>
+    <p><a href="#" id="alert">Alert Dialog</a><br>
     <a href="#" id="confirm">Confirm Dialog</a><br>
-    <a href="#" id="prompt">Prompt Dialog</a><br>
-    <a href="#" id="labels">Custom Labels</a><br>
-    <a href="#" id="focus">Button Focus</a><br>
+    <a href="#" id="prompt">Prompt Dialog</a></p>
+
+    <p><a href="#" id="ajax">Ajax - Mulitple Dialogs</a></p>
+
+    <p><a href="#" id="labels">Custom Labels</a><br>
+    <a href="#" id="focus">Button Focus</a></p>
 
     <div id="alertifyCover" class="alertify-cover alertify-hidden"></div>
     <section id="alertifyDialog" class="alertify alertify-close" aria-labelledby="alertifyTitle" aria-hidden="true">
@@ -33,12 +32,9 @@
         </div>
     </section>
 
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="../lib/alertify.js"></script>
     <script>
-        function $ ( id ) {
-            return document.getElementById( id );
-        }
-
         function reset () {
             alertify.settings.ok = 'OK';
             alertify.settings.cancel = 'Cancel';
@@ -47,14 +43,14 @@
 
         // ==============================
         // Standard Dialogs
-        $( 'alert' ).onclick = function () {
+        $( '#alert' ).on( 'click', function () {
             reset();
             var alert = alertify.alert( 'This is an alert dialog' );
             alert.show();
             return false;
-        };
+        } );
 
-        $( 'confirm' ).onclick = function () {
+        $( '#confirm' ).on( 'click', function () {
             reset();
             var confirm = alertify.confirm( 'This is a confirm dialog' );
             confirm.ok = function () {
@@ -66,9 +62,9 @@
             confirm.show();
 
             return false;
-        };
+        } );
 
-        $( 'prompt' ).onclick = function () {
+        $( '#prompt' ).on( 'click', function () {
             reset();
             var prompt = alertify.prompt( 'This is a prompt dialog', 'Default Value' );
             prompt.ok = function ( value ) {
@@ -80,11 +76,33 @@
             prompt.show();
 
             return false;
-        };
+        } );
+
+        // ==============================
+        // Ajax
+        $( '#ajax' ).on( 'click', function () {
+            reset();
+            var confirm = alertify.confirm( 'Bleh?' );
+            confirm.ok = function () {
+                $.get( 'http://google.com' ).complete( function () {
+                    var alert = alertify.alert( 'Successful AJAX after OK' );
+                    alert.show();
+                } );
+            };
+
+            confirm.cancel = function () {
+                $.get( 'http://google.com' ).complete( function () {
+                    var alert = alertify.alert( 'Successful AJAX after Cancel' );
+                    alert.show();
+                } );
+            };
+
+            confirm.show();
+        } );
 
         // ==============================
         // Custom Properties
-        $( 'labels' ).onclick = function () {
+        $( '#labels' ).on( 'click', function () {
             reset();
             alertify.settings.ok = 'Accept';
             alertify.settings.cancel = 'Deny';
@@ -97,9 +115,9 @@
             };
             confirm.show();
             return false;
-        };
+        } );
 
-        $( 'focus' ).onclick = function () {
+        $( '#focus' ).on( 'click', function () {
             reset();
             alertify.settings.focus = 'cancel';
             var confirm = alertify.confirm( 'Confirm dialog with cancel button focused' );
@@ -111,7 +129,7 @@
             };
             confirm.show();
             return false;
-        };
+        } );
     </script>
 
 </body>

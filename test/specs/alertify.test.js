@@ -36,4 +36,30 @@
         } );
     } );
 
+    suite( 'alertify resetting focus to last focused element', function () {
+        test( 'default to body', function ( done ) {
+            var alert = alertify.alert( 'test' );
+            alert.onclose = function () {
+                assert.strictEqual( document.activeElement, document.body );
+                done();
+            };
+
+            alert.show();
+            alert.close();
+        } );
+
+        test( 'last focused element', function ( done ) {
+            var focus = document.getElementById( 'focusElement' );
+            focus.focus();
+            var alert = alertify.alert( 'test' );
+            alert.onclose = function () {
+                assert.strictEqual( document.activeElement, focus );
+                done();
+            };
+
+            alert.show();
+            alert.close();
+        } );
+    } );
+
 } () );
