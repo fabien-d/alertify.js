@@ -68,6 +68,10 @@
             margin: 0;
         }
 
+        .alertify-input {
+            -webkit-appearance: none;
+        }
+
         .alertify-buttons {
             display: block;
         }
