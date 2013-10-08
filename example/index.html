@@ -22,6 +22,9 @@
 	<a href="#" id="focus">Button Focus</a><br>
 	<a href="#" id="order">Button Order</a>
 
+	<h2>Ajax</h2>
+	<a href="#" id="ajax">Ajax - Multiple Dialog</a>
+
 	<h2>Logs</h2>
 	<a href="#" id="notification">Standard Log</a><br>
 	<a href="#" id="success">Success Log</a><br>
@@ -33,15 +36,11 @@
 	<h2>Themes</h2>
 	<a href="#" id="bootstrap">Bootstrap Theme</a>
 
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="../lib/alertify.min.js"></script>
 	<script>
-		"use strict";
-		var
-		$ = function (id) {
-			return document.getElementById(id);
-		},
-		reset = function () {
-			$("toggleCSS").href = "../themes/alertify.default.css";
+		function reset () {
+			$("#toggleCSS").attr("href", "../themes/alertify.default.css");
 			alertify.set({
 				labels : {
 					ok     : "OK",
@@ -51,17 +50,17 @@
 				buttonReverse : false,
 				buttonFocus   : "ok"
 			});
-		};
+		}
 
 		// ==============================
 		// Standard Dialogs
-		$("alert").onclick = function () {
+		$("#alert").on( 'click', function () {
 			reset();
 			alertify.alert("This is an alert dialog");
 			return false;
-		};
+		});
 
-		$("confirm").onclick = function () {
+		$("#confirm").on( 'click', function () {
 			reset();
 			alertify.confirm("This is a confirm dialog", function (e) {
 				if (e) {
@@ -71,9 +70,9 @@
 				}
 			});
 			return false;
-		};
+		});
 
-		$("prompt").onclick = function () {
+		$("#prompt").on( 'click', function () {
 			reset();
 			alertify.prompt("This is a prompt dialog", function (e, str) {
 				if (e) {
@@ -83,44 +82,57 @@
 				}
 			}, "Default Value");
 			return false;
-		};
+		});
+
+		// ==============================
+		// Ajax
+		$("#ajax").on("click", function () {
+			reset();
+			alertify.confirm("Confirm?", function (e) {
+				if (e) {
+					alertify.alert("Successful AJAX after OK");
+				} else {
+					alertify.alert("Successful AJAX after Cancel");
+				}
+			});
+		});
 
 		// ==============================
 		// Standard Dialogs
-		$("notification").onclick = function () {
+		$("#notification").on( 'click', function () {
 			reset();
 			alertify.log("Standard log message");
 			return false;
-		};
+		});
 
-		$("success").onclick = function () {
+		$("#success").on( 'click', function () {
 			reset();
 			alertify.success("Success log message");
 			return false;
-		};
+		});
 
-		$("error").onclick = function () {
+		$("#error").on( 'click', function () {
 			reset();
 			alertify.error("Error log message");
 			return false;
-		};
+		});
 
 		// ==============================
 		// Custom Properties
-		$("delay").onclick = function () {
+		$("#delay").on( 'click', function () {
 			reset();
 			alertify.set({ delay: 10000 });
 			alertify.log("Hiding in 10 seconds");
 			return false;
-		};
+		});
 
-		$("forever").onclick = function () {
+		$("#forever").on( 'click', function () {
 			reset();
 			alertify.log("Will stay until clicked", "", 0);
 			return false;
-		};
+		});
 
-		$("labels").onclick = function () {
+		$("#labels").on( 'click', function () {
 			reset();
 			alertify.set({ labels: { ok: "Accept", cancel: "Deny" } });
 			alertify.confirm("Confirm dialog with custom button labels", function (e) {
@@ -131,9 +143,9 @@
 				}
 			});
 			return false;
-		};
+		});
 
-		$("focus").onclick = function () {
+		$("#focus").on( 'click', function () {
 			reset();
 			alertify.set({ buttonFocus: "cancel" });
 			alertify.confirm("Confirm dialog with cancel button focused", function (e) {
@@ -144,9 +156,9 @@
 				}
 			});
 			return false;
-		};
+		});
 
-		$("order").onclick = function () {
+		$("#order").on( 'click', function () {
 			reset();
 			alertify.set({ buttonReverse: true });
 			alertify.confirm("Confirm dialog with reversed button order", function (e) {
@@ -157,22 +169,22 @@
 				}
 			});
 			return false;
-		};
+		});
 
 		// ==============================
 		// Custom Log
-		$("custom").onclick = function () {
+		$("#custom").on( 'click', function () {
 			reset();
 			alertify.custom = alertify.extend("custom");
 			alertify.custom("I'm a custom log message");
 			return false;
-		};
+		});
 
 		// ==============================
 		// Custom Themes
-		$("bootstrap").onclick = function () {
+		$("#bootstrap").on( 'click', function () {
 			reset();
-			$("toggleCSS").href = "../themes/alertify.bootstrap.css";
+			$("#toggleCSS").attr("href", "../themes/alertify.bootstrap.css");
 			alertify.prompt("Prompt dialog with bootstrap theme", function (e) {
 				if (e) {
 					alertify.success("You've clicked OK");
@@ -181,7 +193,7 @@
 				}
 			}, "Default Value");
 			return false;
-		};
+		});
 	</script>
 
 </body>

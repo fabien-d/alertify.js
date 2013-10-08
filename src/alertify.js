@@ -12,7 +12,7 @@
 		    isopen    = false,
 		    keys      = { ENTER: 13, ESC: 27, SPACE: 32 },
 		    queue     = [],
-		    $, btnCancel, btnOK, btnReset, btnFocus, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
+		    $, btnCancel, btnOK, btnReset, btnResetBack, btnFocus, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
 
 		/**
 		 * Markup pieces
@@ -158,7 +158,7 @@
 				// keyup handler
 				key = function (event) {
 					var keyCode = event.keyCode;
-					if ((keyCode === keys.SPACE && !hasInput) || keyCode === keys.ENTER) ok(event);
+					if ((keyCode === keys.SPACE && !hasInput) || (hasInput && keyCode === keys.ENTER)) ok(event);
 					if (keyCode === keys.ESC && hasCancel) cancel(event);
 				};
 
@@ -174,6 +174,7 @@
 				// ever leave the dialog box until an action has
 				// been taken
 				this.bind(btnReset, "focus", reset);
+				this.bind(btnResetBack, "focus", reset);
 				// handle OK click
 				if (hasOK) this.bind(btnOK, "click", ok);
 				// handle Cancel click
@@ -245,6 +246,7 @@
 				    css     = item.cssClass || "";
 
 				html += "<div class=\"alertify-dialog\">";
+				html += "<a id=\"alertify-resetFocusBack\" class=\"alertify-resetFocus\" href=\"#\">Reset Focus</a>";
 
 				if (_alertify.buttonFocus === "none") html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
 
@@ -404,7 +406,6 @@
 					// This ensure it doens't block any element from being clicked
 					transitionDone = function (event) {
 						event.stopPropagation();
-						elDialog.className += " alertify-isHidden";
 						// unbind event so function only gets called once
 						self.unbind(elDialog, self.transition.type, transitionDone);
 					};
@@ -570,6 +571,7 @@
 				elDialog.innerHTML = this.build(item);
 				// assign all the common elements
 				btnReset  = $("alertify-resetFocus");
+				btnResetBack  = $("alertify-resetFocusBack");
 				btnOK     = $("alertify-ok")     || undefined;
 				btnCancel = $("alertify-cancel") || undefined;
 				btnFocus  = (_alertify.buttonFocus === "cancel") ? btnCancel : ((_alertify.buttonFocus === "none") ? $("alertify-noneFocus") : btnOK),
