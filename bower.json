@@ -3,9 +3,10 @@
   "version": "0.5.0",
   "ignore": [
     ".gitignore",
+    ".travis.yml",
+    ".jshintrc",
     "Gruntfile.js",
     "package.json",
-    ".jshintrc",
     "test",
     "src",
     "example"
