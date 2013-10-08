@@ -158,7 +158,7 @@
 				// keyup handler
 				key = function (event) {
 					var keyCode = event.keyCode;
-					if ((keyCode === keys.SPACE && !hasInput) || keyCode === keys.ENTER) ok(event);
+					if ((keyCode === keys.SPACE && !hasInput) || (hasInput && keyCode === keys.ENTER)) ok(event);
 					if (keyCode === keys.ESC && hasCancel) cancel(event);
 				};
 
@@ -404,7 +404,6 @@
 					// This ensure it doens't block any element from being clicked
 					transitionDone = function (event) {
 						event.stopPropagation();
-						elDialog.className += " alertify-isHidden";
 						// unbind event so function only gets called once
 						self.unbind(elDialog, self.transition.type, transitionDone);
 					};
