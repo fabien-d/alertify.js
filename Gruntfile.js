@@ -3,6 +3,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -14,6 +15,23 @@ module.exports = function (grunt) {
                     environment: 'production'
                     // outputStyle: 'nested'
                 }
+            },
+            latest: {
+                options: {
+                    sassDir: '0.5.0/assets/sass',
+                    cssDir: '0.5.0/assets/css',
+                    environment: 'production'
+                    // outputStyle: 'nested'
+                }
+            }
+        },
+        connect: {
+            dist: {
+                options: {
+                    port: 9001,
+                    keepalive: true,
+                    base: ''
+                }
             }
         },
         watch: {
@@ -23,4 +41,5 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['compass']);
+    grunt.registerTask('example', ['compass', 'connect']);
 };

@@ -11,7 +11,8 @@
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1",
     "grunt-contrib-compass": "~0.1.1",
-    "grunt-contrib-watch": "~0.4.4"
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-connect": "~0.5.0"
   },
   "licenses": [
     {

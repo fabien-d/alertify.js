@@ -122,10 +122,6 @@
 				margin-left: 5px;
 			}
 
-.alertify-isHidden {
-	display: none;
-}
-
 @media only screen and (max-width: 680px) {
 	.alertify,
 	.alertify-logs {
