@@ -1,6 +1,7 @@
 {
   "name": "alertify",
   "version": "0.5.0",
+  "main": "lib/alertify.js",
   "ignore": [
     ".gitignore",
     ".travis.yml",
