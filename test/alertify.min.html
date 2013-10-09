@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>alertify.js Test Suite</title>
+    <link rel="stylesheet" href="/node_modules/mocha/mocha.css">
+    <link rel="stylesheet" href="/themes/alertify.core.css">
+    <link rel="stylesheet" href="/themes/alertify.default.css">
+</head>
+<body>
+    <div id="mocha"></div>
+    <a href="#" id="focusElement"></a>
+
+    <div id="alertifyCover" class="alertify-cover alertify-hidden"></div>
+    <section id="alertifyDialog" class="alertify alertify-close" aria-labelledby="alertifyTitle" aria-hidden="true">
+        <div class="alertify-body">
+            <p id="alertifyTitle" class="alertify-title"></p>
+            <input type="text" id="alertifyInput" class="alertify-input" aria-hidden="true">
+            <nav id="alertifyButtons" class="alertify-buttons">
+                <button id="alertifyButtonCancel" class="alertify-button alertify-button-cancel" aria-hidden="true"></button>
+                <button id="alertifyButtonOk" class="alertify-button alertify-button-ok" aria-hidden="true"></button>
+            </nav>
+            <a id="alertifyFocusReset" class="alertify-focus-reset" href="#" aria-hidden="true"></a>
+        </div>
+    </section>
+
+    <script src="/node_modules/mocha/mocha.js"></script>
+    <script src="/node_modules/chai/chai.js"></script>
+    <script>
+        window.chai = chai;
+        window.assert = chai.assert;
+        mocha.setup( 'tdd' );
+    </script>
+    <script src="/lib/alertify.min.js"></script>
+    <script src="/test/helper/common.js"></script>
+    <script src="/test/specs/alertify.test.js"></script>
+    <script src="/test/specs/alert.test.js"></script>
+    <script src="/test/specs/confirm.test.js"></script>
+    <script src="/test/specs/prompt.test.js"></script>
+    <script>
+        if ( navigator.userAgent.indexOf( 'PhantomJS' ) < 0 ) {
+            mocha.run();
+        }
+    </script>
+</body>
+</html>

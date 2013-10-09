@@ -1,28 +1,32 @@
 {
   "name": "alertify",
-  "description": "browser dialogs never looked so good",
-  "version": "0.4.0rc1",
+  "description": "An unobtrusive customizable JavaScript notification system",
+  "version": "0.5.0",
   "homepage": "http://fabien-d.github.com/alertify.js/",
   "author": {
     "name": "Fabien Doiron",
     "email": "fabien.doiron@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fabien-d/alertify.js.git"
+  },
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "0.4.0rc7",
+    "grunt": "~0.4.1",
     "grunt-cli": "~0.1",
-    "grunt-lib-phantomjs": "~0.1",
-    "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-qunit": "~0.1.1",
-    "grunt-contrib-requirejs": "~0.3",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-copy": "~0.4.0",
-    "grunt-contrib-uglify": "~0.1.1",
-    "requirejs": "~2.1.4",
-    "grunt-contrib-compass": "~0.1.1",
-    "grunt-contrib-connect": "~0.3.0"
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-lib-phantomjs": "~0.4.0",
+    "grunt-mocha": "~0.4.1",
+    "mocha": "~1.13.0",
+    "chai": "~1.8.0"
   },
   "licenses": [
     {
