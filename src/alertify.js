@@ -381,7 +381,7 @@
 			 * @return {Function}
 			 */
 			extend : function (type) {
-				if (typeof type !== "string") throw new Error("extend method must have exactly one paramter");
+				if (typeof type !== "string") throw new Error("extend method must have exactly one parameter");
 				return function (message, wait) {
 					this.log(message, type, wait);
 					return this;
