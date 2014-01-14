@@ -18,7 +18,7 @@ test("extend method", function () {
 	try {
 		alertify.extend();
 	} catch (error) {
-		deepEqual(error.message, "extend method must have exactly one paramter", "parameter error caught");
+		deepEqual(error.message, "extend method must have exactly one parameter", "parameter error caught");
 	}
 	alertify.custom = alertify.extend("custom");
 	deepEqual(alertify.custom("test"), alertify, "should be equal");
