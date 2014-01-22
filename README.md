@@ -9,7 +9,7 @@ Checkout the [getting started guide](https://github.com/fabien-d/alertify.js/wik
 
 ## Examples
 
-* [alertify.js 0.4.0rc1](http://fabien-d.github.com/alertify.js/0.4.0rc1/) - Release candidate
+Deprecated: ~~[alertify.js 0.4.0rc1](http://fabien-d.github.com/alertify.js/0.4.0rc1/) - Release candidate~~
 * [alertify.js 0.3.9](http://fabien-d.github.com/alertify.js/) - Latest stable version
 
 ## Documentation
