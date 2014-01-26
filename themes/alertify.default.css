@@ -2,76 +2,63 @@
  * Default Look and Feel
  */
 .alertify {
-    font-family: sans-serif;
-    background: #FFF;
-    background: rgba( 255, 255, 255, .95 );
-    color: #02070B;
+    color: #eeeeee;
     text-align: center;
-    border: 1px solid #EAEAEA;
+    font-family: sans-serif;
 }
-    .alertify-body {
-    }
-        .alertify-title {
-            margin: 0 0 1em;
-            padding: 2em 2em 1em;
-        }
-
-    .alertify-input {
-        background: rgba( 250, 250, 250, .8 );
-        font-size: 100%;
-        line-height: 1.5;
-        outline: none;
-        border: none;
-        border-top: 1px solid #EAEAEA;
-        width: 100%;
-        padding: 1em;
-        margin: 0;
-        box-sizing: border-box;
-    }
-
-    .alertify-buttons {
-        position: relative;
-        overflow: hidden;
-        border-top: 1px solid #EAEAEA;
-    }
-        .alertify-buttons:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            border-left: 1px solid #EAEAEA;
-        }
-        .alertify--alert .alertify-buttons:after {
-            display: none;
-        }
-
-    .alertify-button {
-        float: left;
-        display: inline;
-        width: 50%;
-        color: #02070B;
-        padding: 1em 0;
-        box-sizing: border-box;
-        -webkit-transition: background-color .3s ease-out;
-           -moz-transition: background-color .3s ease-out;
-                transition: background-color .3s ease-out;
-    }
-
-        .alertify--alert .alertify-button {
-            width: 100%;
-        }
-
-        .alertify-button:hover,
-        .alertify-button:focus {
-            outline: none;
-            background-color: #FAFAFA;
-        }
-        .alertify-button:active {
-            background-color: #F1F1F1;
-        }
-
-    .alertify-button-ok {
-        color: #498FFF;
-        font-weight: bold;
-    }
+.alertify-body {
+    background: #ecf0f1;
+    background: rgba(236, 240, 241, 0.9);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E6ECF0F1,endColorstr=#E6ECF0F1);
+}
+.alertify-title {
+    background: #34495e;
+    background: rgba(52, 73, 94, 0.9);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E634495E,endColorstr=#E634495E);
+    margin: 0;
+    padding: 2em;
+    font-size: 1.1em;
+}
+.alertify-input {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    margin: 0;
+    padding: 1em;
+    width: 100%;
+    outline: none;
+    border: 2px solid #bdc3c7;
+    color: #999999;
+    font-size: 100%;
+    line-height: 1.5;
+}
+.alertify-input:hover, .alertify-input:active, .alertify-input:focus { border: 2px solid #7f8c8d }
+.alertify-input:active, .alertify-input:focus { color: #333333 }
+.alertify-buttons { *zoom: 1 }
+.alertify-buttons:before, .alertify-buttons:after {
+    display: table;
+    content: "";
+}
+.alertify-buttons:after { clear: both }
+.alertify--alert .alertify-button { width: 100% }
+.alertify-button {
+    -webkit-transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    -moz-transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    padding: 1em 0;
+    width: 50%;
+    font-weight: bold;
+}
+.alertify-button:focus { outline: none }
+.alertify-button-ok, .alertify-button-cancel { color: #eeeeee }
+.alertify-button-ok { background-color: #60db94 }
+.alertify-button-ok:hover, .alertify-button-ok:active, .alertify-button-ok:focus { background-color: #27ae60 }
+.alertify-button-cancel { background-color: #df7c72 }
+.alertify-button-cancel:hover, .alertify-button-cancel:active, .alertify-button-cancel:focus { background-color: #c0392b }
