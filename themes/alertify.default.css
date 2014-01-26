@@ -8,13 +8,14 @@
 }
 .alertify-body {
     background: #ecf0f1;
-    background: rgba(236, 240, 241, 0.9);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E6ECF0F1,endColorstr=#E6ECF0F1);
+    background: rgba(236, 240, 241, 0.85);
+    box-shadow: 0 0.125em 1em rgba(0, 0, 0, 0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#D9ECF0F1,endColorstr=#D9ECF0F1);
 }
 .alertify-title {
     background: #34495e;
-    background: rgba(52, 73, 94, 0.9);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E634495E,endColorstr=#E634495E);
+    background: rgba(52, 73, 94, 0.85);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#D934495E,endColorstr=#D934495E);
     margin: 0;
     padding: 2em;
     font-size: 1.1em;
@@ -58,7 +59,15 @@
 }
 .alertify-button:focus { outline: none }
 .alertify-button-ok, .alertify-button-cancel { color: #eeeeee }
-.alertify-button-ok { background-color: #60db94 }
+.alertify-button-ok {
+    background: #45d582;
+    background: rgba(69, 213, 130, 0.85);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#D945D582,endColorstr=#D945D582);
+}
 .alertify-button-ok:hover, .alertify-button-ok:active, .alertify-button-ok:focus { background-color: #27ae60 }
-.alertify-button-cancel { background-color: #df7c72 }
+.alertify-button-cancel {
+    background: #d96357;
+    background: rgba(217, 99, 87, 0.85);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#D9D96357,endColorstr=#D9D96357);
+}
 .alertify-button-cancel:hover, .alertify-button-cancel:active, .alertify-button-cancel:focus { background-color: #c0392b }
