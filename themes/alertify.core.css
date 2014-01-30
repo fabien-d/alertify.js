@@ -129,13 +129,10 @@
 
 /* ========================================================================== */
 /* States */
+.alertify-hidden,
 .alertify--alert .alertify-button-cancel,
 .alertify--alert .alertify-input,
 .alertify--confirm .alertify-input {
-    display: none;
-}
-
-.alertify-hidden {
     display: none;
 }
 
