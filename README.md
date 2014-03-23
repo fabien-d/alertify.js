@@ -25,6 +25,9 @@ When opening a new issue, please note that the more information you provide, the
 
 ### Link to reproduced issue
 [insert link]
+
+### Screenshots (if applicable)
+[insert screenshots]
 ```
 
 ## Getting started
