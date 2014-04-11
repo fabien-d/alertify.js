@@ -419,7 +419,7 @@
 					elCover.className  = "alertify-cover alertify-cover-hidden";
 					// set focus to the last element or body
 					// after the dialog is closed
-					elCallee.focus();
+					elCallee ? elCallee.focus() : null;
 				}
 			},
 
