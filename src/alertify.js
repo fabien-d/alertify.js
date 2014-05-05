@@ -12,7 +12,7 @@
 		    isopen    = false,
 		    keys      = { ENTER: 13, ESC: 27, SPACE: 32 },
 		    queue     = [],
-		    $, btnCancel, btnOK, btnReset, btnResetBack, btnFocus, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
+		    $, btnCancel, btnOK, btnSave, btnReset, btnResetBack, btnFocus, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
 
 		/**
 		 * Markup pieces
@@ -23,7 +23,8 @@
 				holder : "<nav class=\"alertify-buttons\">{{buttons}}</nav>",
 				submit : "<button type=\"submit\" class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
 				ok     : "<button class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
-				cancel : "<button class=\"alertify-button alertify-button-cancel\" id=\"alertify-cancel\">{{cancel}}</button>"
+				cancel : "<button class=\"alertify-button alertify-button-cancel\" id=\"alertify-cancel\">{{cancel}}</button>",
+				save   : "<button class=\"alertify-button alertify-button-save\" id=\"alertify-save\">{{save}}</button>"
 			},
 			input   : "<div class=\"alertify-text-wrapper\"><input type=\"text\" class=\"alertify-text\" id=\"alertify-text\"></div>",
 			message : "<p class=\"alertify-message\">{{message}}</p>",
@@ -82,7 +83,8 @@
 			 */
 			labels : {
 				ok     : "OK",
-				cancel : "Cancel"
+				cancel : "Cancel",
+				save   : "Save"
 			},
 
 			/**
@@ -119,10 +121,11 @@
 			addListeners : function (fn) {
 				var hasOK     = (typeof btnOK !== "undefined"),
 				    hasCancel = (typeof btnCancel !== "undefined"),
+				    hasSave   = (typeof btnSave !== "undefined"),
 				    hasInput  = (typeof input !== "undefined"),
 				    val       = "",
 				    self      = this,
-				    ok, cancel, common, key, reset;
+				    ok, cancel, save, common, key, reset;
 
 				// ok event handler
 				ok = function (event) {
@@ -145,6 +148,16 @@
 					if (typeof fn === "function") fn(false);
 					return false;
 				};
+				
+				// save event handler
+        save = function(event) {
+          if (typeof event.preventDefault !== "undefined") event.preventDefault();
+          common(event);
+          if (typeof fn === "function") {
+            fn(true, (event.srcElement.id || '').replace('alertify-', ''));
+          }
+          return false;
+        };
 
 				// common event handler (keyup, ok and cancel)
 				common = function (event) {
@@ -153,15 +166,20 @@
 					self.unbind(btnReset, "focus", reset);
 					if (hasOK) self.unbind(btnOK, "click", ok);
 					if (hasCancel) self.unbind(btnCancel, "click", cancel);
+					if (hasSave) self.unbind(btnSave, "click", save);
 				};
 
 				// keyup handler
-				key = function (event) {
-					var keyCode = event.keyCode;
-					if ((keyCode === keys.SPACE && !hasInput) || (hasInput && keyCode === keys.ENTER)) ok(event);
-					if (keyCode === keys.ESC && hasCancel) cancel(event);
-				};
-
+        key = function(event) {
+          var keyCode = event.keyCode;
+          if (hasSave && keyCode === keys.ENTER) {
+            save(event);
+            return;
+          }
+          if ((keyCode === keys.SPACE && !hasInput) || (hasInput && keyCode === keys.ENTER)) ok(event);
+          if (keyCode === keys.ESC && hasCancel) cancel(event);
+        };
+				
 				// reset focus to first item in the dialog
 				reset = function (event) {
 					if (hasInput) input.focus();
@@ -179,6 +197,8 @@
 				if (hasOK) this.bind(btnOK, "click", ok);
 				// handle Cancel click
 				if (hasCancel) this.bind(btnCancel, "click", cancel);
+				// handle Save click
+				if (hasSave) this.bind(btnSave, "click", save);
 				// listen for keys, Cancel => ESC
 				this.bind(document.body, "keyup", key);
 				if (!this.transition.supported) {
@@ -228,8 +248,8 @@
 			 *
 			 * @return {String}             The appended button HTML strings
 			 */
-			appendButtons : function (secondary, primary) {
-				return this.buttonReverse ? primary + secondary : secondary + primary;
+			appendButtons: function(secondary, primary, tertiary) {
+			  return this.buttonReverse ? primary + secondary + (tertiary ? tertiary : '') : (tertiary ? tertiary : '') + secondary + primary;
 			},
 
 			/**
@@ -270,6 +290,10 @@
 				case "confirm":
 					html = html.replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.ok));
 					html = html.replace("{{ok}}", this.labels.ok).replace("{{cancel}}", this.labels.cancel);
+					break;
+				case "save":
+					html = html.replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.save, dialogs.buttons.ok));
+					html = html.replace("{{ok}}", this.labels.ok).replace("{{cancel}}", this.labels.cancel).replace("{{save}}", this.labels.save);
 					break;
 				case "prompt":
 					html = html.replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.submit));
@@ -410,11 +434,13 @@
 						self.unbind(elDialog, self.transition.type, transitionDone);
 					};
 					// whether CSS transition exists
+					var hasSaveClass = (elDialog.className.indexOf('alertify-save') > -1);
 					if (this.transition.supported) {
-						this.bind(elDialog, this.transition.type, transitionDone);
-						elDialog.className = "alertify alertify-hide alertify-hidden";
-					} else {
-						elDialog.className = "alertify alertify-hide alertify-hidden alertify-isHidden";
+					  this.bind(elDialog, this.transition.type, transitionDone);
+					  elDialog.className = "alertify " + (hasSaveClass ? "alertify-save " : "") + "alertify-hide alertify-hidden";
+					}
+					else {
+					  elDialog.className = "alertify " + (hasSaveClass ? "alertify-save " : "") + "alertify-hide alertify-hidden alertify-isHidden";
 					}
 					elCover.className  = "alertify-cover alertify-cover-hidden";
 					// set focus to the last element or body
@@ -573,8 +599,11 @@
 				btnReset  = $("alertify-resetFocus");
 				btnResetBack  = $("alertify-resetFocusBack");
 				btnOK     = $("alertify-ok")     || undefined;
+				btnSave     = $("alertify-save")     || undefined;
 				btnCancel = $("alertify-cancel") || undefined;
-				btnFocus  = (_alertify.buttonFocus === "cancel") ? btnCancel : ((_alertify.buttonFocus === "none") ? $("alertify-noneFocus") : btnOK),
+				btnFocus  = (_alertify.buttonFocus === "cancel") ? btnCancel : 
+				(_alertify.buttonFocus === "save" && btnSave) ? btnSave :
+				((_alertify.buttonFocus === "none") ? $("alertify-noneFocus") : btnOK),
 				input     = $("alertify-text")   || undefined;
 				form      = $("alertify-form")   || undefined;
 				// add placeholder value to the input field
@@ -604,6 +633,7 @@
 		return {
 			alert   : function (message, fn, cssClass) { _alertify.dialog(message, "alert", fn, "", cssClass); return this; },
 			confirm : function (message, fn, cssClass) { _alertify.dialog(message, "confirm", fn, "", cssClass); return this; },
+			save    : function (message, fn, cssClass) { _alertify.dialog(message, "save", fn, "", cssClass); return this; },
 			extend  : _alertify.extend,
 			init    : _alertify.init,
 			log     : function (message, type, wait) { _alertify.log(message, type, wait); return this; },

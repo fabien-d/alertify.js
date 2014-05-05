@@ -95,6 +95,10 @@
 					background: #E6E6E6;
 				}
 				.alertify-button-ok,
+				.alertify-button-save,
+				.alertify-button-save:hover,
+				.alertify-button-save:focus,
+				.alertify-button-save:active,
 				.alertify-button-ok:hover,
 				.alertify-button-ok:focus,
 				.alertify-button-ok:active {
@@ -105,11 +109,36 @@
 					border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 					color: #FFF;
 				}
+				.alertify-button-save,
+				.alertify-button-save:hover,
+				.alertify-button-save:focus,
+				.alertify-button-save:active,				
 				.alertify-button-ok:hover,
 				.alertify-button-ok:focus,
 				.alertify-button-ok:active {
 					background: #04C;
 				}
+				
+.alertify-save  .alertify-button-ok,
+.alertify-save  .alertify-button-ok:hover, 
+.alertify-save  .alertify-button-ok:focus, 
+.alertify-save  .alertify-button-active  {
+	text-shadow: 0 -1px 0 rgba(255,255,255,.75);
+	background-color: #E6E6E6;
+	border: 1px solid #BBB;
+	color: #333;
+	background-image: -webkit-linear-gradient(top, #FFF, #E6E6E6);
+	background-image:    -moz-linear-gradient(top, #FFF, #E6E6E6);
+	background-image:     -ms-linear-gradient(top, #FFF, #E6E6E6);
+	background-image:      -o-linear-gradient(top, #FFF, #E6E6E6);
+	background-image:         linear-gradient(top, #FFF, #E6E6E6);
+}
+
+.alertify-save .alertify-button-ok:hover,
+.alertify-save .alertify-button-ok:focus,
+.alertify-save .alertify-button-ok:active{
+  background: #E6E6E6;
+}
 
 .alertify-log {
 	background: #D9EDF7;

@@ -57,6 +57,9 @@
 			border: 1px solid #D83526;
 		}
 		.alertify-button-ok,
+		.alertify-button-save,		
+		.alertify-button-save:hover,		
+		.alertify-button-save:focus,		
 		.alertify-button-ok:hover,
 		.alertify-button-ok:focus {
 			background-color: #5CB811;
