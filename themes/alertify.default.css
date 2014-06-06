@@ -31,6 +31,7 @@
 
     .alertify-buttons {
         position: relative;
+        display:block;
         overflow: hidden;
         border-top: 1px solid #EAEAEA;
     }
