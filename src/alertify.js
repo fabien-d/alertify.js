@@ -158,7 +158,7 @@
 				// keyup handler
 				key = function (event) {
 					var keyCode = event.keyCode;
-					if ((keyCode === keys.SPACE && !hasInput) || (hasInput && keyCode === keys.ENTER)) ok(event);
+					if (hasInput && keyCode === keys.ENTER) ok(event);
 					if (keyCode === keys.ESC && hasCancel) cancel(event);
 				};
 
