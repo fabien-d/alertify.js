@@ -1,4 +1,6 @@
-# alertify.js - browser dialogs never looked so good
+# Alertify.js
+
+## Browser Dialogs Never Looked So Good
 
 
 [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
@@ -33,6 +35,14 @@ See wiki [Submitting a Pull Request](https://github.com/alertifyjs/alertify.js/w
 ## Credit where credit is due
 
 See all list of [contributors](https://github.com/alertifyjs/alertify.js/contributors)
+
+## Maintenance
+
+This is a fork of the original [fabien-d/alertify.js repository](//github.com/fabien-d/alertify.js) which is
+no longer being maintained.
+
+This fork is being actively maintained. You should submit your issues here.
+
 
 ## Release history
 
