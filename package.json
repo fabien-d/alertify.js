@@ -4,8 +4,8 @@
     "version": "0.3.11",
     "homepage": "http://alertifyjs.org/alertify.js/",
     "author": {
-        "name": "Brad Berger",
-        "email": "brad@bradb.net"
+        "name": "Fabien Doiron",
+        "email": "fabien.doiron@gmail.com"
     },
     "scripts": {
         "test": "gulp test"
