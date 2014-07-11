@@ -1,4 +1,4 @@
-[![build status](https://secure.travis-ci.org/fabien-d/alertify.js.png)](http://travis-ci.org/fabien-d/alertify.js)
+[![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 
 Alertify is an unobtrusive customizable JavaScript notification system.
 
@@ -11,19 +11,19 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 
 ## Examples
 
-http://fabien-d.github.com/alertify.js/
+http://alertifyjs.org
 
 ## Usage
 
-See wiki [How to Use](http://github.com/fabien-d/alertify.js/wiki/How-to-Use)
+See wiki [How to Use](http://github.com/alertifyjs/alertify.js/wiki/How-to-Use)
 
 ## Changeset
 
-See wiki [Changeset](http://github.com/fabien-d/alertify.js/wiki/Changeset)
+See wiki [Changeset](http://github.com/alertifyjs/alertify.js/wiki/Changeset)
 
 ## Contributing
 
-See wiki [Submitting a Pull Request](https://github.com/fabien-d/alertify.js/wiki/Submitting-a-Pull-Request)
+See wiki [Submitting a Pull Request](https://github.com/alertifyjs/alertify.js/wiki/Submitting-a-Pull-Request)
 
 ## Where is it being tested?
 

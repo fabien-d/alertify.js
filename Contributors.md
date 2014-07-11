@@ -39,3 +39,10 @@ Credit where credit is due
 
 **Michael Dabydeen**
 * GitHub: [mdabydeen](http://github.com/mdabydeen)
+
+***
+
+**Brad Berger**
+* GitHub: [bradberger](http://github.com/bradberger)
+* Twitter: [@berger_brad](https://twitter.com/berger_brad)
+* Email: brad@bradb.net

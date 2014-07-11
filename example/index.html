@@ -3,16 +3,20 @@
 <head>
 	<meta charset="utf-8">
 	<title>alertify.js - example page</title>
-	<link rel="stylesheet" href="../themes/alertify.core.css" />
-	<link rel="stylesheet" href="../themes/alertify.default.css" id="toggleCSS" />
+    <link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../dist/css/alertify-default.css" id="toggleCSS" />
 	<meta name="viewport" content="width=device-width">
 	<style>
 		.alertify-log-custom {
-			background: blue;
+			background: #369;
 		}
 	</style>
 </head>
 <body>
+
+    <h1><a href="http://alertifyjs.org">alertify.js</a> example page</h1>
+
+    <hr>
 
 	<h2>Dialogs</h2>
 	<a href="#" id="alert">Alert Dialog</a><br>
@@ -36,11 +40,11 @@
 	<h2>Themes</h2>
 	<a href="#" id="bootstrap">Bootstrap Theme</a>
 
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="../lib/alertify.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/g/jquery"></script>
+	<script src="../dist/js/alertify.js"></script>
 	<script>
 		function reset () {
-			$("#toggleCSS").attr("href", "../themes/alertify.default.css");
+			$("#toggleCSS").attr("href", "../dist/css/alertify.css");
 			alertify.set({
 				labels : {
 					ok     : "OK",
@@ -54,13 +58,13 @@
 
 		// ==============================
 		// Standard Dialogs
-		$("#alert").on( 'click', function () {
+		$("#alert").on( "click", function () {
 			reset();
 			alertify.alert("This is an alert dialog");
 			return false;
 		});
 
-		$("#confirm").on( 'click', function () {
+		$("#confirm").on( "click", function () {
 			reset();
 			alertify.confirm("This is a confirm dialog", function (e) {
 				if (e) {
@@ -72,7 +76,7 @@
 			return false;
 		});
 
-		$("#prompt").on( 'click', function () {
+		$("#prompt").on( "click", function () {
 			reset();
 			alertify.prompt("This is a prompt dialog", function (e, str) {
 				if (e) {
@@ -99,19 +103,19 @@
 
 		// ==============================
 		// Standard Dialogs
-		$("#notification").on( 'click', function () {
+		$("#notification").on( "click", function () {
 			reset();
 			alertify.log("Standard log message");
 			return false;
 		});
 
-		$("#success").on( 'click', function () {
+		$("#success").on( "click", function () {
 			reset();
 			alertify.success("Success log message");
 			return false;
 		});
 
-		$("#error").on( 'click', function () {
+		$("#error").on( "click", function () {
 			reset();
 			alertify.error("Error log message");
 			return false;
@@ -119,20 +123,20 @@
 
 		// ==============================
 		// Custom Properties
-		$("#delay").on( 'click', function () {
+		$("#delay").on( "click", function () {
 			reset();
 			alertify.set({ delay: 10000 });
 			alertify.log("Hiding in 10 seconds");
 			return false;
 		});
 
-		$("#forever").on( 'click', function () {
+		$("#forever").on( "click", function () {
 			reset();
 			alertify.log("Will stay until clicked", "", 0);
 			return false;
 		});
 
-		$("#labels").on( 'click', function () {
+		$("#labels").on( "click", function () {
 			reset();
 			alertify.set({ labels: { ok: "Accept", cancel: "Deny" } });
 			alertify.confirm("Confirm dialog with custom button labels", function (e) {
@@ -145,7 +149,7 @@
 			return false;
 		});
 
-		$("#focus").on( 'click', function () {
+		$("#focus").on( "click", function () {
 			reset();
 			alertify.set({ buttonFocus: "cancel" });
 			alertify.confirm("Confirm dialog with cancel button focused", function (e) {
@@ -158,7 +162,7 @@
 			return false;
 		});
 
-		$("#order").on( 'click', function () {
+		$("#order").on( "click", function () {
 			reset();
 			alertify.set({ buttonReverse: true });
 			alertify.confirm("Confirm dialog with reversed button order", function (e) {
@@ -173,7 +177,7 @@
 
 		// ==============================
 		// Custom Log
-		$("#custom").on( 'click', function () {
+		$("#custom").on( "click", function () {
 			reset();
 			alertify.custom = alertify.extend("custom");
 			alertify.custom("I'm a custom log message");
@@ -182,9 +186,9 @@
 
 		// ==============================
 		// Custom Themes
-		$("#bootstrap").on( 'click', function () {
+		$("#bootstrap").on( "click", function () {
 			reset();
-			$("#toggleCSS").attr("href", "../themes/alertify.bootstrap.css");
+			$("#toggleCSS").attr("href", "../dist/css/alertify-bootstrap.css");
 			alertify.prompt("Prompt dialog with bootstrap theme", function (e) {
 				if (e) {
 					alertify.success("You've clicked OK");

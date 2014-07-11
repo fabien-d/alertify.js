@@ -2,7 +2,7 @@
   "name": "alertify",
   "description": "An unobtrusive customizable JavaScript notification system",
   "version": "0.3.11",
-  "homepage": "http://fabien-d.github.com/alertify.js/",
+  "homepage": "http://alertifyjs.org/alertify.js/",
   "author": {
     "name": "Fabien Doiron",
     "email": "fabien.doiron@gmail.com"
@@ -10,15 +10,22 @@
   "scripts": {
     "test": "grunt jshint qunit"
   },
+  "repository": "git@github.com:alertifyjs/alertify.js.git",
   "devDependencies": {
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-concat": "~0.2.0",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-jshint": "~0.4.3",
     "grunt-contrib-qunit": "~0.2.1",
     "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-clean": "~0.4.1",
-    "grunt-contrib-concat": "~0.2.0",
     "grunt-contrib-watch": "~0.4.4",
-    "grunt-contrib-connect": "~0.3.0"
+    "gulp": "^3.8.6",
+    "gulp-concat": "^2.3.3",
+    "gulp-minify-css": "^0.3.6",
+    "gulp-qunit": "^0.3.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglifyjs": "^0.4.2"
   },
   "licenses": [
     {
