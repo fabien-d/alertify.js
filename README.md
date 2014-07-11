@@ -1,8 +1,5 @@
 # Alertify.js
 
-## Browser Dialogs Never Looked So Good
-
-
 [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 
 [![Analytics](https://ga-beacon.appspot.com/UA-51240888-3/alertifyjs/alertify.js/README.md)](https://github.com/igrigorik/ga-beacon)
