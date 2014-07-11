@@ -1,0 +1,13 @@
+{
+    "packageManager": "github",
+    "name": "alertifyjs",
+    "repo": "alertifyjs/alertify.js",
+    "files": {
+        "include": [
+            "dist/js/alertify.js",
+            "dist/js/alertify.js.map",
+            "dist/css/alertify.css",
+            "dist/css/alertify-bootstrap.css"
+        ]
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "alertify.js",
+    "version": "0.3.11",
+    "main": "lib/alertify.js",
+    "ignore": [
+        ".gitignore",
+        "Gruntfile.js",
+        "gulpfile.js",
+        "package.json",
+        "test",
+        "src",
+        "example",
+        ".travis.yml",
+        "Contributors.md"
+    ],
+    "dependencies": {}
+}
