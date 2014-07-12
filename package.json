@@ -1,30 +1,32 @@
 {
-    "name": "alertify",
-    "description": "An unobtrusive customizable JavaScript notification system",
-    "version": "0.3.11",
-    "homepage": "http://alertifyjs.org/alertify.js/",
-    "author": {
-        "name": "Fabien Doiron",
-        "email": "fabien.doiron@gmail.com"
-    },
-    "scripts": {
-        "test": "gulp test"
-    },
-    "repository": "git@github.com:alertifyjs/alertify.js.git",
-    "devDependencies": {
-        "gulp": "^3.8.6",
-        "gulp-concat": "^2.3.3",
-        "gulp-jshint": "^1.7.1",
-        "gulp-minify-css": "^0.3.6",
-        "gulp-qunit": "^0.3.3",
-        "gulp-rename": "^1.2.0",
-        "gulp-uglifyjs": "^0.4.2",
-        "jshint-stylish": "^0.4.0"
-    },
-    "licenses": [
-        {
-            "type": "MIT",
-            "url": "http://opensource.org/licenses/mit-license.php"
-        }
-    ]
+  "name": "alertify",
+  "description": "An unobtrusive customizable JavaScript notification system",
+  "version": "0.3.11",
+  "homepage": "http://alertifyjs.org/alertify.js/",
+  "author": {
+    "name": "Fabien Doiron",
+    "email": "fabien.doiron@gmail.com"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": "git@github.com:alertifyjs/alertify.js.git",
+  "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-autoprefixer": "0.0.8",
+    "gulp-concat": "^2.3.3",
+    "gulp-jshint": "^1.7.1",
+    "gulp-minify-css": "^0.3.6",
+    "gulp-qunit": "^0.3.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^0.7.2",
+    "gulp-uglifyjs": "^0.4.2",
+    "jshint-stylish": "^0.4.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/mit-license.php"
+    }
+  ]
 }

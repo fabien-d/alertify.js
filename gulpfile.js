@@ -5,7 +5,9 @@ var gulp = require("gulp"),
     qunit = require("gulp-qunit"),
     concat = require("gulp-concat"),
     jshint = require("gulp-jshint"),
-    stylish = require("jshint-stylish");
+    stylish = require("jshint-stylish"),
+    prefix = require("gulp-autoprefixer"),
+    sass = require("gulp-sass");
 
 var p = function (path) {
     return __dirname + (path.charAt(0) === "/" ? "" : "/") + path;
@@ -13,9 +15,13 @@ var p = function (path) {
 
 var paths = {
     src: {
+        sass: {
+            all: "src/sass/**/*.scss"
+        },
         css: {
-            all: "src/css/**/*.css",
-            core: "src/css/core.css",
+            base: p("src/css"),
+            all: p("src/css/**/*.css"),
+            core: p("src/css/core.css"),
             themes: {
                 bootstrap: p("src/css/themes/bootstrap/**/*.css"),
                 default: p("src/css/themes/default/**/*.css")
@@ -28,6 +34,15 @@ var paths = {
         js: p("dist/js")
     }
 };
+
+gulp.task("sass", function() {
+
+    gulp.src(paths.src.sass.all)
+        .pipe(sass())
+        .pipe(prefix("last 5 version", "> 1%", "Explorer 7", "Explorer 8", {cascade: true}))
+        .pipe(gulp.dest(paths.src.css.base));
+
+});
 
 gulp.task("css-min", function () {
 
@@ -65,6 +80,7 @@ gulp.task("uglify", function () {
 });
 
 gulp.task("watch", function () {
+    gulp.watch([paths.src.sass.all], ["sass"]);
     gulp.watch([paths.src.css.all], ["css-min"]);
     gulp.watch([paths.src.js], ["uglify"]);
 });

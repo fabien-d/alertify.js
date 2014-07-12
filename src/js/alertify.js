@@ -1,4 +1,3 @@
-/*global define*/
 (function (global, undefined) {
 	"use strict";
 

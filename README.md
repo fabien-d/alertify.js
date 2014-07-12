@@ -1,14 +1,11 @@
 # Alertify.js
 
+Alertify is an unobtrusive customizable JavaScript notification system.
+
 [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 
 [![Analytics](https://ga-beacon.appspot.com/UA-51240888-3/alertifyjs/alertify.js/README.md)](https://github.com/igrigorik/ga-beacon)
 
-
-## Opening issues
-When opening a new issue, please note that the more information you provide, the better chances someone will
-be able to assist you. All issues should copy the template below and fill out the blanks. This ensures that 
-the issue can be effectively reproduced and solved.
 
 ## Getting started
 Checkout the [wiki](https://github.com/alertifyjs/alertify.js/wiki) to get up and running with alertify.js.
@@ -28,6 +25,23 @@ See wiki [Submitting a Pull Request](https://github.com/alertifyjs/alertify.js/w
 * Opera
 * iOS
 * Android
+
+## Roadmap
+
+- [AngularJS](//angularjs.org) module
+- [jQuery](//jquery.com) module
+- Integration with [HTML5 Notification API](//developer.mozilla.org/en/docs/Web/API/notification) (optional)
+- Port to [Dart](//dartlang.org)
+- [Angular.dart](//angulardart.org) module
+- LESS support
+- SASS support
+- Custom polymer element(s)
+- New bower package
+- New jsDelivr package
+- Allow HTML in messages
+- Allow multiple inputs/custom templates in modules
+- Remove legacy brower support
+- Rewrite in ES6.
 
 ## Credit where credit is due
 
