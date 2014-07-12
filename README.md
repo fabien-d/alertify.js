@@ -1,12 +1,10 @@
 ### alertify.js - browser dialogs never looked so good
 
-## The end of maintenance... at least for now
+## Active development moved to: [alertifyjs/alertify.js](https://github.com/alertifyjs/alertify.js)
 
-Unfortunately, I will no longer be maintaining alertify.js. I have many ongoing projects that aren't leaving me with enough time to do what needs to be done. If anyone wants to create a fork and maintain - by all means go for it!
+Unfortunately, I will no longer be maintaining alertify.js here. I have many ongoing projects that aren't leaving me with enough time to do what needs to be done. It's been great seeing people use it and enjoy it and this decision is simply because I don't believe it's fair that developers are looking for help and not getting it. 
 
-It's been great seeing people use it and enjoy it and this decision is simply because I don't believe it's fair that developers are looking for help and not getting it.
-
-I wish I had more time or contributions to keep it going and make it better, but the sad reality is that not usually the case on these kinds of projects.
+Please see [alertifyjs/alertify.js](https://github.com/alertifyjs/alertify.js) for any support issues, and please considering duplicating/moving your stars/issues there as well for visibility's sake. 
 
 ## Why is this repo empty?
 Each version of alertify is currently in its own branch and tagged to be used with bower.
