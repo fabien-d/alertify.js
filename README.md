@@ -2,10 +2,16 @@
 
 Alertify is an unobtrusive customizable JavaScript notification system.
 
+
+## Build Status
+
+We're trying out several different awesome build systems.
+
 [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 
-[![Analytics](https://ga-beacon.appspot.com/UA-51240888-3/alertifyjs/alertify.js/README.md)](https://github.com/igrigorik/ga-beacon)
+[![Codeship Status for alertifyjs/alertify.js](https://www.codeship.io/projects/8f6cd300-e2cd-0131-245d-76c4e62fcc04/status?branch=master)](https://www.codeship.io/projects/25369)
 
+[![CircleCI](https://circleci.com/gh/alertifyjs/alertify.js.png?circle-token=f2e40b15e51980c9d248c40f51f0d7ebc1d2aea1)](https://circleCI/gh/alertifyjs/alertify.js)
 
 ## Getting started
 Checkout the [wiki](https://github.com/alertifyjs/alertify.js/wiki) to get up and running with alertify.js.
@@ -67,3 +73,4 @@ alertify.js is licensed under MIT http://www.opensource.org/licenses/MIT
 
 Copyright &copy;, Fabien Doiron <fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
 
+[![Analytics](https://ga-beacon.appspot.com/UA-51240888-3/alertifyjs/alertify.js/README.md)](https://github.com/igrigorik/ga-beacon)
