@@ -38,7 +38,8 @@
 	<a href="#" id="forever">Persistent Log</a>
 
 	<h2>Themes</h2>
-	<a href="#" id="bootstrap">Bootstrap Theme</a>
+	<a href="#" id="bootstrap">Bootstrap Theme</a><br>
+	<a href="#" id="bootstrap-3">Bootstrap 3 Theme</a>
 
 	<script src="https://cdn.jsdelivr.net/g/jquery"></script>
 	<script src="../dist/js/alertify.js"></script>
@@ -190,6 +191,20 @@
 			reset();
 			$("#toggleCSS").attr("href", "../dist/css/alertify-bootstrap.css");
 			alertify.prompt("Prompt dialog with bootstrap theme", function (e) {
+				if (e) {
+					alertify.success("You've clicked OK");
+				} else {
+					alertify.error("You've clicked Cancel");
+				}
+			}, "Default Value");
+			return false;
+		});
+
+		// Bootstrap-3 Theme
+		$("#bootstrap-3").on( "click", function () {
+			reset();
+			$("#toggleCSS").attr("href", "../dist/css/alertify-bootstrap-3.css");
+			alertify.prompt("Prompt dialog with Bootstrap 3 theme", function (e) {
 				if (e) {
 					alertify.success("You've clicked OK");
 				} else {
