@@ -23,6 +23,7 @@ var paths = {
             all: p("src/css/**/*.css"),
             core: p("src/css/core.css"),
             themes: {
+                bootstrap3: p("src/css/themes/bootstrap3/**/*.css"),
                 bootstrap: p("src/css/themes/bootstrap/**/*.css"),
                 default: p("src/css/themes/default/**/*.css")
             }
@@ -54,6 +55,11 @@ gulp.task("css-min", function () {
     gulp.src([paths.src.css.core, paths.src.css.themes.bootstrap])
         .pipe(minifyCSS())
         .pipe(concat("alertify-bootstrap.css"))
+        .pipe(gulp.dest(paths.dest.css));
+
+    gulp.src([paths.src.css.core, paths.src.css.themes.bootstrap3])
+        .pipe(minifyCSS())
+        .pipe(concat("alertify-bootstrap-3.css"))
         .pipe(gulp.dest(paths.dest.css));
 
 });
