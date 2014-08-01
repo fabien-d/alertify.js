@@ -473,7 +473,7 @@
 			 *
 			 * @return {Object}
 			 */
-			log : function (message, type, wait) {
+			log : function (message, type, wait, click) {
 				// check to ensure the alertify dialog element
 				// has been successfully created
 				var check = function () {
@@ -485,7 +485,7 @@
 				check();
 
 				elLog.className = "alertify-logs";
-				this.notify(message, type, wait);
+				this.notify(message, type, wait, click);
 				return this;
 			},
 
@@ -500,10 +500,14 @@
 			 *
 			 * @return {undefined}
 			 */
-			notify : function (message, type, wait) {
+			notify : function (message, type, wait, click) {
 				var log = document.createElement("article");
 				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
 				log.innerHTML = message;
+                // Add the click handler, if specified.
+                if("function" === typeof click) {
+                    this.bind(log, "click", click);
+                }
 				// append child
 				elLog.appendChild(log);
 				// triggers the CSS animation
@@ -605,10 +609,10 @@
 			confirm : function (message, fn, cssClass) { _alertify.dialog(message, "confirm", fn, "", cssClass); return this; },
 			extend  : _alertify.extend,
 			init    : _alertify.init,
-			log     : function (message, type, wait) { _alertify.log(message, type, wait); return this; },
+			log     : function (message, type, wait, click) { _alertify.log(message, type, wait, click); return this; },
 			prompt  : function (message, fn, placeholder, cssClass) { _alertify.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
-			success : function (message, wait) { _alertify.log(message, "success", wait); return this; },
-			error   : function (message, wait) { _alertify.log(message, "error", wait); return this; },
+			success : function (message, wait, click) { _alertify.log(message, "success", wait, click); return this; },
+			error   : function (message, wait, click) { _alertify.log(message, "error", wait, click); return this; },
 			set     : function (args) { _alertify.set(args); },
 			labels  : _alertify.labels,
 			debug   : _alertify.handleErrors

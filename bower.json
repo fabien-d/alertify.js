@@ -1,10 +1,13 @@
 {
     "name": "alertify.js",
-    "version": "0.3.11",
-    "main": "lib/alertify.js",
+    "version": "0.3.12",
+    "main": "dist/js/alertify.js",
+    "authors": [
+        { "name": "Fabien Doiron", "email" : "fabien.doiron@gmail.com"},
+        { "name": "Brad Berger", "email" : "brad@bradb.net", "homepage": "https://bradb.net"}
+    ],
     "ignore": [
         ".gitignore",
-        "Gruntfile.js",
         "gulpfile.js",
         "package.json",
         "test",
@@ -13,5 +16,9 @@
         ".travis.yml",
         "Contributors.md"
     ],
-    "dependencies": {}
+    "dependencies": {},
+    "devDependencies": {
+        "jquery": "*",
+        "qunit": "*"
+    }
 }
