@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
 # Alertify.js
 
 Alertify is an unobtrusive customizable JavaScript notification system.
