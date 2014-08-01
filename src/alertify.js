@@ -296,16 +296,19 @@
 			 *
 			 * @return {undefined}
 			 */
-			close : function (elem, wait) {
+			close : function (elem, wait, clickToClose) {
 				// Unary Plus: +"2" === 2
 				var timer = (wait && !isNaN(wait)) ? +wait : this.delay,
 				    self  = this,
 				    hideElement, transitionDone;
 
 				// set click event on log messages
-				this.bind(elem, "click", function () {
-					hideElement(elem);
-				});
+				if (clickToClose) {
+					this.bind(elem, "click", function () {
+						hideElement(elem);
+					});
+				}
+
 				// Hide the dialog box after transition
 				// This ensure it doens't block any element from being clicked
 				transitionDone = function (event) {
@@ -331,10 +334,58 @@
 						}
 					}
 				};
+
 				// never close (until click) if wait is set to 0
 				if (wait === 0) return;
 				// set timeout to auto close the log message
 				setTimeout(function () { hideElement(elem); }, timer);
+			},
+
+			/**
+			 * Close a log message immediately
+			 *
+			 * @param  {Object} className    HTML class of log messages to close now
+			 *
+			 * @return {undefined}
+			 */
+			closeNow : function (className) {
+
+				// Unary Plus: +"2" === 2
+				var self  = this,
+				    hideElement, transitionDone;
+
+				// Hide the dialog box after transition
+				// This ensure it doens't block any element from being clicked
+				transitionDone = function (event) {
+					event.stopPropagation();
+					// unbind event so function only gets called once
+					self.unbind(this, self.transition.type, transitionDone);
+					// remove log message
+					elLog.removeChild(this);
+					if (!elLog.hasChildNodes()) elLog.className += " alertify-logs-hidden";
+				};
+
+				// this sets the hide class to transition out
+				// or removes the child if css transitions aren't supported
+				hideElement = function (el) {
+					// ensure element exists
+					if (typeof el !== "undefined" && el.parentNode === elLog) {
+						// whether CSS transition exists
+						if (self.transition.supported) {
+							self.bind(el, self.transition.type, transitionDone);
+							el.className += " alertify-log-hide";
+						} else {
+							elLog.removeChild(el);
+							if (!elLog.hasChildNodes()) elLog.className += " alertify-logs-hidden";
+						}
+					}
+				};
+
+				var elems = document.getElementsByClassName('alertify-log-' + className);
+				for (var i = 0; i < elems.length; i++) {
+					hideElement(elems[i]);
+				}
+				return;
 			},
 
 			/**
@@ -474,7 +525,10 @@
 			 *
 			 * @return {Object}
 			 */
-			log : function (message, type, wait) {
+			log : function (message, type, wait, clickToClose) {
+				// set default clickToClose value to true
+				clickToClose = (clickToClose === undefined) ? true : clickToClose;
+
 				// check to ensure the alertify dialog element
 				// has been successfully created
 				var check = function () {
@@ -486,7 +540,7 @@
 				check();
 
 				elLog.className = "alertify-logs";
-				this.notify(message, type, wait);
+				this.notify(message, type, wait, clickToClose);
 				return this;
 			},
 
@@ -501,7 +555,7 @@
 			 *
 			 * @return {undefined}
 			 */
-			notify : function (message, type, wait) {
+			notify : function (message, type, wait, clickToClose) {
 				var log = document.createElement("article");
 				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
 				log.innerHTML = message;
@@ -509,7 +563,7 @@
 				elLog.appendChild(log);
 				// triggers the CSS animation
 				setTimeout(function() { log.className = log.className + " alertify-log-show"; }, 50);
-				this.close(log, wait);
+				this.close(log, wait, clickToClose);
 			},
 
 			/**
@@ -606,11 +660,12 @@
 			confirm : function (message, fn, cssClass) { _alertify.dialog(message, "confirm", fn, "", cssClass); return this; },
 			extend  : _alertify.extend,
 			init    : _alertify.init,
-			log     : function (message, type, wait) { _alertify.log(message, type, wait); return this; },
+			log     : function (message, type, wait, clickToClose) { _alertify.log(message, type, wait, clickToClose); return this; },
 			prompt  : function (message, fn, placeholder, cssClass) { _alertify.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
-			success : function (message, wait) { _alertify.log(message, "success", wait); return this; },
-			error   : function (message, wait) { _alertify.log(message, "error", wait); return this; },
+			success : function (message, wait, clickToClose) { _alertify.log(message, "success", wait, clickToClose); return this; },
+			error   : function (message, wait, clickToClose) { _alertify.log(message, "error", wait, clickToClose); return this; },
 			set     : function (args) { _alertify.set(args); },
+			closeNow: function (className) { _alertify.closeNow(className); },
 			labels  : _alertify.labels,
 			debug   : _alertify.handleErrors
 		};
