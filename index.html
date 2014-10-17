@@ -157,8 +157,8 @@
 
 				<p><pre class="brush:javascript">
 					// confirm dialog
-					alertify.confirm("Message", function (e) {
-						if (e) {
+					alertify.confirm("Message", function (ok) {
+						if (ok) {
 							// user clicked "ok"
 						} else {
 							// user clicked "cancel"
@@ -167,9 +167,9 @@
 
 				<p><pre class="brush:javascript">
 					// prompt dialog
-					alertify.prompt("Message", function (e, str) {
+					alertify.prompt("Message", function (ok, str) {
 						// str is the input text
-						if (e) {
+						if (ok) {
 							// user clicked "ok"
 						} else {
 							// user clicked "cancel"
@@ -370,8 +370,8 @@
 
 		$("confirm").onclick = function () {
 			reset();
-			alertify.confirm("This is a confirm dialog", function (e) {
-				if (e) {
+			alertify.confirm("This is a confirm dialog", function (ok) {
+				if (ok) {
 					alertify.success("You've clicked OK");
 				} else {
 					alertify.error("You've clicked Cancel");
@@ -382,8 +382,8 @@
 
 		$("prompt").onclick = function () {
 			reset();
-			alertify.prompt("This is a prompt dialog", function (e, str) {
-				if (e) {
+			alertify.prompt("This is a prompt dialog", function (ok, str) {
+				if (ok) {
 					alertify.success("You've clicked OK and typed: " + str);
 				} else {
 					alertify.error("You've clicked Cancel");
@@ -430,8 +430,8 @@
 		$("labels").onclick = function () {
 			reset();
 			alertify.set({ labels: { ok: "Accept", cancel: "Deny" } });
-			alertify.confirm("Confirm dialog with custom button labels", function (e) {
-				if (e) {
+			alertify.confirm("Confirm dialog with custom button labels", function (ok) {
+				if (ok) {
 					alertify.success("You've clicked OK");
 				} else {
 					alertify.error("You've clicked Cancel");
@@ -443,8 +443,8 @@
 		$("focus").onclick = function () {
 			reset();
 			alertify.set({ buttonFocus: "cancel" });
-			alertify.confirm("Confirm dialog with cancel button focused", function (e) {
-				if (e) {
+			alertify.confirm("Confirm dialog with cancel button focused", function (ok) {
+				if (ok) {
 					alertify.success("You've clicked OK");
 				} else {
 					alertify.error("You've clicked Cancel");
@@ -456,8 +456,8 @@
 		$("order").onclick = function () {
 			reset();
 			alertify.set({ buttonReverse: true });
-			alertify.confirm("Confirm dialog with reversed button order", function (e) {
-				if (e) {
+			alertify.confirm("Confirm dialog with reversed button order", function (ok) {
+				if (ok) {
 					alertify.success("You've clicked OK");
 				} else {
 					alertify.error("You've clicked Cancel");
@@ -480,8 +480,8 @@
 		$("bootstrap").onclick = function () {
 			reset();
 			$("toggleCSS").href = "assets/js/lib/alertify/alertify.bootstrap.css";
-			alertify.prompt("Prompt dialog with bootstrap theme", function (e) {
-				if (e) {
+			alertify.prompt("Prompt dialog with bootstrap theme", function (ok) {
+				if (ok) {
 					alertify.success("You've clicked OK");
 				} else {
 					alertify.error("You've clicked Cancel");
