@@ -1,6 +1,6 @@
 {
   "name": "alertify.js",
-  "version": "0.3.14",
+  "version": "0.3.15",
   "main": "dist/js/alertify.js",
   "homepage": "https://alertifyjs.org",
   "keywords": [
