@@ -12,6 +12,7 @@
     "eqnull": true,
     "node": true,
     "smarttabs": true,
+    "browser": true,
     "quotmark": "double",
     "globals": {
         "document": true,

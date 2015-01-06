@@ -2,6 +2,13 @@
   "name": "alertify.js",
   "version": "0.3.14",
   "main": "dist/js/alertify.js",
+  "homepage": "https://alertifyjs.org",
+  "keywords": [
+    "alert",
+    "alertify",
+    "dialog",
+    "js"
+  ],
   "authors": [
     {
       "name": "Fabien Doiron",
@@ -23,11 +30,8 @@
     ".travis.yml",
     "Contributors.md"
   ],
-  "dependencies": {
-    "qunit": "~1.16.0"
-  },
   "devDependencies": {
     "jquery": "*",
-    "qunit": "*"
+    "qunit": "~1.16.0"
   }
 }
