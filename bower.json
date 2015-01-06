@@ -1,24 +1,33 @@
 {
-    "name": "alertify.js",
-    "version": "0.3.12",
-    "main": "dist/js/alertify.js",
-    "authors": [
-        { "name": "Fabien Doiron", "email" : "fabien.doiron@gmail.com"},
-        { "name": "Brad Berger", "email" : "brad@bradb.net", "homepage": "https://bradb.net"}
-    ],
-    "ignore": [
-        ".gitignore",
-        "gulpfile.js",
-        "package.json",
-        "test",
-        "src",
-        "example",
-        ".travis.yml",
-        "Contributors.md"
-    ],
-    "dependencies": {},
-    "devDependencies": {
-        "jquery": "*",
-        "qunit": "*"
+  "name": "alertify.js",
+  "version": "0.3.13",
+  "main": "dist/js/alertify.js",
+  "authors": [
+    {
+      "name": "Fabien Doiron",
+      "email": "fabien.doiron@gmail.com"
+    },
+    {
+      "name": "Brad Berger",
+      "email": "brad@bradb.net",
+      "homepage": "https://bradb.net"
     }
+  ],
+  "ignore": [
+    ".gitignore",
+    "gulpfile.js",
+    "package.json",
+    "test",
+    "src",
+    "example",
+    ".travis.yml",
+    "Contributors.md"
+  ],
+  "dependencies": {
+    "qunit": "~1.16.0"
+  },
+  "devDependencies": {
+    "jquery": "*",
+    "qunit": "*"
+  }
 }

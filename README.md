@@ -21,13 +21,22 @@ See wiki [Submitting a Pull Request](https://github.com/alertifyjs/alertify.js/w
 
 ## Where is it being tested?
 
-* Microsoft Internet Explorer 8+ (Standards Mode)
+* Microsoft Internet Explorer 9+
 * Google Chrome
 * Mozilla Firefox
 * Apple Safari
 * Opera
 * iOS
 * Android
+
+### IE 8 Support
+
+Internet Explorer 8 support was dropped in version 0.3.13. If you need IE 8 support,
+use version 0.3.12. Since Microsoft no longer supports IE 8, it's better to move on.
+
+### IE 9 Support
+
+Internet Explorer 9 will be dropped in 0.4, as well.
 
 ## Credit where credit is due
 
@@ -52,5 +61,3 @@ alertify.js is licensed under MIT http://www.opensource.org/licenses/MIT
 ### Copyright
 
 Copyright &copy;, Fabien Doiron <fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
-
-[![Analytics](https://ga-beacon.appspot.com/UA-51240888-3/alertifyjs/alertify.js/README.md)](https://github.com/igrigorik/ga-beacon)
