@@ -10,14 +10,8 @@ We're trying out several different awesome build systems.
 
 [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 
-## Getting started
-Checkout the [wiki](https://github.com/alertifyjs/alertify.js/wiki) to get up and running with alertify.js.
-
 ## Examples
 [Visit alertifyjs.org](http://alertifyjs.org/)
-
-## Contributing
-See wiki [Submitting a Pull Request](https://github.com/alertifyjs/alertify.js/wiki/Submitting-a-Pull-Request)
 
 ## Where is it being tested?
 

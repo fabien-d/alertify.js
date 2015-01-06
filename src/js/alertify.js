@@ -12,6 +12,23 @@
             queue = [],
             $, btnCancel, btnOK, btnReset, btnResetBack, btnFocus, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
 
+        function getStyleRuleValue(style, selector, sheet) {
+            var sheets = typeof sheet !== "undefined" ? [sheet] : document.styleSheets;
+            for (var i = 0, l = sheets.length; i < l; i++) {
+                sheet = sheets[i];
+                if (!sheet.cssRules) {
+                    continue;
+                }
+                for (var j = 0, k = sheet.cssRules.length; j < k; j++) {
+                    var rule = sheet.cssRules[j];
+                    if (rule.selectorText && rule.selectorText.split(",").indexOf(selector) !== -1) {
+                        return rule.style[style];
+                    }
+                }
+            }
+            return null;
+        }
+
         /**
          * Markup pieces
          * @type {Object}
@@ -350,8 +367,36 @@
                     if (typeof el !== "undefined" && el.parentNode === elLog) {
                         // whether CSS transition exists
                         if (self.transition.supported) {
+
                             el.addEventListener(self.transition.type, transitionDone);
                             el.className += " alertify-log-hide";
+
+                            // This is a "just in case" for situations where the transition doesn't fire.
+                            var dur = (
+                                    getStyleRuleValue("transition-duration", ".alertify-log-hide") ||
+                                    getStyleRuleValue("-webkit-transition-duration", ".alertify-log-hide") ||
+                                    getStyleRuleValue("-moz-transition-duration", ".alertify-log-hide") ||
+                                    getStyleRuleValue("-o-transition-duration", ".alertify-log-hide") ||
+                                    "0"
+                                ).toLowerCase(),
+                                time = parseInt(dur),
+                                offset = 1;
+
+                            if (!time || isNaN(time)) {
+                                time = 500;
+                            }
+                            if (dur.indexOf("ms") > -1) {
+                                time += offset;
+                            } else if (dur.indexOf("s") > -1) {
+                                time *= 1000;
+                                time += offset;
+                            }
+                            setTimeout(function () {
+                                if (typeof el !== "undefined" && el.parentNode === elLog) {
+                                    elLog.removeChild(el);
+                                }
+                            }, time);
+
                         } else {
                             elLog.removeChild(el);
                             if (!elLog.hasChildNodes()) {
