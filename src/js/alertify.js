@@ -176,10 +176,10 @@
                 };
 
                 // common event handler (keyup, ok and cancel)
-                common = function(event) {
+                common = function() {
                     self.hide();
-                    global.addEventListener("keyup", key);
-                    global.addEventListener("keydown", keydown);
+                    global.removeEventListener("keyup", key);
+                    global.removeEventListener("keydown", keydown);
                     global.removeEventListener("focus", reset);
                     if (hasOK) {
                         btnOK.removeEventListener("click", ok);
@@ -205,7 +205,7 @@
                 };
 
                 // reset focus to first item in the dialog
-                reset = function(event) {
+                reset = function() {
                     if (hasInput) {
                         input.focus();
                     } else if (!hasCancel || self.buttonReverse) {
