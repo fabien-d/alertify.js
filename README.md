@@ -3,12 +3,15 @@
 
 Alertify is an unobtrusive customizable JavaScript notification system.
 
-
 ## Build Status
 
 We're trying out several different awesome build systems.
 
 [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
+
+## Reporting Issues
+
+If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/) etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproducable, concrete example is your best way to get our attention! Not to say that we won't do our best to fix other issues, though :-)
 
 ## Examples
 [Visit alertifyjs.org](http://alertifyjs.org/)
@@ -54,4 +57,4 @@ alertify.js is licensed under MIT http://www.opensource.org/licenses/MIT
 
 ### Copyright
 
-Copyright &copy;, Fabien Doiron <fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
+&copy; Fabien Doiron <fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
