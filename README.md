@@ -6,6 +6,9 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 
 Feel free to stop by the [Alertify.js chat room](https://gitter.im/alertifyjs/alertify.js) to ask questions, report issues, make suggestions, or just say hi. 
 
+If you prefer something that's not in real-time, stop by the [Alertify.js Google Group](https://groups.google.com/forum/#!forum/alertifyjs/new) to get in touch, too.
+
+Need to get in contact with us directly? Send us an email at [inbox@alertifyjs.org](mailto:inbox@alertifyjs.org).
 
 ## Reporting Issues
 
