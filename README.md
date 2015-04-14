@@ -2,7 +2,7 @@
 
 Alertify is an unobtrusive customizable JavaScript notification system.
 
-## Connect with us
+## Get In Touch
 
 Feel free to stop by the [Alertify.js chat room](https://gitter.im/alertifyjs/alertify.js) to ask questions, report issues, make suggestions, or just say hi. 
 
