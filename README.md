@@ -1,20 +1,19 @@
-[![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
-# Alertify.js
+# Alertify.js [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
 
 Alertify is an unobtrusive customizable JavaScript notification system.
 
-## Build Status
+## Connect with us
 
-We're trying out several different awesome build systems.
+Feel free to stop by the [Alertify.js chat room](https://gitter.im/alertifyjs/alertify.js) to ask questions, report issues, make suggestions, or just say hi. 
 
-[![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 
 ## Reporting Issues
 
 If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/) etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproducable, concrete example is your best way to get our attention! Not to say that we won't do our best to fix other issues, though :-)
 
-## Examples
-[Visit alertifyjs.org](http://alertifyjs.org/)
+## Usage and Examples
+
+For code examples, stop by the [website at alertifyjs.org](http://alertifyjs.org/)
 
 ## Where is it being tested?
 
