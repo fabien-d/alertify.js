@@ -7,6 +7,7 @@
     "name": "Fabien Doiron",
     "email": "fabien.doiron@gmail.com"
   },
+  "main": "src/js/alertify.js",
   "scripts": {
     "test": "gulp test"
   },
