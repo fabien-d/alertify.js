@@ -1,4 +1,4 @@
-(function(global, undefined) {
+var Alertify = (function(global, undefined) {
     "use strict";
 
     var document = global.document, Alertify;
@@ -731,13 +731,10 @@
         };
     };
 
-    // AMD and window support
-    if (typeof define === "function") {
-        define([], function() {
-            return new Alertify();
-        });
-    } else if (typeof global.alertify === "undefined") {
-        global.alertify = new Alertify();
-    }
+    return new Alertify();
 
-}(window));
+}(typeof window != "undefined" ? window : {}));
+
+// AMD, window, and NPM support
+if (typeof module != "undefined" && module !== null && module.exports) module.exports = Alertify;
+else if (typeof define === "function" && define.amd) define(function() {return Alertify});
