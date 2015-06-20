@@ -65,7 +65,7 @@
 				background-image:    -moz-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
 				background-image:     -ms-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
 				background-image:      -o-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
-				background-image:         linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+				background-image:         linear-gradient(to bottom, rgba(255,255,255,.3), rgba(255,255,255,0));
 			}
 			.alertify-button:focus {
 				outline: none;
@@ -87,7 +87,7 @@
 					background-image:    -moz-linear-gradient(top, #FFF, #E6E6E6);
 					background-image:     -ms-linear-gradient(top, #FFF, #E6E6E6);
 					background-image:      -o-linear-gradient(top, #FFF, #E6E6E6);
-					background-image:         linear-gradient(top, #FFF, #E6E6E6);
+					background-image:         linear-gradient(to bottom, #FFF, #E6E6E6);
 				}
 				.alertify-button-cancel:hover,
 				.alertify-button-cancel:focus,
