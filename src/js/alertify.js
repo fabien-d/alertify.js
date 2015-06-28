@@ -1,4 +1,6 @@
-(function(global, undefined) {
+/* global require, module */
+
+var Alertify = (function(global, undefined) {
     "use strict";
 
     var document = global.document, Alertify;
@@ -731,13 +733,16 @@
         };
     };
 
-    // AMD and window support
-    if (typeof define === "function") {
-        define([], function() {
-            return new Alertify();
+    // AMD, window, and NPM support
+    if (typeof "undefined" !== typeof module && !! module && !! module.exports) {
+        module.exports = Alertify;
+    } else if (typeof define === "function" && define.amd) {
+        define(function() {
+            return Alertify;
         });
-    } else if (typeof global.alertify === "undefined") {
+    } else {
         global.alertify = new Alertify();
     }
 
-}(window));
+}(typeof window !== "undefined" ? window : {}));
+

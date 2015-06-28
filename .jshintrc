@@ -9,13 +9,14 @@
     "sub": true,
     "undef": true,
     "boss": true,
+    "browser": true,
     "eqnull": true,
     "node": true,
     "smarttabs": true,
-    "browser": true,
     "quotmark": "double",
     "globals": {
-        "document": true,
-        "alertify": true
+        "alertify": true,
+        "define": false,
+        "module": false
     }
 }
