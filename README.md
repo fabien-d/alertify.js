@@ -1,14 +1,9 @@
+[![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 [![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
+
 # Alertify.js
 
 Alertify is an unobtrusive customizable JavaScript notification system.
-
-
-## Build Status
-
-We're trying out several different awesome build systems.
-
-[![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 
 ## Examples
 [Visit alertifyjs.org](http://alertifyjs.org/)
@@ -30,7 +25,7 @@ use version 0.3.12. Since Microsoft no longer supports IE 8, it's better to move
 
 ### IE 9 Support
 
-Internet Explorer 9 will be dropped in 0.4, as well.
+Internet Explorer 9 will be dropped in 0.4 and above, as well.
 
 ## Credit where credit is due
 

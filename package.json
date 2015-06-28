@@ -1,12 +1,26 @@
 {
-  "name": "alertify",
-  "description": "An unobtrusive customizable JavaScript notification system",
-  "version": "0.3.15",
+  "name": "alertify.js",
+  "description": "An lightweight, unobtrusive customizable JavaScript notification system.",
+  "version": "0.3.16",
   "homepage": "https://alertifyjs.org/",
+  "main": "dist/js/alertify.js",
   "author": {
-    "name": "Fabien Doiron",
-    "email": "fabien.doiron@gmail.com"
+    "name": "Brad Berger",
+    "email": "brad@alertifyjs.org",
+    "url": "https://bradb.net"
   },
+  "contributors": [{
+    "name": "Fabien Doiron",
+    "email": "fabien.doiron@gmail.com",
+    "url": "http://fabien-d.github.io/"
+  }],
+  "keywords": [
+    "alertify",
+    "alertifyjs",
+    "alertify.js",
+    "notifications",
+    "alert"
+  ],
   "scripts": {
     "test": "gulp test"
   },
@@ -28,5 +42,9 @@
       "type": "MIT",
       "url": "http://opensource.org/licenses/mit-license.php"
     }
-  ]
+  ],
+  "bugs": {
+    "url" : "https://github.com/alertifyjs/alertify.js/issues",
+    "email" : "inbox@alertifyjs.org"
+  }
 }
