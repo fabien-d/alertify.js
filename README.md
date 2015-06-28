@@ -9,7 +9,7 @@
 [![npm version](https://img.shields.io/npm/v/alertify.js.svg)](https://www.npmjs.com/package/alertify.js)
 [![license](https://img.shields.io/npm/l/alertify.js.svg)](https://www.npmjs.com/package/alertify.js)
 [![Dependency Status](https://david-dm.org/alertifyjs/alertify.js.svg)](https://david-dm.org/alertifyjs/alertify.js)
-[![Dev Dependency status](https://alertifyjs/alertify.js/dev-status.svg)](https://david-dm.org/alertifyjs/alertify.js#info=devDependencies&view=table)
+[![Dev Dependency status](https://david-dm.org/alertifyjs/alertify.js/dev-status.svg)](https://david-dm.org/alertifyjs/alertify.js#info=devDependencies&view=table)
 
 [![NPM](https://nodei.co/npm/alertify.js.png)](https://nodei.co/npm/alertify.js/)
 
