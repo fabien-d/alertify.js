@@ -1,4 +1,19 @@
-# Alertify.js [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
+# Alertify.js 
+
+[![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
+[![Bower version](https://badge.fury.io/bo/alertifyjs.svg)](http://badge.fury.io/bo/alertifyjs)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
+[![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
+
+[![npm downloads](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/alertify.js)
+[![npm version](https://img.shields.io/npm/v/alertify.js.svg)](https://www.npmjs.com/package/alertify.js)
+[![license](https://img.shields.io/npm/l/alertify.js.svg)](https://www.npmjs.com/package/alertify.js)
+[![Dependency Status](https://david-dm.org/alertifyjs/alertify.js.svg)](https://david-dm.org/alertifyjs/alertify.js)
+[![Dev Dependency status](https://david-dm.org/alertifyjs/alertify.js/dev-status.svg)](https://david-dm.org/alertifyjs/alertify.js#info=devDependencies&view=table)
+
+[![NPM](https://nodei.co/npm/alertify.js.png)](https://nodei.co/npm/alertify.js/)
+
+# Alertify.js
 
 Alertify is an unobtrusive customizable JavaScript notification system.
 
@@ -12,7 +27,42 @@ Need to get in contact with us directly? Send us an email at [inbox@alertifyjs.o
 
 ## Reporting Issues
 
-If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/) etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproducable, concrete example is your best way to get our attention! Not to say that we won't do our best to fix other issues, though :-)
+If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/) 
+etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproduce-able, 
+concrete example is your best way to get our attention! Not to say that we won't do our best to fix other issues, though :-)
+
+## Installation
+
+### Bower
+
+```bash
+bower install --save alertifyjs
+```
+
+### NPM
+
+```bash
+npm install --save alertifyj.js
+```
+
+### CDN
+
+```html
+<!-- standard theme -->
+<link rel="stylehsheet" href="//cdn.jsdelivr.net/alertify.js/0.3.16/dist/css/alertify.css">
+<script src="//cdn.jsdelivr.net/alertify.js/0.3.16/alertify.min.js"></script>
+```
+
+```html
+<link rel="stylehsheet" href="//cdn.jsdelivr.net/alertify.js/0.3.16/dist/css/alertify-bootstrap.css">
+<script src="//cdn.jsdelivr.net/alertify.js/0.3.16/alertify.min.js"></script>
+```
+
+```html
+<link rel="stylehsheet" href="//cdn.jsdelivr.net/alertify.js/0.3.16/dist/css/alertify-bootstrap-3.css">
+<script src="//cdn.jsdelivr.net/alertify.js/0.3.16/alertify.min.js"></script>
+```
+
 
 ## Usage and Examples
 
@@ -35,7 +85,7 @@ use version 0.3.12. Since Microsoft no longer supports IE 8, it's better to move
 
 ### IE 9 Support
 
-Internet Explorer 9 will be dropped in 0.4, as well.
+Internet Explorer 9 will be dropped in 0.4 and above, as well.
 
 ## Credit where credit is due
 
@@ -48,15 +98,6 @@ no longer being maintained.
 
 This fork is being actively maintained. You should submit your issues here.
 
-
-## Release history
-
-For full details, see the [alertify.js changesets](https://github.com/alertify/alertify.js/wiki/Changeset)
-
 ## License
 
 alertify.js is licensed under MIT http://www.opensource.org/licenses/MIT
-
-### Copyright
-
-&copy; Fabien Doiron [@fabien_doiron](http://twitter.com/fabien_doiron)

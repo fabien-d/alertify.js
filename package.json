@@ -1,33 +1,49 @@
 {
-  "name": "alertify",
-  "description": "An unobtrusive customizable JavaScript notification system",
-  "version": "0.3.15",
+  "name": "alertify.js",
+  "description": "An lightweight, unobtrusive customizable JavaScript notification system.",
+  "version": "0.3.17",
   "homepage": "https://alertifyjs.org/",
+  "main": "dist/js/alertify.js",
   "author": {
-    "name": "Fabien Doiron",
-    "email": "fabien.doiron@gmail.com"
+    "name": "Brad Berger",
+    "email": "brad@alertifyjs.org",
+    "url": "https://bradb.net"
   },
-  "main": "src/js/alertify.js",
+  "contributors": [{
+    "name": "Fabien Doiron",
+    "email": "fabien.doiron@gmail.com",
+    "url": "http://fabien-d.github.io/"
+  }],
+  "keywords": [
+    "alertify",
+    "alertifyjs",
+    "alertify.js",
+    "notifications",
+    "alert"
+  ],
   "scripts": {
     "test": "gulp test"
   },
   "repository": "git@github.com:alertifyjs/alertify.js.git",
   "devDependencies": {
-    "gulp": "^3.8.6",
-    "gulp-autoprefixer": "0.0.8",
-    "gulp-concat": "^2.3.3",
-    "gulp-jshint": "^1.7.1",
-    "gulp-minify-css": "^0.3.6",
-    "gulp-qunit": "^0.3.3",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^0.7.2",
-    "gulp-uglifyjs": "^0.4.2",
-    "jshint-stylish": "^0.4.0"
+    "gulp": "~3.8.6",
+    "gulp-autoprefixer": "~2.3.1",
+    "gulp-concat": "~2.6",
+    "gulp-jshint": "~1.11",
+    "gulp-minify-css": "~1.2",
+    "gulp-qunit": "~1.2",
+    "gulp-sass": "~2.0",
+    "gulp-uglifyjs": "~0.6.2",
+    "jshint-stylish": "~2.0"
   },
   "licenses": [
     {
       "type": "MIT",
       "url": "http://opensource.org/licenses/mit-license.php"
     }
-  ]
+  ],
+  "bugs": {
+    "url" : "https://github.com/alertifyjs/alertify.js/issues",
+    "email" : "inbox@alertifyjs.org"
+  }
 }

@@ -32,6 +32,10 @@ Credit where credit is due
 
 ***
 
+**İsmail Demirbilek**
+* GitHub: [dbtek](https://github.com/dbtek)
+* Website: [ismaildemirbilek.com](http://ismaildemirbilek.com/)
+
 **Brad Berger**
 * GitHub: [bradberger](http://github.com/bradberger)
 * Twitter: [@berger_brad](https://twitter.com/berger_brad)

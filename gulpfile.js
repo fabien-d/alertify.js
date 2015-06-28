@@ -1,11 +1,9 @@
 var gulp = require("gulp"),
     uglify = require("gulp-uglifyjs"),
-    rename = require("gulp-rename"),
     minifyCSS = require("gulp-minify-css"),
     qunit = require("gulp-qunit"),
     concat = require("gulp-concat"),
     jshint = require("gulp-jshint"),
-    stylish = require("jshint-stylish"),
     prefix = require("gulp-autoprefixer"),
     sass = require("gulp-sass");
 
@@ -15,9 +13,7 @@ var p = function (path) {
 
 var paths = {
     src: {
-        sass: {
-            all: "src/sass/**/*.scss"
-        },
+        sass: { all: "src/sass/**/*.scss" },
         css: {
             base: p("src/css"),
             all: p("src/css/**/*.css"),
@@ -64,18 +60,18 @@ gulp.task("css-min", function () {
 
 });
 
-gulp.task("qunit", function() {
-    return gulp.src(p("/test/index.html"))
-        .pipe(qunit());
-});
-
-gulp.task("test", ["jshint", "qunit"]);
-
 gulp.task("jshint", function() {
     return gulp.src(paths.src.js)
     .pipe(jshint())
-        .pipe(jshint.reporter(stylish))
+        .pipe(jshint.reporter("jshint-stylish"))
         .pipe(jshint.reporter("default"));
+});
+
+gulp.task("jshint:build", function() {
+    return gulp.src(paths.src.js)
+        .pipe(jshint())
+        .pipe(jshint.reporter("jshint-stylish"))
+        .pipe(jshint.reporter("fail"));
 });
 
 gulp.task("uglify", function () {
@@ -85,10 +81,17 @@ gulp.task("uglify", function () {
 
 });
 
+gulp.task("qunit", function() {
+    return gulp.src(p("/test/index.html"))
+        .pipe(qunit());
+});
+
+gulp.task("test", ["jshint:build", "qunit"]);
+
 gulp.task("watch", function () {
     gulp.watch([paths.src.sass.all], ["sass"]);
     gulp.watch([paths.src.css.all], ["css-min"]);
-    gulp.watch([paths.src.js], ["uglify"]);
+    gulp.watch([paths.src.js], ["jshint", "uglify"]);
 });
 
 gulp.task("build", ["uglify", "css-min"]);
