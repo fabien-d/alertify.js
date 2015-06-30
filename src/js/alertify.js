@@ -734,7 +734,7 @@ var Alertify = (function(global, undefined) {
     };
 
     // AMD, window, and NPM support
-    if (typeof "undefined" !== typeof module && !! module && !! module.exports) {
+    if ("undefined" !== typeof module && !! module && !! module.exports) {
         module.exports = Alertify;
     } else if (typeof define === "function" && define.amd) {
         define(function() {
