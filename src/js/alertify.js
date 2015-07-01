@@ -745,4 +745,3 @@ var Alertify = (function(global, undefined) {
     }
 
 }(typeof window !== "undefined" ? window : {}));
-

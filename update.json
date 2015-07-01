@@ -3,11 +3,10 @@
     "name": "alertifyjs",
     "repo": "alertifyjs/alertify.js",
     "files": {
+        "basePath": "dist/",
         "include": [
-            "dist/js/alertify.js",
-            "dist/js/alertify.js.map",
-            "dist/css/alertify.css",
-            "dist/css/alertify-bootstrap.css"
+            "**/*.js",
+            "**/*.css"
         ]
     }
 }

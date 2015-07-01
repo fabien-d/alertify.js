@@ -1,8 +1,8 @@
-# Alertify.js 
+# Alertify.js
 
 [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 [![Bower version](https://badge.fury.io/bo/alertifyjs.svg)](http://badge.fury.io/bo/alertifyjs)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
 
 [![npm downloads](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/alertify.js)
@@ -19,7 +19,7 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 
 ## Get In Touch
 
-Feel free to stop by the [Alertify.js chat room](https://gitter.im/alertifyjs/alertify.js) to ask questions, report issues, make suggestions, or just say hi. 
+Feel free to stop by the [Alertify.js chat room](https://gitter.im/alertifyjs/alertify.js) to ask questions, report issues, make suggestions, or just say hi.
 
 If you prefer something that's not in real-time, stop by the [Alertify.js Google Group](https://groups.google.com/forum/#!forum/alertifyjs/new) to get in touch, too.
 
@@ -27,8 +27,8 @@ Need to get in contact with us directly? Send us an email at [inbox@alertifyjs.o
 
 ## Reporting Issues
 
-If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/) 
-etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproduce-able, 
+If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/)
+etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproduce-able,
 concrete example is your best way to get our attention! Not to say that we won't do our best to fix other issues, though :-)
 
 ## Installation
@@ -42,25 +42,27 @@ bower install --save alertifyjs
 ### NPM
 
 ```bash
-npm install --save alertifyj.js
+npm install --save alertify.js
 ```
 
-### CDN
+### CDN [jsDelivr](jsDelivr.com)
 
 ```html
 <!-- standard theme -->
-<link rel="stylehsheet" href="//cdn.jsdelivr.net/alertify.js/0.3.16/dist/css/alertify.css">
-<script src="//cdn.jsdelivr.net/alertify.js/0.3.16/alertify.min.js"></script>
+<link rel="stylehsheet" href="//cdn.jsdelivr.net/g/alertify.js/alertify.css">
+<script src="//cdn.jsdelivr.net/g/alertify.js/alertify.js"></script>
 ```
 
 ```html
-<link rel="stylehsheet" href="//cdn.jsdelivr.net/alertify.js/0.3.16/dist/css/alertify-bootstrap.css">
-<script src="//cdn.jsdelivr.net/alertify.js/0.3.16/alertify.min.js"></script>
+<!-- bootstrap theme -->
+<link rel="stylehsheet" href="//cdn.jsdelivr.net/g/alertify.js/alertify-bootstrap.css">
+<script src="//cdn.jsdelivr.net/g/alertify.js/alertify.js"></script>
 ```
 
 ```html
-<link rel="stylehsheet" href="//cdn.jsdelivr.net/alertify.js/0.3.16/dist/css/alertify-bootstrap-3.css">
-<script src="//cdn.jsdelivr.net/alertify.js/0.3.16/alertify.min.js"></script>
+<!-- bootstrap 3 theme -->
+<link rel="stylehsheet" href="//cdn.jsdelivr.net/g/alertify.js/alertify-bootstrap-3.css">
+<script src="//cdn.jsdelivr.net/g/alertify.js/alertify.js"></script>
 ```
 
 

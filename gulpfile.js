@@ -11,74 +11,37 @@ var p = function (path) {
     return __dirname + (path.charAt(0) === "/" ? "" : "/") + path;
 };
 
-var paths = {
-    src: {
-        sass: { all: "src/sass/**/*.scss" },
-        css: {
-            base: p("src/css"),
-            all: p("src/css/**/*.css"),
-            core: p("src/css/core.css"),
-            themes: {
-                bootstrap3: p("src/css/themes/bootstrap3/**/*.css"),
-                bootstrap: p("src/css/themes/bootstrap/**/*.css"),
-                default: p("src/css/themes/default/**/*.css")
-            }
-        },
-        js: p("src/js/**/*.js")
-    },
-    dest: {
-        css: p("dist/css"),
-        js: p("dist/js")
-    }
-};
-
 gulp.task("sass", function() {
-
-    gulp.src(paths.src.sass.all)
+    gulp.src(p("src/sass/*.scss"))
         .pipe(sass())
-        .pipe(prefix("last 5 version", "> 1%", "Explorer 7", "Explorer 8", {cascade: true}))
-        .pipe(gulp.dest(paths.src.css.base));
-
+        .pipe(prefix("last 4 version", "> 1%", {cascade: true}))
+        .pipe(gulp.dest(p("src/css")));
 });
 
-gulp.task("css-min", function () {
-
-    gulp.src([paths.src.css.core, paths.src.css.themes.default])
+gulp.task("css:min", function () {
+    gulp.src(p("src/css/**/*.css"))
         .pipe(minifyCSS())
-        .pipe(concat("alertify.css"))
-        .pipe(gulp.dest(paths.dest.css));
-
-    gulp.src([paths.src.css.core, paths.src.css.themes.bootstrap])
-        .pipe(minifyCSS())
-        .pipe(concat("alertify-bootstrap.css"))
-        .pipe(gulp.dest(paths.dest.css));
-
-    gulp.src([paths.src.css.core, paths.src.css.themes.bootstrap3])
-        .pipe(minifyCSS())
-        .pipe(concat("alertify-bootstrap-3.css"))
-        .pipe(gulp.dest(paths.dest.css));
-
+        .pipe(gulp.dest(p("dist/css")));
 });
 
 gulp.task("jshint", function() {
-    return gulp.src(paths.src.js)
+    return gulp.src(p("src/js/**/*.js"))
     .pipe(jshint())
         .pipe(jshint.reporter("jshint-stylish"))
         .pipe(jshint.reporter("default"));
 });
 
 gulp.task("jshint:build", function() {
-    return gulp.src(paths.src.js)
+    return gulp.src(p("src/js/**/*.js"))
         .pipe(jshint())
         .pipe(jshint.reporter("jshint-stylish"))
         .pipe(jshint.reporter("fail"));
 });
 
 gulp.task("uglify", function () {
-    gulp.src(paths.src.js)
-        .pipe(uglify({outSourceMap: true}))
-        .pipe(gulp.dest(paths.dest.js));
-
+    gulp.src(p("src/js/**/*.js"))
+        .pipe(uglify({outSourceMap: false}))
+        .pipe(gulp.dest(p("dist/js")));
 });
 
 gulp.task("qunit", function() {
@@ -89,9 +52,9 @@ gulp.task("qunit", function() {
 gulp.task("test", ["jshint:build", "qunit"]);
 
 gulp.task("watch", function () {
-    gulp.watch([paths.src.sass.all], ["sass"]);
-    gulp.watch([paths.src.css.all], ["css-min"]);
-    gulp.watch([paths.src.js], ["jshint", "uglify"]);
+    gulp.watch(p("src/sass/**/*.scss"), ["sass"]);
+    gulp.watch(p("src/css/**/*.css"), ["css:min"]);
+    gulp.watch(p("src/js/**/*.js"), ["jshint", "uglify"]);
 });
 
-gulp.task("build", ["uglify", "css-min"]);
+gulp.task("build", ["uglify", "css:min"]);
