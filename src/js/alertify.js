@@ -738,7 +738,7 @@ var Alertify = (function(global, undefined) {
         module.exports = Alertify;
     } else if (typeof define === "function" && define.amd) {
         define(function() {
-            return Alertify;
+            return new Alertify();
         });
     } else {
         global.alertify = new Alertify();
