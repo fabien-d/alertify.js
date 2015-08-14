@@ -46,16 +46,6 @@ module("prompt parameters", {
 });
 
 test("test prompt parameters", function () {
-    expect(3);
-    try {
-        alertify.prompt();
-    } catch (error) {
-        deepEqual(error.message, "message must be a string", "parameter error");
-    }
-    try {
-        alertify.prompt("test", {});
-    } catch (error) {
-        deepEqual(error.message, "fn must be a function", "parameter error");
-    }
+    expect(1);
     deepEqual(this.text.value, "Default Message", "Default prompt message should be \"Default \"Message");
 });

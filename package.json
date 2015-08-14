@@ -1,7 +1,7 @@
 {
   "name": "alertify.js",
   "description": "An lightweight, unobtrusive customizable JavaScript notification system.",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "homepage": "https://alertifyjs.org/",
   "main": "dist/js/alertify.js",
   "author": {
@@ -9,11 +9,13 @@
     "email": "brad@alertifyjs.org",
     "url": "https://bradb.net"
   },
-  "contributors": [{
-    "name": "Fabien Doiron",
-    "email": "fabien.doiron@gmail.com",
-    "url": "http://fabien-d.github.io/"
-  }],
+  "contributors": [
+    {
+      "name": "Fabien Doiron",
+      "email": "fabien.doiron@gmail.com",
+      "url": "http://fabien-d.github.io/"
+    }
+  ],
   "keywords": [
     "alertify",
     "alertifyjs",
@@ -26,15 +28,16 @@
   },
   "repository": "git@github.com:alertifyjs/alertify.js.git",
   "devDependencies": {
-    "gulp": "~3.8.6",
-    "gulp-autoprefixer": "~2.3.1",
-    "gulp-concat": "~2.6",
-    "gulp-jshint": "~1.11",
-    "gulp-minify-css": "~1.2",
-    "gulp-qunit": "~1.2",
-    "gulp-sass": "~2.0",
-    "gulp-uglifyjs": "~0.6.2",
-    "jshint-stylish": "~2.0"
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-prefix": "0.0.14",
+    "gulp-qunit": "^1.2.1",
+    "gulp-sass": "^2.0.4",
+    "gulp-size": "^1.3.0",
+    "gulp-uglify": "^1.2.0"
   },
   "licenses": [
     {
@@ -43,7 +46,7 @@
     }
   ],
   "bugs": {
-    "url" : "https://github.com/alertifyjs/alertify.js/issues",
-    "email" : "inbox@alertifyjs.org"
+    "url": "https://github.com/alertifyjs/alertify.js/issues",
+    "email": "inbox@alertifyjs.org"
   }
 }

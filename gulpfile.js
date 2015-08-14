@@ -1,11 +1,12 @@
 var gulp = require("gulp"),
-    uglify = require("gulp-uglifyjs"),
+    uglify = require("gulp-uglify"),
     minifyCSS = require("gulp-minify-css"),
     qunit = require("gulp-qunit"),
     concat = require("gulp-concat"),
     jshint = require("gulp-jshint"),
     prefix = require("gulp-autoprefixer"),
-    sass = require("gulp-sass");
+    sass = require("gulp-sass"),
+    size = require("gulp-size");
 
 var p = function (path) {
     return __dirname + (path.charAt(0) === "/" ? "" : "/") + path;
@@ -27,20 +28,19 @@ gulp.task("css:min", function () {
 gulp.task("jshint", function() {
     return gulp.src(p("src/js/**/*.js"))
     .pipe(jshint())
-        .pipe(jshint.reporter("jshint-stylish"))
         .pipe(jshint.reporter("default"));
 });
 
 gulp.task("jshint:build", function() {
     return gulp.src(p("src/js/**/*.js"))
         .pipe(jshint())
-        .pipe(jshint.reporter("jshint-stylish"))
         .pipe(jshint.reporter("fail"));
 });
 
 gulp.task("uglify", function () {
     gulp.src(p("src/js/**/*.js"))
-        .pipe(uglify({outSourceMap: false}))
+        .pipe(uglify({ outSourceMap: false }))
+        .pipe(size({ gzip: true }))
         .pipe(gulp.dest(p("dist/js")));
 });
 

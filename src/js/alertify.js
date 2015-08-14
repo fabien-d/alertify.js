@@ -14,6 +14,15 @@ var Alertify = (function(global, undefined) {
             queue = [],
             $, btnCancel, btnOK, btnReset, btnResetBack, btnFocus, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
 
+        function removeLogElement(el) {
+            if ("undefined" !== typeof elLog && el.parentNode === elLog) {
+                elLog.removeChild(el);
+            }
+            if (! elLog.hasChildNodes()) {
+                elLog.className += " alertify-logs-hidden";
+            }
+        }
+
         function getStyleRuleValue(style, selector, sheet) {
             var sheets = typeof sheet !== "undefined" ? [sheet] : document.styleSheets;
             for (var i = 0, l = sheets.length; i < l; i++) {
@@ -47,36 +56,40 @@ var Alertify = (function(global, undefined) {
             log: "<article class=\"alertify-log{{class}}\">{{message}}</article>"
         };
 
+        var transitionType;
+        var transitionSupported = false;
+
         /**
          * Return the proper transitionend event
          * @return {String}    Transition type string
          */
         getTransitionEvent = function() {
-            var t,
-                type,
-                supported = false,
-                el = document.createElement("fakeelement"),
-                transitions = {
+
+            if (! transitionType) {
+                var el = document.createElement("fakeelement");
+                var transitions = {
                     "WebkitTransition": "webkitTransitionEnd",
                     "MozTransition": "transitionend",
                     "OTransition": "otransitionend",
                     "transition": "transitionend"
                 };
 
-            for (t in transitions) {
-                if (transitions.hasOwnProperty(t)) {
-                    if (el.style[t] !== undefined) {
-                        type = transitions[t];
-                        supported = true;
-                        break;
+                for (var t in transitions) {
+                    if (transitions.hasOwnProperty(t)) {
+                        if (el.style[t] !== undefined) {
+                            transitionType = transitions[t];
+                            transitionSupported = true;
+                            break;
+                        }
                     }
                 }
             }
 
             return {
-                type: type,
-                supported: supported
+                type: transitionType,
+                supported: transitionSupported
             };
+
         };
 
         /**
@@ -103,6 +116,8 @@ var Alertify = (function(global, undefined) {
                 ok: "OK",
                 cancel: "Cancel"
             },
+
+            maxLogItems: 3,
 
             /**
              * Delay number
@@ -312,16 +327,21 @@ var Alertify = (function(global, undefined) {
 
                 switch (type) {
                     case "confirm":
-                        html = html.replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.ok));
-                        html = html.replace("{{ok}}", this.labels.ok).replace("{{cancel}}", this.labels.cancel);
+                        html = html
+                            .replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.ok))
+                            .replace("{{ok}}", this.labels.ok)
+                            .replace("{{cancel}}", this.labels.cancel);
                         break;
                     case "prompt":
-                        html = html.replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.submit));
-                        html = html.replace("{{ok}}", this.labels.ok).replace("{{cancel}}", this.labels.cancel);
+                        html = html
+                            .replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.submit))
+                            .replace("{{ok}}", this.labels.ok)
+                            .replace("{{cancel}}", this.labels.cancel);
                         break;
                     case "alert":
-                        html = html.replace("{{buttons}}", dialogs.buttons.ok);
-                        html = html.replace("{{ok}}", this.labels.ok);
+                        html = html
+                            .replace("{{buttons}}", dialogs.buttons.ok)
+                            .replace("{{ok}}", this.labels.ok);
                         break;
                     default:
                         break;
@@ -350,22 +370,21 @@ var Alertify = (function(global, undefined) {
                 elem.addEventListener("click", function() {
                     hideElement(elem);
                 });
+
                 // Hide the dialog box after transition
                 // This ensure it doens't block any element from being clicked
                 transitionDone = function(event) {
                     event.stopPropagation();
                     // unbind event so function only gets called once
                     this.removeEventListener(self.transition.type, transitionDone);
-                    // remove log message
-                    elLog.removeChild(this);
-                    if (!elLog.hasChildNodes()) {
-                        elLog.className += " alertify-logs-hidden";
-                    }
+                    removeLogElement(this);
                 };
                 // this sets the hide class to transition out
                 // or removes the child if css transitions aren't supported
                 hideElement = function(el) {
-                    // ensure element exists
+
+                    var time = 1;
+
                     if (typeof el !== "undefined" && el.parentNode === elLog) {
                         // whether CSS transition exists
                         if (self.transition.supported) {
@@ -381,9 +400,9 @@ var Alertify = (function(global, undefined) {
                                     getStyleRuleValue("-o-transition-duration", ".alertify-log-hide") ||
                                     "0"
                                 ).toLowerCase(),
-                                time = parseInt(dur),
                                 offset = 1;
 
+                            time = parseInt(dur);
                             if (!time || isNaN(time)) {
                                 time = 500;
                             }
@@ -393,18 +412,12 @@ var Alertify = (function(global, undefined) {
                                 time *= 1000;
                                 time += offset;
                             }
-                            setTimeout(function () {
-                                if (typeof el !== "undefined" && el.parentNode === elLog) {
-                                    elLog.removeChild(el);
-                                }
-                            }, time);
-
-                        } else {
-                            elLog.removeChild(el);
-                            if (!elLog.hasChildNodes()) {
-                                elLog.className += " alertify-logs-hidden";
-                            }
                         }
+
+                        setTimeout(function () {
+                            removeLogElement(el);
+                        }, time || 1);
+
                     }
                 };
                 // never close (until click) if wait is set to 0
@@ -415,6 +428,7 @@ var Alertify = (function(global, undefined) {
                 setTimeout(function() {
                     hideElement(elem);
                 }, timer);
+
             },
 
             /**
@@ -433,28 +447,7 @@ var Alertify = (function(global, undefined) {
                 // this allows the keyboard focus to be reset
                 // after the dialog box is closed
                 elCallee = document.activeElement;
-                // check to ensure the alertify dialog element
-                // has been successfully created
-                var check = function() {
-                    if ((elLog && elLog.scrollTop !== null) && (elCover && elCover.scrollTop !== null)) {
-                        return;
-                    } else {
-                        check();
-                    }
-                };
-                // error catching
-                if (typeof message !== "string") {
-                    throw new Error("message must be a string");
-                }
-                if (typeof type !== "string") {
-                    throw new Error("type must be a string");
-                }
-                if (typeof fn !== "undefined" && typeof fn !== "function") {
-                    throw new Error("fn must be a function");
-                }
-                // initialize alertify if it hasn't already been done
                 this.init();
-                check();
 
                 queue.push({type: type, message: message, callback: fn, placeholder: placeholder, cssClass: cssClass});
                 if (!isopen) {
@@ -472,11 +465,8 @@ var Alertify = (function(global, undefined) {
              * @return {Function}
              */
             extend: function(type) {
-                if (typeof type !== "string") {
-                    throw new Error("extend method must have exactly one parameter");
-                }
-                return function(message, wait) {
-                    this.log(message, type, wait);
+                return function(message, wait, click) {
+                    this.log(message, type, wait, click);
                     return this;
                 };
             },
@@ -560,6 +550,7 @@ var Alertify = (function(global, undefined) {
                 document.body.setAttribute("tabindex", "0");
                 // set transition type
                 this.transition = getTransitionEvent();
+
             },
 
             /**
@@ -572,22 +563,20 @@ var Alertify = (function(global, undefined) {
              * @return {Object}
              */
             log: function(message, type, wait, click) {
-                // check to ensure the alertify dialog element
-                // has been successfully created
-                var check = function() {
-                    if (elLog && elLog.scrollTop !== null) {
-                        return;
-                    } else {
-                        check();
-                    }
-                };
-                // initialize alertify if it hasn't already been done
-                this.init();
-                check();
 
+                this.init();
                 elLog.className = "alertify-logs";
+
+                var diff = elLog.childNodes.length - this.maxLogItems;
+                if(diff >= 0) {
+                  for (var i = 0, _i = diff + 1; i < _i; i++) {
+                    this.close(elLog.childNodes[i], 1);
+                  }
+                }
+
                 this.notify(message, type, wait, click);
                 return this;
+
             },
 
             /**
@@ -602,19 +591,21 @@ var Alertify = (function(global, undefined) {
              * @return {undefined}
              */
             notify: function(message, type, wait, click) {
+
                 var log = document.createElement("article");
                 log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
                 log.innerHTML = message;
+
                 // Add the click handler, if specified.
                 if ("function" === typeof click) {
                     log.addEventListener("click", click);
                 }
-                // append child
+
                 elLog.appendChild(log);
-                // triggers the CSS animation
                 setTimeout(function() {
                     log.className = log.className + " alertify-log-show";
                 }, 50);
+
                 this.close(log, wait);
             },
 
@@ -626,13 +617,7 @@ var Alertify = (function(global, undefined) {
              * @return {undefined}
              */
             set: function(args) {
-                var k;
-                // error catching
-                if (typeof args !== "object" && args instanceof Array) {
-                    throw new Error("args must be an object");
-                }
-                // set parameters
-                for (k in args) {
+                for (var k in args) {
                     if (args.hasOwnProperty(k)) {
                         this[k] = args[k];
                     }
@@ -648,8 +633,7 @@ var Alertify = (function(global, undefined) {
                 if (input) {
                     input.focus();
                     input.select();
-                }
-                else {
+                } else {
                     btnFocus.focus();
                 }
             },

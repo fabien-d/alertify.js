@@ -25,17 +25,3 @@ test("alert ok button", function () {
     expect(1);
     ok(this.ok, "OK button exists");
 });
-
-test("alert parameters", function () {
-    expect(2);
-    try {
-        alertify.alert();
-    } catch (error) {
-        deepEqual(error.message, "message must be a string", "parameter error");
-    }
-    try {
-        alertify.alert("test", {});
-    } catch (error) {
-        deepEqual(error.message, "fn must be a function", "parameter error");
-    }
-});

@@ -27,17 +27,3 @@ test("confirm buttons", function () {
     ok(this.ok, "OK button exists");
     ok(this.cancel, "Cancel button exists");
 });
-
-test("confirm parameters", function () {
-    expect(2);
-    try {
-        alertify.confirm();
-    } catch (error) {
-        deepEqual(error.message, "message must be a string", "parameter error");
-    }
-    try {
-        alertify.confirm("test", {});
-    } catch (error) {
-        deepEqual(error.message, "fn must be a function", "parameter error");
-    }
-});
