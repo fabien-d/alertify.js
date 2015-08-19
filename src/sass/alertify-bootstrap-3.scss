@@ -6,17 +6,24 @@
 */
 @import "includes/_core";
 
-.alertify {
-    background: #FFF;
-    border: 1px solid #8E8E8E; /* browsers that don't support rgba */
-    border: 1px solid rgba(0,0,0,.3);
-    border-radius: 6px;
-    box-shadow: 0 3px 7px rgba(0,0,0,.3);
-    -webkit-background-clip: padding;     /* Safari 4? Chrome 6? */
-    -moz-background-clip: padding;     /* Firefox 3.6 */
-    background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
+.alertify-inner {
+  background: #FFF;
+  border: 1px solid #8E8E8E; /* browsers that don't support rgba */
+  border: 1px solid rgba(0,0,0,.3);
+  border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0,0,0,.3);
+  -webkit-background-clip: padding;     /* Safari 4? Chrome 6? */
+  -moz-background-clip: padding;     /* Firefox 3.6 */
+  background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
 }
-.alertify-dialog {
+
+.alertify-buttons {
+  button {
+    margin-left: 6px;
+  }
+}
+
+.alertify-dialog, .alertify-alert {
     padding: 0;
 }
 .alertify-inner {

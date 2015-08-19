@@ -4,7 +4,7 @@ var deepEqual = QUnit.deepEqual,
 
 module("alert", {
     setup: function () {
-        alertify.set({labels: {ok: "OK"}});
+        alertify.okBtn("OK");
         this.dialog = alertify.alert("Test");
         this.ok = document.getElementById("alertify-ok");
     },
@@ -14,11 +14,6 @@ module("alert", {
         event.initEvent("click", true, true);
         this.ok.dispatchEvent(event);
     }
-});
-
-test("alert returns alertify object", function () {
-    expect(1);
-    deepEqual(this.dialog, alertify, "should be equal");
 });
 
 test("alert ok button", function () {

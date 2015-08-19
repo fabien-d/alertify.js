@@ -1,69 +1,62 @@
 /* global require, module */
 
 var Alertify = (function(global, undefined) {
+
     "use strict";
 
     var document = global.document, Alertify;
 
     Alertify = function() {
 
-        var _alertify = {},
-            dialogs = {},
-            isopen = false,
-            keys = {ENTER: 13, ESC: 27, SPACE: 32},
-            queue = [],
-            $, btnCancel, btnOK, btnReset, btnResetBack, btnFocus, elCallee, elCover, elDialog, elLog, form, input, getTransitionEvent;
-
-        function removeLogElement(el) {
-            if ("undefined" !== typeof elLog && el.parentNode === elLog) {
-                elLog.removeChild(el);
-            }
-            if (! elLog.hasChildNodes()) {
-                elLog.className += " alertify-logs-hidden";
-            }
-        }
-
-        function getStyleRuleValue(style, selector, sheet) {
-            var sheets = typeof sheet !== "undefined" ? [sheet] : document.styleSheets;
-            for (var i = 0, l = sheets.length; i < l; i++) {
-                sheet = sheets[i];
-                if (!sheet.cssRules) {
-                    continue;
-                }
-                for (var j = 0, k = sheet.cssRules.length; j < k; j++) {
-                    var rule = sheet.cssRules[j];
-                    if (rule.selectorText && rule.selectorText.split(",").indexOf(selector) !== -1) {
-                        return rule.style[style];
-                    }
-                }
-            }
-            return null;
-        }
+        var hasCss;
+        var isopen = false;
+        var keys = { ENTER: 13, ESC: 27, SPACE: 32 };
+        var queue = [];
+        var btnCancel;
+        var btnOK;
+        var elDialog;
+        var elLog;
+        var form;
+        var input;
+        var transitionType;
+        var transitionSupported = false;
 
         /**
          * Markup pieces
          * @type {Object}
          */
-        dialogs = {
+        var dialogs = {
             buttons: {
-                holder: "<nav class=\"alertify-buttons\">{{buttons}}</nav>",
-                submit: "<button type=\"submit\" class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
-                ok: "<button class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
-                cancel: "<button class=\"alertify-button alertify-button-cancel\" id=\"alertify-cancel\">{{cancel}}</button>"
+                holder: "<nav class='alertify-buttons'>{{buttons}}</nav>",
+                ok: "<button class='alertify-button alertify-button-ok' id='alertify-ok'>{{ok}}</button>",
+                cancel: "<button class='alertify-button alertify-button-cancel' id='alertify-cancel'>{{cancel}}</button>"
             },
-            input: "<div class=\"alertify-text-wrapper\"><input type=\"text\" class=\"alertify-text\" id=\"alertify-text\"></div>",
-            message: "<p class=\"alertify-message\">{{message}}</p>",
-            log: "<article class=\"alertify-log{{class}}\">{{message}}</article>"
+            input: "<div class='alertify-text-wrapper'><input type='text' class='alertify-text' id='alertify-text'></div>",
+            message: "<p class='alertify-message'>{{message}}</p>",
+            log: "<div class='alertify-log{{class}}'>{{message}}</div>"
         };
 
-        var transitionType;
-        var transitionSupported = false;
+        /**
+         * Shorthand for document.getElementById()
+         *
+         * @param  {String} id    A specific element ID
+         * @return {Object}       HTML element
+         */
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        function removeLogElement(el) {
+            if ("undefined" !== typeof elLog && el.parentNode === elLog) {
+                elLog.removeChild(el);
+            }
+        }
 
         /**
          * Return the proper transitionend event
          * @return {String}    Transition type string
          */
-        getTransitionEvent = function() {
+        function getTransitionEvent() {
 
             if (! transitionType) {
                 var el = document.createElement("fakeelement");
@@ -90,52 +83,40 @@ var Alertify = (function(global, undefined) {
                 supported: transitionSupported
             };
 
-        };
-
-        /**
-         * Shorthand for document.getElementById()
-         *
-         * @param  {String} id    A specific element ID
-         * @return {Object}       HTML element
-         */
-        $ = function(id) {
-            return document.getElementById(id);
-        };
+        }
 
         /**
          * Alertify private object
          * @type {Object}
          */
-        _alertify = {
+        var _alertify = {
 
             /**
              * Labels object
              * @type {Object}
              */
-            labels: {
-                ok: "OK",
-                cancel: "Cancel"
-            },
+            defaultOkLabel: "Ok",
 
-            maxLogItems: 3,
+            okLabel: this.defaultOkLabel,
+
+            defaultCancelLabel: "Cancel",
+
+            cancelLabel: this.defaultCancelLabel,
+
+            defaultMaxLogItems: 2,
+
+            maxLogItems: this.defaultMaxLogItems,
+
+            promptValue: "",
+
+            promptPlaceholder: "",
 
             /**
              * Delay number
              * @type {Number}
              */
             delay: 5000,
-
-            /**
-             * Whether buttons are reversed (default is secondary/primary)
-             * @type {Boolean}
-             */
-            buttonReverse: false,
-
-            /**
-             * Which button should be focused by default
-             * @type {String}    "ok" (default), "cancel", or "none"
-             */
-            buttonFocus: "ok",
+            defaultDelay: 5000,
 
             /**
              * Set the transition event on load
@@ -144,60 +125,23 @@ var Alertify = (function(global, undefined) {
             transition: undefined,
 
             /**
-             * Track the keydown state
-             * @type {boolean}
-             */
-            keydown: false,
-
-            /**
              * Set the proper button click events
              *
              * @param {Function} fn    [Optional] Callback function
              *
              * @return {undefined}
              */
-            addListeners: function(fn) {
+            addListeners: function(onOkay, onCancel) {
 
-                var hasOK = typeof btnOK !== "undefined",
-                    hasCancel = typeof btnCancel !== "undefined",
-                    hasInput = typeof input !== "undefined",
-                    val = "",
-                    self = this,
-                    keydown,
-                    ok, cancel, common, key, reset;
+                var hasOK = typeof btnOK !== "undefined";
+                var hasCancel = typeof btnCancel !== "undefined";
+                var hasInput = typeof input !== "undefined";
+                var val = "";
+                var self = this;
 
-                // ok event handler
-                ok = function(event) {
-                    event.preventDefault();
-                    common(event);
-                    if (typeof input !== "undefined") {
-                        val = input.value;
-                    }
-                    if (typeof fn === "function") {
-                        if (typeof input !== "undefined") {
-                            fn(true, val);
-                        }
-                        else {
-                            fn(true);
-                        }
-                    }
-                };
-
-                // cancel event handler
-                cancel = function(event) {
-                    event.preventDefault();
-                    common(event);
-                    if (typeof fn === "function") {
-                        fn(false);
-                    }
-                };
-
-                // common event handler (keyup, ok and cancel)
-                common = function() {
+                // common event handler (ok and cancel)
+                var common = function() {
                     self.hide();
-                    global.removeEventListener("keyup", key);
-                    global.removeEventListener("keydown", keydown);
-                    global.removeEventListener("focus", reset);
                     if (hasOK) {
                         btnOK.removeEventListener("click", ok);
                     }
@@ -206,81 +150,34 @@ var Alertify = (function(global, undefined) {
                     }
                 };
 
-                // keyup handler
-                key = function(event) {
-                    var keyCode = event.keyCode;
-                    self.keydown = false;
-                    if ((keyCode === keys.SPACE && !hasInput) || (hasInput && keyCode === keys.ENTER)) {
-                        ok(event);
-                    } else if (keyCode === keys.ESC && hasCancel) {
-                        cancel(event);
+                // ok event handler
+                var ok = function(event) {
+                    common(event);
+                    if ("function" === typeof onOkay) {
+                      if ("undefined" === typeof input) {
+                        onOkay(event);
+                      } else {
+                        onOkay(input.value, event);
+                      }
                     }
                 };
 
-                keydown = function() {
-                    self.keydown = true;
-                };
-
-                // reset focus to first item in the dialog
-                reset = function() {
-                    if (hasInput) {
-                        input.focus();
-                    } else if (!hasCancel || self.buttonReverse) {
-                        btnOK.focus();
-                    } else {
-                        btnCancel.focus();
+                // cancel event handler
+                var cancel = function(event) {
+                    common(event);
+                    if ("function" === typeof onCancel) {
+                        onCancel(event);
                     }
                 };
 
-                // handle reset focus link
-                // this ensures that the keyboard focus does not
-                // ever leave the dialog box until an action has
-                // been taken
-                btnReset.addEventListener("focus", reset);
-                btnResetBack.addEventListener("focus", reset);
-                // handle OK click
                 if (hasOK) {
                     btnOK.addEventListener("click", ok);
                 }
-                // handle Cancel click
+
                 if (hasCancel) {
                     btnCancel.addEventListener("click", cancel);
                 }
-                // listen for keys, Cancel => ESC
-                global.addEventListener("keyup", key);
-                global.addEventListener("keydown", keydown);
-                if (!this.transition.supported) {
-                    this.setFocus();
-                }
-            },
 
-            /**
-             * Use alertify as the global error handler (using global.onerror)
-             *
-             * @return {boolean} success
-             */
-            handleErrors: function() {
-                if (typeof global.onerror !== "undefined") {
-                    var self = this;
-                    global.onerror = function(msg, url, line) {
-                        self.error("[" + msg + " on line " + line + " of " + url + "]", 0);
-                    };
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-
-            /**
-             * Append button HTML strings
-             *
-             * @param {String} secondary    The secondary button HTML string
-             * @param {String} primary      The primary button HTML string
-             *
-             * @return {String}             The appended button HTML strings
-             */
-            appendButtons: function(secondary, primary) {
-                return this.buttonReverse ? primary + secondary : secondary + primary;
             },
 
             /**
@@ -291,65 +188,35 @@ var Alertify = (function(global, undefined) {
              * @return {String}         An HTML string of the message box
              */
             build: function(item) {
-                var html = "",
-                    type = item.type,
-                    message = item.message,
-                    css = item.cssClass || "";
 
-                html += "<div class=\"alertify-dialog\">";
-                html += "<a id=\"alertify-resetFocusBack\" class=\"alertify-resetFocus\" href=\"#\">Reset Focus</a>";
+                var css = item.cssClass || "";
+                var btnTxt = dialogs.buttons.ok;
+                var html = "<div class='alertify-dialog'>" + "<div class='alertify-inner'>" + dialogs.message.replace("{{message}}", item.message);
 
-                if (_alertify.buttonFocus === "none") {
-                    html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
+                if(item.type === "confirm" || item.type === "prompt") {
+                  btnTxt = dialogs.buttons.cancel + dialogs.buttons.ok;
                 }
 
-                // doens't require an actual form
-                if (type === "prompt") {
-                    html += "<div id=\"alertify-form\">";
-                }
-
-                html += "<article class=\"alertify-inner\">";
-                html += dialogs.message.replace("{{message}}", message);
-
-                if (type === "prompt") {
+                if (item.type === "prompt") {
                     html += dialogs.input;
                 }
 
-                html += dialogs.buttons.holder;
-                html += "</article>";
+                html = (html + dialogs.buttons.holder + "</div>" + "</div>")
+                  .replace("{{buttons}}", btnTxt)
+                  .replace("{{ok}}", this.okLabel)
+                  .replace("{{cancel}}", this.cancelLabel);
 
-                if (type === "prompt") {
-                    html += "</div>";
-                }
-
-                html += "<a id=\"alertify-resetFocus\" class=\"alertify-resetFocus\" href=\"#\">Reset Focus</a>";
-                html += "</div>";
-
-                switch (type) {
-                    case "confirm":
-                        html = html
-                            .replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.ok))
-                            .replace("{{ok}}", this.labels.ok)
-                            .replace("{{cancel}}", this.labels.cancel);
-                        break;
-                    case "prompt":
-                        html = html
-                            .replace("{{buttons}}", this.appendButtons(dialogs.buttons.cancel, dialogs.buttons.submit))
-                            .replace("{{ok}}", this.labels.ok)
-                            .replace("{{cancel}}", this.labels.cancel);
-                        break;
-                    case "alert":
-                        html = html
-                            .replace("{{buttons}}", dialogs.buttons.ok)
-                            .replace("{{ok}}", this.labels.ok);
-                        break;
-                    default:
-                        break;
-                }
-
-                elDialog.className = "alertify alertify-" + type + " " + css;
-                elCover.className = "alertify-cover";
+                elDialog.className = "alertify";
                 return html;
+
+            },
+
+            closeLogOnClick: false,
+
+            closeLogOnClickDefault: false,
+
+            setCloseLogOnClick: function(bool) {
+                this.closeLogOnClick = !! bool;
             },
 
             /**
@@ -361,15 +228,19 @@ var Alertify = (function(global, undefined) {
              * @return {undefined}
              */
             close: function(elem, wait) {
+
                 // Unary Plus: +"2" === 2
-                var timer = (wait && !isNaN(wait)) ? +wait : this.delay,
-                    self = this,
-                    hideElement, transitionDone;
+                var timer = (wait && !isNaN(wait)) ? +wait : this.delay;
+                var self = this;
+                var hideElement;
+                var transitionDone;
 
                 // set click event on log messages
-                elem.addEventListener("click", function() {
-                    hideElement(elem);
-                });
+                if (this.closeLogOnClick) {
+                  elem.addEventListener("click", function() {
+                      hideElement(elem);
+                  });
+                }
 
                 // Hide the dialog box after transition
                 // This ensure it doens't block any element from being clicked
@@ -379,6 +250,7 @@ var Alertify = (function(global, undefined) {
                     this.removeEventListener(self.transition.type, transitionDone);
                     removeLogElement(this);
                 };
+
                 // this sets the hide class to transition out
                 // or removes the child if css transitions aren't supported
                 hideElement = function(el) {
@@ -386,32 +258,12 @@ var Alertify = (function(global, undefined) {
                     var time = 1;
 
                     if (typeof el !== "undefined" && el.parentNode === elLog) {
+
                         // whether CSS transition exists
                         if (self.transition.supported) {
-
                             el.addEventListener(self.transition.type, transitionDone);
                             el.className += " alertify-log-hide";
-
-                            // This is a "just in case" for situations where the transition doesn't fire.
-                            var dur = (
-                                    getStyleRuleValue("transition-duration", ".alertify-log-hide") ||
-                                    getStyleRuleValue("-webkit-transition-duration", ".alertify-log-hide") ||
-                                    getStyleRuleValue("-moz-transition-duration", ".alertify-log-hide") ||
-                                    getStyleRuleValue("-o-transition-duration", ".alertify-log-hide") ||
-                                    "0"
-                                ).toLowerCase(),
-                                offset = 1;
-
-                            time = parseInt(dur);
-                            if (!time || isNaN(time)) {
-                                time = 500;
-                            }
-                            if (dur.indexOf("ms") > -1) {
-                                time += offset;
-                            } else if (dur.indexOf("s") > -1) {
-                                time *= 1000;
-                                time += offset;
-                            }
+                            time = 500;
                         }
 
                         setTimeout(function () {
@@ -434,41 +286,27 @@ var Alertify = (function(global, undefined) {
             /**
              * Create a dialog box
              *
-             * @param  {String}   message        The message passed from the callee
-             * @param  {String}   type           Type of dialog to create
-             * @param  {Function} fn             [Optional] Callback function
-             * @param  {String}   placeholder    [Optional] Default value for prompt input field
-             * @param  {String}   cssClass       [Optional] Class(es) to append to dialog box
+             * @param  {String}   message      The message passed from the callee
+             * @param  {String}   type         Type of dialog to create
+             * @param  {Function} onOkay       [Optional] Callback function when clicked okay.
+             * @param  {Function} onCancel     [Optional] Callback function when cancelled.
              *
              * @return {Object}
              */
-            dialog: function(message, type, fn, placeholder, cssClass) {
-                // set the current active element
-                // this allows the keyboard focus to be reset
-                // after the dialog box is closed
-                elCallee = document.activeElement;
+            dialog: function(message, type, onOkay, onCancel) {
+
                 this.init();
 
-                queue.push({type: type, message: message, callback: fn, placeholder: placeholder, cssClass: cssClass});
+                queue.push({
+                  type: type,
+                  message: message,
+                  onOkay: onOkay,
+                  onCancel: onCancel
+                });
+
                 if (!isopen) {
                     this.setup();
                 }
-
-                return this;
-            },
-
-            /**
-             * Extend the log method to create custom methods
-             *
-             * @param  {String} type    Custom method name
-             *
-             * @return {Function}
-             */
-            extend: function(type) {
-                return function(message, wait, click) {
-                    this.log(message, type, wait, click);
-                    return this;
-                };
             },
 
             /**
@@ -477,13 +315,16 @@ var Alertify = (function(global, undefined) {
              * @return {undefined}
              */
             hide: function() {
-                var transitionDone,
-                    self = this;
+
+                var transitionDone;
+                var self = this;
+
                 // remove reference from queue
                 queue.splice(0, 1);
                 // if items remaining in the queue
                 if (queue.length > 0) {
                     this.setup(true);
+
                 } else {
                     isopen = false;
                     // Hide the dialog box after transition
@@ -493,23 +334,14 @@ var Alertify = (function(global, undefined) {
                         // unbind event so function only gets called once
                         elDialog.removeEventListener(self.transition.type, transitionDone);
                     };
+
                     // whether CSS transition exists
                     if (this.transition.supported) {
                         elDialog.addEventListener(this.transition.type, transitionDone);
-                        elDialog.className = "alertify alertify-hide alertify-hidden";
-                    } else {
-                        elDialog.className = "alertify alertify-hide alertify-hidden alertify-isHidden";
                     }
-                    elCover.className = "alertify-cover alertify-cover-hidden";
-                    // set focus to the last element or body
-                    // after the dialog is closed
-                    setTimeout(function() {
-                        if (! self.keydown) {
-                            elCallee.focus();
-                        } else {
-                            document.body.focus();
-                        }
-                    });
+
+                    elDialog.className = "alertify alertify-hide alertify-hidden";
+
                 }
             },
 
@@ -520,34 +352,25 @@ var Alertify = (function(global, undefined) {
              * @return {undefined}
              */
             init: function() {
-                // ensure legacy browsers support html5 tags
-                // cover
-                if ($("alertify-cover") == null) {
-                    elCover = document.createElement("div");
-                    elCover.setAttribute("id", "alertify-cover");
-                    elCover.className = "alertify-cover alertify-cover-hidden";
-                    document.body.appendChild(elCover);
-                }
-                // main element
-                if ($("alertify") == null) {
+
+                this.injectCss();
+
+                if ($("alertify") === null) {
                     isopen = false;
                     queue = [];
-                    elDialog = document.createElement("section");
+                    elDialog = document.createElement("div");
                     elDialog.setAttribute("id", "alertify");
                     elDialog.className = "alertify alertify-hidden";
                     document.body.appendChild(elDialog);
                 }
-                // log element
-                if ($("alertify-logs") == null) {
-                    elLog = document.createElement("section");
+
+                if ($("alertify-logs") === null) {
+                    elLog = document.createElement("div");
                     elLog.setAttribute("id", "alertify-logs");
-                    elLog.className = "alertify-logs alertify-logs-hidden";
+                    elLog.className = "alertify-logs";
                     document.body.appendChild(elLog);
                 }
-                // set tabindex attribute on body element
-                // this allows script to give it focus
-                // after the dialog is closed
-                document.body.setAttribute("tabindex", "0");
+
                 // set transition type
                 this.transition = getTransitionEvent();
 
@@ -562,7 +385,7 @@ var Alertify = (function(global, undefined) {
              *
              * @return {Object}
              */
-            log: function(message, type, wait, click) {
+            log: function(message, type, click) {
 
                 this.init();
                 elLog.className = "alertify-logs";
@@ -574,8 +397,7 @@ var Alertify = (function(global, undefined) {
                   }
                 }
 
-                this.notify(message, type, wait, click);
-                return this;
+                this.notify(message, type, click);
 
             },
 
@@ -590,10 +412,10 @@ var Alertify = (function(global, undefined) {
              *
              * @return {undefined}
              */
-            notify: function(message, type, wait, click) {
+            notify: function(message, type, click) {
 
-                var log = document.createElement("article");
-                log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
+                var log = document.createElement("div");
+                log.className = "alertify-log alertify-log-" + (type || "default");
                 log.innerHTML = message;
 
                 // Add the click handler, if specified.
@@ -603,39 +425,11 @@ var Alertify = (function(global, undefined) {
 
                 elLog.appendChild(log);
                 setTimeout(function() {
-                    log.className = log.className + " alertify-log-show";
+                    log.className += " alertify-log-show";
                 }, 50);
 
-                this.close(log, wait);
-            },
+                this.close(log, this.delay);
 
-            /**
-             * Set properties
-             *
-             * @param {Object} args     Passing parameters
-             *
-             * @return {undefined}
-             */
-            set: function(args) {
-                for (var k in args) {
-                    if (args.hasOwnProperty(k)) {
-                        this[k] = args[k];
-                    }
-                }
-            },
-
-            /**
-             * Common place to set focus to proper element
-             *
-             * @return {undefined}
-             */
-            setFocus: function() {
-                if (input) {
-                    input.focus();
-                    input.select();
-                } else {
-                    btnFocus.focus();
-                }
             },
 
             /**
@@ -644,76 +438,147 @@ var Alertify = (function(global, undefined) {
              * @return {undefined}
              */
             setup: function(fromQueue) {
-                var item = queue[0],
-                    self = this,
-                    transitionDone;
+
+                var item = queue[0];
+                var self = this;
+
+                var transitionDone = function(ev) {
+                    elDialog.removeEventListener(self.transition.type, transitionDone);
+                };
 
                 // dialog is open
                 isopen = true;
-                // Set button focus after transition
-                transitionDone = function(event) {
-                    event.stopPropagation();
-                    self.setFocus();
-                    // unbind event so function only gets called once
-                    elDialog.removeEventListener(self.transition.type, transitionDone);
-                };
+
                 // whether CSS transition exists
                 if (this.transition.supported && !fromQueue) {
                     elDialog.addEventListener(this.transition.type, transitionDone);
                 }
+
                 // build the proper dialog HTML
                 elDialog.innerHTML = this.build(item);
+
                 // assign all the common elements
-                btnReset = $("alertify-resetFocus");
-                btnResetBack = $("alertify-resetFocusBack");
                 btnOK = $("alertify-ok") || undefined;
                 btnCancel = $("alertify-cancel") || undefined;
-                btnFocus = (_alertify.buttonFocus === "cancel") ? btnCancel : ((_alertify.buttonFocus === "none") ? $("alertify-noneFocus") : btnOK);
                 input = $("alertify-text") || undefined;
                 form = $("alertify-form") || undefined;
-                // add placeholder value to the input field
-                if (typeof item.placeholder === "string" && item.placeholder !== "") {
-                    input.value = item.placeholder;
+
+                if(input) {
+                  if (typeof this.promptPlaceholder === "string") {
+                      input.placeholder = this.promptPlaceholder;
+                  }
+                  if (typeof this.promptValue === "string") {
+                      input.value = this.promptValue;
+                  }
                 }
-                if (fromQueue) {
-                    this.setFocus();
-                }
-                this.addListeners(item.callback);
+
+                this.addListeners(item.onOkay, item.onCancel);
+
+            },
+
+            okBtn: function(label) {
+                this.okLabel = label;
+                return this;
+            },
+
+            setDelay: function(time) {
+
+              var dur = parseInt(time || 0, 10);
+              this.delay = isNaN(dur) ? this.defultDelay : time;
+              return this;
+            },
+
+            cancelBtn: function(str) {
+              this.cancelLabel = str;
+              return this;
+            },
+
+            setMaxLogItems: function(num) {
+              this.maxLogItems = parseInt(num || this.defaultMaxLogItems);
+            },
+
+            reset: function() {
+
+              this.okBtn(this.defaultOkLabel);
+              this.cancelBtn(this.defaultCancelLabel);
+              this.setMaxLogItems();
+              this.promptValue = "";
+              this.promptPlaceholder = "";
+              this.delay = this.defaultDelay;
+              this.setCloseLogOnClick(this.closeLogOnClickDefault);
+
+            },
+
+            injectCss: function() {
+              if (! hasCss) {
+                var head = document.getElementsByTagName("head")[0];
+                var css = document.createElement("style");
+                css.type = "text/css";
+                css.innerHTML = "/* style.css */";
+                head.insertBefore(css, head.firstChild);
+                hasCss = true;
+              }
             }
+
         };
 
         return {
-            alert: function(message, fn, cssClass) {
-                _alertify.dialog(message, "alert", fn, "", cssClass);
+            reset: function() {
+                _alertify.reset();
                 return this;
             },
-            confirm: function(message, fn, cssClass) {
-                _alertify.dialog(message, "confirm", fn, "", cssClass);
+            alert: function(message, onOkay, onCancel) {
+                _alertify.dialog(message, "alert", onOkay, onCancel);
                 return this;
             },
-            extend: _alertify.extend,
-            init: _alertify.init,
-            log: function(message, type, wait, click) {
-                _alertify.log(message, type, wait, click);
+            confirm: function(message, onOkay, onCancel) {
+                _alertify.dialog(message, "confirm", onOkay, onCancel);
                 return this;
             },
-            prompt: function(message, fn, placeholder, cssClass) {
-                _alertify.dialog(message, "prompt", fn, placeholder, cssClass);
+            prompt: function(message, onOkay, onCancel) {
+                _alertify.dialog(message, "prompt", onOkay, onCancel);
                 return this;
             },
-            success: function(message, wait, click) {
-                _alertify.log(message, "success", wait, click);
+            log: function(message, click) {
+                _alertify.log(message, "default", click);
                 return this;
             },
-            error: function(message, wait, click) {
-                _alertify.log(message, "error", wait, click);
+            success: function(message, click) {
+                _alertify.log(message, "success", click);
                 return this;
             },
-            set: function(args) {
-                _alertify.set(args);
+            error: function(message, click) {
+                _alertify.log(message, "error", click);
+                return this;
             },
-            labels: _alertify.labels,
-            debug: _alertify.handleErrors
+            cancelBtn: function(label) {
+                _alertify.cancelBtn(label);
+                return this;
+            },
+            okBtn: function(label) {
+                _alertify.okBtn(label);
+                return this;
+            },
+            delay: function(time) {
+                _alertify.setDelay(time);
+                return this;
+            },
+            placeholder: function(str) {
+                _alertify.promptPlaceholder = str;
+                return this;
+            },
+            defaultValue: function(str) {
+                _alertify.promptValue = str;
+                return this;
+            },
+            maxLogItems: function(num) {
+                _alertify.setMaxLogItems(num);
+                return this;
+            },
+            closeLogOnClick: function(bool) {
+                _alertify.setCloseLogOnClick(!! bool);
+                return this;
+            }
         };
     };
 

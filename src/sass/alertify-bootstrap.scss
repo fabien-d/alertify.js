@@ -9,26 +9,16 @@ $log-error-border: 1px solid $log-error-border-color !default;
  * Twitter Bootstrap Look and Feel
  * Based on http://twitter.github.com/bootstrap/
  */
-.alertify,
-.alertify-log {
-  font-family: sans-serif;
-}
-
-.alertify {
-  background: #FFF;
-  border: 1px solid #8E8E8E; /* browsers that don't support rgba */
-  border: 1px solid rgba(0, 0, 0, .3);
-  border-radius: 6px;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, .3);
-  background-clip: padding-box;
-}
-
 .alertify-dialog {
   padding: 0;
 }
 
-.alertify-inner {
-  text-align: left;
+.alertify {
+  .alertify-inner {
+    text-align: left;
+    background: #fff;
+    border-radius: 4px;
+  }
 }
 
 .alertify-message {

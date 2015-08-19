@@ -7,8 +7,3 @@ module("log", {
         this.log = alertify.log("Test");
     }
 });
-
-test("log returns alertify object", function () {
-    expect(1);
-    deepEqual(this.log, alertify, "should be equal");
-});

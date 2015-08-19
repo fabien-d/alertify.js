@@ -1,67 +1,57 @@
+.alertify {
+  font-family: inherit;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999; }
+  .alertify, .alertify * {
+    box-sizing: border-box; }
+  .alertify .alertify-dialog, .alertify .alertify-alert {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%); }
+    .alertify .alertify-dialog .alertify-inner, .alertify .alertify-alert .alertify-inner {
+      width: 400px;
+      max-width: 95%;
+      margin: 0 auto; }
+  .alertify .alertify-buttons {
+    text-align: right; }
+
 .alertify,
 .alertify-show,
-.alertify-log {
-  -webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  /* easeOutBack */ }
-
+.alertify-log,
 .alertify-hide {
-  -webkit-transition: all 250ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
-          transition: all 250ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  /* easeInBack */ }
+  box-sizing: border-box;
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
-.alertify-log-hide {
-  -webkit-transition: all 500ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
-          transition: all 500ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  /* easeInBack */ }
-
-.alertify-cover {
-  position: fixed;
-  z-index: 99999;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: white;
-  filter: alpha(opacity=0);
-  opacity: 0; }
-
-.alertify-cover-hidden {
-  display: none; }
-
-.alertify {
-  position: fixed;
-  z-index: 99999;
-  top: 50px;
-  left: 50%;
-  width: 550px;
-  margin-left: -275px;
-  opacity: 1; }
+.alertify-dialog {
+  padding: 12px; }
 
 .alertify-hidden {
   opacity: 0;
   display: none; }
 
-/* overwrite display: none; for everything except IE6-8 */
-:root * > .alertify-hidden {
-  display: block;
-  visibility: hidden; }
-
 .alertify-logs {
   position: fixed;
   z-index: 5000;
-  bottom: 10px;
-  right: 10px;
-  width: 300px; }
-
-.alertify-logs-hidden {
-  display: none; }
+  bottom: 0;
+  right: 0; }
 
 .alertify-log {
   display: block;
   margin-top: 10px;
   position: relative;
-  right: -300px;
+  right: -100%;
   opacity: 0; }
 
 .alertify-log-show {
@@ -69,23 +59,10 @@
   opacity: 1; }
 
 .alertify-log-hide {
-  -webkit-transform: translate(300px, 0);
-      -ms-transform: translate(300px, 0);
-          transform: translate(300px, 0);
+  -webkit-transform: translate(100%, 0);
+      -ms-transform: translate(100%, 0);
+          transform: translate(100%, 0);
   opacity: 0; }
-
-.alertify-dialog {
-  padding: 25px; }
-
-.alertify-resetFocus {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px; }
 
 .alertify-inner {
   text-align: center; }
@@ -93,54 +70,19 @@
 .alertify-text {
   margin-bottom: 15px;
   width: 100%;
-  box-sizing: border-box;
   font-size: 100%; }
-
-.alertify-button,
-.alertify-button:hover,
-.alertify-button:active,
-.alertify-button:visited {
-  background: none;
-  text-decoration: none;
-  border: none;
-  /* line-height and font-size for input button */
-  line-height: 1.5;
-  font-size: 100%;
-  display: inline-block;
-  cursor: pointer;
-  margin-left: 5px; }
-
-@media only screen and (max-width: 680px) {
-  .alertify,
-  .alertify-logs {
-    width: 90%;
-    box-sizing: border-box; }
-  .alertify {
-    left: 5%;
-    margin: 0; } }
 
 /**
  * Twitter Bootstrap Look and Feel
  * Based on http://twitter.github.com/bootstrap/
  */
-.alertify,
-.alertify-log {
-  font-family: sans-serif; }
-
-.alertify {
-  background: #FFF;
-  border: 1px solid #8E8E8E;
-  /* browsers that don't support rgba */
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 6px;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  background-clip: padding-box; }
-
 .alertify-dialog {
   padding: 0; }
 
-.alertify-inner {
-  text-align: left; }
+.alertify .alertify-inner {
+  text-align: left;
+  background: #fff;
+  border-radius: 4px; }
 
 .alertify-message {
   padding: 15px;

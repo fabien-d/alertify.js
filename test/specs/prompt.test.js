@@ -4,7 +4,7 @@ var deepEqual = QUnit.deepEqual,
 
 module("prompt", {
     setup: function () {
-        alertify.set({labels: {ok: "OK", cancel: "Cancel"}});
+        alertify.okBtn("OK").cancelBtn("Cancel");
         this.dialog = alertify.prompt("Test");
         this.ok = document.getElementById("alertify-ok");
         this.cancel = document.getElementById("alertify-cancel");
@@ -18,11 +18,6 @@ module("prompt", {
     }
 });
 
-test("prompt returns alertify object", function () {
-    expect(1);
-    deepEqual(this.dialog, alertify, "should be equal");
-});
-
 test("prompt elements", function () {
     expect(3);
     ok(this.ok, "OK button exists");
@@ -32,8 +27,9 @@ test("prompt elements", function () {
 
 module("prompt parameters", {
     setup: function () {
-        alertify.prompt("Test", function () {
-        }, "Default Message");
+        alertify.defaultValue("Default Message");
+        alertify.prompt("Test", function () {});
+
         this.ok = document.getElementById("alertify-ok");
         this.text = document.getElementById("alertify-text");
     },
