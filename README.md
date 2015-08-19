@@ -31,75 +31,14 @@ If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS 
 etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproduce-able,
 concrete example is your best way to get our attention! Not to say that we won't do our best to fix other issues, though :-)
 
-## Installation
-
-### Bower
-
-```bash
-bower install --save alertifyjs
-```
-
-### NPM
-
-```bash
-npm install --save alertify.js
-```
-
-### CDN [jsDelivr](jsDelivr.com)
-
-```html
-<!-- standard theme -->
-<link rel="stylehsheet" href="//cdn.jsdelivr.net/g/alertify.js/alertify.css">
-<script src="//cdn.jsdelivr.net/g/alertify.js/alertify.js"></script>
-```
-
-```html
-<!-- bootstrap theme -->
-<link rel="stylehsheet" href="//cdn.jsdelivr.net/g/alertify.js/alertify-bootstrap.css">
-<script src="//cdn.jsdelivr.net/g/alertify.js/alertify.js"></script>
-```
-
-```html
-<!-- bootstrap 3 theme -->
-<link rel="stylehsheet" href="//cdn.jsdelivr.net/g/alertify.js/alertify-bootstrap-3.css">
-<script src="//cdn.jsdelivr.net/g/alertify.js/alertify.js"></script>
-```
-
-
 ## Usage and Examples
 
 For code examples, stop by the [website at alertifyjs.org](http://alertifyjs.org/)
-
-## Where is it being tested?
-
-* Microsoft Internet Explorer 9+
-* Google Chrome
-* Mozilla Firefox
-* Apple Safari
-* Opera
-* iOS
-* Android
-
-### IE 8 Support
-
-Internet Explorer 8 support was dropped in version 0.3.13. If you need IE 8 support,
-use version 0.3.12. Since Microsoft no longer supports IE 8, it's better to move on.
-
-### IE 9 Support
-
-Internet Explorer 9 will be dropped in 0.4 and above, as well.
 
 ## Credit where credit is due
 
 See all list of [contributors](https://github.com/alertifyjs/alertify.js/contributors)
 
-## Maintenance
-
-This is a fork of the original [fabien-d/alertify.js repository](//github.com/fabien-d/alertify.js) which is
-no longer being maintained.
-
-This fork is being actively maintained. You should submit your issues here.
-
 ## License
 
-alertify.js is licensed under MIT http://www.opensource.org/licenses/MIT
+alertify.js is licensed under [MIT](http://www.opensource.org/licenses/MIT)
