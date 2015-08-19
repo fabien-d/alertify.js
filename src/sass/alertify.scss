@@ -1,0 +1,77 @@
+@import "includes/_core";
+
+$box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+$padding-base: 12px;
+$success-color: rgba(76, 175, 80, .9);
+$danger-color: rgba(244, 67, 54, .8);
+$text-color: rgba(0, 0, 0, .8);
+
+.alertify {
+  .alertify-dialog, .alertify-alert {
+    .alertify-inner {
+      padding: $padding-base;
+      background: #fff;
+      box-shadow: 0 2px 4px -1px rgba(0,0,0,.14), 0 4px 5px 0 rgba(0,0,0,.098), 0 1px 10px 0 rgba(0,0,0,.084);
+    }
+  }
+  .alertify-message {
+    padding: $padding-base;
+    margin-bottom: $padding-base;
+    margin: 0;
+    text-align: left;
+  }
+}
+
+.alertify-text {
+  border: 1px solid #CCC;
+  padding: $padding-base;
+}
+
+.alertify-button {
+
+  background: transparent;
+  box-sizing: border-box;
+  color: rgba(0,0,0,0.87);
+  position: relative;
+  outline: 0;
+  border: 0;
+  display: inline-block;
+  align-items: center;
+  padding: 0 6px;
+  margin: 6px 8px;
+  line-height: 36px;
+  min-height: 36px;
+  white-space: nowrap;
+  min-width: 88px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 2px;
+
+  &:hover, &:active {
+    background-color: rgba(0,0,0,.05);
+  }
+
+}
+
+.alertify-log {
+
+  float: right;
+  clear: right;
+  background: rgba(0, 0, 0, .8);
+  padding: $padding-base $padding-base * 2;
+  color: #fff;
+  box-shadow: $box-shadow;
+
+  &.alertify-log-error {
+    background: $danger-color;
+  }
+
+  &.alertify-log-success {
+    background: $success-color;
+  }
+
+}

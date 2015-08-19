@@ -1,0 +1,91 @@
+.alertify {
+
+  font-family: inherit;
+  position: fixed;
+  background-color: rgba(0,0,0,.6);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+
+  &, * {
+    box-sizing: border-box;
+  }
+
+  .alertify-dialog, .alertify-alert {
+
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .alertify-inner {
+      width: 400px;
+      max-width: 95%;
+      margin: 0 auto;
+    }
+
+  }
+
+  .alertify-buttons {
+    text-align: right;
+  }
+
+}
+
+.alertify,
+.alertify-show,
+.alertify-log,
+.alertify-hide {
+  box-sizing: border-box;
+  transition: all .3s cubic-bezier(.25, .8, .25, 1);
+}
+
+// Center this
+.alertify-dialog {
+  padding: 12px;
+}
+
+.alertify-hidden {
+  opacity: 0;
+  display: none;
+}
+
+.alertify-logs {
+  position: fixed;
+  z-index: 5000;
+  bottom: 0;
+  right: 0;
+}
+
+.alertify-log {
+  display: block;
+  margin-top: 10px;
+  position: relative;
+  right: -100%;
+  opacity: 0;
+}
+
+.alertify-log-show {
+  right: 0;
+  opacity: 1;
+}
+
+.alertify-log-hide {
+  transform: translate(100%, 0);
+  opacity: 0;
+}
+
+.alertify-inner {
+  text-align: center;
+}
+
+.alertify-text {
+  margin-bottom: 15px;
+  width: 100%;
+  font-size: 100%;
+}

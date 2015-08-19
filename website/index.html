@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Alertify.js is a lightweight brower alert and dialog plugin.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>alertify.js</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.3/material.teal-cyan.min.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" id="toggleCSS">
+  </head>
+  <body>
+
+    <div class="layout-transparent mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title ">alertify.js</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="#getting-started">Getting Started</a>
+            <a class="mdl-navigation__link" href="#performance">Performance</a>
+            <a class="mdl-navigation__link" href="#usage">Usage</a>
+            <a class="mdl-navigation__link" href="#themes">Themes</a>
+            <a class="mdl-navigation__link" href="https://github.com/alertifyjs/alertify.js">View on GitHub</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">alertify.js</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="#getting-started">Getting Started</a>
+          <a class="mdl-navigation__link" href="#performance">Performance</a>
+          <a class="mdl-navigation__link" href="#usage">Usage</a>
+          <a class="mdl-navigation__link" href="#themes">Themes</a>
+          <a class="mdl-navigation__link" href="https://github.com/alertifyjs/alertify.js">View on GitHub</a>
+        </nav>
+      </div>
+
+      <main class="mdl-layout__content">
+        <div class="container text-center">
+            <h1 class="text--bold-shadow mdl-typography--display-4">alertify.js</h1>
+            <h3 class="text--bold-shadow mdl-typography--display-2">Simple browser dialogs.</h3>
+
+            <a href="https://github.com/alertifyjs/alertify.js/archive/master.zip"
+               class="mdl-button mdl-button--large mdl-button--primary mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+              <i class="material-icons md-24">file_download</i>
+              Download Now
+            </a>
+
+        </div>
+        <div class="page-content">
+          <div class="container">
+
+            <h2 class="mdl-typeography--display-3" id="getting-started">Getting Started</h2>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h4 class="mdl-typeograph--headline">Notes</h4>
+                <p>
+                  We're working to get the latest version on all major public CDN's
+                  but until then, you'll need to either use a GitHub raw service,
+                  download it, or install via NPM or Bower.
+                </p>
+                <p>
+                  Obviously, if you're installing via Bower or NPM, you'll need
+                  to include the files in the "dist" directory in your
+                  HTML for everything to work. But you knew that already.
+                </p>
+                <p>
+                  It's also worth noting that the CSS is bundled by default,
+                  so there's no need to include any stylesheets to use the
+                  default theme. It's dyamically inserted before any other
+                  &lt;link&gt; elements (like) stylesheets so it's super
+                  easy to override with your own styles.
+                </p>
+              </div>
+
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h4 class="mdl-typeograph--headline">Via RawGit</h4>
+<pre>
+&lt;script src="https://cdn.rawgit.com/alertifyjs/alertify.js/master/dist/js/alertify.js"&gt;&lt;script&gt;
+</pre>
+                  <h4 class="mdl-typeograph--headline">Via Bower</h4>
+                  <pre>bower install --save alertify.js</pre>
+
+                  <h4 class="mdl-typeograph--headline">Via NPM</h4>
+                  <pre>npm install --save alertify.js</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h4 class="mdl-typeograph--headline">AngularJS</h4>
+                <p>
+                  An AngularJS module is also included. It's in the
+                  "ngAlertify.js" file, so use that instead if you're building
+                  an AngularJS app.
+                </p>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h4 class="mdl-typeograph--headline">Initialize ngAlertify</h4>
+<pre>
+// Make sure to include the ngAlertify.js file.
+angular
+    .module("myApp", ["ngAlerify"])
+    .controller("myController", function($scope, ngAlertify) {
+        ngAlertify.success("Welcome to ngAlertify!");
+    });
+</pre>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="styles__ribbon styles__ribbon--teal">
+              <div class="container">
+                  <h2 class="mdl-typeography--display-3" id="performance">Performance</h2>
+
+                  <p>
+                    Alertify is designed from the ground-up for great performance
+                    and a small footprint. That means it's not as feature-rich as
+                    some other options. That's on purpose. We don't plan on adding
+                    a lot more features so it stays a great option for every
+                    kind of website and user.
+                  </p>
+
+                  <p>
+                    Currently, the entire library, with JavaScript and CSS
+                    is ~2.75 kB, and getting smaller all the time. That's quite
+                    impressive considering it's only a single HTTP request, and
+                    no external dependencies are required at all, like jQuery,
+                    etc.
+                  </p>
+              </div>
+          </div>
+
+          <div class="container">
+
+            <h2 class="mdl-typeography--display-3" id="usage">Usage</h2>
+
+            <h3 class="mdl-typeography--display-2">Dialogs</h3>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Alert Dialog</h5>
+
+                <p>
+                  Dialogs display a text and require
+                  user to acknowledge the message.
+                </p>
+
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="alert">Try It</a><br>
+
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+                <pre>alertify.alert("Message");</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Confirm Dialog</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="confirm">Try It</a><br>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+// confirm dialog
+alertify.confirm("Message", function () {
+    // user clicked "ok"
+}, function() {
+    // user clicked "cancel"
+});
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Prompt Dialog</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="prompt">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify
+  .defaultValue("Default Value")
+  .prompt("This is a prompt dialog",
+    function (val, event) {
+
+      // The click event is in the event variable, so you can use it here.
+      event.preventDefault();
+
+      // The value entered is availble in the val variable.
+      alertify.success("You've clicked OK and typed: " + val);
+
+    }, function(event) {
+
+      // The click event is in the event variable, so you can use it here.
+      event.preventDefault();
+
+      alertify.error("You've clicked Cancel");
+
+    }
+  });
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Custom Labels</h5>
+                <p>
+                  You're not limited to the "Ok" and "Cancel" button labels.
+                  You can easily set your own labels.
+                </p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="labels">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify
+  .okBtn("Accept")
+  .cancelBtn("Deny")
+  .confirm("Confirm dialog with custom button labels", function (event) {
+
+      // The click event is in the event variable, so you can use it here.
+      event.preventDefault();
+
+      alertify.success("You've clicked OK");
+
+  }, function(event) {
+
+      // The click event is in the event variable, so you can use it here.
+      event.preventDefault();
+
+      alertify.error("You've clicked Cancel");
+
+  });
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Ajax - Multiple Dialog</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="ajax">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.confirm("Confirm?", function (event) {
+
+    // The click event is in the event variable, so you can use it here.
+    event.preventDefault();
+
+    alertify.alert("Successful AJAX after OK");
+
+
+}, function(event) {
+
+    // The click event is in the event variable, so you can use it here.
+    event.preventDefault();
+
+    alertify.alert("Successful AJAX after Cancel");
+
+});
+</pre>
+              </div>
+            </div>
+
+            <hr>
+
+            <h3 class="mdl-typeography--display-2">Log Messages</h3>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Standard Log</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="notification">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.log("Standard log message");
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Standard Log With HTML</h5>
+                <p>HTML works just find in log messages. Have at it!</p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="notification-html">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.log("&lt;img src='https://placehold.it/256x128'&gt;&lt;h3&gt;This is HTML&lt;/h3&gt;&lt;p&gt;It's great, right?&lt;/p&gt;");
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Standard Log with callback</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="notification-callback">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.log("Standard log message with callback", function(event) {
+
+    // The click event is in the event variable, so you can use it here.
+    event.preventDefault();
+
+    alertify.log("You clicked the notification");
+
+});
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Success Log</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="success">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.success("Success log message");
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Success Log with callback</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="success-callback">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.success("Standard log message with callback", function(event) {
+
+    // The click event is in the event variable, so you can use it here.
+    event.preventDefault();
+
+    alertify.success("You clicked the notification");
+
+});
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Error Log</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="error">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+                <pre>alertify.error("Error log message");</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Error Log with callback</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="error-callback">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.error("Standard log message with callback", function(event) {
+
+    // The click event is in the event variable, so you can use it here.
+    event.preventDefault();
+
+    alertify.error("You clicked the notification");
+
+});
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Closing Log On Click</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="click-to-close">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify
+  .closeLogOnClick(true)
+  .log("Click me to close!");
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Disable Log On Click</h5>
+                <p>
+                  Clicking on a log message to close is disabled by default,
+                  but if you've enabled it and need to reset it to disabled,
+                  you can do so very easily.
+                </p>
+                <p>
+                  The decision to disable it by default was to allow any type
+                  of html to be included in the log messages, including links.
+                </p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="disable-click-to-close">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify
+  .closeLogOnClick(true)
+  .log("Click me to close!")
+  .closeLogOnClick(false)
+  .log("You can't click to close this!");
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Hide in 10 seconds</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="delay">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.delay(10000).log("Hiding in 10 seconds");
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Persistent Log</h5>
+                <p>
+                  Persistent log messages will stay until clicked or until
+                  forceable removed when the number of messages exceeds the
+                  maxLogItems setting.
+                </p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="forever">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.log("Will stay until clicked", "", 0);
+</pre>
+              </div>
+            </div>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Maximum Number of Log Messages</h5>
+                <p>
+                  You can easily set the maximum number of log/success/error
+                  messages that will be displayed at a single time. The default
+                  is two.
+                </p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="max-log-items">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify
+  .maxLogItems(1)
+  .log("This is the first message");
+
+// The timeout is just for visual effect.
+setTimeout(function() {
+  alertify.log("The second message will force the first to close.");
+}, 1000);
+</pre>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="mdl-grid" id="themes">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h3 class="mdl-typeography--display-2">Themes</h3>
+                <p>
+                  Alertify is easily themeable. Get started with two
+                  themes contributed by the community. These CSS files for
+                  these themes need to be manually added to your page.
+                </p>
+                <p>
+                  <strong>NOTE:</strong> There is no need to insert any CSS
+                  at all to use the default theme. It's bundled with the main
+                  JavaScript file.
+                </p>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+
+                <h5 class="mdl-typeography--headline">Bootstrap Theme</h5>
+<pre>
+&lt;head&gt;
+    &lt;link rel="" href="/path/to/dist/css/bootstrap.css"&gt;
+&lt;/head&gt;
+</pre>
+                <p>This theme simulates the default appearance of Twitter Bootstrap 2.</p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="bootstrap">Try It</a>
+
+                <h5 class="mdl-typeography--headline">Bootstrap 3 Theme</h5>
+                <p>This theme simulates the default appearance of Twitter Bootstrap 3.</p>
+<pre>
+&lt;head&gt;
+    &lt;link rel="" href="/path/to/dist/css/bootstrap-3.css"&gt;
+&lt;/head&gt;
+</pre>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="bootstrap-3">Try It</a>
+
+              </div>
+            </div>
+
+            <hr>
+
+            <h3 class="mdl-typeography--display-2">Other Options</h3>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Resetting Default Values</h5>
+                <p>
+                    When you change values like the button labels, delays,
+                    default prompt values or placeholders, etc., you can easily
+                    reset the defaults.
+                </p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="reset">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+// Notice the okay button is not the custom value, it was reset.
+alertify
+  .okBtn("Go For It!")
+  .reset()
+  .alert("Custom values were reset!");
+</pre>
+              </div>
+            </div>
+
+            <!-- <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <p></p>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+</pre>
+              </div>
+            </div> -->
+
+
+          </div>
+        </div>
+
+        <footer>
+          <div class="container">
+            <p>Alertify.js is released under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. &copy; 2015 <a href="https://bradb.net">Brad Berger</a> and contributors.
+
+          </div>
+        </footer>
+      </main>
+    </div>
+
+
+
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/alertify.js"></script>
+    <script src="js/demo.js"></script>
+
+  </body>
+</html>
