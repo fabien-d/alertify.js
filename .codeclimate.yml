@@ -1,0 +1,10 @@
+languages:
+  JavaScript: true
+
+exclude_paths:
+- "test/*"
+- "website/*"
+- "dist/*"
+- "gulpfile.js"
+
+engines:
