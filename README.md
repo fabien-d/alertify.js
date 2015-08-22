@@ -2,6 +2,7 @@
 
 [![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
 [![Bower version](https://badge.fury.io/bo/alertifyjs.svg)](http://badge.fury.io/bo/alertifyjs)
+[![Code Climate](https://codeclimate.com/github/alertifyjs/alertify.js/badges/gpa.svg)](https://codeclimate.com/github/alertifyjs/alertify.js)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
 
