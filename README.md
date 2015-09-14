@@ -1,6 +1,6 @@
 # Alertify.js
 
-[![build status](https://secure.travis-ci.org/alertifyjs/alertify.js.png)](http://travis-ci.org/alertifyjs/alertify.js)
+[![Build Status](https://semaphoreci.com/api/v1/projects/c3e649b0-cd60-46bd-9a7a-3d23a7e55589/519553/badge.svg)](https://semaphoreci.com/alertifyjs/alertify-js)      
 [![Bower version](https://badge.fury.io/bo/alertifyjs.svg)](http://badge.fury.io/bo/alertifyjs)
 [![Code Climate](https://codeclimate.com/github/alertifyjs/alertify.js/badges/gpa.svg)](https://codeclimate.com/github/alertifyjs/alertify.js)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
