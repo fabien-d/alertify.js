@@ -1,6 +1,4 @@
-/* global require, module */
-
-var Alertify = (function(global, undefined) {
+(function(global, undefined) {
 
     "use strict";
 
@@ -10,13 +8,11 @@ var Alertify = (function(global, undefined) {
 
         var hasCss;
         var isopen = false;
-        var keys = { ENTER: 13, ESC: 27, SPACE: 32 };
         var queue = [];
         var btnCancel;
         var btnOK;
         var elDialog;
         var elLog;
-        var form;
         var input;
         var transitionType;
         var transitionSupported = false;
@@ -135,8 +131,6 @@ var Alertify = (function(global, undefined) {
 
                 var hasOK = typeof btnOK !== "undefined";
                 var hasCancel = typeof btnCancel !== "undefined";
-                var hasInput = typeof input !== "undefined";
-                var val = "";
                 var self = this;
 
                 // common event handler (ok and cancel)
@@ -154,11 +148,11 @@ var Alertify = (function(global, undefined) {
                 var ok = function(event) {
                     common(event);
                     if ("function" === typeof onOkay) {
-                      if ("undefined" === typeof input) {
-                        onOkay(event);
-                      } else {
-                        onOkay(input.value, event);
-                      }
+                        if ("undefined" === typeof input) {
+                            onOkay(event);
+                        } else {
+                            onOkay(input.value, event);
+                        }
                     }
                 };
 
@@ -189,12 +183,11 @@ var Alertify = (function(global, undefined) {
              */
             build: function(item) {
 
-                var css = item.cssClass || "";
                 var btnTxt = dialogs.buttons.ok;
                 var html = "<div class='alertify-dialog'>" + "<div class='alertify-inner'>" + dialogs.message.replace("{{message}}", item.message);
 
                 if(item.type === "confirm" || item.type === "prompt") {
-                  btnTxt = dialogs.buttons.cancel + dialogs.buttons.ok;
+                    btnTxt = dialogs.buttons.cancel + dialogs.buttons.ok;
                 }
 
                 if (item.type === "prompt") {
@@ -237,9 +230,9 @@ var Alertify = (function(global, undefined) {
 
                 // set click event on log messages
                 if (this.closeLogOnClick) {
-                  elem.addEventListener("click", function() {
-                      hideElement(elem);
-                  });
+                    elem.addEventListener("click", function() {
+                        hideElement(elem);
+                    });
                 }
 
                 // Hide the dialog box after transition
@@ -298,10 +291,10 @@ var Alertify = (function(global, undefined) {
                 this.init();
 
                 queue.push({
-                  type: type,
-                  message: message,
-                  onOkay: onOkay,
-                  onCancel: onCancel
+                    type: type,
+                    message: message,
+                    onOkay: onOkay,
+                    onCancel: onCancel
                 });
 
                 if (!isopen) {
@@ -392,9 +385,9 @@ var Alertify = (function(global, undefined) {
 
                 var diff = elLog.childNodes.length - this.maxLogItems;
                 if(diff >= 0) {
-                  for (var i = 0, _i = diff + 1; i < _i; i++) {
-                    this.close(elLog.childNodes[i], 1);
-                  }
+                    for (var i = 0, _i = diff + 1; i < _i; i++) {
+                        this.close(elLog.childNodes[i], 1);
+                    }
                 }
 
                 this.notify(message, type, click);
@@ -442,7 +435,7 @@ var Alertify = (function(global, undefined) {
                 var item = queue[0];
                 var self = this;
 
-                var transitionDone = function(ev) {
+                var transitionDone = function() {
                     elDialog.removeEventListener(self.transition.type, transitionDone);
                 };
 
@@ -461,15 +454,14 @@ var Alertify = (function(global, undefined) {
                 btnOK = $("alertify-ok") || undefined;
                 btnCancel = $("alertify-cancel") || undefined;
                 input = $("alertify-text") || undefined;
-                form = $("alertify-form") || undefined;
 
                 if(input) {
-                  if (typeof this.promptPlaceholder === "string") {
-                      input.placeholder = this.promptPlaceholder;
-                  }
-                  if (typeof this.promptValue === "string") {
-                      input.value = this.promptValue;
-                  }
+                    if (typeof this.promptPlaceholder === "string") {
+                        input.placeholder = this.promptPlaceholder;
+                    }
+                    if (typeof this.promptValue === "string") {
+                        input.value = this.promptValue;
+                    }
                 }
 
                 this.addListeners(item.onOkay, item.onCancel);
@@ -482,42 +474,39 @@ var Alertify = (function(global, undefined) {
             },
 
             setDelay: function(time) {
-
-              var dur = parseInt(time || 0, 10);
-              this.delay = isNaN(dur) ? this.defultDelay : time;
-              return this;
+                var dur = parseInt(time || 0, 10);
+                this.delay = isNaN(dur) ? this.defultDelay : time;
+                return this;
             },
 
             cancelBtn: function(str) {
-              this.cancelLabel = str;
-              return this;
+                this.cancelLabel = str;
+                return this;
             },
 
             setMaxLogItems: function(num) {
-              this.maxLogItems = parseInt(num || this.defaultMaxLogItems);
+                this.maxLogItems = parseInt(num || this.defaultMaxLogItems);
             },
 
             reset: function() {
-
-              this.okBtn(this.defaultOkLabel);
-              this.cancelBtn(this.defaultCancelLabel);
-              this.setMaxLogItems();
-              this.promptValue = "";
-              this.promptPlaceholder = "";
-              this.delay = this.defaultDelay;
-              this.setCloseLogOnClick(this.closeLogOnClickDefault);
-
+                this.okBtn(this.defaultOkLabel);
+                this.cancelBtn(this.defaultCancelLabel);
+                this.setMaxLogItems();
+                this.promptValue = "";
+                this.promptPlaceholder = "";
+                this.delay = this.defaultDelay;
+                this.setCloseLogOnClick(this.closeLogOnClickDefault);
             },
 
             injectCss: function() {
-              if (! hasCss) {
-                var head = document.getElementsByTagName("head")[0];
-                var css = document.createElement("style");
-                css.type = "text/css";
-                css.innerHTML = "/* style.css */";
-                head.insertBefore(css, head.firstChild);
-                hasCss = true;
-              }
+                if (! hasCss) {
+                    var head = document.getElementsByTagName("head")[0];
+                    var css = document.createElement("style");
+                    css.type = "text/css";
+                    css.innerHTML = "/* style.css */";
+                    head.insertBefore(css, head.firstChild);
+                    hasCss = true;
+                }
             }
 
         };

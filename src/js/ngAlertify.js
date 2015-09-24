@@ -2,13 +2,12 @@
 
 angular.module("ngAlertify", []).factory("alertify", function() {
 
-  "use strict";
+    "use strict";
 
-  // A quick hack to avoid exposing alertify to the window scope.
-  var module = { exports: true };
+    // A quick hack to avoid exposing alertify to the window scope.
+    var module = { exports: true };
 
-  /* alertify.js */
-
-  return module.exports;
+    /* alertify.js */
+    return module.exports;
 
 });

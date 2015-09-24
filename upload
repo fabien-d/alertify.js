@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-gsutil rsync -dr website gs://alertifyjs.org
-gsutil acl ch -r -u AllUsers:R gs://alertifyjs.org
-gsutil web set -m index.html -e 404.html gs://alertifyjs.org

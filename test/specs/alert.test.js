@@ -1,7 +1,5 @@
-/*global test, expect, QUnit*/
-var deepEqual = QUnit.deepEqual,
-    ok = QUnit.ok;
-
+/* eslint-env qunit */
+/* eslint strict:0 */
 module("alert", {
     setup: function () {
         alertify.okBtn("OK");
@@ -18,5 +16,5 @@ module("alert", {
 
 test("alert ok button", function () {
     expect(1);
-    ok(this.ok, "OK button exists");
+    QUnit.ok(this.ok, "OK button exists");
 });

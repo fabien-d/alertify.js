@@ -1,18 +1,21 @@
 # Alertify.js
 
 [![Build Status](https://semaphoreci.com/api/v1/projects/c3e649b0-cd60-46bd-9a7a-3d23a7e55589/519553/badge.svg)](https://semaphoreci.com/alertifyjs/alertify-js)      
-[![Bower version](https://badge.fury.io/bo/alertifyjs.svg)](http://badge.fury.io/bo/alertifyjs)
-[![Code Climate](https://codeclimate.com/github/alertifyjs/alertify.js/badges/gpa.svg)](https://codeclimate.com/github/alertifyjs/alertify.js)
+[![Code Climate](https://img.shields.io/codeclimate/github/alertifyjs/alertify.js.svg?style=flat-square)](https://codeclimate.com/github/alertifyjs/alertify.js)
+[![Code Climate](https://img.shields.io/codeclimate/coverage/github/alertifyjs/alertify.js.svg?style=flat-square)](https://codeclimate.com/github/alertifyjs/alertify.js)
+[![issues](https://img.shields.io/github/issues/badges/shields.svg?style=flat-square)](https://github.com/alertifyjs/alertify.js/issues)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
 
-[![npm downloads](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/alertify.js)
-[![npm version](https://img.shields.io/npm/v/alertify.js.svg)](https://www.npmjs.com/package/alertify.js)
-[![license](https://img.shields.io/npm/l/alertify.js.svg)](https://www.npmjs.com/package/alertify.js)
+[![Bower version](https://img.shields.io/bower/v/bootstrap.svg?style=flat-square)](http://bower.io/search/?q=alertifyjs)
+[![Bower version](https://img.shields.io/bower/l/bootstrap.svg?style=flat-square)](http://bower.io/search/?q=alertifyjs)
+[![npm downloads](https://img.shields.io/npm/dt/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
+[![npm downloads](https://img.shields.io/npm/dm/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
+[![npm version](https://img.shields.io/npm/v/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
+[![npm license](https://img.shields.io/npm/l/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
+
 [![Dependency Status](https://david-dm.org/alertifyjs/alertify.js.svg)](https://david-dm.org/alertifyjs/alertify.js)
 [![Dev Dependency status](https://david-dm.org/alertifyjs/alertify.js/dev-status.svg)](https://david-dm.org/alertifyjs/alertify.js#info=devDependencies&view=table)
-
-[![NPM](https://nodei.co/npm/alertify.js.png)](https://nodei.co/npm/alertify.js/)
 
 # Alertify.js
 

@@ -1,6 +1,6 @@
 {
   "name": "alertify.js",
-  "version": "1.0.0-rc2",
+  "version": "1.0.0-rc3",
   "main": "dist/js/alertify.js",
   "homepage": "https://alertifyjs.org",
   "keywords": [
@@ -10,16 +10,24 @@
     "js"
   ],
   "authors": [
-    {
-      "name": "Fabien Doiron",
-      "email": "fabien.doiron@gmail.com"
-    },
-    {
-      "name": "Brad Berger",
-      "email": "brad@bradb.net",
-      "homepage": "https://bradb.net"
-    }
+      "Fabien Doiron <fabien.doiron@gmail.com> (http://fabien-d.github.io/)",
+      "Brad Berger <brad@bradb.net> (https://bradb.net)",
+      "Christian Tellnes <christian@tellnes.com> (http://christian.tellnes.com)",
+      "Dan Panzarella (http://panzarel.la)",
+      "İsmail Demirbilek (http://ismaildemirbilek.com)",
+      "Stuart Keith <stuart@stuartkeith.com> (http://stuartkeith.com)",
+      "Antoine Corcy <contact@sbin.dk> (http://sbin.dk)",
+      "quasipickle <dylana@ualberta.ca>",
+      "Shayan Elhami",
+      "mindeavor (https://twitter.com/mindeavor)",
+      "Kristoffer Berdal <github@flexd.net> (http://cognitive.io)",
+      "Mahdi Yusuf <yusuf.mahdi@gmail.com> (http://www.mahdiyusuf.com)",
+      "Janek Lasocki-Biczysko <janek.lb@gmail.com>",
+      "Paul Osborne <paul.osborne.uk@gmail.com>",
+      "Florian Sellmayr (https://flosell.github.io/)"
   ],
+  "moduleType": ["amd", "globals", "node"],
+  "license": ["MIT", "MPL-2.0"],
   "ignore": [
     ".gitignore",
     "gulpfile.js",

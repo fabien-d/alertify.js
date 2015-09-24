@@ -1,10 +1,11 @@
+/* eslint-env node */
+/* eslint strict:0 */
 var gulp = require("gulp");
 var insert = require("gulp-file-insert");
 var uglify = require("gulp-uglify");
 var minifyCSS = require("gulp-minify-css");
 var qunit = require("gulp-qunit");
-var concat = require("gulp-concat");
-var jshint = require("gulp-jshint");
+var eslint = require("gulp-eslint");
 var prefix = require("gulp-autoprefixer");
 var sass = require("gulp-sass");
 var size = require("gulp-size");
@@ -30,37 +31,38 @@ gulp.task("css:min", function () {
       .pipe(gulp.dest(p("dist/css")));
 });
 
-gulp.task("jshint", function() {
+gulp.task("lint", function() {
     return gulp
       .src(p("src/js/**/*.js"))
-      .pipe(jshint())
-      .pipe(jshint.reporter("default"));
+      .pipe(eslint())
+      .pipe(eslint.format());
 });
 
-gulp.task("jshint:build", function() {
+gulp.task("lint:build", function() {
     return gulp
       .src(p("src/js/**/*.js"))
-      .pipe(jshint())
-      .pipe(jshint.reporter("fail"));
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failOnError());
 });
 
 gulp.task("uglify", function () {
     return gulp
-      .src(p("src/js/alertify.js"))
-      .pipe(insert({"/* style.css */": "dist/css/alertify.css"}))
-      .pipe(uglify({ outSourceMap: false }))
-      .pipe(size({ gzip: true, showFiles: true }))
-      .pipe(gulp.dest(p("dist/js")));
+        .src(p("src/js/alertify.js"))
+        .pipe(insert({"/* style.css */": "dist/css/alertify.css"}))
+        .pipe(uglify({ outSourceMap: false }))
+        .pipe(size({ gzip: true, showFiles: true }))
+        .pipe(gulp.dest(p("dist/js")));
 });
 
 gulp.task("js:angular", function() {
-  return gulp
-    .src(p("src/js/ngAlertify.js"))
-    .pipe(insert({"/* alertify.js */": "src/js/alertify.js"}))
-    .pipe(insert({"/* style.css */": "dist/css/alertify.css"}))
-    .pipe(uglify({ outSourceMap: false }))
-    .pipe(size({ gzip: true, showFiles: true }))
-    .pipe(gulp.dest(p("dist/js")));
+    return gulp
+        .src(p("src/js/ngAlertify.js"))
+        .pipe(insert({"/* alertify.js */": "src/js/alertify.js"}))
+        .pipe(insert({"/* style.css */": "dist/css/alertify.css"}))
+        .pipe(uglify({ outSourceMap: false }))
+        .pipe(size({ gzip: true, showFiles: true }))
+        .pipe(gulp.dest(p("dist/js")));
 });
 
 gulp.task("qunit", function() {
@@ -70,15 +72,15 @@ gulp.task("qunit", function() {
 });
 
 
-gulp.task("test", ["jshint:build", "qunit"]);
+gulp.task("test", ["lint:build", "qunit"]);
 
 gulp.task("watch", function () {
     gulp.watch([
-      p("src/sass/**/*.scss"),
-      p("src/js/**/*.js")
+        p("src/sass/**/*.scss"),
+        p("src/js/**/*.js")
     ], ["build"]);
 });
 
 gulp.task("build", function(cb) {
-  runSequnce("sass", "css:min", "jshint", "uglify", "js:angular", cb);
+    runSequnce("sass", "css:min", "lint", "uglify", "js:angular", cb);
 });
