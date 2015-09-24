@@ -194,7 +194,7 @@ alertify.confirm("Message", function () {
 alertify
   .defaultValue("Default Value")
   .prompt("This is a prompt dialog",
-    function (val, event) {
+    function (val, ev) {
 
       // The click event is in the event variable, so you can use it here.
       ev.preventDefault();
@@ -230,7 +230,7 @@ alertify
 alertify
   .okBtn("Accept")
   .cancelBtn("Deny")
-  .confirm("Confirm dialog with custom button labels", function (event) {
+  .confirm("Confirm dialog with custom button labels", function (ev) {
 
       // The click event is in the
       // event variable, so you can use
@@ -261,7 +261,7 @@ alertify
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h5 class="mdl-typeography--headline">Code Example</h5>
 <pre>
-alertify.confirm("Confirm?", function (event) {
+alertify.confirm("Confirm?", function (ev) {
 
     // The click event is in the
     // event variable, so you can use
