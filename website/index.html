@@ -132,7 +132,7 @@ angular
 
                   <p>
                     Currently, the entire library, with JavaScript and CSS
-                    is ~2.75 kB, and getting smaller all the time. That's quite
+                    is ~2.68 kB, and getting smaller all the time. That's quite
                     impressive considering it's only a single HTTP request, and
                     no external dependencies are required at all, like jQuery,
                     etc.
@@ -149,7 +149,6 @@ angular
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Alert Dialog</h5>
-
                 <p>
                   Dialogs display a text and require
                   user to acknowledge the message.
@@ -198,15 +197,15 @@ alertify
     function (val, event) {
 
       // The click event is in the event variable, so you can use it here.
-      event.preventDefault();
+      ev.preventDefault();
 
       // The value entered is availble in the val variable.
       alertify.success("You've clicked OK and typed: " + val);
 
-    }, function(event) {
+    }, function(ev) {
 
       // The click event is in the event variable, so you can use it here.
-      event.preventDefault();
+      ev.preventDefault();
 
       alertify.error("You've clicked Cancel");
 
@@ -233,15 +232,18 @@ alertify
   .cancelBtn("Deny")
   .confirm("Confirm dialog with custom button labels", function (event) {
 
-      // The click event is in the event variable, so you can use it here.
-      event.preventDefault();
-
+      // The click event is in the
+      // event variable, so you can use
+      // it here.
+      ev.preventDefault();
       alertify.success("You've clicked OK");
 
-  }, function(event) {
+  }, function(ev) {
 
-      // The click event is in the event variable, so you can use it here.
-      event.preventDefault();
+      // The click event is in the
+      // event variable, so you can use
+      // it here.
+      ev.preventDefault();
 
       alertify.error("You've clicked Cancel");
 
@@ -261,16 +263,20 @@ alertify
 <pre>
 alertify.confirm("Confirm?", function (event) {
 
-    // The click event is in the event variable, so you can use it here.
-    event.preventDefault();
+    // The click event is in the
+    // event variable, so you can use
+    // it here.
+    ev.preventDefault();
 
     alertify.alert("Successful AJAX after OK");
 
 
-}, function(event) {
+}, function(ev) {
 
-    // The click event is in the event variable, so you can use it here.
-    event.preventDefault();
+    // The click event is in the
+    // event variable, so you can use
+    // it here.
+    ev.preventDefault();
 
     alertify.alert("Successful AJAX after Cancel");
 
@@ -306,7 +312,10 @@ alertify.log("Standard log message");
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h5 class="mdl-typeography--headline">Code Example</h5>
 <pre>
-alertify.log("&lt;img src='https://placehold.it/256x128'&gt;&lt;h3&gt;This is HTML&lt;/h3&gt;&lt;p&gt;It's great, right?&lt;/p&gt;");
+var msg = "&lt;img src='https://placehold.it/256x128'&gt;" +
+          "&lt;h3&gt;This is HTML&lt;/h3&gt;" +
+          "&lt;p&gt;It's great, right?&lt;/p&gt;";
+alertify.log(msg);
 </pre>
               </div>
             </div>
@@ -314,16 +323,25 @@ alertify.log("&lt;img src='https://placehold.it/256x128'&gt;&lt;h3&gt;This is HT
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Standard Log with callback</h5>
-                <p></p>
+                <p>
+                    Keep in mind that the when setting a callback, clicking the log message
+                    doesn't automatically close the log message, which is different than
+                    previous functionality. This means that the callback could be called
+                    multiple times if the user clicks multiple times. If you're callback is
+                    an action that must be completed only once, you'll need to keep track
+                    of that separately.
+                </p>
                 <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="notification-callback">Try It</a>
               </div>
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h5 class="mdl-typeography--headline">Code Example</h5>
 <pre>
-alertify.log("Standard log message with callback", function(event) {
+alertify.log("Standard log message with callback", function(ev) {
 
-    // The click event is in the event variable, so you can use it here.
-    event.preventDefault();
+    // The click event is in the
+    // event variable, so you can use
+    // it here.
+    ev.preventDefault();
 
     alertify.log("You clicked the notification");
 
@@ -355,10 +373,12 @@ alertify.success("Success log message");
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h5 class="mdl-typeography--headline">Code Example</h5>
 <pre>
-alertify.success("Standard log message with callback", function(event) {
+alertify.success("Standard log message with callback", function(ev) {
 
-    // The click event is in the event variable, so you can use it here.
-    event.preventDefault();
+    // The click event is in the
+    // event variable, so you can use
+    // it here.
+    ev.preventDefault();
 
     alertify.success("You clicked the notification");
 
@@ -388,11 +408,11 @@ alertify.success("Standard log message with callback", function(event) {
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h5 class="mdl-typeography--headline">Code Example</h5>
 <pre>
-alertify.error("Standard log message with callback", function(event) {
+alertify.error("Standard log message with callback", function(ev) {
 
-    // The click event is in the event variable, so you can use it here.
-    event.preventDefault();
-
+    // The click event is in the
+    // event variable, so you can use
+    // it here.    ev.preventDefault();
     alertify.error("You clicked the notification");
 
 });

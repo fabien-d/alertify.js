@@ -10,6 +10,7 @@ var prefix = require("gulp-autoprefixer");
 var sass = require("gulp-sass");
 var size = require("gulp-size");
 var runSequnce = require("run-sequence");
+var connect = require("gulp-connect");
 
 var p = function (path) {
     return __dirname + (path.charAt(0) === "/" ? "" : "/") + path;
@@ -28,7 +29,8 @@ gulp.task("css:min", function () {
       .src(p("src/css/**/*.css"))
       .pipe(minifyCSS())
       .pipe(size({ gzip: true, showFiles: true }))
-      .pipe(gulp.dest(p("dist/css")));
+      .pipe(gulp.dest(p("dist/css")))
+      .pipe(connect.reload());
 });
 
 gulp.task("lint", function() {
@@ -52,7 +54,8 @@ gulp.task("uglify", function () {
         .pipe(insert({"/* style.css */": "dist/css/alertify.css"}))
         .pipe(uglify({ outSourceMap: false }))
         .pipe(size({ gzip: true, showFiles: true }))
-        .pipe(gulp.dest(p("dist/js")));
+        .pipe(gulp.dest(p("dist/js")))
+        .pipe(connect.reload());
 });
 
 gulp.task("js:angular", function() {
@@ -71,10 +74,23 @@ gulp.task("qunit", function() {
       .pipe(qunit());
 });
 
+gulp.task("connect", function() {
+    connect.server({
+        root: "website",
+        livereload: true,
+        port: 3000
+    });
+});
 
 gulp.task("test", ["lint:build", "qunit"]);
 
 gulp.task("watch", function () {
+    var HTML_SRC = p("website/**/*.html");
+    gulp.watch([HTML_SRC], function() {
+        gulp
+            .src(HTML_SRC)
+            .pipe(connect.reload());
+    });
     gulp.watch([
         p("src/sass/**/*.scss"),
         p("src/js/**/*.js")
@@ -84,3 +100,5 @@ gulp.task("watch", function () {
 gulp.task("build", function(cb) {
     runSequnce("sass", "css:min", "lint", "uglify", "js:angular", cb);
 });
+
+gulp.task("default", ["connect", "watch"]);
