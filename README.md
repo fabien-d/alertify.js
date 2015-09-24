@@ -3,7 +3,7 @@
 [![Build Status](https://semaphoreci.com/api/v1/projects/c3e649b0-cd60-46bd-9a7a-3d23a7e55589/519553/badge.svg)](https://semaphoreci.com/alertifyjs/alertify-js)      
 [![Code Climate](https://img.shields.io/codeclimate/github/alertifyjs/alertify.js.svg?style=flat-square)](https://codeclimate.com/github/alertifyjs/alertify.js)
 [![Code Climate](https://img.shields.io/codeclimate/coverage/github/alertifyjs/alertify.js.svg?style=flat-square)](https://codeclimate.com/github/alertifyjs/alertify.js)
-[![issues](https://img.shields.io/github/issues/badges/shields.svg?style=flat-square)](https://github.com/alertifyjs/alertify.js/issues)
+[![issues](https://img.shields.io/github/issues/alertifyjs/alertify.js.svg?style=flat-square)](https://github.com/alertifyjs/alertify.js/issues)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
 
