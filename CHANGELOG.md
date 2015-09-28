@@ -1,3 +1,11 @@
+## 1.0.2
+
+- Fixes `ngAlertify` issues
+- Adds Karma unit testing
+- Adds SauceLabs to CI process
+- Fixes website documentation typos
+- Updates rawgit link on website
+
 ## 1.0.1
 
 - Fixes an [issue](https://github.com/alertifyjs/alertify.js/issues/40) with default button labels being undefined
