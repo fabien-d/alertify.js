@@ -1,77 +1,162 @@
-@import "includes/_core";
-
-$box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+$box-shadow: 0 2px 5px 0 rgba(0,0,0,.2);
 $padding-base: 12px;
 $success-color: rgba(76, 175, 80, .9);
 $danger-color: rgba(244, 67, 54, .8);
 $text-color: rgba(0, 0, 0, .8);
+$border-radius: 1px;
+
+.alertify-logs {
+    > * {
+        padding: $padding-base $padding-base * 2;
+        color: #fff;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+        &, &.default {
+            background: rgba(0, 0, 0, .8);
+        }
+        &.error {
+          background: $danger-color;
+        }
+        &.success {
+          background: $success-color;
+        }
+    }
+}
 
 .alertify {
-  .alertify-dialog, .alertify-alert {
-    .alertify-inner {
-      padding: $padding-base;
-      background: #fff;
-      box-shadow: 0 2px 4px -1px rgba(0,0,0,.14), 0 4px 5px 0 rgba(0,0,0,.098), 0 1px 10px 0 rgba(0,0,0,.084);
+
+    position: fixed;
+    background-color: rgba(0, 0, 0, .3);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
     }
-  }
-  .alertify-message {
-    padding: $padding-base;
-    margin-bottom: $padding-base;
-    margin: 0;
-    text-align: left;
-  }
+
+    &, &.show, &.hide {
+        box-sizing: border-box;
+        transition: all .2s cubic-bezier(.25, .8, .25, 1);
+    }
+
+    &, * {
+        box-sizing: border-box;
+    }
+
+    .dialog {
+       padding: 12px;
+    }
+
+    .dialog, .alert {
+
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+
+        > * {
+            width: 400px;
+            max-width: 95%;
+            margin: 0 auto;
+            text-align: center;
+            padding: $padding-base;
+            background: #fff;
+            box-shadow: 0 2px 4px -1px rgba(0,0,0,.14), 0 4px 5px 0 rgba(0,0,0,.098), 0 1px 10px 0 rgba(0,0,0,.084);
+        }
+
+        .msg {
+          padding: $padding-base;
+          margin-bottom: $padding-base;
+          margin: 0;
+          text-align: left;
+        }
+
+        input {
+            margin-bottom: 15px;
+            width: 100%;
+            font-size: 100%;
+            padding: $padding-base;
+            &:focus {
+                outline-offset: -2px;
+            }
+        }
+        nav {
+
+            text-align: right;
+
+            button {
+
+              background: transparent;
+              box-sizing: border-box;
+              color: rgba(0,0,0,0.87);
+              position: relative;
+              outline: 0;
+              border: 0;
+              display: inline-block;
+              align-items: center;
+              padding: 0 6px;
+              margin: 6px 8px;
+              line-height: 36px;
+              min-height: 36px;
+              white-space: nowrap;
+              min-width: 88px;
+              text-align: center;
+              text-transform: uppercase;
+              font-size: 14px;
+              text-decoration: none;
+              cursor: pointer;
+              border-radius: 2px;
+
+              &:hover, &:active {
+                background-color: rgba(0,0,0,.05);
+              }
+
+              &:focus {
+                  border-style: dashed;
+              }
+
+            }
+
+        }
+    }
 }
 
-.alertify-text {
-  border: 1px solid #CCC;
-  padding: $padding-base;
-}
+.alertify-logs {
 
-.alertify-button {
+    position: fixed;
+    z-index: 100;
+    bottom: 16px;
+    left: 16px;
 
-  background: transparent;
-  box-sizing: border-box;
-  color: rgba(0,0,0,0.87);
-  position: relative;
-  outline: 0;
-  border: 0;
-  display: inline-block;
-  align-items: center;
-  padding: 0 6px;
-  margin: 6px 8px;
-  line-height: 36px;
-  min-height: 36px;
-  white-space: nowrap;
-  min-width: 88px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 2px;
+    > * {
 
-  &:hover, &:active {
-    background-color: rgba(0,0,0,.05);
-  }
+        box-sizing: border-box;
+        transition: all .3s cubic-bezier(.25, .8, .25, 1);
+        margin-top: 10px;
+        position: relative;
+        float: left;
+        clear: both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+	    perspective: 1000;
 
-}
+        &.show {
+            left: 0;
+            opacity: 1;
+        }
 
-.alertify-log {
+        &, &.hide {
+            left: -110%;
+            opacity: 0;
+        }
 
-  float: right;
-  clear: right;
-  background: rgba(0, 0, 0, .8);
-  padding: $padding-base $padding-base * 2;
-  color: #fff;
-  box-shadow: $box-shadow;
-
-  &.alertify-log-error {
-    background: $danger-color;
-  }
-
-  &.alertify-log-success {
-    background: $success-color;
-  }
+    }
 
 }

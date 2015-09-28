@@ -34,9 +34,26 @@
   align-items: stretch;
 }
 
+h1, h2, h3, h4, h5, h6,
+.mdl-button,
+.mdl-typography--display-4,
+.mdl-typography--display-3,
+.mdl-typography--display-2 {
+    font-weight: 300;
+}
+
+.mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
+    background: #96CA2D;
+    color: #fff;
+}
+
+a.mdl-button:hover {
+    text-decoration: none;
+    color: rgba(255, 255, 255, .9);
+}
+
 .text--bold-shadow {
-  text-shadow: 0 2px 2px rgba(0,0,0,.5);
-  font-weight: bold;
+  text-shadow: 0 2px 2px rgba(0,0,0,.1);
 }
 footer {
   background: #fafafa;
@@ -86,8 +103,7 @@ a.mdl-button--large {
 }
 
 .styles__ribbon--teal {
-  background-color: #009688;
-  opacity: .6;
+  background-color: #4BB5C1;
 }
 
 .styles__ribbon.styles__ribbon--right {
@@ -129,7 +145,7 @@ pre {
 
 .page-content {
   background: #fff;
-  color: #757575;
+  color: #555;
 }
 
 .container {
@@ -142,7 +158,7 @@ pre {
 
 /* Need for sure */
 .layout-transparent {
-  background: url('../images/transparent.jpg') center / cover;
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
 }
 .layout-transparent .mdl-layout__header,
 .layout-transparent .mdl-layout__drawer-button,

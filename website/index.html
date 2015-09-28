@@ -6,14 +6,29 @@
     <meta name="description" content="Alertify.js is a lightweight brower alert and dialog plugin.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>alertify.js</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:light&amp;lang=en" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.3/material.teal-cyan.min.css" />
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.blue-light_blue.min.css" />
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" id="toggleCSS">
+    <script>
+    var env = document.domain === "alertifyjs.org" ? "production" : "local";
+    if (env === "production") {
+        var _rollbarConfig = {
+            accessToken: "cffbf4470b49484b9e94498203125ab4",
+            captureUncaught: true,
+            payload: { environment: env }
+        };
+        !function(r){function t(o){if(e[o])return e[o].exports;var n=e[o]={exports:{},id:o,loaded:!1};return r[o].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var e={};return t.m=r,t.c=e,t.p="",t(0)}([function(r,t,e){"use strict";var o=e(1).Rollbar,n=e(2),a="https://d37gvrvc0wt4s1.cloudfront.net/js/v1.6/rollbar.min.js";_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||a;var i=o.init(window,_rollbarConfig),l=n(i,_rollbarConfig);i.loadFull(window,document,!1,_rollbarConfig,l)},function(r,t){"use strict";function e(){var r=window.console;r&&"function"==typeof r.log&&r.log.apply(r,arguments)}function o(r,t){return t=t||e,function(){try{return r.apply(this,arguments)}catch(e){t("Rollbar internal error:",e)}}}function n(r,t,e){window._rollbarWrappedError&&(e[4]||(e[4]=window._rollbarWrappedError),e[5]||(e[5]=window._rollbarWrappedError._rollbarContext),window._rollbarWrappedError=null),r.uncaughtError.apply(r,e),t&&t.apply(window,e)}function a(r){this.shimId=++u,this.notifier=null,this.parentShim=r,this.logger=e,this._rollbarOldOnError=null}function i(r){var t=a;return o(function(){if(this.notifier)return this.notifier[r].apply(this.notifier,arguments);var e=this,o="scope"===r;o&&(e=new t(this));var n=Array.prototype.slice.call(arguments,0),a={shim:e,method:r,args:n,ts:new Date};return window._rollbarShimQueue.push(a),o?e:void 0})}function l(r,t){if(t.hasOwnProperty&&t.hasOwnProperty("addEventListener")){var e=t.addEventListener;t.addEventListener=function(t,o,n){e.call(this,t,r.wrap(o),n)};var o=t.removeEventListener;t.removeEventListener=function(r,t,e){o.call(this,r,t&&t._wrapped?t._wrapped:t,e)}}}var u=0;a.init=function(r,t){var e=t.globalAlias||"Rollbar";if("object"==typeof r[e])return r[e];r._rollbarShimQueue=[],r._rollbarWrappedError=null,t=t||{};var i=new a;return o(function(){if(i.configure(t),t.captureUncaught){i._rollbarOldOnError=r.onerror,r.onerror=function(){var r=Array.prototype.slice.call(arguments,0);n(i,i._rollbarOldOnError,r)};var o,a,u="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(o=0;o<u.length;++o)a=u[o],r[a]&&r[a].prototype&&l(i,r[a].prototype)}return r[e]=i,i},i.logger)()},a.prototype.loadFull=function(r,t,e,n,a){var i=function(){var t;if(void 0===r._rollbarPayloadQueue){var e,o,n,i;for(t=new Error("rollbar.js did not load");e=r._rollbarShimQueue.shift();)for(n=e.args,i=0;i<n.length;++i)if(o=n[i],"function"==typeof o){o(t);break}}"function"==typeof a&&a(t)},l=!1,u=t.createElement("script"),s=t.getElementsByTagName("script")[0],p=s.parentNode;u.src=n.rollbarJsUrl,u.async=!e,u.onload=u.onreadystatechange=o(function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){u.onload=u.onreadystatechange=null;try{p.removeChild(u)}catch(r){}l=!0,i()}},this.logger),p.insertBefore(u,s)},a.prototype.wrap=function(r,t){try{var e;if(e="function"==typeof t?t:function(){return t||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._wrapped){r._wrapped=function(){try{return r.apply(this,arguments)}catch(t){throw t._rollbarContext=e()||{},t._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=t,t}},r._wrapped._isWrap=!0;for(var o in r)r.hasOwnProperty(o)&&(r._wrapped[o]=r[o])}return r._wrapped}catch(n){return r}};for(var s="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),p=0;p<s.length;++p)a.prototype[s[p]]=i(s[p]);r.exports={Rollbar:a,_rollbarWindowOnError:n}},function(r,t){"use strict";r.exports=function(r,t){return function(e){if(!e&&!window._rollbarInitialized){var o=window.RollbarNotifier,n=t||{},a=n.globalAlias||"Rollbar",i=window.Rollbar.init(n,r);i._processShimQueue(window._rollbarShimQueue||[]),window[a]=i,window._rollbarInitialized=!0,o.processPayloads()}}}}]);
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-64348743-1', 'auto');
+        ga('send', 'pageview');
+    }
+    </script>
   </head>
   <body>
-
     <div class="layout-transparent mdl-layout mdl-js-layout">
       <header class="mdl-layout__header mdl-layout__header--transparent">
         <div class="mdl-layout__header-row">
@@ -26,7 +41,6 @@
             <a class="mdl-navigation__link" href="#getting-started">Getting Started</a>
             <a class="mdl-navigation__link" href="#performance">Performance</a>
             <a class="mdl-navigation__link" href="#usage">Usage</a>
-            <a class="mdl-navigation__link" href="#themes">Themes</a>
             <a class="mdl-navigation__link" href="https://github.com/alertifyjs/alertify.js">View on GitHub</a>
           </nav>
         </div>
@@ -37,22 +51,29 @@
           <a class="mdl-navigation__link" href="#getting-started">Getting Started</a>
           <a class="mdl-navigation__link" href="#performance">Performance</a>
           <a class="mdl-navigation__link" href="#usage">Usage</a>
-          <a class="mdl-navigation__link" href="#themes">Themes</a>
           <a class="mdl-navigation__link" href="https://github.com/alertifyjs/alertify.js">View on GitHub</a>
         </nav>
       </div>
-
       <main class="mdl-layout__content">
         <div class="container text-center">
-            <h1 class="text--bold-shadow mdl-typography--display-4">alertify.js</h1>
-            <h3 class="text--bold-shadow mdl-typography--display-2">Simple browser dialogs.</h3>
-
+            <h1 class="mdl-typography--display-4">alertify.js</h1>
+            <h3 class="mdl-typography--display-2">Simple browser dialogs</h3>
             <a href="https://github.com/alertifyjs/alertify.js/archive/master.zip"
-               class="mdl-button mdl-button--large mdl-button--primary mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+               class="mdl-button mdl-button--large mdl-button--accent mdl-js-button mdl-button--raised mdl-js-ripple-effect">
               <i class="material-icons md-24">file_download</i>
               Download Now
             </a>
-
+        </div>
+        <div style="background: #eee; padding: 1em 0; color: #555;">
+            <div class="container">
+                <p class="mdl-typography--subhead">
+                    Alertify.js is a small library which provides light-weight, high
+                    performance browser dialogs. Since it uses only 1 HTTP request
+                    and a payload of less than 3kB, it's a great option for
+                    adding basic style to alert, dialog, prompt and log messages
+                    even on low bandwidth connections.
+                </p>
+            </div>
         </div>
         <div class="page-content">
           <div class="container">
@@ -80,7 +101,6 @@
                   easy to override with your own styles.
                 </p>
               </div>
-
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h4 class="mdl-typeograph--headline">Via RawGit</h4>
 <pre>
@@ -88,12 +108,10 @@
 </pre>
                   <h4 class="mdl-typeograph--headline">Via Bower</h4>
                   <pre>bower install --save alertifyjs</pre>
-
                   <h4 class="mdl-typeograph--headline">Via NPM</h4>
                   <pre>npm install --save alertify.js</pre>
               </div>
             </div>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h4 class="mdl-typeograph--headline">AngularJS</h4>
@@ -115,13 +133,10 @@ angular
 </pre>
               </div>
             </div>
-
           </div>
-
           <div class="styles__ribbon styles__ribbon--teal">
               <div class="container">
                   <h2 class="mdl-typeography--display-3" id="performance">Performance</h2>
-
                   <p>
                     Alertify is designed from the ground-up for great performance
                     and a small footprint. That means it's not as feature-rich as
@@ -129,23 +144,19 @@ angular
                     a lot more features so it stays a great option for every
                     kind of website and user.
                   </p>
-
                   <p>
                     Currently, the entire library, with JavaScript and CSS
-                    is ~2.68 kB, and getting smaller all the time. That's quite
-                    impressive considering it's only a single HTTP request, and
-                    no external dependencies are required at all, like jQuery,
-                    etc.
+                    is ~2.29 kB (gzipped), and getting smaller all the time.
+                    That's quite impressive considering it's only a single HTTP
+                    request, and no external dependencies at all being required.
                   </p>
+                  <p>The Angular module is only 2.32kB, so that's light, too!</p>
               </div>
           </div>
 
           <div class="container">
-
             <h2 class="mdl-typeography--display-3" id="usage">Usage</h2>
-
             <h3 class="mdl-typeography--display-2">Dialogs</h3>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Alert Dialog</h5>
@@ -153,16 +164,13 @@ angular
                   Dialogs display a text and require
                   user to acknowledge the message.
                 </p>
-
                 <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="alert">Try It</a><br>
-
               </div>
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h5 class="mdl-typeography--headline">Code Example</h5>
                 <pre>alertify.alert("Message");</pre>
               </div>
             </div>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Confirm Dialog</h5>
@@ -181,7 +189,6 @@ alertify.confirm("Message", function () {
 </pre>
               </div>
             </div>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Prompt Dialog</h5>
@@ -214,7 +221,6 @@ alertify
 </pre>
               </div>
             </div>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Custom Labels</h5>
@@ -306,7 +312,7 @@ alertify.log("Standard log message");
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Standard Log With HTML</h5>
-                <p>HTML works just find in log messages. Have at it!</p>
+                <p>HTML works just fine in log messages. Have at it!</p>
                 <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="notification-html">Try It</a>
               </div>
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
@@ -386,7 +392,6 @@ alertify.success("Standard log message with callback", function(ev) {
 </pre>
               </div>
             </div>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Error Log</h5>
@@ -398,7 +403,6 @@ alertify.success("Standard log message with callback", function(ev) {
                 <pre>alertify.error("Error log message");</pre>
               </div>
             </div>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Error Log with callback</h5>
@@ -493,7 +497,6 @@ alertify.log("Will stay until clicked", "", 0);
 </pre>
               </div>
             </div>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Maximum Number of Log Messages</h5>
@@ -518,50 +521,8 @@ setTimeout(function() {
 </pre>
               </div>
             </div>
-
             <hr>
-
-            <div class="mdl-grid" id="themes">
-              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
-                <h3 class="mdl-typeography--display-2">Themes</h3>
-                <p>
-                  Alertify is easily themeable. Get started with two
-                  themes contributed by the community. These CSS files for
-                  these themes need to be manually added to your page.
-                </p>
-                <p>
-                  <strong>NOTE:</strong> There is no need to insert any CSS
-                  at all to use the default theme. It's bundled with the main
-                  JavaScript file.
-                </p>
-              </div>
-              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
-
-                <h5 class="mdl-typeography--headline">Bootstrap Theme</h5>
-<pre>
-&lt;head&gt;
-    &lt;link rel="" href="/path/to/dist/css/bootstrap.css"&gt;
-&lt;/head&gt;
-</pre>
-                <p>This theme simulates the default appearance of Twitter Bootstrap 2.</p>
-                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="bootstrap">Try It</a>
-
-                <h5 class="mdl-typeography--headline">Bootstrap 3 Theme</h5>
-                <p>This theme simulates the default appearance of Twitter Bootstrap 3.</p>
-<pre>
-&lt;head&gt;
-    &lt;link rel="" href="/path/to/dist/css/bootstrap-3.css"&gt;
-&lt;/head&gt;
-</pre>
-                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="bootstrap-3">Try It</a>
-
-              </div>
-            </div>
-
-            <hr>
-
             <h3 class="mdl-typeography--display-2">Other Options</h3>
-
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Resetting Default Values</h5>
@@ -594,26 +555,19 @@ alertify
 </pre>
               </div>
             </div> -->
-
-
           </div>
         </div>
-
         <footer>
           <div class="container">
             <p>Alertify.js is released under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. &copy; 2015 <a href="https://bradb.net">Brad Berger</a> and contributors.
-
           </div>
         </footer>
       </main>
     </div>
-
-
-
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="js/alertify.js"></script>
-    <script src="js/demo.js"></script>
-
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <script src="/js/alertify.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/ngAlerify.js"></script>
+    <script src="/js/demo.js"></script>
   </body>
 </html>

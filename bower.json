@@ -1,6 +1,6 @@
 {
   "name": "alertify.js",
-  "version": "1.0.0-rc3",
+  "version": "1.0.1",
   "main": "dist/js/alertify.js",
   "homepage": "https://alertifyjs.org",
   "keywords": [
@@ -36,9 +36,5 @@
     "example",
     ".travis.yml",
     "Contributors.md"
-  ],
-  "devDependencies": {
-    "jquery": "*",
-    "qunit": "~1.16.0"
-  }
+  ]
 }

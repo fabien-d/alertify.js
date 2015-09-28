@@ -1,7 +1,18 @@
+.alertify-logs > * {
+  padding: 12px 24px;
+  color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 1px; }
+  .alertify-logs > *, .alertify-logs > *.default {
+    background: rgba(0, 0, 0, 0.8); }
+  .alertify-logs > *.error {
+    background: rgba(244, 67, 54, 0.8); }
+  .alertify-logs > *.success {
+    background: rgba(76, 175, 80, 0.9); }
+
 .alertify {
-  font-family: inherit;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
   left: 0;
   right: 0;
   top: 0;
@@ -9,9 +20,18 @@
   width: 100%;
   height: 100%;
   z-index: 99999; }
+  .alertify.hide {
+    opacity: 0;
+    pointer-events: none; }
+  .alertify, .alertify.show, .alertify.hide {
+    box-sizing: border-box;
+    -webkit-transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
   .alertify, .alertify * {
     box-sizing: border-box; }
-  .alertify .alertify-dialog, .alertify .alertify-alert {
+  .alertify .dialog {
+    padding: 12px; }
+  .alertify .dialog, .alertify .alert {
     width: 100%;
     margin: 0 auto;
     position: relative;
@@ -19,110 +39,79 @@
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
             transform: translateY(-50%); }
-    .alertify .alertify-dialog .alertify-inner, .alertify .alertify-alert .alertify-inner {
+    .alertify .dialog > *, .alertify .alert > * {
       width: 400px;
       max-width: 95%;
-      margin: 0 auto; }
-  .alertify .alertify-buttons {
-    text-align: right; }
-
-.alertify,
-.alertify-show,
-.alertify-log,
-.alertify-hide {
-  box-sizing: border-box;
-  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-
-.alertify-dialog {
-  padding: 12px; }
-
-.alertify-hidden {
-  opacity: 0;
-  display: none; }
+      margin: 0 auto;
+      text-align: center;
+      padding: 12px;
+      background: #fff;
+      box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.14), 0 4px 5px 0 rgba(0, 0, 0, 0.098), 0 1px 10px 0 rgba(0, 0, 0, 0.084); }
+    .alertify .dialog .msg, .alertify .alert .msg {
+      padding: 12px;
+      margin-bottom: 12px;
+      margin: 0;
+      text-align: left; }
+    .alertify .dialog input, .alertify .alert input {
+      margin-bottom: 15px;
+      width: 100%;
+      font-size: 100%;
+      padding: 12px; }
+      .alertify .dialog input:focus, .alertify .alert input:focus {
+        outline-offset: -2px; }
+    .alertify .dialog nav, .alertify .alert nav {
+      text-align: right; }
+      .alertify .dialog nav button, .alertify .alert nav button {
+        background: transparent;
+        box-sizing: border-box;
+        color: rgba(0, 0, 0, 0.87);
+        position: relative;
+        outline: 0;
+        border: 0;
+        display: inline-block;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+        padding: 0 6px;
+        margin: 6px 8px;
+        line-height: 36px;
+        min-height: 36px;
+        white-space: nowrap;
+        min-width: 88px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 2px; }
+        .alertify .dialog nav button:hover, .alertify .dialog nav button:active, .alertify .alert nav button:hover, .alertify .alert nav button:active {
+          background-color: rgba(0, 0, 0, 0.05); }
+        .alertify .dialog nav button:focus, .alertify .alert nav button:focus {
+          border-style: dashed; }
 
 .alertify-logs {
   position: fixed;
-  z-index: 5000;
-  bottom: 0;
-  right: 0; }
-
-.alertify-log {
-  display: block;
-  margin-top: 10px;
-  position: relative;
-  right: -100%;
-  opacity: 0; }
-
-.alertify-log-show {
-  right: 0;
-  opacity: 1; }
-
-.alertify-log-hide {
-  -webkit-transform: translate(100%, 0);
-      -ms-transform: translate(100%, 0);
-          transform: translate(100%, 0);
-  opacity: 0; }
-
-.alertify-inner {
-  text-align: center; }
-
-.alertify-text {
-  margin-bottom: 15px;
-  width: 100%;
-  font-size: 100%; }
-
-.alertify .alertify-dialog .alertify-inner, .alertify .alertify-alert .alertify-inner {
-  padding: 12px;
-  background: #fff;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.14), 0 4px 5px 0 rgba(0, 0, 0, 0.098), 0 1px 10px 0 rgba(0, 0, 0, 0.084); }
-
-.alertify .alertify-message {
-  padding: 12px;
-  margin-bottom: 12px;
-  margin: 0;
-  text-align: left; }
-
-.alertify-text {
-  border: 1px solid #CCC;
-  padding: 12px; }
-
-.alertify-button {
-  background: transparent;
-  box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.87);
-  position: relative;
-  outline: 0;
-  border: 0;
-  display: inline-block;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0 6px;
-  margin: 6px 8px;
-  line-height: 36px;
-  min-height: 36px;
-  white-space: nowrap;
-  min-width: 88px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 2px; }
-  .alertify-button:hover, .alertify-button:active {
-    background-color: rgba(0, 0, 0, 0.05); }
-
-.alertify-log {
-  float: right;
-  clear: right;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 12px 24px;
-  color: #fff;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
-  .alertify-log.alertify-log-error {
-    background: rgba(244, 67, 54, 0.8); }
-  .alertify-log.alertify-log-success {
-    background: rgba(76, 175, 80, 0.9); }
+  z-index: 100;
+  bottom: 16px;
+  left: 16px; }
+  .alertify-logs > * {
+    box-sizing: border-box;
+    -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-top: 10px;
+    position: relative;
+    float: left;
+    clear: both;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-perspective: 1000;
+            perspective: 1000; }
+    .alertify-logs > *.show {
+      left: 0;
+      opacity: 1; }
+    .alertify-logs > *, .alertify-logs > *.hide {
+      left: -110%;
+      opacity: 0; }
