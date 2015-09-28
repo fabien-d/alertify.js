@@ -125,7 +125,6 @@
              * @return {Object}
              */
             dialog: function(message, type, onOkay, onCancel) {
-                this.init();
                 this.setup({
                     type: type,
                     message: message,
@@ -205,7 +204,7 @@
             setup: function(item) {
 
                 var el = document.createElement("div");
-                el.className = "alertify hidden";
+                el.className = "alertify hide";
                 el.innerHTML = this.build(item);
 
                 var btnOK = el.querySelector(".ok");
@@ -245,6 +244,9 @@
                 }
 
                 document.body.appendChild(el);
+                setTimeout(function() {
+                    el.classList.remove("hide");
+                }, 100);
 
             },
 

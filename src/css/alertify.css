@@ -25,8 +25,8 @@
     pointer-events: none; }
   .alertify, .alertify.show, .alertify.hide {
     box-sizing: border-box;
-    -webkit-transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    -webkit-transition: all 0.33s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.33s cubic-bezier(0.25, 0.8, 0.25, 1); }
   .alertify, .alertify * {
     box-sizing: border-box; }
   .alertify .dialog {

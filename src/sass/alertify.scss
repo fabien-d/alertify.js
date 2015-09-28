@@ -42,7 +42,7 @@ $border-radius: 1px;
 
     &, &.show, &.hide {
         box-sizing: border-box;
-        transition: all .2s cubic-bezier(.25, .8, .25, 1);
+        transition: all .33s cubic-bezier(.25, .8, .25, 1);
     }
 
     &, * {
