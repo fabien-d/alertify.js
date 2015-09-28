@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:light&amp;lang=en" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.blue-light_blue.min.css" />
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <script>
     var env = document.domain === "alertifyjs.org" ? "production" : "local";
     if (env === "production") {
@@ -120,6 +120,10 @@
                   "ngAlertify.js" file, so use that instead if you're building
                   an AngularJS app.
                 </p>
+                <p>
+                    If you want to check out a live demo of log messages with
+                    ngAlertify, <a href="/angular.html">click here</a>.
+                </p>                
               </div>
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h4 class="mdl-typeograph--headline">Initialize ngAlertify</h4>
@@ -127,8 +131,8 @@
 // Make sure to include the ngAlertify.js file.
 angular
     .module("myApp", ["ngAlertify"])
-    .controller("myController", function($scope, ngAlertify) {
-        ngAlertify.success("Welcome to ngAlertify!");
+    .controller("myController", function($scope, alertify) {
+        alertify.success("Welcome to alertify!");
     });
 </pre>
               </div>
@@ -567,7 +571,7 @@ alertify
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
     <script src="/js/alertify.js"></script>
     <script src="/js/angular.min.js"></script>
-    <script src="/js/ngAlerify.js"></script>
+    <script src="/js/.js"></script>
     <script src="/js/demo.js"></script>
   </body>
 </html>

@@ -7,11 +7,11 @@
  * complete set of tests, as those are done outside the
  * Angular module. This is just for Angular bootstrapping.
  *
- * @param  {[type]} "ngAlerify test suite" [description]
+ * @param  {[type]} "ngAlertify test suite" [description]
  * @param  {[type]} function(  [description]
  * @return {[type]}            [description]
  */
-describe("ngAlerify test suite", function() {
+describe("ngAlertify test suite", function() {
 
     var alertify;
     var $window;
