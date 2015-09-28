@@ -4,7 +4,6 @@ var gulp = require("gulp");
 var insert = require("gulp-file-insert");
 var uglify = require("gulp-uglify");
 var minifyCSS = require("gulp-minify-css");
-var qunit = require("gulp-qunit");
 var eslint = require("gulp-eslint");
 var prefix = require("gulp-autoprefixer");
 var sass = require("gulp-sass");
@@ -40,7 +39,7 @@ gulp.task("lint", function() {
       .pipe(eslint.format());
 });
 
-gulp.task("lint:build", function() {
+gulp.task("lint:ci", function() {
     return gulp
       .src(p("src/js/**/*.js"))
       .pipe(eslint())
@@ -68,12 +67,6 @@ gulp.task("js:angular", function() {
         .pipe(gulp.dest(p("dist/js")));
 });
 
-gulp.task("qunit", function() {
-    return gulp
-      .src(p("/test/index.html"))
-      .pipe(qunit());
-});
-
 gulp.task("connect", function() {
     connect.server({
         root: "website",
@@ -82,7 +75,7 @@ gulp.task("connect", function() {
     });
 });
 
-gulp.task("test", ["lint:build", "qunit"]);
+gulp.task("test", ["lint:ci"]);
 
 gulp.task("watch", function () {
     var HTML_SRC = p("website/**/*.html");

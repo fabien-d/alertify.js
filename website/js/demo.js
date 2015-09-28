@@ -1,255 +1,170 @@
-function reset () {
-  $("#toggleCSS").attr("href", "");
-  alertify.reset();
-}
+/*eslint strict: [2, "global"], global: {ga: false} */
+"use strict";
 
-// ==============================
-// Standard Dialogs
-$("#alert").on( "click", function () {
-  reset();
-  alertify.alert("This is an alert dialog");
-  return false;
-});
+(function() {
 
-$("#confirm").on( "click", function (ev) {
+    function $(selector) {
+        return document.querySelector(selector);
+    }
 
-  ev.preventDefault();
-  reset();
+    function reset (ev) {
+        ev.preventDefault();
+        alertify.reset();
+    }
 
-  alertify.confirm("This is a confirm dialog", function (event) {
-      event.preventDefault();
-      alertify.success("You've clicked OK");
-  }, function(event) {
-      event.preventDefault();
-      alertify.error("You've clicked Cancel");
-  });
+    function logDemo(selector) {
+        (ga || function() { })("send", "event", "button", "click", "demo", selector);
+    }
 
-});
+    function demo(selector, cb) {
+        var el = $(selector);
+        if(el) {
+            el.addEventListener("click", function(ev) {
+                ev.preventDefault();
+                logDemo(selector);
+                cb();
+            });
+        }
+    }
 
+    var ga = ga || function() {};
 
-$("#click-to-close").on( "click", function (ev) {
-
-  ev.preventDefault();
-  reset();
-
-  alertify
-    .closeLogOnClick(true)
-    .log("Click me to close!");
-
-});
-
-$("#disable-click-to-close").on( "click", function (ev) {
-
-  ev.preventDefault();
-  reset();
-
-  alertify
-    .closeLogOnClick(true)
-    .log("Click me to close!")
-    .closeLogOnClick(false)
-    .log("You can't click to close this!");
-
-});
-
-$("#reset").on( "click", function (ev) {
-
-  ev.preventDefault();
-  reset();
-
-  alertify
-    .okBtn("Go For It!")
-    .reset()
-    .alert("Custom values were reset");
-
-});
-
-$("#max-log-items").on( "click", function (ev) {
-
-  ev.preventDefault();
-
-  reset();
-
-  alertify
-    .maxLogItems(1)
-    .log("This is the first message");
-
-  // The timeout is just for visual effect.
-  setTimeout(function() {
-    alertify.log("The second message will force the first to close.");
-  }, 1000);
-
-});
-
-$("#prompt").on( "click", function (ev) {
-
-  ev.preventDefault();
-  reset();
-
-  alertify
-      .defaultValue("Default value")
-      .prompt("This is a prompt dialog", function (str, event) {
-          event.preventDefault();
-          alertify.success("You've clicked OK and typed: " + str);
-      }, function(event) {
-          event.preventDefault();
-          alertify.error("You've clicked Cancel");
-      });
-
-});
-
-// ==============================
-// Ajax
-$("#ajax").on("click", function (ev) {
-
-    ev.preventDefault();
-    reset();
-
-    alertify.confirm("Confirm?", function(event) {
-        event.preventDefault();
-        alertify.alert("Successful AJAX after OK");
-    }, function(events) {
-        event.preventDefault();
-        alertify.alert("Successful AJAX after Cancel");
+    // ==============================
+    // Standard Dialogs
+    demo("#alert", function (ev) {
+        alertify.alert("This is an alert dialog");
+        return false;
     });
 
-});
-
-// ==============================
-// Standard Dialogs
-$("#notification").on( "click", function (ev) {
-    ev.preventDefault();
-    reset();
-    alertify.log("Standard log message");
-});
-
-$("#notification-html").on( "click", function (ev) {
-    ev.preventDefault();
-    reset();
-    alertify.log("<img src='https://placehold.it/256x128'><h3>This is HTML</h3><p>It's great, right?</p>");
-});
-
-$("#notification-callback").click(function(ev) {
-
-    reset();
-
-    ev.preventDefault();
-    alertify.log("Standard log message with callback", function(event) {
-        event.preventDefault();
-        alertify.log("You clicked the notification");
+    demo("#confirm", function (ev) {
+        alertify.confirm("This is a confirm dialog", function (ev) {
+            ev.preventDefault();
+            alertify.success("You've clicked OK");
+        }, function(ev) {
+            ev.preventDefault();
+            alertify.error("You've clicked Cancel");
+        });
     });
 
-});
-
-$("#success").on( "click", function (ev) {
-
-  ev.preventDefault();
-  reset();
-  alertify.success("Success log message");
-
-});
-
-$("#success-callback").click(function() {
-    reset();
-    alertify.success("Standard log message with callback", function() {
-        alertify.success("You clicked the notification");
-    });
-});
-
-$("#error").on( "click", function (ev) {
-    ev.preventDefault();
-    reset();
-    alertify.error("Error log message");
-});
-
-$("#error-callback").click(function(ev) {
-
-    ev.preventDefault();
-    reset();
-
-    alertify.error("Standard log message with callback", function(event) {
-        event.preventDefault();
-        alertify.error("You clicked the notification");
+    demo("#click-to-close", function (ev) {
+        alertify
+          .closeLogOnClick(true)
+          .log("Click me to close!");
     });
 
-});
-
-// ==============================
-// Custom Properties
-$("#delay").on( "click", function (e) {
-
-  reset();
-  e.preventDefault();
-  alertify
-    .delay(10000)
-    .log("Hiding in 10 seconds");
-
-});
-
-$("#forever").on( "click", function (ev) {
-
-  ev.preventDefault();
-
-  reset();
-
-  alertify
-    .delay(0)
-    .log("Will stay until clicked");
-
-});
-
-$("#labels").on( "click", function (ev) {
-
-  reset();
-
-  ev.preventDefault();
-  alertify
-    .okBtn("Accept")
-    .cancelBtn("Deny")
-    .confirm("Confirm dialog with custom button labels", function (event) {
-        event.preventDefault();
-        alertify.success("You've clicked OK");
-    }, function(event) {
-        event.preventDefault();
-        alertify.error("You've clicked Cancel");
+    demo("#disable-click-to-close", function (ev) {
+        alertify
+            .closeLogOnClick(true)
+            .log("Click me to close!")
+            .closeLogOnClick(false)
+            .log("You can't click to close this!");
     });
 
-});
-
-// ==============================
-// Custom Themes
-$("#bootstrap").on("click", function (ev) {
-
-    ev.preventDefault();
-    reset();
-
-    $("#toggleCSS").attr("href", "../dist/css/alertify-bootstrap.css");
-
-    alertify.prompt("Prompt dialog with bootstrap theme",
-      function (str, event) {
-        event.preventDefault();
-        alertify.success("You've clicked OK");
-      }, function(event) {
-        event.preventDefault();
-        alertify.error("You've clicked Cancel");
+    demo("#reset", function (ev) {
+        alertify
+            .okBtn("Go For It!")
+            .reset(ev)
+            .alert("Custom values were reset");
     });
 
-});
+    demo("#max-log-items", function (ev) {
+        alertify
+            .maxLogItems(1)
+            .log("This is the first message");
 
-// Bootstrap-3 Theme
-$("#bootstrap-3").on( "click", function (ev) {
-
-    ev.preventDefault();
-    reset();
-
-    $("#toggleCSS").attr("href", "../dist/css/alertify-bootstrap-3.css");
-
-    alertify.prompt("Prompt dialog with bootstrap theme",
-      function (str, event) {
-        event.preventDefault();
-        alertify.success("You've clicked OK");
-      }, function(event) {
-        event.preventDefault();
-        alertify.error("You've clicked Cancel");
+        // The timeout is just for visual effect.
+        setTimeout(function() {
+            alertify.log("The second message will force the first to close.");
+        }, 1000);
     });
 
-});
+    demo("#prompt", function (ev) {
+        alertify
+            .defaultValue("Default value")
+            .prompt("This is a prompt dialog", function (str, ev) {
+                ev.preventDefault();
+                alertify.success("You've clicked OK and typed: " + str);
+            }, function(ev) {
+                ev.preventDefault();
+                alertify.error("You've clicked Cancel");
+            });
+    });
+
+    // ==============================
+    // Ajax
+    demo("#ajax", function (ev) {
+        alertify.confirm("Confirm?", function(ev) {
+            ev.preventDefault();
+            alertify.alert("Successful AJAX after OK");
+        }, function(ev) {
+            ev.preventDefault();
+            alertify.alert("Successful AJAX after Cancel");
+        });
+    });
+
+    // ==============================
+    // Standard Dialogs
+    demo("#notification", function (ev) {
+        alertify.log("Standard log message");
+    });
+
+    demo("#notification-html", function (ev) {
+        alertify.log("<img src='https://placehold.it/256x128'><h3>This is HTML</h3><p>It's great, right?</p>");
+    });
+
+    demo("#notification-callback", function(ev) {
+        alertify.log("Standard log message with callback", function(ev) {
+            ev.preventDefault();
+            alertify.log("You clicked the notification");
+        });
+    });
+
+    demo("#success", function (ev) {
+        alertify.success("Success log message");
+    });
+
+    demo("#success-callback", function(ev) {
+        alertify.success("Standard log message with callback", function() {
+            alertify.success("You clicked the notification");
+        });
+    });
+
+    demo("#error", function (ev) {
+        alertify.error("Error log message");
+    });
+
+    demo("#error-callback", function(ev) {
+        alertify.error("Standard log message with callback", function(ev) {
+            ev.preventDefault();
+            alertify.error("You clicked the notification");
+        });
+    });
+
+    // ==============================
+    // Custom Properties
+    demo("#delay", function (ev) {
+        alertify
+            .delay(10000)
+            .log("Hiding in 10 seconds");
+    });
+
+    demo("#forever", function (ev) {
+        alertify
+            .delay(0)
+            .log("Will stay until clicked");
+    });
+
+    demo("#labels", function (ev) {
+        alertify
+            .okBtn("Accept")
+            .cancelBtn("Deny")
+            .confirm("Confirm dialog with custom button labels", function (ev) {
+                ev.preventDefault();
+                alertify.success("You've clicked OK");
+            }, function(ev) {
+                ev.preventDefault();
+                alertify.error("You've clicked Cancel");
+            });
+    });
+
+})();

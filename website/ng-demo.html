@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html ng-app="alertifyDemo">
+<body>
+    <div ng-controller="alertifyLogDemoCtrl">
+        <h3>Log Demo</h3>
+        <p>Close log on click: <input type="checkbox" ng-model="closeLogOnClick"></p>
+        <p>Max log items: <input type="number" step="1" min="1" max="100" ng-model="maxLogItems"></p>
+        <p>Delay: <input type="number" step="500" min="0" ng-model="delay">ms</p>
+        <p>Message: <input type="text" ng-model="msg" placeholder="Enter your message"></p>
+        <p>Type:
+            <select ng-model="type">
+                <option value="log">log</option>
+                <option value="error">error</option>
+                <option value="success">success</option>
+            </select>
+        <p>
+            <button ng-click="show(msg)">Go</button>
+        </p>
+
+        <h4>Code</h4>
+        <pre style="background: #eee; padding: 1em;">
+alertify
+    .maxLogItems({{ maxLogItems }});
+    .closeOnClick({{ closeLogOnClick ? "true" : "false" }});
+    .delay({{ delay }});
+    .{{ type }}("{{ msg }}");
+        </pre>
+    </div>
+</body>
+
+<script src="/js/angular.min.js"></script>
+<script src="/js/ngAlertify.js"></script>
+<script>
+var app = angular.module("alertifyDemo", ["ngAlertify"]);
+app.controller("alertifyLogDemoCtrl", function($scope, $log, alertify) {
+
+    $scope.type = "log";
+    $scope.msg = "ngAlerify";
+    $scope.log = alertify.log;
+    $scope.error = alertify.error;
+    $scope.success = alertify.success;
+    $scope.maxLogItems = 2;
+    $scope.delay = 5000;
+
+    $scope.show = function(msg) {
+        alertify[$scope.type](msg);
+    };
+
+    $scope.$watch("closeLogOnClick", alertify.closeLogOnClick);
+    $scope.$watch("maxLogItems", alertify.maxLogItems);
+    $scope.$watch("delay", alertify.delay);
+
+});
+</script>

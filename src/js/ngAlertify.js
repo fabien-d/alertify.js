@@ -1,5 +1,3 @@
-/* global angular: false */
-
 angular.module("ngAlertify", []).factory("alertify", function() {
 
     "use strict";
@@ -7,7 +5,11 @@ angular.module("ngAlertify", []).factory("alertify", function() {
     // A quick hack to avoid exposing alertify to the window scope.
     var module = { exports: true };
 
+    // Don't the line below as the alertif.js contents are
+    // automatically injected here based on the string contents.
     /* alertify.js */
-    return module.exports;
+
+    var Alertify = module.exports;
+    return new Alertify();
 
 });
