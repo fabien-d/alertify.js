@@ -1,74 +1,71 @@
-### alertify.js - browser dialogs never looked so good
+# Alertify.js
 
-## The end of maintenance... at least for now
+[![Build Status](https://semaphoreci.com/api/v1/projects/c3e649b0-cd60-46bd-9a7a-3d23a7e55589/519553/badge.svg)](https://semaphoreci.com/alertifyjs/alertify-js)      
+[![Code Climate](https://img.shields.io/codeclimate/github/alertifyjs/alertify.js.svg?style=flat-square)](https://codeclimate.com/github/alertifyjs/alertify.js)
+[![Code Climate](https://img.shields.io/codeclimate/coverage/github/alertifyjs/alertify.js.svg?style=flat-square)](https://codeclimate.com/github/alertifyjs/alertify.js)
+[![issues](https://img.shields.io/github/issues/alertifyjs/alertify.js.svg?style=flat-square)](https://github.com/alertifyjs/alertify.js/issues)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
 
-Unfortunately, I will no longer be maintaining alertify.js. I have many ongoing projects that aren't leaving me with enough time to do what needs to be done. If anyone wants to create a fork and maintain - by all means go for it!
+[![Bower version](https://img.shields.io/bower/v/bootstrap.svg?style=flat-square)](http://bower.io/search/?q=alertifyjs)
+[![Bower version](https://img.shields.io/bower/l/bootstrap.svg?style=flat-square)](http://bower.io/search/?q=alertifyjs)
+[![npm downloads](https://img.shields.io/npm/dt/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
+[![npm downloads](https://img.shields.io/npm/dm/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
+[![npm version](https://img.shields.io/npm/v/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
+[![npm license](https://img.shields.io/npm/l/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
 
-It's been great seeing people use it and enjoy it and this decision is simply because I don't believe it's fair that developers are looking for help and not getting it.
+[![Dependency Status](https://david-dm.org/alertifyjs/alertify.js.svg)](https://david-dm.org/alertifyjs/alertify.js)
+[![Dev Dependency status](https://david-dm.org/alertifyjs/alertify.js/dev-status.svg)](https://david-dm.org/alertifyjs/alertify.js#info=devDependencies&view=table)
 
-I wish I had more time or contributions to keep it going and make it better, but the sad reality is that not usually the case on these kinds of projects.
+# Alertify.js
 
-## Why is this repo empty?
-Each version of alertify is currently in its own branch and tagged to be used with bower.
-* [0.3](https://github.com/fabien-d/alertify.js/tree/0.3) - Latest release 0.3.11
-* [0.4](https://github.com/fabien-d/alertify.js/tree/0.4.0-rc1) - (Deprecated)
-* [0.5](https://github.com/fabien-d/alertify.js/tree/0.5) - Not yet released
+Alertify is an unobtrusive customizable JavaScript notification system.
 
-## Opening issues
-When opening a new issue, please note that the more information you provide, the better chances someone will be able to assist you. All issues should copy the template below and fill out the blanks. This ensures that the issue can be effectively reproduced and solved.
+## Get In Touch
 
-```bash
-### Describe the issue you are having
-[insert description]
+Feel free to stop by the [Alertify.js chat room](https://gitter.im/alertifyjs/alertify.js) to ask questions, report issues, make suggestions, or just say hi.
 
-### What version of alertify.js are you using
-[insert version]
+If you prefer something that's not in real-time, stop by the [Alertify.js Google Group](https://groups.google.com/forum/#!forum/alertifyjs/new) to get in touch, too.
 
-### Steps to reproduce the issue
-1. [insert steps]
-2. [insert steps]
+Need to get in contact with us directly? Send us an email at [inbox@alertifyjs.org](mailto:inbox@alertifyjs.org).
 
-### What browser(s) is this happening in
-[insert browsers]
+## Reporting Issues
 
-### Link to reproduced issue
-[insert link]
+If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/)
+etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproduce-able,
+concrete example is your best way to get our attention! Not to say that we won't do our best to fix other issues, though :-)
 
-### Screenshots (if applicable)
-[insert screenshots]
-```
+## Usage and Examples
 
-## Getting started
-Checkout the [wiki](https://github.com/fabien-d/alertify.js/wiki) to get up and running with alertify.js.
+For code examples, stop by the [website at alertifyjs.org](http://alertifyjs.org/)
 
-## Examples
-* [alertify.js 0.3](http://fabien-d.github.com/alertify.js/) - Stable version
-* [alertify.js 0.4](http://fabien-d.github.com/alertify.js/0.4.0rc1) - (Deprecated)
-* alertify.js 0.5 - Development version
+## Browser Support
 
-## Where is it being tested?
+Alertify uses the following JavaScript which may not work in anything
+less than Internet Explorer 10, so you'll need to polyfill it.
 
-* Microsoft Internet Explorer 8+ (Standards Mode)
-* Google Chrome
-* Mozilla Firefox
-* Apple Safari
-* Opera
-* iOS
-* Android
+- `element.classList` (Less than IE 10 needs polyfill)
+- `document.querySelector` (Less than IE 7 needs polyfill)
+- `element.addEventListener` (Less than IE 9 needs polyfill)
+- `Array.prototype.map` (Less than IE 9 needs polyfill)
+- `Array.prototype.forEach` (Less than IE 9 needs polyfill)
+
+It should work on Opera Mini, but since Opera Mini doesn't support
+transitions, the hiding of elements is not very pretty.
+
+It's being tested on:
+
+- Android 4.0 and Latest (should work on 2.1 and newer, though)
+- Chrome (Latest)
+- Firefox (Latest)
+- Internet Explorer (Latest)
+- Internet Explorer 10
+- Safari (desktop and iOS)
 
 ## Credit where credit is due
 
-See all list of [contributors](https://github.com/fabien-d/alertify.js/contributors)
-
-## Release history
-
-For full details, see the [alertify.js changesets](https://github.com/fabien-d/alertify.js/wiki/Changeset)
+See all list of [contributors](https://github.com/alertifyjs/alertify.js/contributors)
 
 ## License
 
-alertify.js is licensed under MIT http://www.opensource.org/licenses/MIT
-
-### Copyright
-
-Copyright &copy;, Fabien Doiron  
-<fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
+alertify.js is licensed under [MIT](http://www.opensource.org/licenses/MIT)
