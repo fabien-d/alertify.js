@@ -125,7 +125,7 @@
              * @return {Object}
              */
             dialog: function(message, type, onOkay, onCancel) {
-                this.setup({
+                return this.setup({
                     type: type,
                     message: message,
                     onOkay: onOkay,
@@ -221,26 +221,61 @@
                     }
                 }
 
-                if (btnOK) {
-                    btnOK.addEventListener("click", function(ev) {
-                        if (item.onOkay && "function" === typeof item.onOkay) {
-                            if (input) {
-                                item.onOkay(input.value, ev);
-                            } else {
-                                item.onOkay(ev);
+                function setupHandlers(resolve) {
+                    if ("function" !== typeof resolve) {
+                        // promises are not available so resolve is a no-op
+                        resolve = function () {};
+                    }
+
+                    if (btnOK) {
+                        btnOK.addEventListener("click", function(ev) {
+                            if (item.onOkay && "function" === typeof item.onOkay) {
+                                if (input) {
+                                    item.onOkay(input.value, ev);
+                                } else {
+                                    item.onOkay(ev);
+                                }
                             }
-                        }
-                        hideElement(el);
-                    });
+
+                            if (input) {
+                                resolve({
+                                    buttonClicked: "ok",
+                                    inputValue: input.value,
+                                    event: ev
+                                });
+                            } else {
+                                resolve({
+                                    buttonClicked: "ok",
+                                    event: ev
+                                });
+                            }
+
+                            hideElement(el);
+                        });
+                    }
+
+                    if (btnCancel) {
+                        btnCancel.addEventListener("click", function(ev) {
+                            if (item.onCancel && "function" === typeof item.onCancel) {
+                                item.onCancel(ev);
+                            }
+
+                            resolve({
+                                buttonClicked: "cancel",
+                                event: ev
+                            });
+
+                            hideElement(el);
+                        });
+                    }
                 }
 
-                if (btnCancel) {
-                    btnCancel.addEventListener("click", function(ev) {
-                        if (item.onCancel && "function" === typeof item.onCancel) {
-                            item.onCancel(ev);
-                        }
-                        hideElement(el);
-                    });
+                var promise;
+
+                if (typeof Promise === "function") {
+                    promise = new Promise(setupHandlers);
+                } else {
+                    setupHandlers();
                 }
 
                 document.body.appendChild(el);
@@ -248,6 +283,7 @@
                     el.classList.remove("hide");
                 }, 100);
 
+                return promise;
             },
 
             okBtn: function(label) {
@@ -298,16 +334,13 @@
                 return this;
             },
             alert: function(message, onOkay, onCancel) {
-                _alertify.dialog(message, "alert", onOkay, onCancel);
-                return this;
+                return _alertify.dialog(message, "alert", onOkay, onCancel) || this;
             },
             confirm: function(message, onOkay, onCancel) {
-                _alertify.dialog(message, "confirm", onOkay, onCancel);
-                return this;
+                return _alertify.dialog(message, "confirm", onOkay, onCancel) || this;
             },
             prompt: function(message, onOkay, onCancel) {
-                _alertify.dialog(message, "prompt", onOkay, onCancel);
-                return this;
+                return _alertify.dialog(message, "prompt", onOkay, onCancel) || this;
             },
             log: function(message, click) {
                 _alertify.log(message, "default", click);
