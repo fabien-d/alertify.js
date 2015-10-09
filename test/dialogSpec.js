@@ -10,16 +10,18 @@ describe("Dialog Unit Tests:", function () {
     });
 
     describe("The 'setup' function", function() {
-        var globalPromise;
+        // reset global Promise object after tests
+        if (typeof Promise !== 'undefined') {
+            var globalPromise;
 
-        beforeAll(function() {
-            globalPromise = Promise;
-        });
+            beforeAll(function() {
+                globalPromise = Promise;
+            });
 
-        afterAll(function() {
-            // reset global Promise object
-            Promise = globalPromise;
-        });
+            afterAll(function() {
+                Promise = globalPromise;
+            });
+        }
 
         it("should return a promise instance when the Promise object exists", function() {
             // Mock Promise global
