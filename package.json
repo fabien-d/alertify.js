@@ -1,7 +1,7 @@
 {
   "name": "alertify.js",
   "description": "An lightweight, unobtrusive customizable JavaScript notification system.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://alertifyjs.org/",
   "main": "dist/js/alertify.js",
   "author": "Fabien Doiron <fabien.doiron@gmail.com> (http://fabien-d.github.io/)",
@@ -20,7 +20,8 @@
     "Mahdi Yusuf <yusuf.mahdi@gmail.com> (http://www.mahdiyusuf.com)",
     "Janek Lasocki-Biczysko <janek.lb@gmail.com>",
     "Paul Osborne <paul.osborne.uk@gmail.com>",
-    "Florian Sellmayr (https://flosell.github.io/)"
+    "Florian Sellmayr (https://flosell.github.io/)",
+    "Dennis Heckman <denheck@gmail.com> (https://github.com/denheck)"
   ],
   "maintainers": [
     "Brad Berger <brad@bradb.net> (https://bradb.net)",
@@ -34,7 +35,7 @@
     "alert"
   ],
   "scripts": {
-    "test": "gulp test && karma start karma-ci.conf.js"
+    "test": "gulp test"
   },
   "repository": "git@github.com:alertifyjs/alertify.js.git",
   "devDependencies": {

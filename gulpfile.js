@@ -10,6 +10,7 @@ var sass = require("gulp-sass");
 var size = require("gulp-size");
 var runSequnce = require("run-sequence");
 var connect = require("gulp-connect");
+var Karma = require("karma").Server;
 
 var p = function (path) {
     return __dirname + (path.charAt(0) === "/" ? "" : "/") + path;
@@ -75,7 +76,19 @@ gulp.task("connect", function() {
     });
 });
 
-gulp.task("test", ["lint:ci"]);
+gulp.task("karma:tdd", function (done) {
+    new Karma({
+        configFile: __dirname + "/karma.conf.js"
+    }, done).start();
+});
+
+gulp.task("karma:ci", function (done) {
+    new Karma({
+        configFile: __dirname + "/karma-ci.conf.js"
+    }, done).start();
+});
+
+gulp.task("test", ["lint:ci", "karma:ci"]);
 
 gulp.task("watch", function () {
     var HTML_SRC = p("website/**/*.html");
@@ -94,4 +107,4 @@ gulp.task("build", function(cb) {
     runSequnce("sass", "css:min", "lint", "uglify", "js:angular", cb);
 });
 
-gulp.task("default", ["connect", "watch"]);
+gulp.task("default", ["connect", "karma:tdd", "watch"]);

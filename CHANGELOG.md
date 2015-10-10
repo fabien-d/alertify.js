@@ -1,3 +1,8 @@
+## 1.0.3
+
+- Adds promise aware API [issue #32](https://github.com/alertifyjs/alertify.js/issues/32)
+- Runs Karma tests as part of development process
+
 ## 1.0.2
 
 - Fixes `ngAlertify` issues
