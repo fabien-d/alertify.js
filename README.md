@@ -39,6 +39,29 @@ concrete example is your best way to get our attention! Not to say that we won't
 
 For code examples, stop by the [website at alertifyjs.org](http://alertifyjs.org/)
 
+## Browser Support
+
+Alertify uses the following JavaScript which may not work in anything
+less than Internet Explorer 10, so you'll need to polyfill it.
+
+- `element.classList` (Less than IE 10 needs polyfill)
+- `document.querySelector` (Less than IE 7 needs polyfill)
+- `element.addEventListener` (Less than IE 9 needs polyfill)
+- `Array.prototype.map` (Less than IE 9 needs polyfill)
+- `Array.prototype.forEach` (Less than IE 9 needs polyfill)
+
+It should work on Opera Mini, but since Opera Mini doesn't support
+transitions, the hiding of elements is not very pretty.
+
+It's being tested on:
+
+- Android 4.0 and Latest (should work on 2.1 and newer, though)
+- Chrome (Latest)
+- Firefox (Latest)
+- Internet Explorer (Latest)
+- Internet Explorer 10
+- Safari (desktop and iOS)
+
 ## Credit where credit is due
 
 See all list of [contributors](https://github.com/alertifyjs/alertify.js/contributors)

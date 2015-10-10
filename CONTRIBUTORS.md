@@ -41,6 +41,10 @@ Credit where credit is due
 * Twitter: [@berger_brad](https://twitter.com/berger_brad)
 * Email: brad@bradb.net
 
+**Dennis Heckman**
+* Github: [denheck](https://github.com/denheck)
+* Email: denheck@gmail.com
+
 ## Documentation Contributors
 
 **Kristoffer Berdal**

@@ -4,13 +4,13 @@ var gulp = require("gulp");
 var insert = require("gulp-file-insert");
 var uglify = require("gulp-uglify");
 var minifyCSS = require("gulp-minify-css");
-var qunit = require("gulp-qunit");
 var eslint = require("gulp-eslint");
 var prefix = require("gulp-autoprefixer");
 var sass = require("gulp-sass");
 var size = require("gulp-size");
 var runSequnce = require("run-sequence");
 var connect = require("gulp-connect");
+var Karma = require("karma").Server;
 
 var p = function (path) {
     return __dirname + (path.charAt(0) === "/" ? "" : "/") + path;
@@ -40,7 +40,7 @@ gulp.task("lint", function() {
       .pipe(eslint.format());
 });
 
-gulp.task("lint:build", function() {
+gulp.task("lint:ci", function() {
     return gulp
       .src(p("src/js/**/*.js"))
       .pipe(eslint())
@@ -68,12 +68,6 @@ gulp.task("js:angular", function() {
         .pipe(gulp.dest(p("dist/js")));
 });
 
-gulp.task("qunit", function() {
-    return gulp
-      .src(p("/test/index.html"))
-      .pipe(qunit());
-});
-
 gulp.task("connect", function() {
     connect.server({
         root: "website",
@@ -82,7 +76,19 @@ gulp.task("connect", function() {
     });
 });
 
-gulp.task("test", ["lint:build", "qunit"]);
+gulp.task("karma:tdd", function (done) {
+    new Karma({
+        configFile: __dirname + "/karma.conf.js"
+    }, done).start();
+});
+
+gulp.task("karma:ci", function (done) {
+    new Karma({
+        configFile: __dirname + "/karma-ci.conf.js"
+    }, done).start();
+});
+
+gulp.task("test", ["lint:ci", "karma:ci"]);
 
 gulp.task("watch", function () {
     var HTML_SRC = p("website/**/*.html");
@@ -101,4 +107,4 @@ gulp.task("build", function(cb) {
     runSequnce("sass", "css:min", "lint", "uglify", "js:angular", cb);
 });
 
-gulp.task("default", ["connect", "watch"]);
+gulp.task("default", ["connect", "karma:tdd", "watch"]);

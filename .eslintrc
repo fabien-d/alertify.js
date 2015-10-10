@@ -14,8 +14,8 @@ rules:
     - 2
     - always
 globals:
+  alertify: true
   angular: false
-  alertify: false
 env:
   browser: true
   node: true
