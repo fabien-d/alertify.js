@@ -103,6 +103,23 @@
     });
 
     // ==============================
+    // Promise Aware
+    demo("#promise", function (ev) {
+        if ("function" !== typeof Promise) {
+            alertify.alert("Your browser doesn't support promises");
+            return;
+        }
+
+        alertify.confirm("Confirm?").then(function (resolvedValue) {
+            // The click event is in the
+            // event variable, so you can use
+            // it here.
+            resolvedValue.event.preventDefault();
+            alertify.alert("You clicked the " + resolvedValue.buttonClicked + " button!");
+        });
+    });
+
+    // ==============================
     // Standard Dialogs
     demo("#notification", function (ev) {
         alertify.log("Standard log message");
