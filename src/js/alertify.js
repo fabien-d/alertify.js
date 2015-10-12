@@ -155,7 +155,6 @@
                 }
 
                 this.notify(message, type, click);
-
             },
 
             /**
@@ -281,6 +280,21 @@
                 document.body.appendChild(el);
                 setTimeout(function() {
                     el.classList.remove("hide");
+                    
+                    // auto focus input if needed and capable
+                    // Note : this should be relocated if needed (according to author policy)
+                    if(input && 
+                       item.type && item.type === "prompt") {
+                        // Due to Default field value, try to select all input to let user edit information directly, 
+                        // if select isn't available, use focus but user have to delete the entry since the cursor is located at the end of the string
+                        if(typeof input.select === "function") {
+                            input.select();
+                        } else {
+                            if(typeof input.focus === "function") {
+                                input.focus();
+                            }
+                        }
+                    }
                 }, 100);
 
                 return promise;
