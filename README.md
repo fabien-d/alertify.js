@@ -39,6 +39,13 @@ concrete example is your best way to get our attention! Not to say that we won't
 
 For code examples, stop by the [website at alertifyjs.org](http://alertifyjs.org/)
 
+## Contributing
+
+Please follow the ESLint style guide to keep the code style uniform. Also
+please add appropriate tests for each contribution. Test coverage is far from
+complete, but if everyone adds a test for their contributions, plus one more
+test, we should be able to get a reasonable amount of coverage quickly.
+
 ## Browser Support
 
 Alertify uses the following JavaScript which may not work in anything

@@ -1,5 +1,7 @@
 /* eslint-env karma, jasmine */
-/* eslint strict: [2, false] */
+/* eslint strict: [2, "global"] */
+"use strict";
+
 describe("settings unit tests", function() {
 
     var $alertify;

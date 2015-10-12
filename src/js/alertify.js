@@ -49,8 +49,19 @@
             dialogs: {
                 buttons: {
                     holder: "<nav>{{buttons}}</nav>",
-                    ok: "<button class='ok' tabindex='-1'>{{ok}}</button>",
-                    cancel: "<button class='cancel' tabindex='-1'>{{cancel}}</button>"
+                    ok: "<button class='ok' tabindex='1'>{{ok}}</button>",
+                    cancel: "<button class='cancel' tabindex='2'>{{cancel}}</button>"
+                },
+                input: "<input type='text'>",
+                message: "<p class='msg'>{{message}}</p>",
+                log: "<div class='{{class}}'>{{message}}</div>"
+            },
+
+            defaultDialogs: {
+                buttons: {
+                    holder: "<nav>{{buttons}}</nav>",
+                    ok: "<button class='ok' tabindex='1'>{{ok}}</button>",
+                    cancel: "<button class='cancel' tabindex='2'>{{cancel}}</button>"
                 },
                 input: "<input type='text'>",
                 message: "<p class='msg'>{{message}}</p>",
@@ -280,19 +291,12 @@
                 document.body.appendChild(el);
                 setTimeout(function() {
                     el.classList.remove("hide");
-                    
-                    // auto focus input if needed and capable
-                    // Note : this should be relocated if needed (according to author policy)
-                    if(input && 
-                       item.type && item.type === "prompt") {
-                        // Due to Default field value, try to select all input to let user edit information directly, 
-                        // if select isn't available, use focus but user have to delete the entry since the cursor is located at the end of the string
-                        if(typeof input.select === "function") {
-                            input.select();
-                        } else {
-                            if(typeof input.focus === "function") {
-                                input.focus();
-                            }
+                    if(input && item.type && item.type === "prompt") {
+                        input.select();
+                        input.focus();
+                    } else {
+                        if (btnOK) {
+                            btnOK.focus();
                         }
                     }
                 }, 100);
@@ -320,7 +324,35 @@
                 this.maxLogItems = parseInt(num || this.defaultMaxLogItems);
             },
 
+            theme: function(themeStr) {
+                switch(themeStr.toLowerCase()) {
+                case "bootstrap":
+                    this.dialogs.buttons.ok = "<button class='ok btn btn-success' tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel btn btn-danger' tabindex='2'>{{cancel}}</button>";
+                    break;
+                case "purecss":
+                    this.dialogs.buttons.ok = "<button class='ok pure-button' tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel pure-button' tabindex='2'>{{cancel}}</button>";
+                    break;
+                case "mdl":
+                case "material-design-light":
+                    this.dialogs.buttons.ok = "<button class='ok mdl-button mdl-js-button mdl-js-ripple-effect'  tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel mdl-button mdl-js-button mdl-js-ripple-effect' tabindex='2'>{{cancel}}</button>";
+                    break;
+                case "angular-material":
+                    this.dialogs.buttons.ok = "<button class='ok md-primary md-button' tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel md-button' tabindex='2'>{{cancel}}</button>";
+                    break;
+                case "default":
+                default:
+                    this.dialogs.buttons.ok = this.defaultDialogs.buttons.ok;
+                    this.dialogs.buttons.cancel = this.defaultDialogs.buttons.cancel;
+                    break;
+                }
+            },
+
             reset: function() {
+                this.theme("default");
                 this.okBtn(this.defaultOkLabel);
                 this.cancelBtn(this.defaultCancelLabel);
                 this.setMaxLogItems();
@@ -358,6 +390,10 @@
             },
             log: function(message, click) {
                 _alertify.log(message, "default", click);
+                return this;
+            },
+            theme: function(themeStr) {
+                _alertify.theme(themeStr);
                 return this;
             },
             success: function(message, click) {

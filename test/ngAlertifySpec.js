@@ -1,5 +1,7 @@
 /* eslint-env karma, jasmine */
-/* eslint strict: [2, false] */
+/* eslint strict: [2, "global"] */
+/* global inject */
+"use strict";
 
 /**
  * A basic test to ensure the ngAlertify module is
@@ -14,7 +16,6 @@
 describe("ngAlertify test suite", function() {
 
     var alertify;
-    var $window;
 
     beforeEach(module("ngAlertify"));
 

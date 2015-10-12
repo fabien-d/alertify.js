@@ -20,12 +20,13 @@
     "Mahdi Yusuf <yusuf.mahdi@gmail.com> (http://www.mahdiyusuf.com)",
     "Janek Lasocki-Biczysko <janek.lb@gmail.com>",
     "Paul Osborne <paul.osborne.uk@gmail.com>",
-    "Florian Sellmayr (https://flosell.github.io/)",
-    "Dennis Heckman <denheck@gmail.com> (https://github.com/denheck)"
+    "Florian Sellmayr (https://flosell.github.io/)"
   ],
   "maintainers": [
     "Brad Berger <brad@bradb.net> (https://bradb.net)",
-    "Christian Tellnes <christian@tellnes.com> (http://christian.tellnes.com)"
+    "Christian Tellnes <christian@tellnes.com> (http://christian.tellnes.com)",
+    "Dennis Heckman <denheck@gmail.com> (https://github.com/denheck)",
+    "Mehdi Lefebvre <mehdi.lefebvre@gmail.com> (https://github.com/ollie314)"
   ],
   "keywords": [
     "alertify",

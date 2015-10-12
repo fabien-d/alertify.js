@@ -25,7 +25,8 @@
       "Janek Lasocki-Biczysko <janek.lb@gmail.com>",
       "Paul Osborne <paul.osborne.uk@gmail.com>",
       "Florian Sellmayr (https://flosell.github.io/)",
-      "Dennis Heckman <denheck@gmail.com> (https://github.com/denheck)"
+      "Dennis Heckman <denheck@gmail.com> (https://github.com/denheck)",
+      "Mehdi Lefebvre <mehdi.lefebvre@gmail.com> (https://github.com/ollie314)"
   ],
   "moduleType": ["amd", "globals", "node"],
   "license": ["MIT", "MPL-2.0"],

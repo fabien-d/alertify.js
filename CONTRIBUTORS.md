@@ -42,8 +42,12 @@ Credit where credit is due
 * Email: brad@bradb.net
 
 **Dennis Heckman**
-* Github: [denheck](https://github.com/denheck)
+* GitHub: [denheck](https://github.com/denheck)
 * Email: denheck@gmail.com
+
+**Mehdi Lefebvre**
+* GitHub: [ollie314](https://github.com/ollie314)
+* Email: mehdi.lefebvre@gmail.com
 
 ## Documentation Contributors
 

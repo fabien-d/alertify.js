@@ -1,3 +1,9 @@
+## 1.0.4
+
+- Adds focus on dialogs to input or button for easier navigation. [Issue 42](https://github.com/alertifyjs/alertify.js/issues/42)
+- Adds (yet documented) option to set themes (for buttons only now)
+- Adds more unit tests
+
 ## 1.0.3
 
 - Adds promise aware API [issue #32](https://github.com/alertifyjs/alertify.js/issues/32)
