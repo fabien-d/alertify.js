@@ -1,8 +1,5 @@
 /* eslint-env karma, jasmine */
-/* eslint strict: [2, "global"] */
-/* global Promise: true */
-"use strict";
-
+/* eslint strict: [2, false] */
 describe("Dialog Unit Tests:", function () {
     var $alertify;
 
@@ -54,7 +51,7 @@ describe("Dialog Unit Tests:", function () {
 
         it("should return undefined when the Promise object does NOT exist", function () {
             // Mock Promise global
-            Promise = null;
+            delete Promise;
 
             var promise = $alertify.setup({
                 type: "alert",
