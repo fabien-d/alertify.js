@@ -185,3 +185,24 @@
     });
 
 })();
+
+var app = angular.module("alertifyDemo", ["ngAlertify"]);
+app.controller("alertifyLogDemoCtrl", function($scope, $log, alertify) {
+
+    $scope.type = "log";
+    $scope.msg = "ngAlertify";
+    $scope.log = alertify.log;
+    $scope.error = alertify.error;
+    $scope.success = alertify.success;
+    $scope.maxLogItems = 2;
+    $scope.delay = 5000;
+
+    $scope.show = function(msg) {
+        alertify[$scope.type](msg);
+    };
+
+    $scope.$watch("closeLogOnClick", alertify.closeLogOnClick);
+    $scope.$watch("maxLogItems", alertify.maxLogItems);
+    $scope.$watch("delay", alertify.delay);
+
+});

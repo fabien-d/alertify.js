@@ -6,10 +6,7 @@
     <meta name="description" content="Alertify.js is a lightweight brower alert and dialog plugin.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>alertify.js</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:light&amp;lang=en" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.blue-light_blue.min.css" />
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.min.css">
     <script>
     var env = document.domain === "alertifyjs.org" ? "production" : "local";
     if (env === "production") {
@@ -523,7 +520,7 @@ alertify.delay(10000).log("Hiding in 10 seconds");
                 <h5 class="mdl-typeography--headline">Persistent Log</h5>
                 <p>
                   Persistent log messages will stay until clicked or until
-                  forceable removed when the number of messages exceeds the
+                  forcibly removed when the number of messages exceeds the
                   maxLogItems setting.
                 </p>
                 <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="forever">Try It</a>
@@ -531,7 +528,7 @@ alertify.delay(10000).log("Hiding in 10 seconds");
               <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
                 <h5 class="mdl-typeography--headline">Code Example</h5>
 <pre>
-alertify.log("Will stay until clicked", "", 0);
+alertify.delay(0).log("Will stay until clicked");
 </pre>
               </div>
             </div>
@@ -602,10 +599,6 @@ alertify
         </footer>
       </main>
     </div>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-    <script src="/js/alertify.js"></script>
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/ngAlertify.js"></script>
-    <script src="/js/demo.js"></script>
+    <script src="/js/all.js"></script>
   </body>
 </html>

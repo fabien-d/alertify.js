@@ -11,6 +11,7 @@ var size = require("gulp-size");
 var runSequnce = require("run-sequence");
 var connect = require("gulp-connect");
 var Karma = require("karma").Server;
+var concat = require("gulp-concat");
 
 var p = function (path) {
     return __dirname + (path.charAt(0) === "/" ? "" : "/") + path;
@@ -22,6 +23,33 @@ gulp.task("sass", function() {
       .pipe(sass())
       .pipe(prefix("last 2 version", "> 1%", {cascade: true}))
       .pipe(gulp.dest(p("src/css")));
+});
+
+gulp.task("website:css", function() {
+    return gulp
+        .src([
+            p("node_modules/material-design-lite/material.css"),
+            p("website/css/styles.css")
+        ])
+        .pipe(concat("styles.min.css"))
+        .pipe(autoprefixer())
+        .pipe(minifyCSS())
+        .pipe(gulp.dest("website/css"))
+        .pipe(connect.reload());
+});
+
+gulp.task("website:js", function() {
+    return gulp
+        .src([
+            p("dist/js/alertify.js"),
+            p("node_modules/material-design-lite/material.min.js"),
+            p("node_modules/angular/angular.min.js"),
+            p("dist/js/ngAlertify.js"),
+            p("website/js/demo.js")
+        ])
+        .pipe(concat("all.js"))
+        .pipe(gulp.dest(p("website/js")))
+        .pipe(connect.reload());
 });
 
 gulp.task("css:min", function () {
@@ -91,16 +119,26 @@ gulp.task("karma:ci", function (done) {
 gulp.task("test", ["lint:ci", "karma:ci"]);
 
 gulp.task("watch", function () {
-    var HTML_SRC = p("website/**/*.html");
-    gulp.watch([HTML_SRC], function() {
-        gulp
-            .src(HTML_SRC)
-            .pipe(connect.reload());
+
+    gulp.watch([
+        p("website/**/*.html")
+    ], function() {
+        gulp.src(p("website/**/*.html")).pipe(connect.reload());
     });
+
     gulp.watch([
         p("src/sass/**/*.scss"),
         p("src/js/**/*.js")
     ], ["build"]);
+
+    gulp.watch([
+        p("dist/js/alertify.js"), p("dist/js/ngAlertify.js"), p("website/js/demo.js")
+    ], ["website:js"]);
+
+    gulp.watch([
+        p("website/css/styles.css")
+    ]), ["website:css"];
+
 });
 
 gulp.task("build", function(cb) {
