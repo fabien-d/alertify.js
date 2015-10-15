@@ -1,1 +1,0 @@
-../../dist/js/alertify.js

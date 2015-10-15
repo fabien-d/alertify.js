@@ -14,24 +14,24 @@ module.exports = function(config) {
             "node_modules/angular/angular.min.js",
             "node_modules/angular-mocks/angular-mocks.js",
             "dist/js/ngAlertify.js",
-            "dist/js/alertify.js",
+            "src/js/alertify.js",
             "test/**/*Spec.js"
         ],
-
-        // list of files to exclude
-        exclude: [],
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
+            "src/js/alertify.js": ["coverage"]
         },
 
-        autoWatch: true,
+        coverageReporter: {
+            type: "lcov",
+            dir: "coverage/"
+        },
 
-        // test results reporter to use
-        // possible values: "dots", "progress"
-        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ["dots"],
+        reporters: ["dots", "coverage", "coveralls"],
+
+        autoWatch: true,
 
         // web server port
         port: 9876,
