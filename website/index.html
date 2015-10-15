@@ -54,7 +54,7 @@
       <main class="mdl-layout__content">
         <div class="container text-center">
             <h1 class="mdl-typography--display-4">alertify.js</h1>
-            <h3 class="mdl-typography--display-2">Simple browser dialogs <small>v1.0.4</small></h3>
+            <h3 class="mdl-typography--display-2">Simple browser dialogs <small>v1.0.5</small></h3>
             <a href="https://github.com/alertifyjs/alertify.js/archive/master.zip"
                class="mdl-button mdl-button--large mdl-button--accent mdl-js-button mdl-button--raised mdl-js-ripple-effect">
               <i class="material-icons md-24">file_download</i>
@@ -102,15 +102,27 @@
                 <h4 class="mdl-typeograph--headline">Via RawGit</h4>
 <pre>
 &lt;-- standard version --&gt;
-&lt;script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.4/dist/js/alertify.js"&gt;&lt;script&gt;
+&lt;script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.5/dist/js/alertify.js"&gt;&lt;script&gt;
 
 &lt;-- angular module --&gt;
-&lt;script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.4/dist/js/ngAlertify.js"&gt;&lt;script&gt;
+&lt;script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.5/dist/js/ngAlertify.js"&gt;&lt;script&gt;
 </pre>
                   <h4 class="mdl-typeograph--headline">Via Bower</h4>
                   <pre>bower install --save alertifyjs</pre>
                   <h4 class="mdl-typeograph--headline">Via NPM</h4>
                   <pre>npm install --save alertify.js</pre>
+
+                <h4 class="mdl-typeograph--headline">Disabling CSS Injection</h4>
+                <p>
+                    If you don't want to inject CSS for some reason, just
+                    insert your own styles (any style or link element with
+                    an id of alertifyCSS) before the javascript file:
+                </p>
+                <pre>
+&lt;link rel="stylesheet"
+      href="/path/to/custom/styles.css"
+      id="alertifyCSS"&gt;
+&lt;script src="/path/to/alertify.js"&gt;&lt;/script&gt;</pre>
               </div>
             </div>
             <div class="mdl-grid">
@@ -328,7 +340,39 @@ alertify.confirm("Confirm?", function (ev) {
 
             <hr>
 
-            <h3 class="mdl-typeography--display-2">Log Messages</h3>
+            <h3 class="mdl-typeography--display-2" id="log-messages">Log Messages</h3>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h5 class="mdl-typeography--headline">Setting the Position</h5>
+                <p></p>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="log-position">Try It</a>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <h5 class="mdl-typeography--headline">Code Example</h5>
+<pre>
+alertify.delay(1000); // This is just to make the demo go faster.
+alertify.log("Default botoom left position");
+setTimeout(function() {
+    alertify.logPosition("top left");
+    alertify.log("top left");
+}, 1500);
+setTimeout(function() {
+    alertify.logPosition("top right");
+    alertify.log("top right");
+}, 3000);
+setTimeout(function() {
+    alertify.logPosition("bottom right");
+    alertify.log("bottom right");
+}, 4500);
+setTimeout(function() {
+    alertify.reset(); // Puts the message back to default position.
+    alertify.log("Back to default");
+}, 6000);
+</pre>
+              </div>
+            </div>
+
 
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
@@ -519,9 +563,9 @@ alertify.delay(10000).log("Hiding in 10 seconds");
               <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
                 <h5 class="mdl-typeography--headline">Persistent Log</h5>
                 <p>
-                  Persistent log messages will stay until clicked or until
-                  forcibly removed when the number of messages exceeds the
-                  maxLogItems setting.
+                  Persistent log messages will stay until clicked
+                  (if closeLogOnClick(true) is set) or until forcibly removed
+                  when the number of messages exceeds the maxLogItems setting.
                 </p>
                 <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="forever">Try It</a>
               </div>

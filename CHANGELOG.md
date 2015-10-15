@@ -1,3 +1,9 @@
+## 1.0.5
+
+- Adds option for positioning of log elements: issue #49
+- Adds more theming: issue #52, issue #50
+- Adds ability to disable injection of css issue #53
+
 ## 1.0.4
 
 - Adds focus on dialogs to input or button for easier navigation. [Issue 42](https://github.com/alertifyjs/alertify.js/issues/42)

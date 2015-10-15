@@ -97,4 +97,24 @@ describe("settings unit tests", function() {
         expect($alertify.maxLogItems).toBe(2);
     });
 
+    it("should inject CSS by default, only once", function() {
+        expect(!!document.querySelector("#alertifyCSS")).toBe(true);
+    });
+
+    it("should remove CSS", function() {
+        $alertify.removeCSS();
+        expect(!!document.querySelector("#alertifyCSS")).toBe(false);
+    });
+
+    it("should should not inject CSS if element already exists", function() {
+        $alertify.removeCSS();
+
+        var fakeCSS = document.createElement("fake");
+        fakeCSS.id = "alertifyCSS";
+        document.body.appendChild(fakeCSS);
+
+        $alertify.injectCSS();
+        expect(document.querySelector("#alertifyCSS").tagName).toBe("FAKE");
+    });
+
 });

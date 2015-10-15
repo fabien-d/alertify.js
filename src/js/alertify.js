@@ -3,8 +3,6 @@
     "use strict";
 
     var TRANSITION_FALLBACK_DURATION = 500;
-    var hasCss;
-
     var hideElement = function(el) {
 
         if (! el) {
@@ -17,6 +15,7 @@
             }
         };
 
+        el.classList.remove("show");
         el.classList.add("hide");
         el.addEventListener("transitionend", removeThis);
 
@@ -45,7 +44,8 @@
             closeLogOnClickDefault: false,
             delay: 5000,
             defaultDelay: 5000,
-
+            logContainerClass: "alertify-logs",
+            logContainerDefaultClass: "alertify-logs",
             dialogs: {
                 buttons: {
                     holder: "<nav>{{buttons}}</nav>",
@@ -117,10 +117,14 @@
                     });
                 }
 
-                if (wait > 0) {
+                wait = wait && !isNaN(+wait) ? +wait : this.delay;
+
+                if (wait < 0) {
+                    hideElement(elem);
+                } else if(wait > 0) {
                     setTimeout(function() {
                         hideElement(elem);
-                    }, (wait && !isNaN(+wait)) ? +wait : this.delay);
+                    }, wait);
                 }
 
             },
@@ -160,12 +164,35 @@
                     var diff = existing.length - this.maxLogItems;
                     if (diff >= 0) {
                         for (var i = 0, _i = diff + 1; i < _i; i++) {
-                            this.close(existing[i], 1);
+                            this.close(existing[i], -1);
                         }
                     }
                 }
 
                 this.notify(message, type, click);
+            },
+
+            setLogPosition: function(str) {
+                this.logContainerClass = "alertify-logs " + str;
+            },
+
+            setupLogContainer: function() {
+
+                var elLog = document.querySelector(".alertify-logs");
+                var className = this.logContainerClass;
+                if (! elLog) {
+                    elLog = document.createElement("div");
+                    elLog.className = className;
+                    document.body.appendChild(elLog);
+                }
+
+                // Make sure it's positioned properly.
+                if (elLog.className !== className) {
+                    elLog.className = className;
+                }
+
+                return elLog;
+
             },
 
             /**
@@ -181,20 +208,15 @@
              */
             notify: function(message, type, click) {
 
+                var elLog = this.setupLogContainer();
                 var log = document.createElement("div");
+
                 log.className = (type || "default");
                 log.innerHTML = message;
 
                 // Add the click handler, if specified.
                 if ("function" === typeof click) {
                     log.addEventListener("click", click);
-                }
-
-                var elLog = document.querySelector(".alertify-logs");
-                if (! elLog) {
-                    elLog = document.createElement("div");
-                    elLog.className = "alertify-logs";
-                    document.body.appendChild(elLog);
                 }
 
                 elLog.appendChild(log);
@@ -220,11 +242,17 @@
                 var btnOK = el.querySelector(".ok");
                 var btnCancel = el.querySelector(".cancel");
                 var input = el.querySelector("input");
+                var label = el.querySelector("label");
 
                 // Set default value/placeholder of input
                 if (input) {
                     if (typeof this.promptPlaceholder === "string") {
-                        input.placeholder = this.promptPlaceholder;
+                        // Set the label, if available, for MDL, etc.
+                        if (label) {
+                            label.textContent = this.promptPlaceholder;
+                        } else {
+                            input.placeholder = this.promptPlaceholder;
+                        }
                     }
                     if (typeof this.promptValue === "string") {
                         input.value = this.promptValue;
@@ -329,6 +357,7 @@
                 case "bootstrap":
                     this.dialogs.buttons.ok = "<button class='ok btn btn-success' tabindex='1'>{{ok}}</button>";
                     this.dialogs.buttons.cancel = "<button class='cancel btn btn-danger' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.input = "<input type='text' class='form-control'>";
                     break;
                 case "purecss":
                     this.dialogs.buttons.ok = "<button class='ok pure-button' tabindex='1'>{{ok}}</button>";
@@ -338,15 +367,18 @@
                 case "material-design-light":
                     this.dialogs.buttons.ok = "<button class='ok mdl-button mdl-js-button mdl-js-ripple-effect'  tabindex='1'>{{ok}}</button>";
                     this.dialogs.buttons.cancel = "<button class='cancel mdl-button mdl-js-button mdl-js-ripple-effect' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.input = "<div class='mdl-textfield mdl-js-textfield'><input class='mdl-textfield__input'><label class='md-textfield__label'></label></div>";
                     break;
                 case "angular-material":
                     this.dialogs.buttons.ok = "<button class='ok md-primary md-button' tabindex='1'>{{ok}}</button>";
                     this.dialogs.buttons.cancel = "<button class='cancel md-button' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.input = "<div layout='column'><md-input-container md-no-float><input type='text'></md-input-container></div>";
                     break;
                 case "default":
                 default:
                     this.dialogs.buttons.ok = this.defaultDialogs.buttons.ok;
                     this.dialogs.buttons.cancel = this.defaultDialogs.buttons.cancel;
+                    this.dialogs.input = this.defaultDialogs.input;
                     break;
                 }
             },
@@ -360,18 +392,30 @@
                 this.promptPlaceholder = "";
                 this.delay = this.defaultDelay;
                 this.setCloseLogOnClick(this.closeLogOnClickDefault);
+                this.setLogPosition("bottom left");
+            },
+
+            injectCSS: function() {
+                if (!document.querySelector("#alertifyCSS")) {
+                    var head = document.getElementsByTagName("head")[0];
+                    var css = document.createElement("style");
+                    css.type = "text/css";
+                    css.id = "alertifyCSS";
+                    css.innerHTML = "/* style.css */";
+                    head.insertBefore(css, head.firstChild);
+                }
+            },
+
+            removeCSS: function() {
+                var css = document.querySelector("#alertifyCSS");
+                if (css && css.parentNode) {
+                    css.parentNode.removeChild(css);
+                }
             }
 
         };
 
-        if (! hasCss) {
-            var head = document.getElementsByTagName("head")[0];
-            var css = document.createElement("style");
-            css.type = "text/css";
-            css.innerHTML = "/* style.css */";
-            head.insertBefore(css, head.firstChild);
-            hasCss = true;
-        }
+        _alertify.injectCSS();
 
         return {
             _$$alertify: _alertify,
@@ -430,6 +474,10 @@
             },
             closeLogOnClick: function(bool) {
                 _alertify.setCloseLogOnClick(!! bool);
+                return this;
+            },
+            logPosition: function(str) {
+                _alertify.setLogPosition(str || "");
                 return this;
             }
         };
