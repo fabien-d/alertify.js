@@ -14,7 +14,7 @@ describe("themes unit tests", function() {
     it("should set the buttons to bootstrap theme", function() {
         alertify.theme("bootstrap");
         expect($alertify.dialogs.buttons.ok.indexOf("btn") > -1).toBe(true);
-        expect($alertify.dialogs.buttons.ok.indexOf("btn-success") > -1).toBe(true);
+        expect($alertify.dialogs.buttons.ok.indexOf("btn-primary") > -1).toBe(true);
         expect($alertify.dialogs.buttons.ok.indexOf("ok") > -1).toBe(true);
         expect($alertify.dialogs.buttons.cancel.indexOf("btn") > -1).toBe(true);
         expect($alertify.dialogs.buttons.cancel.indexOf("cancel") > -1).toBe(true);

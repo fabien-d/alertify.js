@@ -124,6 +124,10 @@ $border-radius: 1px;
 
             }
 
+            button.btn {
+                margin: 6px 4px;
+            }
+
         }
     }
 }
@@ -220,6 +224,7 @@ $border-radius: 1px;
             opacity: 1;
             max-height: 1000px;
             padding: $padding-base;
+            pointer-events: auto;
         }
     }
 

@@ -355,8 +355,8 @@
             theme: function(themeStr) {
                 switch(themeStr.toLowerCase()) {
                 case "bootstrap":
-                    this.dialogs.buttons.ok = "<button class='ok btn btn-success' tabindex='1'>{{ok}}</button>";
-                    this.dialogs.buttons.cancel = "<button class='cancel btn btn-danger' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.buttons.ok = "<button class='ok btn btn-primary' tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel btn btn-default' tabindex='2'>{{cancel}}</button>";
                     this.dialogs.input = "<input type='text' class='form-control'>";
                     break;
                 case "purecss":

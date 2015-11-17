@@ -89,6 +89,8 @@
           background-color: rgba(0, 0, 0, 0.05); }
         .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):focus, .alertify .alert nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):focus {
           border: 1px dashed rgba(0, 0, 0, 0.1); }
+      .alertify .dialog nav button.btn, .alertify .alert nav button.btn {
+        margin: 6px 4px; }
 
 .alertify-logs {
   position: fixed;
@@ -141,4 +143,5 @@
       margin-top: 12px;
       opacity: 1;
       max-height: 1000px;
-      padding: 12px; }
+      padding: 12px;
+      pointer-events: auto; }
