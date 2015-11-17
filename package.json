@@ -1,7 +1,7 @@
 {
   "name": "alertify.js",
   "description": "An lightweight, unobtrusive customizable JavaScript notification system.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "homepage": "https://alertifyjs.org/",
   "main": "dist/js/alertify.js",
   "author": "Fabien Doiron <fabien.doiron@gmail.com> (http://fabien-d.github.io/)",
@@ -63,7 +63,7 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "^0.3.6",
     "karma-sauce-launcher": "^0.2.14",
-    "material-design-lite": "^1.0.5",
+    "material-design-lite": "^1.0.6",
     "protractor": "^2.2.0",
     "roboto-fontface": "^0.4.2",
     "run-sequence": "^1.1.2"

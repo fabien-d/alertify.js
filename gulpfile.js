@@ -5,7 +5,7 @@ var insert = require("gulp-file-insert");
 var uglify = require("gulp-uglify");
 var minifyCSS = require("gulp-minify-css");
 var eslint = require("gulp-eslint");
-var prefix = require("gulp-autoprefixer");
+var autoprefixer = require("gulp-autoprefixer");
 var sass = require("gulp-sass");
 var size = require("gulp-size");
 var runSequnce = require("run-sequence");
@@ -21,7 +21,7 @@ gulp.task("sass", function() {
     return gulp
       .src(p("src/sass/*.scss"))
       .pipe(sass())
-      .pipe(prefix("last 2 version", "> 1%", {cascade: true}))
+      .pipe(autoprefixer("last 2 version", "> 1%", {cascade: true}))
       .pipe(gulp.dest(p("src/css")));
 });
 
