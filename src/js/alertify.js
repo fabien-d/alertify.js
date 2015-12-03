@@ -485,7 +485,7 @@
 
     // AMD, window, and NPM support
     if ("undefined" !== typeof module && !! module && !! module.exports) {
-        module.exports = Alertify;
+        module.exports = new Alertify();
     } else if (typeof define === "function" && define.amd) {
         define(function() {
             return new Alertify();

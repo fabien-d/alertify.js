@@ -9,7 +9,7 @@ angular.module("ngAlertify", []).factory("alertify", function() {
     // automatically injected here based on the string contents.
     /* alertify.js */
 
-    var Alertify = module.exports;
-    return new Alertify();
+    var alertify = module.exports;
+    return alertify;
 
 });
