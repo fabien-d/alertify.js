@@ -490,7 +490,7 @@
                 return this;
             },
             clearLogs: function() {
-                _alertify.setupLogContainer().innerHTML = '';
+                _alertify.setupLogContainer().innerHTML = "";
                 return this;
             }
         };
