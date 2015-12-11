@@ -64,7 +64,7 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "^0.3.6",
     "karma-sauce-launcher": "^0.2.14",
-    "material-design-lite": "^1.0.7",
+    "material-design-lite": "^1.0.6",
     "protractor": "^2.2.0",
     "roboto-fontface": "^0.4.2",
     "run-sequence": "^1.1.2"
