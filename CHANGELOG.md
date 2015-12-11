@@ -1,3 +1,12 @@
+## 1.0.7
+
+- Adds NPM compatibility, issue #62
+
+## 1.0.6
+
+- Fixes issue with closing log on link, issue #56
+- Improved Bootstrap button theming, issue #52
+
 ## 1.0.5
 
 - Adds option for positioning of log elements: issue #49

@@ -49,6 +49,10 @@ Credit where credit is due
 * GitHub: [ollie314](https://github.com/ollie314)
 * Email: mehdi.lefebvre@gmail.com
 
+**Stu Kabakoff**
+* GitHub: [sakabako](https://github.com/sakabako)
+* Email: sakabako@gmail.com
+
 ## Documentation Contributors
 
 **Kristoffer Berdal**
