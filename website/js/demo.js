@@ -67,6 +67,12 @@
             .alert("Custom values were reset");
     });
 
+    demo("#log-template", function (ev) {
+        alertify
+            .setLogTemplate(function (input) { return 'log message: ' + input; })
+            .log("This is the message");
+    });
+
     demo("#max-log-items", function (ev) {
         alertify
             .maxLogItems(1)

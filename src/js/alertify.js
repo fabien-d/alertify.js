@@ -212,7 +212,11 @@
                 var log = document.createElement("div");
 
                 log.className = (type || "default");
-                log.innerHTML = message;
+                if (_alertify.logTemplateMethod) {
+                    log.innerHTML = _alertify.logTemplateMethod(message);
+                } else {
+                    log.innerHTML = message;
+                }
 
                 // Add the click handler, if specified.
                 if ("function" === typeof click) {
@@ -393,6 +397,7 @@
                 this.delay = this.defaultDelay;
                 this.setCloseLogOnClick(this.closeLogOnClickDefault);
                 this.setLogPosition("bottom left");
+                this.logTemplateMethod = null;
             },
 
             injectCSS: function() {
@@ -479,13 +484,21 @@
             logPosition: function(str) {
                 _alertify.setLogPosition(str || "");
                 return this;
+            },
+            setLogTemplate: function(templateMethod) {
+                _alertify.logTemplateMethod = templateMethod;
+                return this;
+            },
+            clearLogs: function() {
+                _alertify.setupLogContainer().innerHTML = "";
+                return this;
             }
         };
     }
 
     // AMD, window, and NPM support
     if ("undefined" !== typeof module && !! module && !! module.exports) {
-        module.exports = Alertify;
+        module.exports = new Alertify();
     } else if (typeof define === "function" && define.amd) {
         define(function() {
             return new Alertify();
