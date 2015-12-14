@@ -32,6 +32,7 @@
          */
         var _alertify = {
 
+            version: "1.0.8",
             defaultOkLabel: "Ok",
             okLabel: "Ok",
             defaultCancelLabel: "Cancel",
@@ -492,7 +493,8 @@
             clearLogs: function() {
                 _alertify.setupLogContainer().innerHTML = "";
                 return this;
-            }
+            },
+            version: _alertify.version
         };
     }
 

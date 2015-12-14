@@ -5,7 +5,7 @@
 
 describe("commonjs test suite", function() {
 
-    var Alertify = require('alertify');
+    var Alertify = require("alertify");
 
     it("should be a function", function() {
         expect(typeof Alertify).toBe("function");
@@ -32,7 +32,7 @@ describe("commonjs test suite", function() {
 
     it("should be different instances", function() {
         var alertify = new Alertify();
-        alertify.defaultValue('foo');
+        alertify.defaultValue("foo");
         expect(alertify._$$alertify).not.toEqual(Alertify._$$alertify);
     });
 

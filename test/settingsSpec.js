@@ -11,6 +11,11 @@ describe("settings unit tests", function() {
         $alertify = alertify._$$alertify;
     });
 
+    it("should set a version number", function() {
+        expect(typeof alertify.version).toBe("string");
+        expect(alertify.version).toEqual($alertify.version);
+    });
+
     it("should set default maxLogItems", function() {
         expect($alertify.maxLogItems).toBe(2);
     });
