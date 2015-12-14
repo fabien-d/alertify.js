@@ -7,7 +7,7 @@ module.exports = function(config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ["jasmine"],
+        frameworks: ["browserify", "jasmine"],
 
         // list of files / patterns to load in the browser
         files: [
@@ -30,6 +30,16 @@ module.exports = function(config) {
         },
 
         reporters: ["dots", "coverage", "coveralls"],
+
+        // Browserify bundle
+        browserify: {
+            debug: true,
+            configure: function(bundle) {
+                bundle.on('prebundle', function() {
+                    bundle.require('./src/js/alertify.js', { expose: 'alertify' });
+                });
+            }
+        },
 
         autoWatch: true,
 

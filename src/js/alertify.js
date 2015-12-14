@@ -498,7 +498,14 @@
 
     // AMD, window, and NPM support
     if ("undefined" !== typeof module && !! module && !! module.exports) {
-        module.exports = Alertify;
+        // Preserve backwards compatibility
+        module.exports = function() {
+            return new Alertify();
+        };
+        var obj = new Alertify();
+        for (var key in obj) {
+            module.exports[key] = obj[key];
+        }
     } else if (typeof define === "function" && define.amd) {
         define(function() {
             return new Alertify();
