@@ -45,7 +45,7 @@ module.exports = function(config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ["jasmine"],
+        frameworks: ["browserify", "jasmine"],
 
         // list of files / patterns to load in the browser
         files: [
@@ -68,6 +68,16 @@ module.exports = function(config) {
         // possible values: "dots", "progress"
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         reporters: ['dots', 'saucelabs'],
+
+        // Browserify bundle
+        browserify: {
+            debug: true,
+            configure: function(bundle) {
+                bundle.on('prebundle', function() {
+                    bundle.require('./src/js/alertify.js', { expose: 'alertify' });
+                });
+            }
+        },
 
         // web server port
         port: 9876,
