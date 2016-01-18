@@ -344,7 +344,7 @@
 
             setDelay: function(time) {
                 var dur = parseInt(time || 0, 10);
-                this.delay = isNaN(dur) ? this.defultDelay : time;
+                this.delay = isNaN(dur) ? this.defaultDelay : time;
                 return this;
             },
 
