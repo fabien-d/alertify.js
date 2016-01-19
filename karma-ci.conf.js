@@ -32,11 +32,6 @@ module.exports = function(config) {
             browserName: 'internet explorer',
             version: '10'
         },
-        SL_IE_11: {
-            base: 'SauceLabs',
-            browserName: 'internet explorer',
-            version: '11'
-        },
         SL_IE: {
             base: 'SauceLabs',
             browserName: 'internet explorer'
