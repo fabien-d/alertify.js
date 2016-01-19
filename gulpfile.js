@@ -145,4 +145,4 @@ gulp.task("build", function(cb) {
     runSequnce("sass", "css:min", "lint", "uglify", "js:angular", cb);
 });
 
-gulp.task("default", ["build", "connect", "karma:tdd", "watch"]);
+gulp.task("default", ["connect", "karma:tdd", "watch"]);
