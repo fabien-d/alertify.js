@@ -346,8 +346,7 @@
                 if(isNaN(time)) {
                     this.delay = this.defaultDelay;
                 } else {
-                    var dur = parseInt(time || 0, 10);
-                    this.delay = dur;
+                    this.delay = parseInt(time || 0, 10);
                 }
                 return this;
             },
