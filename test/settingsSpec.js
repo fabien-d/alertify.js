@@ -130,7 +130,7 @@ describe("settings unit tests", function() {
 
         // should be transform to integer
         alertify.delay("200");
-        expect($alertify._delay).toBe(200);
+        expect($alertify.delay).toBe(200);
         
         // should be reset to the default delay
         alertify.delay("a");
