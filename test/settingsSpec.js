@@ -127,8 +127,14 @@ describe("settings unit tests", function() {
         newDelay = 100;
         alertify.delay(newDelay);
         expect($alertify.delay).toBe(newDelay);
-        // leave the typo bug
-        alertify.delay('a');
+
+        // should be transform to integer
+        alertify.delay("200");
+        expect($alertify._delay).toBe(200);
+        
+        // should be reset to the default delay
+        alertify.delay("a");
+        expect($alertify.delay).not.toBe(undefined);
         expect($alertify.delay).toBe($alertify.defaultDelay);
     });
 });

@@ -343,8 +343,12 @@
             },
 
             setDelay: function(time) {
-                var dur = parseInt(time || 0, 10);
-                this.delay = isNaN(dur) ? this.defaultDelay : time;
+                if(isNaN(time)) {
+                    this.delay = this.defaultDelay;
+                } else {
+                    var dur = parseInt(time || 0, 10);
+                    this.delay = dur;
+                }
                 return this;
             },
 
