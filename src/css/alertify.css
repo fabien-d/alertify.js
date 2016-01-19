@@ -37,7 +37,6 @@
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
             transform: translateY(-50%); }
     .alertify .dialog > *, .alertify .alert > * {
       width: 400px;
