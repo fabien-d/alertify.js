@@ -116,7 +116,7 @@ gulp.task("karma:ci", function (done) {
     }, done).start();
 });
 
-gulp.task("test", ["lint:ci", "karma:ci"]);
+gulp.task("test", ["build", "lint:ci", "karma:ci"]);
 
 gulp.task("watch", function () {
 
