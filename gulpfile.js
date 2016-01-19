@@ -116,7 +116,7 @@ gulp.task("karma:ci", function (done) {
     }, done).start();
 });
 
-gulp.task("test", ["build", "lint:ci", "karma:ci"]);
+gulp.task("test", ["lint:ci", "karma:ci"]);
 
 gulp.task("watch", function () {
 
@@ -145,4 +145,4 @@ gulp.task("build", function(cb) {
     runSequnce("sass", "css:min", "lint", "uglify", "js:angular", cb);
 });
 
-gulp.task("default", ["connect", "karma:tdd", "watch"]);
+gulp.task("default", ["build", "connect", "karma:tdd", "watch"]);
