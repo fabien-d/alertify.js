@@ -1,18 +1,18 @@
-/* eslint strict: [2, false]*/
+/* eslint strict: 0 */
 module.exports = function(config) {
 
     var customLaunchers = {
         SL_CHROME: {
-            base: 'SauceLabs',
-            browserName: 'chrome'
+            base: "SauceLabs",
+            browserName: "chrome"
         },
         SL_FIREFOX: {
-            base: 'SauceLabs',
-            browserName: 'firefox',
+            base: "SauceLabs",
+            browserName: "firefox"
         },
         SL_SAFARI: {
-            base: 'SauceLabs',
-            browserName: 'safari'
+            base: "SauceLabs",
+            browserName: "safari"
         },
         SL_IOS: {
             base: "SauceLabs",
@@ -27,14 +27,9 @@ module.exports = function(config) {
             browserName: "android",
             version: "4.0"
         },
-        SL_IE_10: {
-            base: 'SauceLabs',
-            browserName: 'internet explorer',
-            version: '10'
-        },
         SL_IE: {
-            base: 'SauceLabs',
-            browserName: 'internet explorer'
+            base: "SauceLabs",
+            browserName: "internet explorer"
         }
     };
 
@@ -67,14 +62,14 @@ module.exports = function(config) {
         // test results reporter to use
         // possible values: "dots", "progress"
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['dots', 'saucelabs'],
+        reporters: ["dots", "saucelabs"],
 
         // Browserify bundle
         browserify: {
             debug: true,
             configure: function(bundle) {
-                bundle.on('prebundle', function() {
-                    bundle.require('./src/js/alertify.js', { expose: 'alertify' });
+                bundle.on("prebundle", function() {
+                    bundle.require("./src/js/alertify.js", { expose: "alertify" });
                 });
             }
         },
@@ -90,7 +85,7 @@ module.exports = function(config) {
         logLevel: config.LOG_INFO,
 
         sauceLabs: {
-            testName: 'Alertify.js unit tests'
+            testName: "Alertify.js unit tests"
         },
 
         captureTimeout: 120000,

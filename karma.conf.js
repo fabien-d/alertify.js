@@ -1,4 +1,4 @@
-/* eslint strict: [2, false]*/
+/* eslint strict: 0*/
 module.exports = function(config) {
     config.set({
 
@@ -35,13 +35,11 @@ module.exports = function(config) {
         browserify: {
             debug: true,
             configure: function(bundle) {
-                bundle.on('prebundle', function() {
-                    bundle.require('./src/js/alertify.js', { expose: 'alertify' });
+                bundle.on("prebundle", function() {
+                    bundle.require("./src/js/alertify.js", { expose: "alertify" });
                 });
             }
         },
-
-        autoWatch: true,
 
         // web server port
         port: 9876,

@@ -1,6 +1,6 @@
 {
   "name": "alertify.js",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "dist/js/alertify.js",
   "homepage": "https://alertifyjs.org",
   "keywords": [
@@ -27,7 +27,8 @@
       "Florian Sellmayr (https://flosell.github.io/)",
       "Dennis Heckman <denheck@gmail.com> (https://github.com/denheck)",
       "Mehdi Lefebvre <mehdi.lefebvre@gmail.com> (https://github.com/ollie314)",
-      "Stu Kabakoff <sakabako@gmail.com> (https://github.com/sakabako)"
+      "Stu Kabakoff <sakabako@gmail.com> (https://github.com/sakabako)",
+      "Kevin Friend (https://github.com/kfriend)"
   ],
   "moduleType": ["amd", "globals", "node"],
   "license": ["MIT", "MPL-2.0"],

@@ -112,6 +112,7 @@ $border-radius: 1px;
               font-size: 14px;
               text-decoration: none;
               cursor: pointer;
+              border: 1px solid transparent;
               border-radius: 2px;
 
               &:hover, &:active {
@@ -119,7 +120,7 @@ $border-radius: 1px;
               }
 
               &:focus {
-                  border: 1px dashed rgba(0, 0, 0, .1);
+                  border: 1px solid rgba(0, 0, 0, .1);
               }
 
             }

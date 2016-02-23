@@ -25,8 +25,7 @@
     pointer-events: none; }
   .alertify, .alertify.show {
     box-sizing: border-box;
-    -webkit-transition: all 0.33s cubic-bezier(0.25, 0.8, 0.25, 1);
-            transition: all 0.33s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    transition: all 0.33s cubic-bezier(0.25, 0.8, 0.25, 1); }
   .alertify, .alertify * {
     box-sizing: border-box; }
   .alertify .dialog {
@@ -37,7 +36,6 @@
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
             transform: translateY(-50%); }
     .alertify .dialog > *, .alertify .alert > * {
       width: 400px;
@@ -69,9 +67,9 @@
         outline: 0;
         border: 0;
         display: inline-block;
-        -webkit-box-align: center;
         -webkit-align-items: center;
             -ms-flex-align: center;
+                    -ms-grid-row-align: center;
                 align-items: center;
         padding: 0 6px;
         margin: 6px 8px;
@@ -84,11 +82,12 @@
         font-size: 14px;
         text-decoration: none;
         cursor: pointer;
+        border: 1px solid transparent;
         border-radius: 2px; }
         .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):hover, .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):active, .alertify .alert nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):hover, .alertify .alert nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):active {
           background-color: rgba(0, 0, 0, 0.05); }
         .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):focus, .alertify .alert nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):focus {
-          border: 1px dashed rgba(0, 0, 0, 0.1); }
+          border: 1px solid rgba(0, 0, 0, 0.1); }
       .alertify .dialog nav button.btn, .alertify .alert nav button.btn {
         margin: 6px 4px; }
 
@@ -124,8 +123,7 @@
     top: 0; }
   .alertify-logs > * {
     box-sizing: border-box;
-    -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     clear: both;
     -webkit-backface-visibility: hidden;
