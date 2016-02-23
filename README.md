@@ -33,7 +33,7 @@ Need to get in contact with us directly? Send us an email at [inbox@alertifyjs.o
 
 ## Reporting Issues
 
-If at all possible, please set up an example in [Plunkr](http://plunkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/)
+If at all possible, please set up an example in [Plunkr](https://plnkr.co), [JS Bin](//jsbin.com), [Codepen](http://codepen.io/)
 etc. That will greatly speed up the process of fixing the issue. If you need the issue fixed right away, a reproduce-able,
 concrete example is your best way to get our attention! Not to say that we won't do our best to fix other issues, though :-)
 
