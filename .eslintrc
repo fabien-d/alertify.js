@@ -23,7 +23,8 @@
     "globals": {
         "alertify": true,
         "angular": false,
-        "_alertifyOptions": true
+        "_alertifyOptions": true,
+        "Promise": false
     },
     "env": {
         "browser": true,

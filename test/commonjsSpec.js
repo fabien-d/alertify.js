@@ -36,4 +36,21 @@ describe("commonjs test suite", function() {
         expect(alertify._$$alertify).not.toEqual(Alertify._$$alertify);
     });
 
+    it("should default to document.body as parent element", function() {
+        expect(alertify._$$alertify.parent === document.body).toBe(true);
+    });
+
+    it("should allow parent element to be updated", function() {
+        var newElem = document.createElement("div");
+        alertify.parent(newElem);
+        expect(alertify._$$alertify.parent === newElem).toBe(true);
+    });
+
+    it("should reset the parent element", function() {
+        var newElem = document.createElement("div");
+        alertify.parent(newElem);
+        alertify.reset();
+        expect(alertify._$$alertify.parent === document.body).toBe(true);
+    });
+
 });

@@ -32,7 +32,8 @@
          */
         var _alertify = {
 
-            version: "1.0.8",
+            parent: document.body,
+            version: "1.0.9",
             defaultOkLabel: "Ok",
             okLabel: "Ok",
             defaultCancelLabel: "Cancel",
@@ -184,7 +185,7 @@
                 if (! elLog) {
                     elLog = document.createElement("div");
                     elLog.className = className;
-                    document.body.appendChild(elLog);
+                    this.parent.appendChild(elLog);
                 }
 
                 // Make sure it's positioned properly.
@@ -321,7 +322,7 @@
                     setupHandlers();
                 }
 
-                document.body.appendChild(el);
+                this.parent.appendChild(el);
                 setTimeout(function() {
                     el.classList.remove("hide");
                     if(input && item.type && item.type === "prompt") {
@@ -389,6 +390,7 @@
             },
 
             reset: function() {
+                this.parent = document.body;
                 this.theme("default");
                 this.okBtn(this.defaultOkLabel);
                 this.cancelBtn(this.defaultCancelLabel);
@@ -425,6 +427,9 @@
 
         return {
             _$$alertify: _alertify,
+            parent: function(elem) {
+                _alertify.parent = elem;
+            },
             reset: function() {
                 _alertify.reset();
                 return this;
