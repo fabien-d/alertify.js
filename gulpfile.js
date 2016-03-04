@@ -142,7 +142,7 @@ gulp.task("watch", function () {
 });
 
 gulp.task("build", function(cb) {
-    runSequnce("sass", "css:min", "lint", "uglify", "js:angular", cb);
+    runSequnce("sass", "css:min", "lint", "uglify", "js:angular", "website:js", "website:css", cb);
 });
 
 gulp.task("default", ["connect", "karma:tdd", "watch"]);
