@@ -114,8 +114,8 @@
             close: function(elem, wait) {
 
                 if (this.closeLogOnClick) {
-                    elem.addEventListener("click", function(ev) {
-                        hideElement(ev.srcElement);
+                    elem.addEventListener("click", function() {
+                        hideElement(elem);
                     });
                 }
 
