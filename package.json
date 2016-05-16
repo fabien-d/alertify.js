@@ -1,7 +1,7 @@
 {
   "name": "alertify.js",
   "description": "An lightweight, unobtrusive customizable JavaScript notification system.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "homepage": "https://alertifyjs.org/",
   "main": "dist/js/alertify.js",
   "author": "Fabien Doiron <fabien.doiron@gmail.com> (http://fabien-d.github.io/)",
@@ -24,7 +24,10 @@
     "Stu Kabakoff <sakabako@gmail.com> (https://github.com/sakabako)",
     "Kevin Friend (https://github.com/kfriend)",
     "Nikhil Mutalik (https://github.com/nmutalik)",
-    "Jónatan Núñez (http://www.jonijnm.es/)"
+    "Jónatan Núñez (http://www.jonijnm.es/)",
+    "Vlad Jerca (https://github.com/vladjerca)",
+    "Jose Vera <hola@jose.com.co> (http://jose.com.co)",
+    "Martti Laine (http://codeclown.net)"
   ],
   "maintainers": [
     "Brad Berger <brad@bradb.net> (https://bradb.net)",
@@ -74,7 +77,7 @@
     "roboto-fontface": "^0.4.2",
     "run-sequence": "^1.1.2"
   },
-  "license": "(MIT OR MPL-2.0)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/alertifyjs/alertify.js/issues",
     "email": "inbox@alertifyjs.org"

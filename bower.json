@@ -1,6 +1,6 @@
 {
-  "name": "alertify.js",
-  "version": "1.0.10",
+  "name": "alertifyjs",
+  "version": "1.0.11",
   "main": "dist/js/alertify.js",
   "homepage": "https://alertifyjs.org",
   "keywords": [
@@ -30,10 +30,13 @@
       "Stu Kabakoff <sakabako@gmail.com> (https://github.com/sakabako)",
       "Kevin Friend (https://github.com/kfriend)",
       "Nikhil Mutalik (https://github.com/nmutalik)",
-      "Jónatan Núñez (http://www.jonijnm.es/)"
+      "Jónatan Núñez (http://www.jonijnm.es/)",
+      "Vlad Jerca (https://github.com/vladjerca)",
+      "Jose Vera <hola@jose.com.co> (http://jose.com.co)",
+      "Martti Laine (http://codeclown.net)"
   ],
   "moduleType": ["amd", "globals", "node"],
-  "license": ["MIT", "MPL-2.0"],
+  "license": ["MIT"],
   "ignore": [
     ".gitignore",
     "gulpfile.js",

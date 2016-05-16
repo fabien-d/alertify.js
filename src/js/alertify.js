@@ -33,7 +33,7 @@
         var _alertify = {
 
             parent: document.body,
-            version: "1.0.10",
+            version: "1.0.11",
             defaultOkLabel: "Ok",
             okLabel: "Ok",
             defaultCancelLabel: "Cancel",
@@ -310,6 +310,14 @@
                             });
 
                             hideElement(el);
+                        });
+                    }
+
+                    if (input) {
+                        input.addEventListener("keyup", function(ev) {
+                            if (ev.which === 13) {
+                                btnOK.click();
+                            }
                         });
                     }
                 }

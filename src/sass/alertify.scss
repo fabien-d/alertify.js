@@ -136,7 +136,7 @@ $border-radius: 1px;
 .alertify-logs {
 
     position: fixed;
-    z-index: 100;
+    z-index: 99999;
 
     &.bottom, &:not(.top) {
         bottom: 16px;

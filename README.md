@@ -9,8 +9,8 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alertifyjs/alertify.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Stories in Ready](https://badge.waffle.io/alertifyjs/alertify.js.png?label=ready&title=Ready)](https://waffle.io/alertifyjs/alertify.js)
 
-[![Bower version](https://img.shields.io/bower/v/bootstrap.svg?style=flat-square)](http://bower.io/search/?q=alertifyjs)
-[![Bower version](https://img.shields.io/bower/l/bootstrap.svg?style=flat-square)](http://bower.io/search/?q=alertifyjs)
+[![Bower version](https://img.shields.io/bower/v/alertifyjs.svg?style=flat-square)](http://bower.io/search/?q=alertifyjs)
+[![Bower version](https://img.shields.io/bower/l/alertifyjs..svg?style=flat-square)](http://bower.io/search/?q=alertifyjs)
 [![npm downloads](https://img.shields.io/npm/dt/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
 [![npm downloads](https://img.shields.io/npm/dm/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
 [![npm version](https://img.shields.io/npm/v/alertify.js.svg?style=flat-square)](https://www.npmjs.com/package/alertify.js)
@@ -70,10 +70,6 @@ It's being tested on:
 - Internet Explorer (Latest)
 - Internet Explorer 10
 - Safari (desktop and iOS)
-
-## Credit where credit is due
-
-See all list of [contributors](https://github.com/alertifyjs/alertify.js/contributors)
 
 ## License
 
