@@ -1,17 +1,18 @@
 /* eslint-env node */
 /* eslint strict:0 */
-var gulp = require("gulp");
-var insert = require("gulp-file-insert");
-var uglify = require("gulp-uglify");
-var minifyCSS = require("gulp-cssnano");
-var eslint = require("gulp-eslint");
-var autoprefixer = require("gulp-autoprefixer");
-var sass = require("gulp-sass");
-var size = require("gulp-size");
-var runSequnce = require("run-sequence");
-var connect = require("gulp-connect");
-var Karma = require("karma").Server;
-var concat = require("gulp-concat");
+var gulp            = require("gulp");
+var insert          = require("gulp-file-insert");
+var uglify          = require("gulp-uglify");
+var minifyCSS       = require("gulp-cssnano");
+var eslint          = require("gulp-eslint");
+var autoprefixer    = require("gulp-autoprefixer");
+var sass            = require("gulp-sass");
+var size            = require("gulp-size");
+var runSequnce      = require("run-sequence");
+var connect         = require("gulp-connect");
+var Karma           = require("karma").Server;
+var concat          = require("gulp-concat");
+var tsc             = require("gulp-typescript");
 
 var p = function (path) {
     return __dirname + (path.charAt(0) === "/" ? "" : "/") + path;
@@ -141,8 +142,17 @@ gulp.task("watch", function () {
 
 });
 
+gulp.task("typescript:build", function() {
+    gulp.src([
+            "src/ts/**/**.ts"
+        ])
+        .pipe(tsc())
+        .js
+        .pipe(gulp.dest("src/js/"));
+});
+
 gulp.task("build", function(cb) {
-    runSequnce("sass", "css:min", "lint", "uglify", "js:angular", "website:js", "website:css", cb);
+    runSequnce("typescript:build", "sass", "css:min", "lint", "uglify", "js:angular", "website:js", "website:css", cb);
 });
 
 gulp.task("default", ["connect", "karma:tdd", "watch"]);

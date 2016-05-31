@@ -4,6 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 interface IAlertify {
+    _$$alertify: any;
     reset(): IAlertify;
     alert(message: string, onOkay?: Function, onCancel?: Function): IAlertify;
     confirm(message: string, onOkay?: Function, onCancel?: Function): IAlertify;
@@ -20,9 +21,10 @@ interface IAlertify {
     maxLogItems(max: Number): IAlertify;
     closeLogOnClick(bool: Boolean): IAlertify;
     logPosition(position: string): IAlertify;
-    setLogTemplate(template: string): IAlertify;
+    setLogTemplate(template: Function): IAlertify;
     clearLogs(): IAlertify;
-    parent(prt: HTMLElement): IAlertify;
+    parent(prt: Element): void;
+    version: string;
 }
 
 declare var alertify: IAlertify;
