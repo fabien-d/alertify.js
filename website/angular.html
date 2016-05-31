@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Alertify.js is a lightweight brower alert and dialog plugin.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>alertify.js</title>
+    <link rel="stylesheet" href="/css/styles.min.css">
+  </head>
+  <body>
+    <div class="layout-transparent mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title ">alertify.js</span>
+          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/#getting-started">Getting Started</a>
+            <a class="mdl-navigation__link" href="/#performance">Performance</a>
+            <a class="mdl-navigation__link" href="/#usage">Usage</a>
+            <a class="mdl-navigation__link" href="/#themes">Themes</a>
+            <a class="mdl-navigation__link" href="https://github.com/alertifyjs/alertify.js">View on GitHub</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">alertify.js</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/#getting-started">Getting Started</a>
+          <a class="mdl-navigation__link" href="/#performance">Performance</a>
+          <a class="mdl-navigation__link" href="/#usage">Usage</a>
+          <a class="mdl-navigation__link" href="/#themes">Themes</a>
+          <a class="mdl-navigation__link" href="https://github.com/alertifyjs/alertify.js">View on GitHub</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="container text-center">
+            <h1 class="text--bold-shadow mdl-typography--display-4">alertify.js</h1>
+            <h3 class="text--bold-shadow mdl-typography--display-2">ngAlertify Angular JS Demo</h3>
+        </div>
+        <div class="page-content" style="box-shadow: inset 0 0 20px rgba(0,0,0,.5)" ng-app="alertifyDemo">
+            <div class="container" ng-controller="alertifyLogDemoCtrl">
+                <p>
+                    Alertify.js is available as an Angular module.
+                    This demo tests the ngAlerify module functionality.
+                </p>
+
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                <h4>Code</h4>
+                <pre style="background: #eee; padding: 1em;">
+alertify
+    .reset()
+    .maxLogItems({{ maxLogItems }})
+    .closeOnClick({{ closeLogOnClick ? "true" : "false" }})
+    .delay({{ delay }})
+    .{{ type }}("{{ msg }}");
+                </pre>
+
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                <div>
+                    <h4 class="mdl-typeography--headline">Options</h4>
+                    <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                          <p>Close on click</p>
+                      </div>
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1" style="margin-top: 1.5rem">
+                            <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" ng-click="closeLogOnClick = ! closeLogOnClick" />
+                            <span class="mdl-checkbox__label"></span>
+                          </label>
+                      </div>
+                    </div>
+                    <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                          <p> Max log item</p>
+                      </div>
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                          <div class="mdl-textfield mdl-js-textfield">
+                              <input class="mdl-textfield__input" type="number" step="1" min="1" max="100" ng-model="maxLogItems">
+                              <label class="mdl-textfield__label">Max log item</label>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                          <p> Delay (in ms)</p>
+                      </div>
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                          <div class="mdl-textfield mdl-js-textfield">
+                              <input class="mdl-textfield__input" type="number" step="500" min="0" ng-model="delay">
+                              <label class="mdl-textfield__label">Delay (in ms)</label>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                          <p>Type</p>
+                      </div>
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                          <p>
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                                  <input ng-model="type" type="radio" id="option-1" class="mdl-radio__button" name="options" value="log" />
+                                  <span class="mdl-radio__label">Log</span>
+                              </label>
+                          </p>
+                          <p>
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                                  <input ng-model="type" type="radio" id="option-2" class="mdl-radio__button" name="options" value="error" />
+                                  <span class="mdl-radio__label">Error</span>
+                              </label>
+                          </p>
+                          <p>
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                                  <input ng-model="type" type="radio" id="option-3" class="mdl-radio__button" name="options" value="success" />
+                                  <span class="mdl-radio__label">Success</span>
+                              </label>
+                          </p>
+                      </div>
+                    </div>
+                    <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                          <p>Message</p>
+                      </div>
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                          <div class="mdl-textfield mdl-js-textfield">
+                              <input class="mdl-textfield__input" type="text" ng-model="msg">
+                              <label class="mdl-textfield__label">Message</label>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--5-col-desktop left-col">
+                      </div>
+                      <div class="mdl-cell mdl-cell--8-col mdl-cell--7-col-desktop right-col">
+                          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="show(msg)">Try it out</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div class="container">
+            <p>Alertify.js is released under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. &copy; 2015 <a href="https://bradb.net">Brad Berger</a> and contributors.
+          </div>
+        </footer>
+      </main>
+    </div>
+    <script src="/js/all.js"></script>
