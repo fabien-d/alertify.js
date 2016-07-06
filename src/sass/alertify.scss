@@ -11,6 +11,8 @@ $border-radius: 1px;
         color: #fff;
         box-shadow: $box-shadow;
         border-radius: $border-radius;
+        transition: .2s all;
+        display: block !important;
         &, &.default {
             background: rgba(0, 0, 0, .8);
         }
