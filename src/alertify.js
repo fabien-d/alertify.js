@@ -623,4 +623,4 @@
 		global.alertify = new Alertify();
 	}
 
-}(this));
+}(window));
