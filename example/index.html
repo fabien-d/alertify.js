@@ -35,9 +35,12 @@
 
 	<h2>Themes</h2>
 	<a href="#" id="bootstrap">Bootstrap Theme</a>
+	<h2>Close from API</h2>
+	<a href="#" id="closeFromApi">Close Any Opened Notification From Code</a>
 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="../lib/alertify.min.js"></script>
+	<script src="../lib/alertify.js"></script>
+
 	<script>
 		function reset () {
 			$("#toggleCSS").attr("href", "../themes/alertify.default.css");
@@ -193,6 +196,13 @@
 				}
 			}, "Default Value");
 			return false;
+		});
+
+
+
+		var x = alertify.log("Opened With Page Click To Close or Use closeInstance() Method", "", 0);
+		$('#closeFromApi').on('click',function(){
+			x.closeInstance();
 		});
 	</script>
 
