@@ -2,3 +2,4 @@ node_modules/
 .sass-cache/
 example/assets/sass/
 app.js
+.idea/
