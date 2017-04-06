@@ -1,0 +1,7 @@
+{
+    "name"        : "Alertify",
+    "version"     : "0.2.9",
+    "main"        : ["./lib/alertify.js", "./themes/alertify.core.css", "./themes/alertify.default.css"],
+    "dependencies": {
+    }
+}
