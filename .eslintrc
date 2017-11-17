@@ -1,0 +1,35 @@
+{
+    "rules": {
+        "indent": [
+          2
+        ],
+        "quotes": [
+            2,
+            "double"
+        ],
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "strict": [
+            2,
+            "function"
+        ],
+        "semi": [
+            2,
+            "always"
+        ]
+    },
+    "globals": {
+        "alertify": true,
+        "angular": false,
+        "_alertifyOptions": true,
+        "Promise": false
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "amd": true
+    },
+    "extends": "eslint:recommended"
+}

@@ -1,0 +1,14 @@
+exclude_paths:
+- "test/*"
+- "website/*"
+- "dist/*"
+- "gulpfile.js"
+- "karma-ci.conf.js"
+- "karma.conf.js"
+
+engines:
+    eslint:
+        enabled: true
+ratings:
+    paths:
+    - "src/**/*.js"

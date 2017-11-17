@@ -1,0 +1,249 @@
+ @font-face {
+   font-family: 'Material Icons';
+   font-style: normal;
+   font-weight: 400;
+   src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+   src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+        url(/fonts/MaterialIcons-Regular.woff) format('woff'),
+        url(/fonts/MaterialIcons-Regular.ttf) format('truetype');
+ }  
+
+ @font-face {
+  font-family: 'Roboto';
+  src:  url('/fonts/Roboto-Light.eot');
+  src:  url('/fonts/Roboto-Light.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/Roboto-Light.woff2') format('woff2'),
+        url('/fonts/Roboto-Light.woff') format('woff'),
+        url('/fonts/Roboto-Light.ttf') format('truetype'),
+        url('/fonts/Roboto-Light.svg#Roboto') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+
+ .material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+ html, body {
+   font-family: "Roboto", sans-serif;
+ }
+
+.styles__ribbon {
+  background-color: rgba(0,0,0,.06);
+  color: #fff;
+  width: 90%;
+  margin: 80px 0 80px 0;
+  padding: 3em 0;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+h1, h2, h3, h4, h5, h6,
+.mdl-button,
+.mdl-typography--display-4,
+.mdl-typography--display-3,
+.mdl-typography--display-2 {
+    font-weight: 300;
+}
+
+.mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
+    background: #96CA2D;
+    color: #fff;
+}
+
+a.mdl-button:hover {
+    text-decoration: none;
+    color: rgba(255, 255, 255, .9);
+}
+
+.text--bold-shadow {
+  text-shadow: 0 2px 2px rgba(0,0,0,.1);
+}
+footer {
+  background: #fafafa;
+  padding: 3em 0;
+  color: #555;
+}
+
+a {
+  color: #009688;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-96 { font-size: 96px; }
+
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.styles__ribbon--lime {
+  background-color: #cddc39;
+}
+
+.mdl-button--large {
+  font-size: 24px;
+  height: 48px;
+  padding: 0 16px;
+}
+
+a.mdl-button--large {
+  padding-top: 10px;
+}
+
+.styles__ribbon--cyan {
+  background-color: #00bcd4;
+  opacity: .8;
+}
+
+.styles__ribbon--teal {
+  background-color: #4BB5C1;
+}
+
+.styles__ribbon.styles__ribbon--right {
+  margin-left: 10%;
+}
+
+pre {
+  font-size: 87%;
+  background-color: rgba(0,0,0,.06);
+  border-radius: 3px;
+  padding: 16px;
+}
+
+.left-col {
+  padding-right: 40px;
+}
+
+.pull-right {
+  float: right;
+}
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+hr {
+  margin-top: 5em;
+  margin-bottom: 5em;
+  opacity: .5;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.page-content {
+  background: #fff;
+  color: #555;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3em 1em;
+  box-sizing: border-box;
+}
+
+/* Need for sure */
+.layout-transparent {
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+}
+.layout-transparent .mdl-layout__header,
+.layout-transparent .mdl-layout__drawer-button,
+.layout-transparent .mdl-layout__content {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .mdl-typography--display-4 {
+    font-size: 64px !important;
+  }
+
+  .mdl-typography--display-2 {
+    font-size: 36px;
+  }
+
+  .mdl-typeography--display-3 {
+    font-size: 32px;
+  }
+
+  .mdl-button--large {
+    font-size: 18px;
+    height: 36px;
+    padding: 0 12px;
+  }
+
+  a.mdl-button--large {
+    padding-top: 4px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 2em 1em;
+    width: 100%;
+  }
+
+  .styles__ribbon {
+    margin: 0;
+    padding: 0 1em;
+    width: 90%;
+  }
+
+  .styles__ribbon--right {
+    margin: 0 0 0 10%;
+  }
+
+  hr {
+    margin: 2em 0;
+  }
+}

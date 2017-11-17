@@ -1,0 +1,49 @@
+{
+  "name": "alertifyjs",
+  "version": "1.0.11",
+  "main": "dist/js/alertify.js",
+  "homepage": "https://alertifyjs.org",
+  "keywords": [
+    "alert",
+    "alertify",
+    "dialog",
+    "js"
+  ],
+  "authors": [
+      "Fabien Doiron <fabien.doiron@gmail.com> (http://fabien-d.github.io/)",
+      "Brad Berger <brad@bradb.net> (https://bradb.net)",
+      "Christian Tellnes <christian@tellnes.com> (http://christian.tellnes.com)",
+      "Dan Panzarella (http://panzarel.la)",
+      "İsmail Demirbilek (http://ismaildemirbilek.com)",
+      "Stuart Keith <stuart@stuartkeith.com> (http://stuartkeith.com)",
+      "Antoine Corcy <contact@sbin.dk> (http://sbin.dk)",
+      "Dylan Anderson <dylana@ualberta.ca>",
+      "Shayan Elhami (https://github.com/shayanelhami)",
+      "Gilbert (https://twitter.com/mindeavor)",
+      "Kristoffer Berdal <github@flexd.net> (http://cognitive.io)",
+      "Mahdi Yusuf <yusuf.mahdi@gmail.com> (http://www.mahdiyusuf.com)",
+      "Janek Lasocki-Biczysko <janek.lb@gmail.com>",
+      "Paul Osborne <paul.osborne.uk@gmail.com>",
+      "Florian Sellmayr (https://flosell.github.io/)",
+      "Dennis Heckman <denheck@gmail.com> (https://github.com/denheck)",
+      "Mehdi Lefebvre <mehdi.lefebvre@gmail.com> (https://github.com/ollie314)",
+      "Stu Kabakoff <sakabako@gmail.com> (https://github.com/sakabako)",
+      "Kevin Friend (https://github.com/kfriend)",
+      "Nikhil Mutalik (https://github.com/nmutalik)",
+      "Jónatan Núñez (http://www.jonijnm.es/)",
+      "Vlad Jerca (https://github.com/vladjerca)",
+      "Jose Vera <hola@jose.com.co> (http://jose.com.co)",
+      "Martti Laine (http://codeclown.net)"
+  ],
+  "moduleType": ["amd", "globals", "node"],
+  "license": ["MIT"],
+  "ignore": [
+    ".gitignore",
+    "gulpfile.js",
+    "package.json",
+    "test",
+    "example",
+    ".travis.yml",
+    "Contributors.md"
+  ]
+}
