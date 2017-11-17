@@ -431,12 +431,14 @@
 
         };
 
-        _alertify.injectCSS();
-
         return {
             _$$alertify: _alertify,
             parent: function(elem) {
                 _alertify.parent = elem;
+            },
+            injectCSS: function() {
+                _alertify.injectCSS();
+                return this;
             },
             reset: function() {
                 _alertify.reset();
